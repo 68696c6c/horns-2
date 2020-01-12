@@ -1,0 +1,52 @@
+{
+  "name": "horns-2",
+  "version": "0.0.1",
+  "description": "Devilishly themable React UI kit.",
+  "homepage": "https://github.com/68696c6c/horns-2",
+  "author": "Aaron Hill",
+  "license": "ISC",
+  "main": "dist/index.js",
+  "scripts": {
+    "develop": "start-storybook -p 8000",
+    "develop:docker": "start-storybook -h 0.0.0.0 -p 8000",
+    "build": "./node_modules/.bin/babel src --out-dir dist",
+    "build:storybook": "build-storybook",
+    "test": "jest --config=jest-config.js",
+    "test:watch": "jest --watch --config=jest-config.js"
+  },
+  "dependencies": {
+    "@emotion/core": "^10.0.27",
+    "@emotion/styled": "^10.0.27",
+    "color": "^3.1.2",
+    "emotion-server": "^10.0.27",
+    "emotion-theming": "^10.0.27",
+    "prop-types": "^15.7.2",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-icons": "^3.8.0",
+    "react-text-mask": "^5.4.3",
+    "text-mask-addons": "^3.8.0",
+    "uuid": "^3.3.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.0",
+    "@storybook/addon-actions": "^5.3.1",
+    "@storybook/addon-links": "^5.3.1",
+    "@storybook/addons": "^5.3.1",
+    "@storybook/react": "^5.3.1",
+    "babel-loader": "^8.0.6",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-plugin-emotion": "^10.0.27",
+    "eslint-plugin-import": "^2.20.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.17.0",
+    "prettier": "^1.19.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/68696c6c/horns-2"
+  }
+}
