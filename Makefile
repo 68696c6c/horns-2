@@ -10,6 +10,7 @@ BUILD_TAG ?= latest
 	@echo '    local         spin up local development environment'
 	@echo '    local-down    tear down local environment'
 	@echo '    test          run unit tests'
+	@echo '    test-watch    run the unit test watcher'
 	@echo '    states        generate USMap State components using horns-cli'
 	@echo
 
@@ -33,6 +34,9 @@ local-down:
 
 test:
 	docker-compose run --rm app yarn test
+
+test-watch:
+	docker-compose run --rm app yarn test:watch
 
 states:
 	./horns gen:states "src/components/visuals/us-map"
