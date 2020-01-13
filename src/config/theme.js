@@ -1,4 +1,5 @@
 import ColorConfig from './color'
+import { mergeConfigs } from './utils'
 
 const defaultTheme = {
   color: {
@@ -364,6 +365,8 @@ const defaultTheme = {
 
 class Theme {
   constructor(config = {}) {
+    this.name = config.name || 'horns-theme'
+
     // Theme
     this.color = new ColorConfig(config.color)
     this.spacing = {}

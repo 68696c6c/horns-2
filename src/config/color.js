@@ -158,6 +158,48 @@ export const getProminent = (prominent, cw) =>
     ? cw[defaultConfig.prominent]
     : cw[prominent]
 
+export const getSwatchPath = (colorSwatch = '') => {
+  const parts = colorSwatch.split('.')
+  if (!colors.includes(parts[0])) {
+    return {
+      color: 'neutral',
+      shade: 'base',
+      variant: 'base',
+      swatch: 'base',
+    }
+  }
+  switch (parts.length) {
+    case 1:
+      return {
+        color: parts[0],
+        shade: 'base',
+        variant: 'base',
+        swatch: 'base',
+      }
+    case 2:
+      return {
+        color: parts[0],
+        shade: parts[1],
+        variant: 'base',
+        swatch: 'base',
+      }
+    case 3:
+      return {
+        color: parts[0],
+        shade: parts[1],
+        variant: parts[2],
+        swatch: 'base',
+      }
+    default:
+      return {
+        color: parts[0],
+        shade: parts[1],
+        variant: parts[2],
+        swatch: parts[3],
+      }
+  }
+}
+
 class ColorConfig {
   constructor(config = {}) {
     this.config = mergeConfigs(config, defaultConfig)
@@ -165,6 +207,11 @@ class ColorConfig {
     this.colorways = makeColorways(this.config)
     this.background = getBackground(this.config.mode, this.colorways)
     this.prominent = getProminent(this.config.prominent, this.colorways)
+  }
+
+  getColorway(colorway) {
+    const path = getSwatchPath(colorway)
+    return this.colorways[path.color][path.shade][path.variant][path.swatch]
   }
 }
 

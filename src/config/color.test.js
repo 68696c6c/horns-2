@@ -11,12 +11,40 @@ import ColorConfig, {
   makeColorways,
   getBackground,
   getProminent,
+  getSwatchPath,
 } from './color'
 
 describe('ColorConfig', () => {
   it('should return a ColorConfig instance', () => {
     const c = new ColorConfig()
     expect(c instanceof ColorConfig).toEqual(true)
+  })
+
+  describe('getColorway', () => {
+    let c
+    beforeEach(() => {
+      c = new ColorConfig()
+    })
+
+    it('should return a valid color swatch when a color name is specified', () => {
+      const cw = c.getColorway('primary')
+      expect(cw).toEqual(c.colorways.primary.base.base.base)
+    })
+
+    it('should return a valid color swatch when a color name and shade are specified', () => {
+      const cw = c.getColorway('secondary.dark')
+      expect(cw).toEqual(c.colorways.secondary.dark.base.base)
+    })
+
+    it('should return a valid color swatch when a color name, shade, and variant are specified', () => {
+      const cw = c.getColorway('tertiary.light.hover')
+      expect(cw).toEqual(c.colorways.tertiary.light.hover.base)
+    })
+
+    it('should return a valid color swatch when a color name, shade, and variant are specified', () => {
+      const cw = c.getColorway('success.darker.base.readable')
+      expect(cw).toEqual(c.colorways.success.darker.base.readable)
+    })
   })
 })
 
@@ -89,5 +117,67 @@ describe('getProminent', () => {
   it('should return a default colorway if the colorway is NOT defined', () => {
     const result = getProminent('wrongcolor', colorways)
     expect(result).toEqual(colorways.primary)
+  })
+})
+
+describe('getSwatchPath', () => {
+  it('should default to neutral when no colorway is provided', () => {
+    const result = getSwatchPath()
+    expect(result).toEqual({
+      color: 'neutral',
+      shade: 'base',
+      variant: 'base',
+      swatch: 'base',
+    })
+  })
+
+  it('should default to neutral when an invalid colorway is provided', () => {
+    const result = getSwatchPath('asdf')
+    expect(result).toEqual({
+      color: 'neutral',
+      shade: 'base',
+      variant: 'base',
+      swatch: 'base',
+    })
+  })
+
+  it('should default to base values when a color name is specified', () => {
+    const result = getSwatchPath('dark')
+    expect(result).toEqual({
+      color: 'dark',
+      shade: 'base',
+      variant: 'base',
+      swatch: 'base',
+    })
+  })
+
+  it('should default to base values when a color name and shade are specified', () => {
+    const result = getSwatchPath('secondary.dark')
+    expect(result).toEqual({
+      color: 'secondary',
+      shade: 'dark',
+      variant: 'base',
+      swatch: 'base',
+    })
+  })
+
+  it('should default to base values when a color name, shade, and variant are specified', () => {
+    const result = getSwatchPath('tertiary.light.hover')
+    expect(result).toEqual({
+      color: 'tertiary',
+      shade: 'light',
+      variant: 'hover',
+      swatch: 'base',
+    })
+  })
+
+  it('should return the full path when a color name, shade, variant, and swatch are specified', () => {
+    const result = getSwatchPath('tertiary.light.hover.readable')
+    expect(result).toEqual({
+      color: 'tertiary',
+      shade: 'light',
+      variant: 'hover',
+      swatch: 'readable',
+    })
   })
 })
