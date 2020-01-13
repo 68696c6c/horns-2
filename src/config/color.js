@@ -1,4 +1,6 @@
-import { safeGetValue } from './utils'
+import Color from 'color'
+
+import { mergeConfigs } from './utils'
 
 const MODE_LIGHT = 'light'
 const MODE_DARK = 'dark'
@@ -20,8 +22,9 @@ const basePallet = {
   black: '#010101',
 }
 
-const defaultConfig = {
+export const defaultConfig = {
   mode: MODE_DEFAULT,
+  prominent: 'primary',
   pallet: {
     primary: basePallet.primary,
     secondary: basePallet.secondary,
@@ -33,7 +36,6 @@ const defaultConfig = {
     info: basePallet.blue,
     warning: basePallet.orange,
     danger: basePallet.red,
-    prominent: basePallet.primary,
   },
   factors: {
     alpha: 0.3,
@@ -52,19 +54,117 @@ const defaultConfig = {
   },
 }
 
-const makeSwatches = config => {
-  return {}
+export const colors = [
+  'primary',
+  'secondary',
+  'tertiary',
+  'light',
+  'neutral',
+  'dark',
+  'success',
+  'info',
+  'warning',
+  'danger',
+]
+export const shades = ['base', 'darker', 'dark', 'light', 'lighter']
+export const variants = ['base', 'hover', 'active']
+export const swatches = ['base', 'readable', 'border', 'alpha', 'negative']
+
+export const getColorValue = c => c.hex()
+
+const makeSwatches = (variant, config) => {
+  const { dark: fd, light: fl } = config.factors
+  const alpha = variant.alpha(config.factors.alpha)
+  const negative = variant.negate()
+
+  let readable
+  let border
+  if (variant.isDark()) {
+    readable = Color(basePallet.white)
+    border = variant.lighten(fl.min)
+  } else {
+    readable = Color(basePallet.black)
+    border = variant.lighten(fd.min)
+  }
+
+  return {
+    base: getColorValue(variant),
+    readable: getColorValue(readable),
+    border: getColorValue(border),
+    alpha: getColorValue(alpha),
+    negative: getColorValue(negative),
+  }
 }
+
+const makeVariants = (shade, config) => {
+  const { dark: fd, light: fl } = config.factors
+
+  let hover
+  let active
+  if (shade.isDark()) {
+    hover = shade.lighten(fl.min)
+    active = shade.lighten(fl.less)
+  } else {
+    hover = shade.lighten(fd.min)
+    active = shade.lighten(fd.less)
+  }
+
+  return {
+    base: makeSwatches(shade, config),
+    hover: makeSwatches(hover, config),
+    active: makeSwatches(active, config),
+  }
+}
+
+const makeShades = (colorName, config) => {
+  const base = Color(config.pallet[colorName])
+  const { dark: fd, light: fl } = config.factors
+
+  let darker = base.darken(fd.min)
+  let dark = base.darken(fd.less)
+  let lighter = base.lighten(fl.min)
+  let light = base.lighten(fl.less)
+
+  if (colorName === 'dark') {
+    lighter = base.lighten(fl.max)
+    light = base.lighten(fl.more)
+  } else if (colorName === 'light') {
+    darker = base.lighten(fd.max)
+    dark = base.lighten(fd.more)
+  }
+
+  return {
+    base: makeVariants(base, config),
+    darker: makeVariants(darker, config),
+    dark: makeVariants(dark, config),
+    light: makeVariants(light, config),
+    lighter: makeVariants(lighter, config),
+  }
+}
+
+export const makeColorways = config => {
+  const result = {}
+  colors.forEach(colorName => {
+    result[colorName] = makeShades(colorName, config)
+  })
+  return result
+}
+
+export const getBackground = (mode, cw) =>
+  mode === MODE_DARK ? cw.dark : cw.light
+
+export const getProminent = (prominent, cw) =>
+  typeof cw[prominent] === 'undefined'
+    ? cw[defaultConfig.prominent]
+    : cw[prominent]
 
 class ColorConfig {
   constructor(config = {}) {
-    this.config = {
-      mode: safeGetValue(config, 'mode', defaultConfig.mode),
-      pallet: safeGetValue(config, 'pallet', defaultConfig.pallet),
-      factors: safeGetValue(config, 'factors', defaultConfig.factors),
-    }
+    this.config = mergeConfigs(config, defaultConfig)
 
-    this.swatches = makeSwatches(this.config)
+    this.colorways = makeColorways(this.config)
+    this.background = getBackground(this.config.mode, this.colorways)
+    this.prominent = getProminent(this.config.prominent, this.colorways)
   }
 }
 

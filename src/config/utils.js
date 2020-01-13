@@ -1,5 +1,4 @@
-/* eslint-disable import/prefer-default-export */
+const merge = require('deepmerge')
 
-export const safeGetValue = (config, key, defaultValue) => {
-  return typeof config[key] === 'undefined' ? defaultValue : config[key]
-}
+// eslint-disable-next-line import/prefer-default-export
+export const mergeConfigs = (provided, fallback) => merge(fallback, provided)
