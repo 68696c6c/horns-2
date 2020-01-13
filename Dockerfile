@@ -1,6 +1,6 @@
 FROM node:10-alpine
 
-RUN apk add --no-cache jq bash
+RUN apk add --no-cache jq bash git
 RUN rm -rf /var/cache/apk/*
 
 RUN echo 'alias ll="ls -lah"' >> ~/.bashrc
