@@ -1,24 +1,21 @@
 import React from 'react'
-import { ThemeProvider } from 'emotion-theming'
+// import { withThemesProvider } from 'storybook-addon-emotion-theme'
 
-import { Theme } from '../../../config'
+// import { Theme } from '../../../config'
 import * as Styled from './styles'
 
-// const themes = [new Theme(), new Theme()]
+export const ColorwayDemo = () => <Styled.Colorway>DEMO</Styled.Colorway>
 
-const themeProviderDecorator = storyFn => (
-  <ThemeProvider theme={new Theme()}>
-    {storyFn()}
-  </ThemeProvider>
-)
+ColorwayDemo.story = {
+  name: 'Colorway Demo',
+}
+
+// const theme1 = new Theme()
+// console.log('theme 1', theme1)
+// const themes = [theme1]
 
 export default {
   title: 'Color',
-  decorators: [themeProviderDecorator],
-}
-
-export const Demo = () => <Styled.Colorway>DEMO</Styled.Colorway>
-
-Demo.story = {
-  name: 'Demo Div',
+  component: ColorwayDemo,
+  // decorators: [withThemesProvider(themes)]
 }
