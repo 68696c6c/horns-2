@@ -232,6 +232,10 @@ class ColorConfig {
     this.prominent = getProminent(this.config.prominent, this.colorways)
   }
 
+  darkMode() {
+    return this.config.mode === MODE_DARK
+  }
+
   getColorway(colorway) {
     const path = getSwatchPath(colorway)
     return this.colorways[path.color]
