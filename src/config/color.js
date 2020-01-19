@@ -36,8 +36,6 @@ export const defaultConfig = {
     info: basePallet.blue,
     warning: basePallet.orange,
     danger: basePallet.red,
-    black: basePallet.black,
-    white: basePallet.white,
   },
   factors: {
     alpha: 0.3,
@@ -55,6 +53,9 @@ export const defaultConfig = {
     },
   },
 }
+
+const colorWhite = Color(basePallet.white)
+const colorBlack = Color(basePallet.black)
 
 export const colors = [
   'primary',
@@ -82,10 +83,10 @@ const makeSwatches = (variant, config) => {
   let readable
   let border
   if (variant.isDark()) {
-    readable = config.pallet.white
+    readable = colorWhite
     border = variant.lighten(fl.min)
   } else {
-    readable = config.pallet.black
+    readable = colorBlack
     border = variant.lighten(fd.min)
   }
 
