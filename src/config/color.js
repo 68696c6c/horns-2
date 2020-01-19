@@ -213,7 +213,7 @@ class ColorConfig {
 
   getColorway(colorway) {
     const path = getSwatchPath(colorway)
-    return this.colorways[path.color][path.shade][path.variant][path.swatch]
+    return this.colorways[path.color][path.shade][path.variant]
   }
 }
 

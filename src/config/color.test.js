@@ -26,24 +26,24 @@ describe('ColorConfig', () => {
       c = new ColorConfig()
     })
 
-    it('should return a valid color swatch when a color name is specified', () => {
+    it('should return the expected color swatches when a color name is specified', () => {
       const cw = c.getColorway('primary')
-      expect(cw).toEqual(c.colorways.primary.base.base.base)
+      expect(cw).toEqual(c.colorways.primary.base.base)
     })
 
-    it('should return a valid color swatch when a color name and shade are specified', () => {
+    it('should return the expected color swatches when a color name and shade are specified', () => {
       const cw = c.getColorway('secondary.dark')
-      expect(cw).toEqual(c.colorways.secondary.dark.base.base)
+      expect(cw).toEqual(c.colorways.secondary.dark.base)
     })
 
-    it('should return a valid color swatch when a color name, shade, and variant are specified', () => {
+    it('should return the expected color swatches when a color name, shade, and variant are specified', () => {
       const cw = c.getColorway('tertiary.light.hover')
-      expect(cw).toEqual(c.colorways.tertiary.light.hover.base)
+      expect(cw).toEqual(c.colorways.tertiary.light.hover)
     })
 
-    it('should return a valid color swatch when a color name, shade, and variant are specified', () => {
+    it('should return a the expected color swatches when a color name, shade, and variant are specified', () => {
       const cw = c.getColorway('success.darker.base.readable')
-      expect(cw).toEqual(c.colorways.success.darker.base.readable)
+      expect(cw).toEqual(c.colorways.success.darker.base)
     })
   })
 })
