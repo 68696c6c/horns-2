@@ -1,23 +1,30 @@
 import PropTypes from 'prop-types'
 import { css } from '@emotion/core'
 
-import { colors, colorSwatches } from '../config'
+import { colorShades } from '../config'
 
 // eslint-disable-next-line import/prefer-default-export
-export const colorable = {
+export const chromatic = {
   styles: [
-    ({ theme, colorway }) => {
-      const { base, hover, active } = theme.color.getShade(colorway)
+    ({ theme, color }) => {
+      const c = theme.color.getTone(color)
+      const { base, inactive, hover, active } = c
       return css`
         background: ${base.base};
         color: ${base.readable};
         border-color: ${base.border};
-        &:hover {
+        &:disabled,
+        &.disabled {
+          background: ${inactive.base};
+          color: ${inactive.readable};
+          border-color: ${inactive.border};
+        }
+        &:not(:disabled):not(.disabled):hover {
           background: ${hover.base};
           color: ${hover.readable};
           border-color: ${hover.border};
         }
-        &:active {
+        &:not(:disabled):not(.disabled):active {
           background: ${active.base};
           color: ${active.readable};
           border-color: ${active.border};
@@ -26,9 +33,9 @@ export const colorable = {
     },
   ],
   propTypes: () => ({
-    colorway: PropTypes.oneOf(colorSwatches),
+    shade: PropTypes.oneOf(colorShades),
   }),
-  defaultProps: colorway => ({
-    colorway,
+  defaultProps: shade => ({
+    shade,
   }),
 }

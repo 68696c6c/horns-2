@@ -5,7 +5,7 @@ import { css } from '@emotion/core'
 import { colorSwatches } from '../../../config'
 
 const Colorway = ({ theme, colorway }) => {
-  const cw = theme.color.getColorway(colorway)
+  const cw = theme.color.getState(colorway)
   return css`
     background: ${cw.base};
     color: ${cw.readable};

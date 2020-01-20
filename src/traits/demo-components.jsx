@@ -5,24 +5,55 @@ import styled from '@emotion/styled'
 import { css, jsx } from '@emotion/core'
 
 import { colors } from '../config'
-import { colorable } from './color'
+import { getSwatchPath } from '../config/color'
+import { chromatic } from './color'
 
-const Shade = styled.div(
-  ...colorable.styles,
+const StyledShade = styled.div(
+  ...chromatic.styles,
   ({ prominent }) =>
     css`
       padding: ${prominent ? '2em' : '1em'};
       border-style: solid;
       border-top-width: 0;
       border-bottom-width: 0;
-      border-left-width: 0.5em;
-      border-right-width: 0.5em;
-    `
+      border-left-width: 1em;
+      border-right-width: 1em;
+    `,
+  ({ theme, color }) => {
+    const path = getSwatchPath(color)
+    const c = theme.color.getTone(color)
+    const { base, inactive, hover, active } = c
+    return css`
+        &::after {
+          content: "${path.color}.${path.tone} L: ${base.data.luminosity}";
+        }
+        &:hover::after {
+          content: "${path.color}.${path.tone}.hover L: ${hover.data.luminosity}";
+        }
+        &:active::after {
+          content: "${path.color}.${path.tone}.active L: ${active.data.luminosity}";
+        }
+        &:disabled::after,
+        &.disabled::after {
+          content: "inactive L: ${inactive.data.luminosity}";
+        }
+      `
+  }
+)
+
+const Shade = props => (
+  <>
+    <StyledShade {...props} />
+    <StyledShade {...props} className="disabled" />
+  </>
 )
 
 const StyledShades = styled.div`
   border-radius: 4px;
   overflow: hidden;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 0;
 `
 
 const StyledColor = styled.div`
@@ -30,23 +61,21 @@ const StyledColor = styled.div`
   margin: 1em;
 `
 
-const Color = ({ colorway }) => (
+const Color = ({ color }) => (
   <StyledColor>
-    <h1>{colorway}</h1>
+    <h1>{color}</h1>
     <StyledShades>
-      <Shade colorway={`${colorway}.darker`}>darker</Shade>
-      <Shade colorway={`${colorway}.dark`}>dark</Shade>
-      <Shade colorway={colorway} prominent>
-        base
-      </Shade>
-      <Shade colorway={`${colorway}.light`}>light</Shade>
-      <Shade colorway={`${colorway}.lighter`}>lighter</Shade>
+      <Shade color={`${color}.darker`} />
+      <Shade color={`${color}.dark`} />
+      <Shade color={color} prominent />
+      <Shade color={`${color}.light`} />
+      <Shade color={`${color}.lighter`} />
     </StyledShades>
   </StyledColor>
 )
 
 Color.propTypes = {
-  colorway: PropTypes.oneOf(colors).isRequired,
+  color: PropTypes.oneOf(colors).isRequired,
 }
 
 const StyledColors = styled.div`
@@ -58,25 +87,19 @@ const NeutralColors = () => (
   <StyledColor>
     <h1>dark, neutral, light</h1>
     <StyledShades>
-      <Shade colorway="dark" prominent>
-        dark base
-      </Shade>
-      <Shade colorway="dark.light">dark light</Shade>
-      <Shade colorway="dark.lighter">dark lighter</Shade>
+      <Shade color="dark" prominent />
+      <Shade color="dark.light" />
+      <Shade color="dark.lighter" />
 
-      <Shade colorway="neutral.darker">neutral darker</Shade>
-      <Shade colorway="neutral.dark">neutral dark</Shade>
-      <Shade colorway="neutral" prominent>
-        neutral base
-      </Shade>
-      <Shade colorway="neutral.light">neutral light</Shade>
-      <Shade colorway="neutral.lighter">neutral lighter</Shade>
+      <Shade color="neutral.darker" />
+      <Shade color="neutral.dark" />
+      <Shade color="neutral" prominent />
+      <Shade color="neutral.light" />
+      <Shade color="neutral.lighter" />
 
-      <Shade colorway="light.darker">light darker</Shade>
-      <Shade colorway="light.dark">light dark</Shade>
-      <Shade colorway="light" prominent>
-        light base
-      </Shade>
+      <Shade color="light.darker" />
+      <Shade color="light.dark" />
+      <Shade color="light" prominent />
     </StyledShades>
   </StyledColor>
 )
@@ -85,16 +108,16 @@ const NeutralColors = () => (
 export const Colors = () => (
   <>
     <StyledColors>
-      <Color colorway="primary" />
-      <Color colorway="secondary" />
-      <Color colorway="tertiary" />
+      <Color color="primary" />
+      <Color color="secondary" />
+      <Color color="tertiary" />
     </StyledColors>
     <NeutralColors />
     <StyledColors>
-      <Color colorway="success" />
-      <Color colorway="info" />
-      <Color colorway="warning" />
-      <Color colorway="danger" />
+      <Color color="success" />
+      <Color color="info" />
+      <Color color="warning" />
+      <Color color="danger" />
     </StyledColors>
   </>
 )
