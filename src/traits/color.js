@@ -14,17 +14,17 @@ export const chromatic = {
         color: ${base.readable};
         border-color: ${base.border};
         &:disabled,
-        &.disabled {
+        &.inactive {
           background: ${inactive.base};
           color: ${inactive.readable};
           border-color: ${inactive.border};
         }
-        &:not(:disabled):not(.disabled):hover {
+        &:not(:disabled):not(.inactive):hover {
           background: ${hover.base};
           color: ${hover.readable};
           border-color: ${hover.border};
         }
-        &:not(:disabled):not(.disabled):active {
+        &:not(:disabled):not(.inactive):active {
           background: ${active.base};
           color: ${active.readable};
           border-color: ${active.border};

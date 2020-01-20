@@ -83,26 +83,20 @@ export const swatches = ['base', 'readable', 'border']
 export const getColorValue = c => c.rgb().string()
 
 const makeSwatches = (state, config) => {
-  const { dark: fd, darker: fdr, light: fl, lighter: flr } = config.factors
+  const { dark: fd, darker: fdr, lighter: flr } = config.factors
   const isDark = state.isDark()
   const readable = isDark ? colorWhite : colorBlack
   const luminosity = parseFloat(state.luminosity().toFixed(4))
   let border = state.grayscale()
   if (luminosity > 0.6) {
     // very light
-    border = state.darken(luminosity / 3)
-  } else if (luminosity > 0.8) {
-    // very, very light
     border = state.darken(fdr.min)
-  } else if (luminosity < 0.01) {
-    // very, very dark
-    border = state.lighten(flr.max)
-  } else if (luminosity < 0.025) {
+  } else if (luminosity < 0.009) {
     // very dark
-    border = state.lighten(fl.min)
+    border = state.lighten(flr.min)
   } else if (isDark) {
     // dark
-    border = state.darken(fl.min)
+    border = state.darken(fd.min)
   } else {
     // light
     border = state.darken(fd.min)

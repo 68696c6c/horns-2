@@ -10,14 +10,14 @@ import { chromatic } from './color'
 
 const StyledShade = styled.div(
   ...chromatic.styles,
-  ({ prominent }) =>
+  ({ prominent, first, last, left, right }) =>
     css`
       padding: ${prominent ? '2em' : '1em'};
       border-style: solid;
-      border-top-width: 0;
-      border-bottom-width: 0;
-      border-left-width: 1em;
-      border-right-width: 1em;
+      border-left-width: ${left ? '1em' : '0'};
+      border-right-width: ${right ? '1em' : '0'};
+      border-top-width: ${first ? '1em' : '0'};
+      border-bottom-width: ${last ? '1em' : '0'};
     `,
   ({ theme, color }) => {
     const path = getSwatchPath(color)
@@ -41,10 +41,21 @@ const StyledShade = styled.div(
   }
 )
 
-const Shade = props => (
+const Shade = ({ first, last, ...others }) => (
   <>
-    <StyledShade {...props} />
-    <StyledShade {...props} className="disabled" />
+    <StyledShade
+      {...others}
+      first={first}
+      last={last}
+      left
+    />
+    <StyledShade
+      {...others}
+      className="inactive"
+      first={first}
+      last={last}
+      right
+    />
   </>
 )
 
@@ -65,11 +76,11 @@ const Color = ({ color }) => (
   <StyledColor>
     <h1>{color}</h1>
     <StyledShades>
-      <Shade color={`${color}.darker`} />
+      <Shade color={`${color}.darker`} first />
       <Shade color={`${color}.dark`} />
       <Shade color={color} prominent />
       <Shade color={`${color}.light`} />
-      <Shade color={`${color}.lighter`} />
+      <Shade color={`${color}.lighter`} last />
     </StyledShades>
   </StyledColor>
 )
