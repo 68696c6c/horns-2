@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Colors } from './demo-components'
+import { Colors, BackgroundColors } from './demo-components'
 
 export const Index = () => (
   <>
@@ -11,6 +11,8 @@ export const Index = () => (
     </p>
     <h1>Colors</h1>
     <Colors />
+    <h1>Background and Text Colors</h1>
+    <BackgroundColors />
   </>
 )
 

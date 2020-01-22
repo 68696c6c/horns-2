@@ -6,7 +6,7 @@ import { css, jsx } from '@emotion/core'
 
 import { colors } from '../config'
 import { getSwatchPath } from '../config/color'
-import { chromatic } from './color'
+import { chromatic, chromaticText, chromaticSurface } from './chromatic'
 
 const StyledShade = styled.div(
   ...chromatic.styles,
@@ -43,12 +43,7 @@ const StyledShade = styled.div(
 
 const Shade = ({ first, last, ...others }) => (
   <>
-    <StyledShade
-      {...others}
-      first={first}
-      last={last}
-      left
-    />
+    <StyledShade {...others} first={first} last={last} left />
     <StyledShade
       {...others}
       className="inactive"
@@ -115,7 +110,6 @@ const NeutralColors = () => (
   </StyledColor>
 )
 
-// eslint-disable-next-line import/prefer-default-export
 export const Colors = () => (
   <>
     <StyledColors>
@@ -131,4 +125,81 @@ export const Colors = () => (
       <Color color="danger" />
     </StyledColors>
   </>
+)
+
+const StyledTextColor = styled.div(...chromaticText.styles)
+
+StyledTextColor.propTypes = {
+  ...chromaticText.propTypes(),
+}
+
+StyledTextColor.defaultProps = {
+  ...chromaticText.defaultProps(),
+}
+
+// eslint-disable-next-line react/prop-types
+const TextColor = ({ color }) => (
+  <StyledTextColor color={color}>{color}</StyledTextColor>
+)
+
+const StyledTextColors = styled.div`
+  padding: 1em;
+`
+
+const TextColors = () => (
+  <StyledTextColors>
+    <TextColor color="primary" />
+    <TextColor color="secondary" />
+    <TextColor color="tertiary" />
+    <TextColor color="success" />
+    <TextColor color="info" />
+    <TextColor color="warning" />
+    <TextColor color="danger" />
+  </StyledTextColors>
+)
+
+const StyledBackground = styled.div(
+  ...chromaticSurface.styles,
+  () => css`
+    padding: 1em;
+    border-width: 1em;
+    border-style: solid;
+  `
+)
+
+const StyledBackgrounds = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  text-transform: capitalize;
+`
+
+const Background = ({ tone, interactive, children }) => (
+  <StyledBackground tone={tone} interactive={interactive}>
+    <h1>{`${interactive ? 'Interactive ' : ''}${tone} Background`}</h1>
+    <TextColors />
+    {children}
+  </StyledBackground>
+)
+
+Background.defaultProps = {
+  ...chromaticSurface.propTypes(),
+}
+
+Background.defaultProps = {
+  ...chromaticSurface.defaultProps(),
+}
+
+export const BackgroundColors = () => (
+  <StyledBackgrounds>
+    <Background>
+      <Background tone="secondary">
+        <Background tone="tertiary" />
+      </Background>
+    </Background>
+    <Background interactive>
+      <Background tone="secondary" interactive>
+        <Background tone="tertiary" interactive />
+      </Background>
+    </Background>
+  </StyledBackgrounds>
 )

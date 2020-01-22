@@ -4,7 +4,7 @@ import { mergeConfigs } from './utils'
 
 const MODE_LIGHT = 'light'
 const MODE_DARK = 'dark'
-const MODE_DEFAULT = MODE_DARK
+const MODE_DEFAULT = MODE_LIGHT
 
 const basePallet = {
   primary: '#ffaa00',
@@ -242,6 +242,23 @@ class ColorConfig {
 
   darkMode() {
     return this.config.mode === MODE_DARK
+  }
+
+  getBackground(tone) {
+    let secondary = 'dark'
+    let tertiary = 'darker'
+    if (this.darkMode()) {
+      secondary = 'light'
+      tertiary = 'lighter'
+    }
+    switch (tone) {
+      case 'secondary':
+        return this.background[secondary]
+      case 'tertiary':
+        return this.background[tertiary]
+      default:
+        return this.background.base
+    }
   }
 
   getColor(color) {
