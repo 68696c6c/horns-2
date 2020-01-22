@@ -1,12 +1,48 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 /** @jsx jsx */
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from '@emotion/styled'
 import { css, jsx } from '@emotion/core'
+import styled from '@emotion/styled'
 
-import { colors } from '../config'
-import { getSwatchPath } from '../config/color'
-import { chromatic, chromaticText, chromaticSurface } from './chromatic'
+import { chromatic, chromaticSurface, chromaticText } from '.'
+import { colors } from '../../config'
+import { getSwatchPath } from '../../config/color'
+
+const Demo = () => (
+  <>
+    <h1>Chromatic Traits</h1>
+    <p>
+      The chromatic traits provide color to a component. The chromatic trait has
+      three variations: <em>chromatic</em>, <em>chromaticText</em>, and{' '}
+      <em>chromaticSurface</em>.
+    </p>
+
+    <h2>Chromatic</h2>
+    <p>
+      The <em>chromatic</em> trait provides background and border colors and
+      sets the font color to a readable color.
+    </p>
+    <Colors />
+
+    <h2>ChromaticSurface and ChromaticText</h2>
+    <p>
+      The <em>chromaticText</em> trait sets the font color to a specific color.
+    </p>
+    <p>
+      The <em>chromaticSurface</em> trait sets the background, font, and border color
+      based on the themes color mode; either &quote;dark&quote; or
+      &quote;light&quote;.
+    </p>
+    <BackgroundColors />
+  </>
+)
+
+Demo.story = {
+  name: 'Chromatic',
+}
+
+export default Demo
 
 const StyledShade = styled.div(
   ...chromatic.styles,
@@ -41,6 +77,10 @@ const StyledShade = styled.div(
   }
 )
 
+StyledShade.defaultProps = {
+  interactive: true,
+}
+
 const Shade = ({ first, last, ...others }) => (
   <>
     <StyledShade {...others} first={first} last={last} left />
@@ -64,12 +104,12 @@ const StyledShades = styled.div`
 
 const StyledColor = styled.div`
   text-align: center;
-  margin: 1em;
+  margin: 0 1em;
 `
 
 const Color = ({ color }) => (
   <StyledColor>
-    <h1>{color}</h1>
+    <h3>{color}</h3>
     <StyledShades>
       <Shade color={`${color}.darker`} first />
       <Shade color={`${color}.dark`} />
@@ -91,7 +131,7 @@ const StyledColors = styled.div`
 
 const NeutralColors = () => (
   <StyledColor>
-    <h1>dark, neutral, light</h1>
+    <h3>dark, neutral, light</h3>
     <StyledShades>
       <Shade color="dark" prominent />
       <Shade color="dark.light" />
@@ -110,7 +150,7 @@ const NeutralColors = () => (
   </StyledColor>
 )
 
-export const Colors = () => (
+const Colors = () => (
   <>
     <StyledColors>
       <Color color="primary" />
@@ -189,7 +229,7 @@ Background.defaultProps = {
   ...chromaticSurface.defaultProps(),
 }
 
-export const BackgroundColors = () => (
+const BackgroundColors = () => (
   <StyledBackgrounds>
     <Background>
       <Background tone="secondary">

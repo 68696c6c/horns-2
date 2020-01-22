@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types'
 import { css } from '@emotion/core'
 
-import { colorShades } from '../config'
+import { colorTones } from './color-tones'
 
 export const chromatic = {
   styles: [
-    ({ theme, color }) => {
+    ({ theme, color, interactive }) => {
       const c = theme.color.getTone(color)
       const { base, inactive, hover, active } = c
       return css`
@@ -18,30 +18,35 @@ export const chromatic = {
           color: ${inactive.readable};
           border-color: ${inactive.border};
         }
-        &:not(:disabled):not(.inactive):hover {
-          background: ${hover.base};
-          color: ${hover.readable};
-          border-color: ${hover.border};
-        }
-        &:not(:disabled):not(.inactive):active {
-          background: ${active.base};
-          color: ${active.readable};
-          border-color: ${active.border};
-        }
+        ${interactive &&
+          css`
+            &:not(:disabled):not(.inactive):hover {
+              background: ${hover.base};
+              color: ${hover.readable};
+              border-color: ${hover.border};
+            }
+            &:not(:disabled):not(.inactive):active {
+              background: ${active.base};
+              color: ${active.readable};
+              border-color: ${active.border};
+            }
+          `}
       `
     },
   ],
   propTypes: () => ({
-    color: PropTypes.oneOf(colorShades),
+    color: PropTypes.oneOf(colorTones),
+    interactive: PropTypes.bool,
   }),
-  defaultProps: color => ({
+  defaultProps: (color = '', interactive = false) => ({
     color,
+    interactive,
   }),
 }
 
 export const chromaticText = {
   styles: [
-    ({ theme, color }) => {
+    ({ theme, color, interactive }) => {
       const c = theme.color.getTone(color)
       const { base, inactive, hover, active } = c
       return css`
@@ -50,20 +55,25 @@ export const chromaticText = {
         &.inactive {
           color: ${inactive.base};
         }
-        &:not(:disabled):not(.inactive):hover {
-          color: ${hover.base};
-        }
-        &:not(:disabled):not(.inactive):active {
-          color: ${active.base};
-        }
+        ${interactive &&
+          css`
+            &:not(:disabled):not(.inactive):hover {
+              color: ${hover.base};
+            }
+            &:not(:disabled):not(.inactive):active {
+              color: ${active.base};
+            }
+          `}
       `
     },
   ],
   propTypes: () => ({
-    color: PropTypes.oneOf(colorShades),
+    color: PropTypes.oneOf(colorTones),
+    interactive: PropTypes.bool,
   }),
-  defaultProps: color => ({
+  defaultProps: (color = '', interactive = false) => ({
     color,
+    interactive,
   }),
 }
 

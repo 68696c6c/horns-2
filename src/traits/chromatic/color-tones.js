@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/prefer-default-export
-export const colorShades = [
+export const colorTones = [
   'primary',
   'primary.base',
   'primary.darker',

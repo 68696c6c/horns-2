@@ -1,19 +1,13 @@
 import React from 'react'
 
-import { Colors, BackgroundColors } from './demo-components'
+export { default as Chromatic } from './chromatic/demo'
 
 export const Index = () => (
-  <>
-    <p>
-      Traits are qualities like color, responsiveness, spacing, etc. They are
-      not React Components, but Emotion CSS snippets that can be composed into
-      Styled Components.
-    </p>
-    <h1>Colors</h1>
-    <Colors />
-    <h1>Background and Text Colors</h1>
-    <BackgroundColors />
-  </>
+  <p>
+    Traits are qualities like color, responsiveness, spacing, etc. They are not
+    React Components, but Emotion CSS snippets that can be composed into Styled
+    Components.
+  </p>
 )
 
 Index.story = {
