@@ -261,24 +261,9 @@ class ColorConfig {
     }
   }
 
-  getColor(color) {
-    const path = getSwatchPath(color)
-    return this.colorways[path.color]
-  }
-
   getTone(color) {
     const path = getSwatchPath(color)
     return this.colorways[path.color][path.tone]
-  }
-
-  getState(color) {
-    const path = getSwatchPath(color)
-    return this.colorways[path.color][path.tone][path.state]
-  }
-
-  getSwatch(color) {
-    const path = getSwatchPath(color)
-    return this.colorways[path.color][path.tone][path.state][path.swatch]
   }
 }
 
