@@ -30,8 +30,8 @@ const Demo = () => (
       The <em>chromaticText</em> trait sets the font color to a specific color.
     </p>
     <p>
-      The <em>chromaticSurface</em> trait sets the background, font, and border color
-      based on the themes color mode; either &quote;dark&quote; or
+      The <em>chromaticSurface</em> trait sets the background, font, and border
+      color based on the themes color mode; either &quote;dark&quote; or
       &quote;light&quote;.
     </p>
     <BackgroundColors />
@@ -44,54 +44,66 @@ Demo.story = {
 
 export default Demo
 
-const StyledShade = styled.div(
+const colorDemoCSS = ({ prominent, first, last, left, right }) =>
+  css`
+    padding: ${prominent ? '2em' : '1em'};
+    border-style: solid;
+    border-left-width: ${left ? '1em' : '0'};
+    border-right-width: ${right ? '1em' : '0'};
+    border-top-width: ${first ? '1em' : '0'};
+    border-bottom-width: ${last ? '1em' : '0'};
+  `
+
+const StyledColor = styled.div(colorDemoCSS, ({ theme, color }) => {
+  const c = theme.color.getTone(color)
+  const { base, readable, data } = c
+  return css`
+    background: ${base};
+    color: ${readable};
+    &::after {
+      content: "${color} L: ${data.luminosity}";
+    }
+  `
+})
+
+StyledColor.defaultProps = {
+  interactive: false,
+}
+
+const StyledColorway = styled.div(
   ...chromatic.styles,
-  ({ prominent, first, last, left, right }) =>
-    css`
-      padding: ${prominent ? '2em' : '1em'};
-      border-style: solid;
-      border-left-width: ${left ? '1em' : '0'};
-      border-right-width: ${right ? '1em' : '0'};
-      border-top-width: ${first ? '1em' : '0'};
-      border-bottom-width: ${last ? '1em' : '0'};
-    `,
+  colorDemoCSS,
   ({ theme, color }) => {
-    const path = getSwatchPath(color)
-    const c = theme.color.getTone(color)
+    const c = theme.color.getColorway(color)
     const { base, inactive, hover, active } = c
     return css`
-        &::after {
-          content: "${path.color}.${path.tone} L: ${base.data.luminosity}";
-        }
-        &:hover::after {
-          content: "${path.color}.${path.tone}.hover L: ${hover.data.luminosity}";
-        }
-        &:active::after {
-          content: "${path.color}.${path.tone}.active L: ${active.data.luminosity}";
-        }
-        &:disabled::after,
-        &.disabled::after {
-          content: "inactive L: ${inactive.data.luminosity}";
-        }
-      `
+      &::after {
+        content: "base L: ${base.data.luminosity}";
+      }
+      &:hover::after {
+        content: "hover L: ${hover.data.luminosity}";
+      }
+      &:active::after {
+        content: "active L: ${active.data.luminosity}";
+      }
+      &:disabled::after,
+      &.disabled::after,
+      &.inactive::after {
+        content: "inactive L: ${inactive.data.luminosity}";
+      }
+    `
   }
 )
 
-StyledShade.defaultProps = {
+StyledColorway.defaultProps = {
   interactive: true,
 }
 
-const Shade = ({ first, last, ...others }) => (
-  <>
-    <StyledShade {...others} first={first} last={last} left />
-    <StyledShade
-      {...others}
-      className="inactive"
-      first={first}
-      last={last}
-      right
-    />
-  </>
+const Colorway = ({ first, last, ...others }) => (
+  <StyledShades>
+    <StyledColorway {...others} first last left />
+    <StyledColorway {...others} className="inactive" first last right />
+  </StyledShades>
 )
 
 const StyledShades = styled.div`
@@ -102,79 +114,100 @@ const StyledShades = styled.div`
   grid-gap: 0;
 `
 
-const StyledColor = styled.div`
+const StyledColorWrapper = styled.div`
   text-align: center;
-  margin: 0 1em;
+`
+
+const StyledColors = styled.div`
+  margin-bottom: 1em;
 `
 
 const Color = ({ color }) => (
-  <StyledColor>
+  <StyledColorWrapper>
     <h3>{color}</h3>
-    <StyledShades>
-      <Shade color={`${color}.darker`} first />
-      <Shade color={`${color}.dark`} />
-      <Shade color={color} prominent />
-      <Shade color={`${color}.light`} />
-      <Shade color={`${color}.lighter`} last />
-    </StyledShades>
-  </StyledColor>
+    <StyledColors>
+      <StyledColor color={`${color}.darker`} />
+      <StyledColor color={`${color}.dark`} />
+      <StyledColor color={color} prominent />
+      <StyledColor color={`${color}.light`} />
+      <StyledColor color={`${color}.lighter`} />
+    </StyledColors>
+    <Colorway color={color} />
+  </StyledColorWrapper>
 )
 
 Color.propTypes = {
   color: PropTypes.oneOf(colors).isRequired,
 }
 
-const StyledColors = styled.div`
+const StyledColorsWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-gap: 1em;
 `
 
-const NeutralColors = () => (
-  <StyledColor>
+const StyledNeutralColor = ({ color }) => {
+  const dark = color === 'dark'
+  const light = color === 'light'
+  return (
+    <>
+      {!dark && (
+        <>
+          <StyledColor color={`${color}.darker`} />
+          <StyledColor color={`${color}.dark`} />
+        </>
+      )}
+      <StyledColor color={color} prominent />
+      {!light && (
+        <>
+          <StyledColor color={`${color}.light`} />
+          <StyledColor color={`${color}.lighter`} />
+        </>
+      )}
+    </>
+  )
+}
+
+const StyledNeutralColors = () => (
+  <StyledColorWrapper>
     <h3>dark, neutral, light</h3>
-    <StyledShades>
-      <Shade color="dark" prominent />
-      <Shade color="dark.light" />
-      <Shade color="dark.lighter" />
-
-      <Shade color="neutral.darker" />
-      <Shade color="neutral.dark" />
-      <Shade color="neutral" prominent />
-      <Shade color="neutral.light" />
-      <Shade color="neutral.lighter" />
-
-      <Shade color="light.darker" />
-      <Shade color="light.dark" />
-      <Shade color="light" prominent />
-    </StyledShades>
-  </StyledColor>
+    <StyledNeutralColor color="dark" />
+    <StyledNeutralColor color="neutral" />
+    <StyledNeutralColor color="light" />
+    <StyledColorsWrapper>
+      <Colorway color="dark" />
+      <Colorway color="neutral" />
+      <Colorway color="light" />
+    </StyledColorsWrapper>
+  </StyledColorWrapper>
 )
 
 const Colors = () => (
   <>
-    <StyledColors>
+    <StyledColorsWrapper>
       <Color color="primary" />
       <Color color="secondary" />
       <Color color="tertiary" />
-    </StyledColors>
-    <NeutralColors />
-    <StyledColors>
+      <Color color="prominent" />
+    </StyledColorsWrapper>
+    <StyledNeutralColors />
+    <StyledColorsWrapper>
       <Color color="success" />
       <Color color="info" />
       <Color color="warning" />
       <Color color="danger" />
-    </StyledColors>
+    </StyledColorsWrapper>
   </>
 )
 
-const StyledTextColor = styled.div(...chromaticText.styles)
+const StyledTextColor = styled.span(...chromaticText.styles)
 
 StyledTextColor.propTypes = {
   ...chromaticText.propTypes(),
 }
 
 StyledTextColor.defaultProps = {
-  ...chromaticText.defaultProps(),
+  ...chromaticText.defaultProps('', true),
 }
 
 // eslint-disable-next-line react/prop-types

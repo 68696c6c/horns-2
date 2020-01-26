@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types'
 import { css } from '@emotion/core'
 
-import { colorTones } from './color-tones'
+import { colors } from '../../config'
 
 export const chromatic = {
   styles: [
     ({ theme, color, interactive }) => {
-      const c = theme.color.getTone(color)
+      const c = theme.color.getColorway(color)
       const { base, inactive, hover, active } = c
       return css`
         background: ${base.base};
@@ -35,7 +35,7 @@ export const chromatic = {
     },
   ],
   propTypes: () => ({
-    color: PropTypes.oneOf(colorTones),
+    color: PropTypes.oneOf(colors),
     interactive: PropTypes.bool,
   }),
   defaultProps: (color = '', interactive = false) => ({
@@ -47,7 +47,7 @@ export const chromatic = {
 export const chromaticText = {
   styles: [
     ({ theme, color, interactive }) => {
-      const c = theme.color.getTone(color)
+      const c = theme.color.getColorway(color)
       const { base, inactive, hover, active } = c
       return css`
         color: ${base.base};
@@ -68,7 +68,7 @@ export const chromaticText = {
     },
   ],
   propTypes: () => ({
-    color: PropTypes.oneOf(colorTones),
+    color: PropTypes.oneOf(colors),
     interactive: PropTypes.bool,
   }),
   defaultProps: (color = '', interactive = false) => ({

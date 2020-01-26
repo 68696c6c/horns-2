@@ -75,119 +75,14 @@ export const colors = [
   'info',
   'warning',
   'danger',
+  'prominent',
 ]
+// @TODO these aren't being used
 export const tones = ['base', 'darker', 'dark', 'light', 'lighter']
 export const states = ['base', 'disabled', 'hover', 'active', 'alpha']
 export const swatches = ['base', 'readable', 'border']
 
 export const getColorValue = c => c.rgb().string()
-
-const makeSwatches = (state, config) => {
-  const { dark: fd, darker: fdr, lighter: flr } = config.factors
-  const isDark = state.isDark()
-  const readable = isDark ? colorWhite : colorBlack
-  const luminosity = parseFloat(state.luminosity().toFixed(4))
-  let border = state.grayscale()
-  if (luminosity > 0.6) {
-    // very light
-    border = state.darken(fdr.min)
-  } else if (luminosity < 0.009) {
-    // very dark
-    border = state.lighten(flr.min)
-  } else if (isDark) {
-    // dark
-    border = state.darken(fd.min)
-  } else {
-    // light
-    border = state.darken(fd.min)
-  }
-  return {
-    base: getColorValue(state),
-    readable: getColorValue(readable),
-    border: getColorValue(border),
-    data: {
-      luminosity,
-    },
-  }
-}
-
-const makeStates = (tone, config) => {
-  const { dark: fd, darker: fdr, light: fl, lighter: flr } = config.factors
-  const luminosity = tone.luminosity()
-  const inactive = tone.mix(colorGray, 0.6)
-  let hover
-
-  let active
-  if (luminosity > 0.8) {
-    // very light
-    hover = tone.darken(fdr.min)
-    active = hover.darken(fd.min)
-  } else if (luminosity < 0.001) {
-    // very dark
-    hover = tone.lighten(flr.min)
-    active = hover.lighten(fl.min)
-  } else if (tone.isDark()) {
-    // dark
-    hover = tone.lighten(fl.min)
-    active = hover.lighten(fl.min)
-  } else {
-    // light
-    hover = tone.darken(fd.min)
-    active = hover.darken(fd.min)
-  }
-
-  return {
-    base: makeSwatches(tone, config),
-    inactive: makeSwatches(inactive, config),
-    hover: makeSwatches(hover, config),
-    active: makeSwatches(active, config),
-  }
-}
-
-const makeTones = (colorName, config) => {
-  const color = Color(config.pallet[colorName])
-  const { dark: fd, darker: fdr, light: fl, lighter: flr } = config.factors
-
-  let darker = color.darken(fd.max)
-  let dark = color.darken(fd.min)
-  let lighter = color.lighten(fl.max)
-  let light = color.lighten(fl.min)
-
-  const luminosity = color.luminosity()
-  if (luminosity > 0.8) {
-    // light
-    darker = color.darken(fdr.max)
-    dark = color.darken(fdr.min)
-  } else if (luminosity < 0.001) {
-    // dark
-    light = color.lighten(flr.min)
-    lighter = color.lighten(flr.max)
-  }
-
-  return {
-    base: makeStates(color, config),
-    darker: makeStates(darker, config),
-    dark: makeStates(dark, config),
-    light: makeStates(light, config),
-    lighter: makeStates(lighter, config),
-  }
-}
-
-export const makeColors = config => {
-  const result = {}
-  colors.forEach(colorName => {
-    result[colorName] = makeTones(colorName, config)
-  })
-  return result
-}
-
-export const getBackground = (mode, cw) =>
-  mode === MODE_DARK ? cw.dark : cw.light
-
-export const getProminent = (prominent, cw) =>
-  typeof cw[prominent] === 'undefined'
-    ? cw[defaultConfig.prominent]
-    : cw[prominent]
 
 export const getSwatchPath = (colorSwatch = '') => {
   const parts = colorSwatch.split('.')
@@ -231,13 +126,151 @@ export const getSwatchPath = (colorSwatch = '') => {
   }
 }
 
+const makePallet = config => {
+  const { dark: fd, darker: fdr, light: fl, lighter: flr } = config.factors
+
+  const makePalletSwatches = tone => {
+    const readable = tone.isDark() ? colorWhite : colorBlack
+    const luminosity = parseFloat(tone.luminosity().toFixed(4))
+    return {
+      base: getColorValue(tone),
+      readable: getColorValue(readable),
+      data: {
+        color: tone,
+        luminosity,
+      },
+    }
+  }
+
+  const makePalletTones = colorName => {
+    const color = Color(config.pallet[colorName])
+
+    let darker = color.darken(fd.max)
+    let dark = color.darken(fd.min)
+    let lighter = color.lighten(fl.max)
+    let light = color.lighten(fl.min)
+
+    const luminosity = color.luminosity()
+    if (luminosity > 0.8) {
+      // light
+      darker = color.darken(fdr.max)
+      dark = color.darken(fdr.min)
+    } else if (luminosity < 0.001) {
+      // dark
+      light = color.lighten(flr.min)
+      lighter = color.lighten(flr.max)
+    }
+
+    return {
+      base: makePalletSwatches(color, config),
+      darker: makePalletSwatches(darker, config),
+      dark: makePalletSwatches(dark, config),
+      light: makePalletSwatches(light, config),
+      lighter: makePalletSwatches(lighter, config),
+    }
+  }
+
+  const result = {}
+  colors.forEach(colorName => {
+    result[colorName] = makePalletTones(colorName, config)
+  })
+  return result
+}
+
+const makeColorways = (pallet, config) => {
+  const result = {}
+
+  const makeColorwaySwatches = (tone, border) => {
+    return {
+      base: tone.base,
+      readable: tone.readable,
+      border: border.base,
+      data: tone.data,
+    }
+  }
+
+  Object.keys(pallet).forEach(colorName => {
+    const colorTones = pallet[colorName]
+
+    const { base, dark, darker, light, lighter } = colorTones
+    let border = dark
+    let hover = dark
+    let hoverBorder = base
+    let active = darker
+    let activeBorder = dark
+    const inactiveBase = base.data.color.mix(colorGray, 0.5)
+    const inactive = {
+      base: getColorValue(inactiveBase),
+      readable: getColorValue(inactiveBase.isDark() ? colorWhite : colorBlack),
+      data: base.data,
+    }
+    const inactiveBorderBase = base.data.color.mix(colorGray, 0.7)
+    const inactiveBorder = {
+      base: getColorValue(inactiveBorderBase),
+      readable: getColorValue(inactiveBorderBase.isDark() ? colorWhite : colorBlack),
+      data: base.data,
+    }
+    if (base.data.color.isDark()) {
+      border = light
+      hover = light
+      hoverBorder = base
+      active = lighter
+      activeBorder = light
+    }
+    result[colorName] = {
+      base: makeColorwaySwatches(base, border),
+      inactive: makeColorwaySwatches(inactive, inactiveBorder),
+      hover: makeColorwaySwatches(hover, hoverBorder),
+      active: makeColorwaySwatches(active, activeBorder),
+    }
+  })
+  let { base } = pallet.light
+  let border = pallet.light.dark
+  let secondary = pallet.light.dark
+  let secondaryBorder = pallet.light.base
+  let tertiary = pallet.light.darker
+  let tertiaryBorder = pallet.light.dark
+  if (config.mode === MODE_DARK) {
+    base = pallet.dark.base
+    border = pallet.dark.light
+    secondary = pallet.dark.light
+    secondaryBorder = pallet.dark.base
+    tertiary = pallet.dark.lighter
+    tertiaryBorder = pallet.dark.light
+  }
+  const bgSwatches = {
+    base: makeColorwaySwatches(base, border),
+    secondary: makeColorwaySwatches(secondary, secondaryBorder),
+    tertiary: makeColorwaySwatches(tertiary, tertiaryBorder),
+  }
+  result.background = {
+    base: bgSwatches.base,
+    inactive: bgSwatches.base,
+    hover: bgSwatches.secondary,
+    active: bgSwatches.tertiary,
+  }
+  result.backgroundSecondary = {
+    base: bgSwatches.secondary,
+    inactive: bgSwatches.secondary,
+    hover: bgSwatches.tertiary,
+    active: bgSwatches.base,
+  }
+  result.backgroundTertiary = {
+    base: bgSwatches.tertiary,
+    inactive: bgSwatches.tertiary,
+    hover: bgSwatches.base,
+    active: bgSwatches.secondary,
+  }
+  result.prominent = result[config.prominent]
+  return result
+}
+
 class ColorConfig {
   constructor(config = {}) {
     this.config = mergeConfigs(config, defaultConfig)
 
-    this.colorways = makeColors(this.config)
-    this.background = getBackground(this.config.mode, this.colorways)
-    this.prominent = getProminent(this.config.prominent, this.colorways)
+    this.pallet = makePallet(this.config)
+    this.colorways = makeColorways(this.pallet, this.config)
   }
 
   darkMode() {
@@ -245,25 +278,27 @@ class ColorConfig {
   }
 
   getBackground(tone) {
-    let secondary = 'dark'
-    let tertiary = 'darker'
-    if (this.darkMode()) {
-      secondary = 'light'
-      tertiary = 'lighter'
-    }
     switch (tone) {
       case 'secondary':
-        return this.background[secondary]
+        return this.colorways.backgroundSecondary
       case 'tertiary':
-        return this.background[tertiary]
+        return this.colorways.backgroundSecondary
       default:
-        return this.background.base
+        return this.colorways.background
     }
   }
 
-  getTone(color) {
+  getColorway(color) {
     const path = getSwatchPath(color)
-    return this.colorways[path.color][path.tone]
+    return this.colorways[path.color]
+  }
+
+  getTone(tone) {
+    const path = getSwatchPath(tone)
+    if (path.color === 'prominent') {
+      return this.pallet[this.config.prominent][path.tone]
+    }
+    return this.pallet[path.color][path.tone]
   }
 }
 
