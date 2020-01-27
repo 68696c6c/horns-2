@@ -1,6 +1,7 @@
 import React from 'react'
 
 export { default as Chromatic } from './chromatic/demo'
+export { default as Textual } from './textual/demo'
 
 export const Index = () => (
   <p>

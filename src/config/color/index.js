@@ -1,6 +1,6 @@
 import Color from 'color'
 
-import { mergeConfigs } from './utils'
+import { mergeConfigs } from '../utils'
 
 const MODE_LIGHT = 'light'
 const MODE_DARK = 'dark'
@@ -76,11 +76,13 @@ export const colors = [
   'warning',
   'danger',
   'prominent',
+  'background',
 ]
 // @TODO these aren't being used
 export const tones = ['base', 'darker', 'dark', 'light', 'lighter']
 export const states = ['base', 'disabled', 'hover', 'active', 'alpha']
 export const swatches = ['base', 'readable', 'border']
+export const backgroundTones = ['base', 'secondary', 'tertiary']
 
 export const getColorValue = c => c.rgb().string()
 
@@ -126,7 +128,21 @@ export const getSwatchPath = (colorSwatch = '') => {
   }
 }
 
-const makePallet = config => {
+// const makeSwatch = (tone, border = null) => {
+//   const readable = tone.isDark() ? colorWhite : colorBlack
+//   const luminosity = parseFloat(tone.luminosity().toFixed(4))
+//   return {
+//     base: getColorValue(tone),
+//     readable,
+//     border: border ? getColorValue(border) : border,
+//     data: {
+//       color: tone,
+//       luminosity,
+//     },
+//   }
+// }
+
+export const makePallet = config => {
   const { dark: fd, darker: fdr, light: fl, lighter: flr } = config.factors
 
   const makePalletSwatches = tone => {
@@ -177,7 +193,7 @@ const makePallet = config => {
   return result
 }
 
-const makeColorways = (pallet, config) => {
+export const makeColorways = (pallet, config) => {
   const result = {}
 
   const makeColorwaySwatches = (tone, border) => {
@@ -207,7 +223,9 @@ const makeColorways = (pallet, config) => {
     const inactiveBorderBase = base.data.color.mix(colorGray, 0.7)
     const inactiveBorder = {
       base: getColorValue(inactiveBorderBase),
-      readable: getColorValue(inactiveBorderBase.isDark() ? colorWhite : colorBlack),
+      readable: getColorValue(
+        inactiveBorderBase.isDark() ? colorWhite : colorBlack
+      ),
       data: base.data,
     }
     if (base.data.color.isDark()) {
@@ -225,18 +243,18 @@ const makeColorways = (pallet, config) => {
     }
   })
   let { base } = pallet.light
-  let border = pallet.light.dark
+  let border = pallet.light.darker
   let secondary = pallet.light.dark
-  let secondaryBorder = pallet.light.base
+  let secondaryBorder = pallet.light.darker
   let tertiary = pallet.light.darker
   let tertiaryBorder = pallet.light.dark
   if (config.mode === MODE_DARK) {
     base = pallet.dark.base
     border = pallet.dark.light
-    secondary = pallet.dark.light
-    secondaryBorder = pallet.dark.base
-    tertiary = pallet.dark.lighter
-    tertiaryBorder = pallet.dark.light
+    secondary = pallet.dark.lighter
+    secondaryBorder = pallet.dark.light
+    tertiary = pallet.dark.light
+    tertiaryBorder = pallet.dark.lighter
   }
   const bgSwatches = {
     base: makeColorwaySwatches(base, border),
@@ -244,22 +262,24 @@ const makeColorways = (pallet, config) => {
     tertiary: makeColorwaySwatches(tertiary, tertiaryBorder),
   }
   result.background = {
-    base: bgSwatches.base,
-    inactive: bgSwatches.base,
-    hover: bgSwatches.secondary,
-    active: bgSwatches.tertiary,
-  }
-  result.backgroundSecondary = {
-    base: bgSwatches.secondary,
-    inactive: bgSwatches.secondary,
-    hover: bgSwatches.tertiary,
-    active: bgSwatches.base,
-  }
-  result.backgroundTertiary = {
-    base: bgSwatches.tertiary,
-    inactive: bgSwatches.tertiary,
-    hover: bgSwatches.base,
-    active: bgSwatches.secondary,
+    base: {
+      base: bgSwatches.base,
+      inactive: bgSwatches.base,
+      hover: bgSwatches.secondary,
+      active: bgSwatches.tertiary,
+    },
+    secondary: {
+      base: bgSwatches.secondary,
+      inactive: bgSwatches.secondary,
+      hover: bgSwatches.tertiary,
+      active: bgSwatches.base,
+    },
+    tertiary: {
+      base: bgSwatches.tertiary,
+      inactive: bgSwatches.tertiary,
+      hover: bgSwatches.base,
+      active: bgSwatches.secondary,
+    },
   }
   result.prominent = result[config.prominent]
   return result
@@ -278,18 +298,17 @@ class ColorConfig {
   }
 
   getBackground(tone) {
-    switch (tone) {
-      case 'secondary':
-        return this.colorways.backgroundSecondary
-      case 'tertiary':
-        return this.colorways.backgroundSecondary
-      default:
-        return this.colorways.background
+    if (backgroundTones.includes(tone)) {
+      return this.colorways.background[tone]
     }
+    return this.colorways.background.base
   }
 
   getColorway(color) {
     const path = getSwatchPath(color)
+    if (path.color === 'background') {
+      return this.colorways.background.base
+    }
     return this.colorways[path.color]
   }
 

@@ -4,13 +4,11 @@ import Color from 'color'
 import ColorConfig, {
   defaultConfig,
   colors,
-  shades,
-  variants,
+  tones,
+  states,
   swatches,
   getColorValue,
   makeColorways,
-  getBackground,
-  getProminent,
   getSwatchPath,
 } from './color'
 
@@ -60,8 +58,8 @@ describe('makeColorways', () => {
   it('should return a colorway for each pallet color', () => {
     const sorted = {
       colors: colors.sort(),
-      shades: shades.sort(),
-      variants: variants.sort(),
+      tones: tones.sort(),
+      states: states.sort(),
       swatches: swatches.sort(),
     }
     const result = makeColorways(defaultConfig)
@@ -70,14 +68,14 @@ describe('makeColorways', () => {
     expect(colorways).toEqual(sorted.colors)
 
     colorways.forEach(i => {
-      const colorShades = Object.keys(result[i]).sort()
-      expect(colorShades).toEqual(sorted.shades)
+      const colorTones = Object.keys(result[i]).sort()
+      expect(colorTones).toEqual(sorted.tones)
 
-      colorShades.forEach(j => {
-        const shadeVariants = Object.keys(result[i][j]).sort()
-        expect(shadeVariants).toEqual(sorted.variants)
+      colorTones.forEach(j => {
+        const toneStates = Object.keys(result[i][j]).sort()
+        expect(toneStates).toEqual(sorted.states)
 
-        shadeVariants.forEach(k => {
+        toneStates.forEach(k => {
           const variantSwatches = Object.keys(result[i][j][k]).sort()
           expect(variantSwatches).toEqual(sorted.swatches)
         })
@@ -86,47 +84,13 @@ describe('makeColorways', () => {
   })
 })
 
-describe('getBackground', () => {
-  let colorways
-  beforeEach(() => {
-    colorways = makeColorways(defaultConfig)
-  })
-
-  it('should return the dark colorway if the config is dark mode', () => {
-    const result = getBackground('dark', colorways)
-    expect(result).toEqual(colorways.dark)
-  })
-
-  it('should return the light colorway if the config is light mode', () => {
-    const result = getBackground('light', colorways)
-    expect(result).toEqual(colorways.light)
-  })
-})
-
-describe('getProminent', () => {
-  let colorways
-  beforeEach(() => {
-    colorways = makeColorways(defaultConfig)
-  })
-
-  it('should return the specified colorway if it is defined', () => {
-    const result = getProminent('dark', colorways)
-    expect(result).toEqual(colorways.dark)
-  })
-
-  it('should return a default colorway if the colorway is NOT defined', () => {
-    const result = getProminent('wrongcolor', colorways)
-    expect(result).toEqual(colorways.primary)
-  })
-})
-
 describe('getSwatchPath', () => {
   it('should default to neutral when no colorway is provided', () => {
     const result = getSwatchPath()
     expect(result).toEqual({
       color: 'neutral',
-      shade: 'base',
-      variant: 'base',
+      tone: 'base',
+      state: 'base',
       swatch: 'base',
     })
   })
@@ -135,8 +99,8 @@ describe('getSwatchPath', () => {
     const result = getSwatchPath('asdf')
     expect(result).toEqual({
       color: 'neutral',
-      shade: 'base',
-      variant: 'base',
+      tone: 'base',
+      state: 'base',
       swatch: 'base',
     })
   })
@@ -145,8 +109,8 @@ describe('getSwatchPath', () => {
     const result = getSwatchPath('dark')
     expect(result).toEqual({
       color: 'dark',
-      shade: 'base',
-      variant: 'base',
+      tone: 'base',
+      state: 'base',
       swatch: 'base',
     })
   })
@@ -155,8 +119,8 @@ describe('getSwatchPath', () => {
     const result = getSwatchPath('secondary.dark')
     expect(result).toEqual({
       color: 'secondary',
-      shade: 'dark',
-      variant: 'base',
+      tone: 'dark',
+      state: 'base',
       swatch: 'base',
     })
   })
@@ -165,8 +129,8 @@ describe('getSwatchPath', () => {
     const result = getSwatchPath('tertiary.light.hover')
     expect(result).toEqual({
       color: 'tertiary',
-      shade: 'light',
-      variant: 'hover',
+      tone: 'light',
+      state: 'hover',
       swatch: 'base',
     })
   })
@@ -175,8 +139,8 @@ describe('getSwatchPath', () => {
     const result = getSwatchPath('tertiary.light.hover.readable')
     expect(result).toEqual({
       color: 'tertiary',
-      shade: 'light',
-      variant: 'hover',
+      tone: 'light',
+      state: 'hover',
       swatch: 'readable',
     })
   })

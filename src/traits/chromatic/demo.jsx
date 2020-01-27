@@ -1,13 +1,93 @@
-/* eslint-disable react/jsx-one-expression-per-line */
-/** @jsx jsx */
 import React from 'react'
-import PropTypes from 'prop-types'
-import { css, jsx } from '@emotion/core'
-import styled from '@emotion/styled'
 
 import { chromatic, chromaticSurface, chromaticText } from '.'
-import { colors } from '../../config'
-import { getSwatchPath } from '../../config/color'
+import * as Styled from './demo.styles'
+
+const Color = ({ color }) => (
+  <Styled.DemoColumn>
+    <h3>{color}</h3>
+    <div>
+      <Styled.Color color={`${color}.darker`} />
+      <Styled.Color color={`${color}.dark`} />
+      <Styled.Color color={color} prominent />
+      <Styled.Color color={`${color}.light`} />
+      <Styled.Color color={`${color}.lighter`} />
+    </div>
+    <Colorway color={color} />
+  </Styled.DemoColumn>
+)
+Color.propTypes = { ...chromatic.propTypes() }
+Color.defaultProps = { ...chromatic.defaultProps() }
+
+const Colorway = ({ color }) => (
+  <Styled.ColorwayWrapper>
+    <Styled.Colorway color={color} first last left />
+    <Styled.Colorway color={color} className="inactive" first last right />
+  </Styled.ColorwayWrapper>
+)
+Colorway.propTypes = { ...chromatic.propTypes() }
+Colorway.defaultProps = { ...chromatic.defaultProps() }
+
+const Background = ({ tone, children }) => (
+  <Styled.Background tone={tone}>
+    <h1>{`${tone} Background`}</h1>
+    <TextColors />
+    {children}
+  </Styled.Background>
+)
+Background.propTypes = { ...chromaticSurface.propTypes() }
+Background.defaultProps = { ...chromaticSurface.defaultProps() }
+
+const NeutralColor = ({ color }) => {
+  const dark = color === 'dark'
+  const light = color === 'light'
+  return (
+    <>
+      {!dark && (
+        <>
+          <Styled.Color color={`${color}.darker`} />
+          <Styled.Color color={`${color}.dark`} />
+        </>
+      )}
+      <Styled.Color color={color} prominent />
+      {!light && (
+        <>
+          <Styled.Color color={`${color}.light`} />
+          <Styled.Color color={`${color}.lighter`} />
+        </>
+      )}
+    </>
+  )
+}
+NeutralColor.propTypes = { ...chromatic.propTypes() }
+NeutralColor.defaultProps = { ...chromatic.defaultProps() }
+
+const NeutralColorway = ({ color }) => (
+  <div>
+    <h3>{color}</h3>
+    <Colorway color={color} />
+  </div>
+)
+NeutralColorway.propTypes = { ...chromatic.propTypes() }
+NeutralColorway.defaultProps = { ...chromatic.defaultProps() }
+
+const TextColor = ({ color }) => (
+  <Styled.TextColor color={color}>{color}</Styled.TextColor>
+)
+TextColor.propTypes = { ...chromaticText.propTypes() }
+TextColor.defaultProps = { ...chromaticText.defaultProps() }
+
+const TextColors = () => (
+  <Styled.DemoGrid>
+    <TextColor color="primary" />
+    <TextColor color="secondary" />
+    <TextColor color="tertiary" />
+    <TextColor color="success" />
+    <TextColor color="info" />
+    <TextColor color="warning" />
+    <TextColor color="danger" />
+  </Styled.DemoGrid>
+)
 
 const Demo = () => (
   <>
@@ -23,7 +103,31 @@ const Demo = () => (
       The <em>chromatic</em> trait provides background and border colors and
       sets the font color to a readable color.
     </p>
-    <Colors />
+    <Styled.DemoGrid>
+      <Color color="primary" />
+      <Color color="secondary" />
+      <Color color="tertiary" />
+      <Color color="prominent" />
+    </Styled.DemoGrid>
+    <Styled.DemoColumn>
+      <h3>dark, neutral, light</h3>
+      <div>
+        <NeutralColor color="dark" />
+        <NeutralColor color="neutral" />
+        <NeutralColor color="light" />
+      </div>
+      <Styled.DemoGrid>
+        <NeutralColorway color="dark" />
+        <NeutralColorway color="neutral" />
+        <NeutralColorway color="light" />
+      </Styled.DemoGrid>
+    </Styled.DemoColumn>
+    <Styled.DemoGrid>
+      <Color color="success" />
+      <Color color="info" />
+      <Color color="warning" />
+      <Color color="danger" />
+    </Styled.DemoGrid>
 
     <h2>ChromaticSurface and ChromaticText</h2>
     <p>
@@ -31,10 +135,17 @@ const Demo = () => (
     </p>
     <p>
       The <em>chromaticSurface</em> trait sets the background, font, and border
-      color based on the themes color mode; either &quote;dark&quote; or
-      &quote;light&quote;.
+      color based on the themes color mode; either <quote>dark</quote> or{' '}
+      <quote>light</quote>.
     </p>
-    <BackgroundColors />
+    <Styled.DemoColumn>
+      <Background>
+        <Background tone="secondary" />
+      </Background>
+      <Styled.DemoGrid>
+        <Colorway color="background" />
+      </Styled.DemoGrid>
+    </Styled.DemoColumn>
   </>
 )
 
@@ -43,236 +154,3 @@ Demo.story = {
 }
 
 export default Demo
-
-const colorDemoCSS = ({ prominent, first, last, left, right }) =>
-  css`
-    padding: ${prominent ? '2em' : '1em'};
-    border-style: solid;
-    border-left-width: ${left ? '1em' : '0'};
-    border-right-width: ${right ? '1em' : '0'};
-    border-top-width: ${first ? '1em' : '0'};
-    border-bottom-width: ${last ? '1em' : '0'};
-  `
-
-const StyledColor = styled.div(colorDemoCSS, ({ theme, color }) => {
-  const c = theme.color.getTone(color)
-  const { base, readable, data } = c
-  return css`
-    background: ${base};
-    color: ${readable};
-    &::after {
-      content: "${color} L: ${data.luminosity}";
-    }
-  `
-})
-
-StyledColor.defaultProps = {
-  interactive: false,
-}
-
-const StyledColorway = styled.div(
-  ...chromatic.styles,
-  colorDemoCSS,
-  ({ theme, color }) => {
-    const c = theme.color.getColorway(color)
-    const { base, inactive, hover, active } = c
-    return css`
-      &::after {
-        content: "base L: ${base.data.luminosity}";
-      }
-      &:hover::after {
-        content: "hover L: ${hover.data.luminosity}";
-      }
-      &:active::after {
-        content: "active L: ${active.data.luminosity}";
-      }
-      &:disabled::after,
-      &.disabled::after,
-      &.inactive::after {
-        content: "inactive L: ${inactive.data.luminosity}";
-      }
-    `
-  }
-)
-
-StyledColorway.defaultProps = {
-  interactive: true,
-}
-
-const Colorway = ({ first, last, ...others }) => (
-  <StyledShades>
-    <StyledColorway {...others} first last left />
-    <StyledColorway {...others} className="inactive" first last right />
-  </StyledShades>
-)
-
-const StyledShades = styled.div`
-  border-radius: 4px;
-  overflow: hidden;
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-gap: 0;
-`
-
-const StyledColorWrapper = styled.div`
-  text-align: center;
-`
-
-const StyledColors = styled.div`
-  margin-bottom: 1em;
-`
-
-const Color = ({ color }) => (
-  <StyledColorWrapper>
-    <h3>{color}</h3>
-    <StyledColors>
-      <StyledColor color={`${color}.darker`} />
-      <StyledColor color={`${color}.dark`} />
-      <StyledColor color={color} prominent />
-      <StyledColor color={`${color}.light`} />
-      <StyledColor color={`${color}.lighter`} />
-    </StyledColors>
-    <Colorway color={color} />
-  </StyledColorWrapper>
-)
-
-Color.propTypes = {
-  color: PropTypes.oneOf(colors).isRequired,
-}
-
-const StyledColorsWrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  grid-gap: 1em;
-`
-
-const StyledNeutralColor = ({ color }) => {
-  const dark = color === 'dark'
-  const light = color === 'light'
-  return (
-    <>
-      {!dark && (
-        <>
-          <StyledColor color={`${color}.darker`} />
-          <StyledColor color={`${color}.dark`} />
-        </>
-      )}
-      <StyledColor color={color} prominent />
-      {!light && (
-        <>
-          <StyledColor color={`${color}.light`} />
-          <StyledColor color={`${color}.lighter`} />
-        </>
-      )}
-    </>
-  )
-}
-
-const StyledNeutralColors = () => (
-  <StyledColorWrapper>
-    <h3>dark, neutral, light</h3>
-    <StyledNeutralColor color="dark" />
-    <StyledNeutralColor color="neutral" />
-    <StyledNeutralColor color="light" />
-    <StyledColorsWrapper>
-      <Colorway color="dark" />
-      <Colorway color="neutral" />
-      <Colorway color="light" />
-    </StyledColorsWrapper>
-  </StyledColorWrapper>
-)
-
-const Colors = () => (
-  <>
-    <StyledColorsWrapper>
-      <Color color="primary" />
-      <Color color="secondary" />
-      <Color color="tertiary" />
-      <Color color="prominent" />
-    </StyledColorsWrapper>
-    <StyledNeutralColors />
-    <StyledColorsWrapper>
-      <Color color="success" />
-      <Color color="info" />
-      <Color color="warning" />
-      <Color color="danger" />
-    </StyledColorsWrapper>
-  </>
-)
-
-const StyledTextColor = styled.span(...chromaticText.styles)
-
-StyledTextColor.propTypes = {
-  ...chromaticText.propTypes(),
-}
-
-StyledTextColor.defaultProps = {
-  ...chromaticText.defaultProps('', true),
-}
-
-// eslint-disable-next-line react/prop-types
-const TextColor = ({ color }) => (
-  <StyledTextColor color={color}>{color}</StyledTextColor>
-)
-
-const StyledTextColors = styled.div`
-  padding: 1em;
-`
-
-const TextColors = () => (
-  <StyledTextColors>
-    <TextColor color="primary" />
-    <TextColor color="secondary" />
-    <TextColor color="tertiary" />
-    <TextColor color="success" />
-    <TextColor color="info" />
-    <TextColor color="warning" />
-    <TextColor color="danger" />
-  </StyledTextColors>
-)
-
-const StyledBackground = styled.div(
-  ...chromaticSurface.styles,
-  () => css`
-    padding: 1em;
-    border-width: 1em;
-    border-style: solid;
-  `
-)
-
-const StyledBackgrounds = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  text-transform: capitalize;
-`
-
-const Background = ({ tone, interactive, children }) => (
-  <StyledBackground tone={tone} interactive={interactive}>
-    <h1>{`${interactive ? 'Interactive ' : ''}${tone} Background`}</h1>
-    <TextColors />
-    {children}
-  </StyledBackground>
-)
-
-Background.defaultProps = {
-  ...chromaticSurface.propTypes(),
-}
-
-Background.defaultProps = {
-  ...chromaticSurface.defaultProps(),
-}
-
-const BackgroundColors = () => (
-  <StyledBackgrounds>
-    <Background>
-      <Background tone="secondary">
-        <Background tone="tertiary" />
-      </Background>
-    </Background>
-    <Background interactive>
-      <Background tone="secondary" interactive>
-        <Background tone="tertiary" interactive />
-      </Background>
-    </Background>
-  </StyledBackgrounds>
-)

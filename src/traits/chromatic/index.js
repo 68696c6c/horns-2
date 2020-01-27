@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import { css } from '@emotion/core'
 
-import { colors } from '../../config'
+import { colors, backgroundTones } from '../../config'
 
 export const chromatic = {
   styles: [
@@ -109,11 +109,9 @@ export const chromaticSurface = {
     },
   ],
   propTypes: () => ({
-    tone: PropTypes.oneOf(['base', 'secondary', 'tertiary']),
-    interactive: PropTypes.bool,
+    tone: PropTypes.oneOf(backgroundTones),
   }),
-  defaultProps: (tone = 'base', interactive = false) => ({
+  defaultProps: (tone = 'base') => ({
     tone,
-    interactive,
   }),
 }
