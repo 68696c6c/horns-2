@@ -12,6 +12,7 @@ BUILD_TAG ?= latest
 	@echo '    test          run unit tests'
 	@echo '    test-watch    run the unit test watcher'
 	@echo '    states        generate USMap State components using horns-cli'
+	@echo '    colors        print color options using the make-color-options script. Supports DEPTH argument.'
 	@echo
 
 default: .DEFAULT
@@ -40,3 +41,7 @@ test-watch:
 
 states:
 	./horns gen:states "src/components/visuals/us-map"
+
+# e.g. make colors DEPTH=shades will print color shades.  DEPTH willl default to swatches
+colors:
+	docker-compose run --rm app node make-color-options.js $(DEPTH)
