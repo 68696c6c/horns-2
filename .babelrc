@@ -7,6 +7,8 @@
     "@babel/react"
   ],
   "plugins": [
-    "@babel/plugin-transform-react-jsx"
+    ["@babel/plugin-transform-react-jsx", {
+      "pragmaFrag": "React.Fragment"
+    }]
   ]
 }
