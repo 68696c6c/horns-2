@@ -2,9 +2,9 @@ import Color from 'color'
 
 import { mergeConfigs } from '../utils'
 
-const MODE_LIGHT = 'light'
-const MODE_DARK = 'dark'
-const MODE_DEFAULT = MODE_LIGHT
+export const MODE_LIGHT = 'light'
+export const MODE_DARK = 'dark'
+export const MODE_DEFAULT = MODE_LIGHT
 
 const basePallet = {
   primary: '#ffaa00',
@@ -79,7 +79,7 @@ export const colors = [
 ]
 // @TODO these aren't being used
 export const tones = ['darker', 'dark', 'base', 'light', 'lighter']
-export const states = ['base', 'disabled', 'hover', 'active', 'alpha']
+export const states = ['base', 'inactive', 'hover', 'active']
 export const swatches = ['base', 'readable', 'border']
 export const backgroundTones = ['base', 'secondary']
 
@@ -158,7 +158,7 @@ export const makePallet = config => {
   return result
 }
 
-export const makeColorwaySwatches = (tone, border) => {
+export const makeSwatches = (tone, border) => {
   const readable = tone.isDark() ? colorWhite : colorBlack
   const luminosity = parseFloat(tone.luminosity().toFixed(4))
   return {
@@ -207,10 +207,10 @@ export const makeColorways = (pallet, config) => {
       activeBorder = dark
     }
     result[colorName] = {
-      base: makeColorwaySwatches(base, border),
-      inactive: makeColorwaySwatches(inactiveBase, inactiveBorderBase),
-      hover: makeColorwaySwatches(hover, hoverBorder),
-      active: makeColorwaySwatches(active, activeBorder),
+      base: makeSwatches(base, border),
+      inactive: makeSwatches(inactiveBase, inactiveBorderBase),
+      hover: makeSwatches(hover, hoverBorder),
+      active: makeSwatches(active, activeBorder),
     }
   })
   let bgColorway
@@ -218,18 +218,18 @@ export const makeColorways = (pallet, config) => {
   if (config.mode === MODE_DARK) {
     bgColorway = result.dark
     bgSecondaryColorway = {
-      base: makeColorwaySwatches(pallet.dark.lighter, pallet.dark.light),
+      base: makeSwatches(pallet.dark.light, pallet.dark.lighter),
       inactive: bgColorway.inactive,
-      hover: makeColorwaySwatches(pallet.dark.base, pallet.dark.light),
-      active: makeColorwaySwatches(pallet.dark.light, pallet.dark.base),
+      hover: makeSwatches(pallet.dark.base, pallet.dark.light),
+      active: makeSwatches(pallet.dark.light, pallet.dark.base),
     }
   } else {
     bgColorway = result.light
     bgSecondaryColorway = {
-      base: makeColorwaySwatches(pallet.light.dark, pallet.light.darker),
+      base: makeSwatches(pallet.light.dark, pallet.light.darker),
       inactive: bgColorway.inactive,
-      hover: makeColorwaySwatches(pallet.light.base, pallet.light.dark),
-      active: makeColorwaySwatches(pallet.light.dark, pallet.light.base),
+      hover: makeSwatches(pallet.light.base, pallet.light.dark),
+      active: makeSwatches(pallet.light.dark, pallet.light.base),
     }
   }
   result.background = {
@@ -246,7 +246,6 @@ class ColorConfig {
 
     this.pallet = makePallet(this.config)
     this.colorways = makeColorways(this.pallet, this.config)
-    console.log(this.colorways)
   }
 
   darkMode() {
