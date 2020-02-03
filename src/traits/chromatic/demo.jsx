@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 /** @jsx jsx */
 import React from 'react'
+import PropTypes from 'prop-types'
 import { jsx } from '@emotion/core'
 import { useTheme } from 'emotion-theming'
 
@@ -18,21 +19,25 @@ const Tone = ({ color, tone, nextTone, prominent }) => {
   const Tag = prominent ? 'h3' : 'h5'
   return (
     <Styled.Color color={color} tone={tone} prominent={prominent}>
-      <Tag>{color} {tone}</Tag>
+      <Tag>
+        {color} {tone}
+      </Tag>
       <small>luminosity: {luminosity}</small>
       <small>contrast to base: {contrastB}</small>
     </Styled.Color>
   )
 }
 
-const Color = ({ color, children }) => (
+const Color = ({ color, children, showColorway }) => (
   <Styled.DemoColumn>
-    <h3>{color}</h3>
+    <h3>
+      <TextColor color={color} />
+    </h3>
     <div>{children}</div>
-    <Colorway color={color} />
+    {showColorway && <Colorway color={color} />}
   </Styled.DemoColumn>
 )
-Color.propTypes = { ...chromatic.propTypes() }
+Color.propTypes = { ...chromatic.propTypes(), showColorway: PropTypes.bool }
 Color.defaultProps = { ...chromatic.defaultProps() }
 
 const Colorway = ({ color }) => (
@@ -46,8 +51,7 @@ Colorway.defaultProps = { ...chromatic.defaultProps() }
 
 const Background = ({ tone, children }) => (
   <Styled.Background tone={tone}>
-    <h1>{`${tone} Background`}</h1>
-    <TextColors />
+    <h1>{`${tone} background`}</h1>
     {children}
   </Styled.Background>
 )
@@ -130,21 +134,36 @@ const Demo = () => (
       <Color color="secondary">
         <Tone color="secondary" tone="darker" nextTone="secondary.dark" />
         <Tone color="secondary" tone="dark" nextTone="secondary.base" />
-        <Tone color="secondary" tone="base" nextTone="secondary.light" prominent />
+        <Tone
+          color="secondary"
+          tone="base"
+          nextTone="secondary.light"
+          prominent
+        />
         <Tone color="secondary" tone="light" nextTone="secondary.lighter" />
         <Tone color="secondary" tone="lighter" nextTone="" />
       </Color>
       <Color color="tertiary">
         <Tone color="tertiary" tone="darker" nextTone="tertiary.dark" />
         <Tone color="tertiary" tone="dark" nextTone="tertiary.base" />
-        <Tone color="tertiary" tone="base" nextTone="tertiary.light" prominent />
+        <Tone
+          color="tertiary"
+          tone="base"
+          nextTone="tertiary.light"
+          prominent
+        />
         <Tone color="tertiary" tone="light" nextTone="tertiary.lighter" />
         <Tone color="tertiary" tone="lighter" nextTone="" />
       </Color>
       <Color color="prominent">
         <Tone color="prominent" tone="darker" nextTone="prominent.dark" />
         <Tone color="prominent" tone="dark" nextTone="prominent.base" />
-        <Tone color="prominent" tone="base" nextTone="prominent.light" prominent />
+        <Tone
+          color="prominent"
+          tone="base"
+          nextTone="prominent.light"
+          prominent
+        />
         <Tone color="prominent" tone="light" nextTone="prominent.lighter" />
         <Tone color="prominent" tone="lighter" nextTone="" />
       </Color>
@@ -164,11 +183,6 @@ const Demo = () => (
         <Tone color="light" tone="dark" nextTone="light.base" />
         <Tone color="light" tone="base" nextTone="" prominent />
       </div>
-      <Styled.DemoGrid>
-        <NeutralColorway color="dark" />
-        <NeutralColorway color="neutral" />
-        <NeutralColorway color="light" />
-      </Styled.DemoGrid>
     </Styled.DemoColumn>
     <Styled.DemoGrid>
       <Color color="success">
@@ -211,11 +225,45 @@ const Demo = () => (
     </p>
     <Styled.DemoColumn>
       <Background>
-        <Background tone="secondary" />
+        <Styled.DemoGrid>
+          <Color color="primary" showColorway />
+          <Color color="secondary" showColorway />
+          <Color color="tertiary" showColorway />
+          <Color color="prominent" showColorway />
+        </Styled.DemoGrid>
+        <Styled.DemoGrid>
+          <NeutralColorway color="dark" />
+          <NeutralColorway color="neutral" />
+          <NeutralColorway color="light" />
+          <NeutralColorway color="background" />
+        </Styled.DemoGrid>
+        <Styled.DemoGrid>
+          <Color color="success" showColorway />
+          <Color color="info" showColorway />
+          <Color color="warning" showColorway />
+          <Color color="danger" showColorway />
+        </Styled.DemoGrid>
+        <Background tone="secondary">
+          <Styled.DemoGrid>
+            <Color color="primary" showColorway />
+            <Color color="secondary" showColorway />
+            <Color color="tertiary" showColorway />
+            <Color color="prominent" showColorway />
+          </Styled.DemoGrid>
+          <Styled.DemoGrid>
+            <NeutralColorway color="dark" />
+            <NeutralColorway color="neutral" />
+            <NeutralColorway color="light" />
+            <NeutralColorway color="background" />
+          </Styled.DemoGrid>
+          <Styled.DemoGrid>
+            <Color color="success" showColorway />
+            <Color color="info" showColorway />
+            <Color color="warning" showColorway />
+            <Color color="danger" showColorway />
+          </Styled.DemoGrid>
+        </Background>
       </Background>
-      <Styled.DemoGrid>
-        <Colorway color="background" />
-      </Styled.DemoGrid>
     </Styled.DemoColumn>
   </>
 )

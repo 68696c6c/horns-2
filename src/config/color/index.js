@@ -81,7 +81,7 @@ export const colors = [
 export const tones = ['darker', 'dark', 'base', 'light', 'lighter']
 export const states = ['base', 'disabled', 'hover', 'active', 'alpha']
 export const swatches = ['base', 'readable', 'border']
-export const backgroundTones = ['base', 'secondary', 'tertiary']
+export const backgroundTones = ['base', 'secondary']
 
 export const getColorValue = c => c.rgb().string()
 
@@ -213,44 +213,28 @@ export const makeColorways = (pallet, config) => {
       active: makeColorwaySwatches(active, activeBorder),
     }
   })
-  let { base } = pallet.light
-  let border = pallet.light.darker
-  let secondary = pallet.light.dark
-  let secondaryBorder = pallet.light.darker
-  let tertiary = pallet.light.darker
-  let tertiaryBorder = pallet.light.dark
+  let bgColorway
+  let bgSecondaryColorway
   if (config.mode === MODE_DARK) {
-    base = pallet.dark.base
-    border = pallet.dark.light
-    secondary = pallet.dark.lighter
-    secondaryBorder = pallet.dark.light
-    tertiary = pallet.dark.light
-    tertiaryBorder = pallet.dark.lighter
-  }
-  const bgSwatches = {
-    base: makeColorwaySwatches(base, border),
-    secondary: makeColorwaySwatches(secondary, secondaryBorder),
-    tertiary: makeColorwaySwatches(tertiary, tertiaryBorder),
+    bgColorway = result.dark
+    bgSecondaryColorway = {
+      base: makeColorwaySwatches(pallet.dark.lighter, pallet.dark.light),
+      inactive: bgColorway.inactive,
+      hover: makeColorwaySwatches(pallet.dark.base, pallet.dark.light),
+      active: makeColorwaySwatches(pallet.dark.light, pallet.dark.base),
+    }
+  } else {
+    bgColorway = result.light
+    bgSecondaryColorway = {
+      base: makeColorwaySwatches(pallet.light.dark, pallet.light.darker),
+      inactive: bgColorway.inactive,
+      hover: makeColorwaySwatches(pallet.light.base, pallet.light.dark),
+      active: makeColorwaySwatches(pallet.light.dark, pallet.light.base),
+    }
   }
   result.background = {
-    base: {
-      base: bgSwatches.base,
-      inactive: bgSwatches.base,
-      hover: bgSwatches.secondary,
-      active: bgSwatches.tertiary,
-    },
-    secondary: {
-      base: bgSwatches.secondary,
-      inactive: bgSwatches.secondary,
-      hover: bgSwatches.tertiary,
-      active: bgSwatches.base,
-    },
-    tertiary: {
-      base: bgSwatches.tertiary,
-      inactive: bgSwatches.tertiary,
-      hover: bgSwatches.base,
-      active: bgSwatches.secondary,
-    },
+    base: bgColorway,
+    secondary: bgSecondaryColorway,
   }
   result.prominent = result[config.prominent]
   return result
@@ -262,6 +246,7 @@ class ColorConfig {
 
     this.pallet = makePallet(this.config)
     this.colorways = makeColorways(this.pallet, this.config)
+    console.log(this.colorways)
   }
 
   darkMode() {

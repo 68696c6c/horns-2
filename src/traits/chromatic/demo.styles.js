@@ -19,7 +19,8 @@ export const Color = styled.div(colorDemoCSS, ({ theme, color, tone }) => {
   return css`
     background: ${c.rgb().string()};
     color: ${readable};
-    h3, h5 {
+    h3,
+    h5 {
       margin: 0 0 0.5em;
     }
     small {
@@ -35,26 +36,22 @@ Color.defaultProps = {
 export const Colorway = styled.div(
   ...chromatic.styles,
   colorDemoCSS,
-  ({ theme, color }) => {
-    const c = theme.color.getColorway(color)
-    const { base, inactive, hover, active } = c
-    return css`
-      &::after {
-        content: "base L: ${base.data.luminosity}";
-      }
-      &:hover::after {
-        content: "hover L: ${hover.data.luminosity}";
-      }
-      &:active::after {
-        content: "active L: ${active.data.luminosity}";
-      }
-      &:disabled::after,
-      &.disabled::after,
-      &.inactive::after {
-        content: "inactive L: ${inactive.data.luminosity}";
-      }
-    `
-  }
+  ({ color }) => css`
+    &::after {
+      content: '${color} base';
+    }
+    &:hover::after {
+      content: '${color} hover';
+    }
+    &:active::after {
+      content: '${color} active';
+    }
+    &:disabled::after,
+    &.disabled::after,
+    &.inactive::after {
+      content: 'inactive';
+    }
+  `
 )
 
 Colorway.defaultProps = {
