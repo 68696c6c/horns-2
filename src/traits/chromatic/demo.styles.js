@@ -13,14 +13,17 @@ const colorDemoCSS = ({ prominent, first, last, left, right }) =>
     border-bottom-width: ${last ? '1em' : '0'};
   `
 
-export const Color = styled.div(colorDemoCSS, ({ theme, color }) => {
-  const c = theme.color.getTone(color)
-  const { base, readable, data } = c
+export const Color = styled.div(colorDemoCSS, ({ theme, color, tone }) => {
+  const c = theme.color.getTone(`${color}.${tone}`)
+  const readable = c.isDark() ? 'white' : 'black'
   return css`
-    background: ${base};
+    background: ${c.rgb().string()};
     color: ${readable};
-    &::after {
-      content: "${color} L: ${data.luminosity}";
+    h3, h5 {
+      margin: 0 0 0.5em;
+    }
+    small {
+      display: block;
     }
   `
 })
