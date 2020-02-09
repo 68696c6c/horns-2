@@ -7,14 +7,14 @@ export const MODE_DARK = 'dark'
 export const MODE_DEFAULT = MODE_LIGHT
 
 const basePallet = {
-  primary: '#ffaa00',
-  teal: '#009999',
   violet: '#7f00ff',
   indigo: '#3f00ff',
   blue: '#1a99ff',
   cyan: '#17a2b8',
+  teal: '#009999',
   green: '#28a745',
   yellow: '#ffc107',
+  tangerine: '#ffaa00',
   mustard: '#aa7700',
   orange: '#fd7e14',
   red: '#dc3545',
@@ -27,7 +27,7 @@ export const defaultConfig = {
   mode: MODE_DEFAULT,
   prominent: 'primary',
   pallet: {
-    primary: basePallet.primary,
+    primary: basePallet.tangerine,
     secondary: basePallet.blue,
     tertiary: basePallet.teal,
     light: basePallet.white,

@@ -1,6 +1,8 @@
 IMAGE_NAME ?= horns
 BUILD_TAG ?= latest
 
+.PHONY: test
+
 .DEFAULT:
 	@echo 'Invalid target.'
 	@echo
