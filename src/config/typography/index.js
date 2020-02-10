@@ -2,9 +2,11 @@ import { mergeConfigs } from '../utils'
 
 import defaultConfig from './config'
 
+const headingLevels = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
+
 export const fontStyles = [
+  ...headingLevels,
   'paragraph',
-  'heading',
   'quote',
   'text',
   'label',
@@ -21,43 +23,45 @@ export const fontStyles = [
 
 // @TODO support custom fonts
 // @TODO set initial kerning and tracking based on font-family
-// @TODO implement hardcoded values
-export const makeTypographyStyle = (config, styleName) => {
-  const style = config.styles[styleName]
-  const family = config.families[style.family]
-  const decoration = config.decorations[style.decoration]
-  const decorationHover = config.decorations[style.hover.decoration]
-  const decorationActive = config.decorations[style.active.decoration]
-  const fontSize = styleName === 'heading' ? '' : config.sizes[style.size]
-  const textIndent =
-    styleName === 'paragraph' ? config.indent.paragraph : config.indent.base
-  const letterSpacing = config.tracking[style.tracking]
-  const fontWeight = config.weights[style.weight]
+// @TODO implement null values
+// @TODO implement nested styles for things like first-letter/word-of-paragraph, brand names, spell-checker styles, syntax highlighting, etc.
+export const makeTypographyStyle = (c, styleName, level = 'h1') => {
+  const s = c.styles[styleName]
+  const family = c.families[s.family]
+  const decoration = c.decorations[s.decoration]
+  const decorationHover = c.decorations[s.hover.decoration]
+  const decorationActive = c.decorations[s.active.decoration]
+  const fontSize = styleName === 'heading' ? c.sizes[level] : c.sizes[s.size]
+  const textIndent = c.indent[s.indent]
+  const letterSpacing = c.tracking[s.tracking]
+  const margin = c.spacing[s.spacing]
+  const fontWeight = c.weights[s.weight]
   return {
     fontFamily: `${family.base}, ${family.fallback}`,
-    fontKerning: 'auto',
+    fontKerning: null,
     fontSize,
-    fontStretch: 'normal',
-    fontStyle: style.style,
-    fontVariant: 'normal',
+    fontStretch: null,
+    fontStyle: s.style,
+    fontVariant: null,
     fontWeight,
     letterSpacing,
-    lineHeight: config.letting[style.letting],
-    quotes: 'initial',
-    textAlign: style.align,
-    textAlignLast: 'auto',
-    textDecorationColor: 'inherit',
+    lineHeight: c.letting[s.letting],
+    quotes: null,
+    textAlign: s.align,
+    textAlignLast: null,
+    textDecorationColor: null,
     textDecorationLine: decoration.line,
     textDecorationStyle: decoration.style,
     textIndent,
-    textJustify: style.align === 'justify' ? style.justify : 'auto',
-    textOverflow: 'clip',
-    textShadow: 'none',
-    textTransform: 'none',
-    wordBreak: 'normal',
-    wordSpacing: 'normal',
-    wordWrap: 'normal',
-    writingMode: 'horizontal-tb',
+    textJustify: s.align === 'justify' ? s.justify : null,
+    textOverflow: null,
+    textShadow: null,
+    textTransform: null,
+    wordBreak: null,
+    wordSpacing: null,
+    wordWrap: null,
+    writingMode: null,
+    margin,
     hover: {
       textDecorationLine: decorationHover.line,
       textDecorationStyle: decorationHover.style,
@@ -75,7 +79,15 @@ class TypographyConfig {
 
     const styles = {}
     fontStyles.forEach(styleName => {
-      styles[styleName] = makeTypographyStyle(this.config, styleName)
+      if (!headingLevels.includes(styleName)) {
+        styles[styleName] = makeTypographyStyle(this.config, styleName)
+      }
+    })
+
+    headingLevels.forEach(level => {
+      const style = makeTypographyStyle(this.config, 'heading', level)
+      style.fontSize = this.config.sizes[level]
+      styles[level] = style
     })
     this.styles = styles
   }
@@ -85,21 +97,6 @@ class TypographyConfig {
       return this.styles[style]
     }
     return this.styles.text
-  }
-
-  getBlockStyle(level) {
-    if (level === 'paragraph') {
-      const style = this.getStyle('paragraph')
-      style.margin = this.config.spacing.paragraph
-      return style
-    }
-    const fontSize = this.config.sizes[level]
-      ? this.config.sizes[level]
-      : this.config.sizes.base
-    const style = this.getStyle('heading')
-    style.fontSize = fontSize
-    style.margin = this.config.spacing.heading
-    return style
   }
 }
 

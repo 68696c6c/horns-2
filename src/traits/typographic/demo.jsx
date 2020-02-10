@@ -5,13 +5,12 @@ import { jsx } from '@emotion/core'
 
 import { fontStyles } from '../../config/typography'
 
-import { typographic, typographicBlock } from '.'
+import { typographic } from '.'
 import * as Styled from './demo.styles'
 
-const Block = ({ children, align, level: baseLevel }) => {
+const Heading = ({ children, align, font }) => {
   let Tag
-  let level = baseLevel
-  switch (baseLevel) {
+  switch (font) {
     case 'h1':
       Tag = Styled.H1
       break
@@ -31,22 +30,18 @@ const Block = ({ children, align, level: baseLevel }) => {
       Tag = Styled.H6
       break
     default:
-      Tag = Styled.P
-      level = 'paragraph'
+      Tag = Styled.H1
+      break
   }
-  return (
-    <Tag level={level} align={align}>
-      {children}
-    </Tag>
-  )
+  return <Tag align={align}>{children}</Tag>
 }
 
-Block.propTypes = {
-  ...typographicBlock.propTypes(),
+Heading.propTypes = {
+  ...typographic.propTypes(),
 }
 
-Block.defaultProps = {
-  ...typographicBlock.defaultProps(),
+Heading.defaultProps = {
+  ...typographic.defaultProps(),
 }
 
 const Link = ({ children, ...others }) => (
@@ -79,14 +74,7 @@ Button.defaultProps = {
 
 const Demo = () => (
   <>
-    <h1>Typographic Traits</h1>
-    <p>
-      The typographic traits provide font-styling to a component. The
-      typographic trait has two variations: <em>typographic</em>,
-      <em>typographicBlock</em>.
-    </p>
-
-    <h2>Typographic</h2>
+    <h1>Typographic</h1>
     <p>
       The <em>typographic</em> trait provides font-styling to a component.
     </p>
@@ -116,31 +104,16 @@ const Demo = () => (
       }
     })}
 
-    <h2>TypographicBlock</h2>
-    <p>
-      The <em>typographicBlock</em> trait sets font-styling and also sets the
-      size of the text and margin based on a <em>level</em> prop.
-    </p>
-
-    <Block level="h1">H1 Block</Block>
-    <Block level="h2">H2 Block</Block>
-    <Block level="h3">H3 Block</Block>
-    <Block level="h4">H4 Block</Block>
-    <Block level="h5">H5 Block</Block>
-    <Block level="h6">H6 Block</Block>
-    <Block level="paragraph">Paragraph Block</Block>
-
     <h2>Alignment</h2>
     <p>
-      Both the <em>typographic</em> and <em>typographicBlock</em> traits
-      support an <em>align</em> prop that overrides the font-style alignment.
+      The <em>typographic</em> trait supports an <em>align</em> prop that
+      overrides the font-style alignment.
     </p>
-    <Block level="h1" align="center">
-      This typographicBlock is centered
-    </Block>
-    <Styled.Text font="text" align="center">
-      This typography is centered.
-    </Styled.Text>
+    <p>
+      @TODO alignment should be a separate trait that is used by typography and
+      layout components.
+    </p>
+    <Styled.Text align="center">This typography is centered.</Styled.Text>
   </>
 )
 
