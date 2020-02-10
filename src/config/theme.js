@@ -1,4 +1,5 @@
 import ColorConfig from './color'
+import TypographyConfig from './typography'
 import { mergeConfigs } from './utils'
 
 const defaultTheme = {
@@ -373,7 +374,7 @@ class Theme {
     this.grid = {}
     this.radius = {}
     this.borders = {}
-    this.typography = {}
+    this.typography = new TypographyConfig(config.typography)
 
     // Components
     this.links = {}
