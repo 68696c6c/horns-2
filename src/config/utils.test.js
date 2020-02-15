@@ -1,5 +1,5 @@
 /* global describe, it, expect */
-import { mergeConfigs } from './utils'
+import { mergeConfigs, valueToInt } from './utils'
 
 describe('mergeConfigs', () => {
   it('should return the passed value', () => {
@@ -34,5 +34,16 @@ describe('mergeConfigs', () => {
     expect(result.field2).toEqual(expected.field2)
     expect(result.field2.key).toEqual(expected.field2.key)
     expect(result.field3.key).toEqual(def.field3.key)
+  })
+})
+
+describe('valueToInt', () => {
+  it('should return the passed value without any units', () => {
+    const result = valueToInt('1px')
+    expect(result).toEqual('1')
+  })
+  it('should strip px units', () => {
+    const result = valueToInt('1px')
+    expect(result).not.toContain('px')
   })
 })
