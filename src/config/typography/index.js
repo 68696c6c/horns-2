@@ -2,6 +2,8 @@ import { mergeConfigs } from '../utils'
 
 import defaultConfig from './config'
 
+export { default as typography } from './config'
+
 const headingLevels = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
 
 export const fontStyles = [

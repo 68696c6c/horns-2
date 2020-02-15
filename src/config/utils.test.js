@@ -36,14 +36,3 @@ describe('mergeConfigs', () => {
     expect(result.field3.key).toEqual(def.field3.key)
   })
 })
-
-describe('valueToInt', () => {
-  it('should return the passed value without any units', () => {
-    const result = valueToInt('1px')
-    expect(result).toEqual('1')
-  })
-  it('should strip px units', () => {
-    const result = valueToInt('1px')
-    expect(result).not.toContain('px')
-  })
-})

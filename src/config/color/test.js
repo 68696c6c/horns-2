@@ -4,7 +4,7 @@ import Color from 'color'
 import ColorConfig, {
   MODE_DARK,
   MODE_LIGHT,
-  defaultConfig,
+  color,
   colors,
   tones,
   states,
@@ -75,12 +75,12 @@ describe('getColorValue', () => {
 
 describe('makeTones', () => {
   it('should return an object with a key for each tone', () => {
-    const result = makeTones('primary', defaultConfig)
+    const result = makeTones('primary', color)
     const colorTones = Object.keys(result).sort()
     expect(colorTones).toEqual(tones.sort())
   })
   it('should return distinguishable light tones for the dark pallet color', () => {
-    const result = makeTones('dark', defaultConfig)
+    const result = makeTones('dark', color)
     const { base, light, lighter } = result
 
     const baseToLight = parseFloat(base.contrast(light).toFixed(2))
@@ -90,7 +90,7 @@ describe('makeTones', () => {
     expect(lightToLighter).toEqual(1.2)
   })
   it('should return distinguishable tones for the neutral pallet color', () => {
-    const result = makeTones('neutral', defaultConfig)
+    const result = makeTones('neutral', color)
     const { darker, dark, base, light, lighter } = result
 
     const darkerToBase = parseFloat(darker.contrast(base).toFixed(2))
@@ -110,7 +110,7 @@ describe('makeTones', () => {
     expect(lighterToBase).toBeLessThanOrEqual(2.5)
   })
   it('should return distinguishable dark tones for the light pallet color', () => {
-    const result = makeTones('light', defaultConfig)
+    const result = makeTones('light', color)
     const { darker, dark, base } = result
 
     const darkerToDark = parseFloat(darker.contrast(dark).toFixed(2))
@@ -129,7 +129,7 @@ describe('makePallet', () => {
   }
   let result
   beforeEach(() => {
-    result = makePallet(defaultConfig)
+    result = makePallet(color)
   })
   it('should return an object with a key for each pallet color', () => {
     const palletColors = Object.keys(result).sort()
@@ -183,15 +183,15 @@ describe('makeColorways', () => {
     backgroundTones: backgroundTones.sort(),
   }
   it('should return a colorway for each pallet color', () => {
-    const pallet = makePallet(defaultConfig)
-    const result = makeColorways(pallet, defaultConfig)
+    const pallet = makePallet(color)
+    const result = makeColorways(pallet, color)
 
     const colorways = Object.keys(result).sort()
     expect(colorways).toEqual(sorted.colors)
   })
   it('should return an object of states for each colorway', () => {
-    const pallet = makePallet(defaultConfig)
-    const result = makeColorways(pallet, defaultConfig)
+    const pallet = makePallet(color)
+    const result = makeColorways(pallet, color)
 
     Object.keys(result).forEach(i => {
       if (i !== 'background') {
@@ -201,7 +201,7 @@ describe('makeColorways', () => {
     })
   })
   it('should return a base and secondary background colorway', () => {
-    const config = { ...defaultConfig, mode: MODE_DARK }
+    const config = { ...color, mode: MODE_DARK }
     const pallet = makePallet(config)
     const result = makeColorways(pallet, config)
 
@@ -215,7 +215,7 @@ describe('makeColorways', () => {
     expect(secondaryStates).toEqual(sorted.states)
   })
   it('should return dark background colorways if the color mode is set to dark', () => {
-    const config = { ...defaultConfig, mode: MODE_DARK }
+    const config = { ...color, mode: MODE_DARK }
     const pallet = makePallet(config)
     const result = makeColorways(pallet, config)
 
@@ -223,7 +223,7 @@ describe('makeColorways', () => {
     expect(result.background.secondary.base.base).toEqual(pallet.dark.light.rgb().string())
   })
   it('should return light background colorways if the color mode is set to light', () => {
-    const config = { ...defaultConfig, mode: MODE_LIGHT }
+    const config = { ...color, mode: MODE_LIGHT }
     const pallet = makePallet(config)
     const result = makeColorways(pallet, config)
 
