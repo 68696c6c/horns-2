@@ -21,7 +21,6 @@ export const fontStyles = [
   'variable',
 ]
 
-// @TODO support custom fonts
 // @TODO set initial kerning and tracking based on font-family
 // @TODO implement null values
 // @TODO implement nested styles for things like first-letter/word-of-paragraph, brand names, spell-checker styles, syntax highlighting, etc.

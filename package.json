@@ -11,7 +11,7 @@
     "develop:docker": "start-storybook -h 0.0.0.0 -p 8000",
     "build": "./node_modules/.bin/babel src --out-dir dist",
     "build:storybook": "build-storybook",
-    "test": "jest --config=jest-config.js",
+    "test": "jest --config=jest-config.js --coverage",
     "test:watch": "jest --watch --config=jest-config.js"
   },
   "dependencies": {
