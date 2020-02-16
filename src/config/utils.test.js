@@ -1,5 +1,5 @@
 /* global describe, it, expect */
-import { mergeConfigs } from './utils'
+import { mergeConfigs, valueToInt } from './utils'
 
 describe('mergeConfigs', () => {
   it('should return the passed value', () => {
