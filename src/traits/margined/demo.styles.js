@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 import { css } from '@emotion/core'
 
 import { margined } from '.'
-import { padded } from "../padded";
+import { padded } from '../padded'
 
 export const BoxContainer = styled.div(
   () =>

@@ -220,7 +220,9 @@ describe('makeColorways', () => {
     const result = makeColorways(pallet, config)
 
     expect(result.background.base.base).toEqual(result.dark.base)
-    expect(result.background.secondary.base.base).toEqual(pallet.dark.light.rgb().string())
+    expect(result.background.secondary.base.base).toEqual(
+      pallet.dark.light.rgb().string()
+    )
   })
   it('should return light background colorways if the color mode is set to light', () => {
     const config = { ...color, mode: MODE_LIGHT }
@@ -228,7 +230,9 @@ describe('makeColorways', () => {
     const result = makeColorways(pallet, config)
 
     expect(result.background.base.base).toEqual(result.light.base)
-    expect(result.background.secondary.base.base).toEqual(pallet.light.dark.rgb().string())
+    expect(result.background.secondary.base.base).toEqual(
+      pallet.light.dark.rgb().string()
+    )
   })
 })
 

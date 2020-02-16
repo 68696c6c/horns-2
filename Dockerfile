@@ -1,9 +1,10 @@
-FROM node:10-alpine
+FROM node:12-buster
 
-RUN apk add --no-cache jq bash git
-RUN rm -rf /var/cache/apk/*
-
+RUN apt-get update
+RUN apt-get install -y jq bash
 RUN echo 'alias ll="ls -lah"' >> ~/.bashrc
+
+RUN yarn global add eslint
 
 RUN mkdir -p /app
 WORKDIR /app

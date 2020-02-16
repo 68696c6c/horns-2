@@ -41,6 +41,9 @@ test:
 test-watch:
 	docker-compose run --rm app yarn test:watch
 
+lint:
+	docker-compose run --rm app eslint src/**
+
 states:
 	./horns gen:states "src/components/visuals/us-map"
 

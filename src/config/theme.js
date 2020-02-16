@@ -2,6 +2,8 @@ import ColorConfig, { color } from './color'
 import SpacingConfig, { spacing } from './spacing'
 import TypographyConfig, { typography } from './typography'
 
+// @TODO use this.
+// eslint-disable-next-line no-unused-vars
 const defaultTheme = {
   ...color,
   ...spacing,
