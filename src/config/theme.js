@@ -1,5 +1,6 @@
 import BorderConfig, { borders } from './border'
 import ColorConfig, { color } from './color'
+import GridConfig, { grid } from './grid'
 import RadiusConfig, { radius } from './radius'
 import SizingConfig, { sizing } from './sizing'
 import TypographyConfig, { typography } from './typography'
@@ -9,6 +10,7 @@ import TypographyConfig, { typography } from './typography'
 const defaultTheme = {
   ...borders,
   ...color,
+  ...grid,
   ...radius,
   ...sizing,
   ...typography,
@@ -388,7 +390,7 @@ class Theme {
     // Dependent Configs
     this.borders = new BorderConfig(this.sizing, config.borders)
     this.radius = new RadiusConfig(this.sizing, config.radius)
-    this.grid = {}
+    this.grid = new GridConfig(this.sizing, config.grid)
 
     // Components
     this.links = {}
