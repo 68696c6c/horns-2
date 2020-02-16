@@ -1,5 +1,5 @@
 /* global describe, it, expect */
-import { mergeConfigs, isNumber, isString } from './utils'
+import { mergeConfigs, valueToNumber, isNumber, isString } from './utils'
 
 describe('mergeConfigs', () => {
   it('should return the passed value', () => {
@@ -89,5 +89,74 @@ describe('isString', () => {
   it('should return false if the provided value is NaN', () => {
     const result = isString(NaN)
     expect(result).toEqual(false)
+  })
+})
+
+describe('valueToNumber', () => {
+  it('should return the passed value as a "numbery" value', () => {
+    const result = valueToNumber('78.1px')
+    // Exact comparision will fail because valueToNumber intentionally does not actually cast the return value.
+    // eslint-disable-next-line eqeqeq
+    expect(result == 78.1).toBe(true)
+  })
+  it('should strip "px" units', () => {
+    const result = valueToNumber('.1px')
+    expect(result).not.toContain('px')
+  })
+  it('should strip "em" units', () => {
+    const result = valueToNumber('1em')
+    expect(result).not.toContain('px')
+  })
+  it('should strip "rem" units', () => {
+    const result = valueToNumber('0.5rem')
+    expect(result).not.toContain('rem')
+  })
+  it('should strip "vw" units', () => {
+    const result = valueToNumber('60vw')
+    expect(result).not.toContain('vw')
+  })
+  it('should strip "vh" units', () => {
+    const result = valueToNumber('5.9vh')
+    expect(result).not.toContain('vh')
+  })
+  it('should strip "cm" units', () => {
+    const result = valueToNumber('34cm')
+    expect(result).not.toContain('cm')
+  })
+  it('should strip "mm" units', () => {
+    const result = valueToNumber('9mm')
+    expect(result).not.toContain('mm')
+  })
+  it('should strip "in" units', () => {
+    const result = valueToNumber('4in')
+    expect(result).not.toContain('in')
+  })
+  it('should strip "pt" units', () => {
+    const result = valueToNumber('7pt')
+    expect(result).not.toContain('pt')
+  })
+  it('should strip "pc" units', () => {
+    const result = valueToNumber('.2pc')
+    expect(result).not.toContain('pc')
+  })
+  it('should strip "ex" units', () => {
+    const result = valueToNumber('0ex')
+    expect(result).not.toContain('ex')
+  })
+  it('should strip "ch" units', () => {
+    const result = valueToNumber('5ch')
+    expect(result).not.toContain('ch')
+  })
+  it('should strip "vmin" units', () => {
+    const result = valueToNumber('1vmin')
+    expect(result).not.toContain('vmin')
+  })
+  it('should strip "vmax" units', () => {
+    const result = valueToNumber('100vmax')
+    expect(result).not.toContain('vmax')
+  })
+  it('should strip "%" units', () => {
+    const result = valueToNumber('350%')
+    expect(result).not.toContain('%')
   })
 })
