@@ -3,7 +3,6 @@ import React from 'react'
 export { default as Chromatic } from './chromatic/demo'
 export { default as Typographic } from './typographic/demo'
 export { default as Margined } from './margined/demo'
-export { default as Padded } from './padded/demo'
 
 export const Index = () => (
   <>

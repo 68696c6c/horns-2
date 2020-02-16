@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 import { css } from '@emotion/core'
 
 import { margined } from '.'
+import { padded } from "../padded";
 
 export const BoxContainer = styled.div(
   () =>
@@ -14,7 +15,17 @@ export const BoxContainer = styled.div(
 )
 
 export const Box = styled.div(
+  ...padded.styles,
   ...margined.styles,
+  () =>
+    css`
+      background-color: rgb(177, 189, 121);
+      color: white;
+      border: 1px solid rgb(227, 194, 133);
+    `
+)
+
+export const BoxContent = styled.div(
   () =>
     css`
       background-color: rgb(126, 168, 181);
