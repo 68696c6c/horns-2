@@ -3,6 +3,7 @@ import React from 'react'
 
 export { default as Bordered } from './bordered/demo'
 export { default as Chromatic } from './chromatic/demo'
+export { default as Rounded } from './rounded/demo'
 export { default as Typographic } from './typographic/demo'
 export { default as Margined } from './margined/demo'
 
@@ -24,6 +25,11 @@ export const Index = () => (
     <p>
       The <em>chromatic</em> trait provides background, border, and/or font
       color to a component.
+    </p>
+
+    <h1>Rounded Trait</h1>
+    <p>
+      The <em>rounded</em> trait provides border-radius to a component.
     </p>
 
     <h1>Typographic Trait</h1>
