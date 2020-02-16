@@ -1,5 +1,7 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react'
 
+export { default as Bordered } from './bordered/demo'
 export { default as Chromatic } from './chromatic/demo'
 export { default as Typographic } from './typographic/demo'
 export { default as Margined } from './margined/demo'
@@ -12,25 +14,38 @@ export const Index = () => (
       Styled Components.
     </p>
 
+    <h1>Bordered Trait</h1>
+    <p>
+      The <em>bordered</em> trait provides border width and style to a
+      component.
+    </p>
+
     <h1>Chromatic Trait</h1>
     <p>
-      The chromatic trait provides background and/or font color to a component.
+      The <em>chromatic</em> trait provides background, border, and/or font
+      color to a component.
     </p>
 
     <h1>Typographic Trait</h1>
-    <p>The typographic trait provides font-styling to a component.</p>
+    <p>
+      The <em>typographic</em> trait provides font-styling to a component.
+    </p>
 
     <h1>Contained Trait</h1>
     <p>
-      The contained trait provides container centering behavior to fluid
-      components.
+      The <em>contained</em> trait provides container centering behavior to
+      fluid components.
     </p>
 
     <h1>Margined Trait</h1>
-    <p>The margined trait provides external spacing to a component.</p>
+    <p>
+      The <em>margined</em> trait provides external spacing to a component.
+    </p>
 
     <h1>Padded Trait</h1>
-    <p>The padded trait provides internal spacing to a component.</p>
+    <p>
+      The <em>padded</em> trait provides internal spacing to a component.
+    </p>
 
     <h1>Responsive Trait</h1>
     <p>

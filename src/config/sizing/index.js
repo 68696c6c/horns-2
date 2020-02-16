@@ -30,6 +30,13 @@ class SizingConfig {
   }
 
   getPX(size) {
+    if (typeof this.sizes[size] !== 'undefined') {
+      return `${this.sizes[size]}px`
+    }
+    return null
+  }
+
+  getValue(size) {
     if (this.sizes[size]) {
       return this.sizes[size]
     }
