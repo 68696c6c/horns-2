@@ -1,12 +1,14 @@
+import BorderConfig, { borders } from './border'
 import ColorConfig, { color } from './color'
-import SpacingConfig, { spacing } from './spacing'
+import SizingConfig, { sizing } from './sizing'
 import TypographyConfig, { typography } from './typography'
 
 // @TODO use this.
 // eslint-disable-next-line no-unused-vars
 const defaultTheme = {
+  ...borders,
   ...color,
-  ...spacing,
+  ...sizing,
   ...typography,
 }
 
@@ -376,13 +378,15 @@ class Theme {
   constructor(config = {}) {
     this.name = config.name || 'horns-theme'
 
-    // Theme
+    // Base Configs
     this.color = new ColorConfig(config.color)
     this.typography = new TypographyConfig(config.typography)
-    this.spacing = new SpacingConfig(this.typography, config.spacing)
+    this.sizing = new SizingConfig(config.sizing)
+
+    // Dependent Configs
+    this.borders = new BorderConfig(this.sizing, config.borders)
     this.grid = {}
     this.radius = {}
-    this.borders = {}
 
     // Components
     this.links = {}

@@ -2,9 +2,9 @@ import { mergeConfigs } from '../utils'
 
 import defaultConfig from './config'
 
-export { default as spacing } from './config'
+export { default as sizing } from './config'
 
-export const spacingSizes = [
+export const sizes = [
   'min',
   'tiny',
   'xxSmall',
@@ -18,18 +18,18 @@ export const spacingSizes = [
   'max',
 ]
 
-class SpacingConfig {
-  constructor(typographyConfig, config = {}) {
+class SizingConfig {
+  constructor(config = {}) {
     this.config = mergeConfigs(config, defaultConfig)
 
-    const sizes = {}
-    spacingSizes.forEach(size => {
-      sizes[size] = this.config[size]
+    const sizeValues = {}
+    sizes.forEach(size => {
+      sizeValues[size] = this.config[size]
     })
-    this.sizes = sizes
+    this.sizes = sizeValues
   }
 
-  getSpacing(size) {
+  getPX(size) {
     if (this.sizes[size]) {
       return this.sizes[size]
     }
@@ -37,4 +37,4 @@ class SpacingConfig {
   }
 }
 
-export default SpacingConfig
+export default SizingConfig

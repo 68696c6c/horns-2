@@ -3,7 +3,7 @@
 import React from 'react'
 import { jsx } from '@emotion/core'
 
-import { spacingSizes } from '../../config/spacing'
+import { sizes } from '../../config/sizing'
 
 import * as Styled from './demo.styles'
 
@@ -12,7 +12,7 @@ const Demo = () => (
     <h1>Margined & Padded</h1>
     <p>
       The <em>margined</em> and <em>padded</em> traits are both driven by theme
-      spacing.
+      sizing.
     </p>
     <p>
       The <em>margined</em> trait provides margin, or spacing outside of the
@@ -33,7 +33,7 @@ const Demo = () => (
       The inner content box is inside of the padding and is shown in blue. The
       content box is where a components children are rendered.
     </p>
-    {spacingSizes.map(size => (
+    {sizes.map(size => (
       <Styled.BoxContainer>
         <Styled.Box padding={size} margin={size}>
           <Styled.BoxContent>Spacing: {size}</Styled.BoxContent>
