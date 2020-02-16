@@ -10,8 +10,9 @@ const Demo = () => (
     <h1>Bordered</h1>
     <p>
       The <em>bordered</em> trait provides border width and style to a
-      component. Border color is provided separately by the <em>chromatic</em>
-      trait.
+      component. Border color and radius are provided separately by the{' '}
+      <em>chromatic</em> and <em>rounded</em>{' '}
+      traits, respectively.
     </p>
     <Styled.Box>This box is bordered.</Styled.Box>
   </>
