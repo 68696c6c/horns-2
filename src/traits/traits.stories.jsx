@@ -2,6 +2,8 @@ import React from 'react'
 
 export { default as Chromatic } from './chromatic/demo'
 export { default as Typographic } from './typographic/demo'
+export { default as Margined } from './margined/demo'
+export { default as Padded } from './padded/demo'
 
 export const Index = () => (
   <>
@@ -25,11 +27,11 @@ export const Index = () => (
       components.
     </p>
 
-    <h1>Padded Trait</h1>
-    <p>The padded trait provides internal spacing to components.</p>
+    <h1>Margined Trait</h1>
+    <p>The margined trait provides external spacing to a component.</p>
 
-    <h1>Spaced Trait</h1>
-    <p>The spaced trait provides external spacing to components.</p>
+    <h1>Padded Trait</h1>
+    <p>The padded trait provides internal spacing to a component.</p>
 
     <h1>Responsive Trait</h1>
     <p>
