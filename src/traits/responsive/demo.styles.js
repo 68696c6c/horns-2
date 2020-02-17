@@ -13,7 +13,7 @@ export const Box = styled.div(...responsive.styles, ({ theme, breakpoint }) => {
     &::after {
       content: " Window is less than ${minWidth}";
     }
-    @media (min-width: ${minWidth}) {
+    ${theme.grid.break(breakpoint)} {
       background-color: orange;
       &::after {
         content: " Window is greater than ${minWidth}";

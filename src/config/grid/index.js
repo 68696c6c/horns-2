@@ -41,6 +41,10 @@ class GridConfig {
     }
     return this.breakpoints.mobile
   }
+
+  break(breakpoint) {
+    return `@media (min-width: ${this.getBreakpoint(breakpoint)})`
+  }
 }
 
 export default GridConfig
