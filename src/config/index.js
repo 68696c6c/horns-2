@@ -1,4 +1,5 @@
 export { colors, backgroundTones } from './color'
+export { breakpoints } from './grid'
 export { sizes } from './sizing'
 export { fontStyles } from './typography'
 export { default as Theme } from './theme'
