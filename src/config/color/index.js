@@ -214,6 +214,7 @@ class ColorConfig {
     return this.colorways[path.color]
   }
 
+  // @TODO this is currently only used in the Storybook docs; maybe remove if it is not needed.
   getTone(tone) {
     const path = getSwatchPath(tone)
     if (path.color === 'prominent') {
