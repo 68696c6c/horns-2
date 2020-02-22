@@ -10,6 +10,23 @@ const colorWhite = Color(basePallet.white)
 const colorGray = Color(basePallet.gray)
 const colorBlack = Color(basePallet.black)
 
+const nullSwatch = {
+  base: null,
+  readable: null,
+  border: null,
+  data: {
+    color: null,
+    luminosity: null,
+  },
+}
+
+const nullColorway = {
+  base: { ...nullSwatch },
+  inactive: { ...nullSwatch },
+  hover: { ...nullSwatch },
+  active: { ...nullSwatch },
+}
+
 export const colors = [
   'primary',
   'secondary',
@@ -207,6 +224,9 @@ class ColorConfig {
   }
 
   getColorway(color) {
+    if (!color) {
+      return nullColorway
+    }
     const path = getSwatchPath(color)
     if (path.color === 'background') {
       return this.colorways.background.base

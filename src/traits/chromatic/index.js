@@ -35,10 +35,10 @@ export const chromatic = {
     },
   ],
   propTypes: () => ({
-    color: PropTypes.oneOf(colors),
+    color: PropTypes.oneOf([null, ...colors]),
     interactive: PropTypes.bool,
   }),
-  defaultProps: (color = '', interactive = false) => ({
+  defaultProps: (color = null, interactive = false) => ({
     color,
     interactive,
   }),
@@ -68,10 +68,10 @@ export const chromaticText = {
     },
   ],
   propTypes: () => ({
-    color: PropTypes.oneOf(colors),
+    color: PropTypes.oneOf([null, ...colors]),
     interactive: PropTypes.bool,
   }),
-  defaultProps: (color = '', interactive = false) => ({
+  defaultProps: (color = null, interactive = false) => ({
     color,
     interactive,
   }),
