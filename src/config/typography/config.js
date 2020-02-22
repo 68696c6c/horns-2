@@ -19,6 +19,7 @@ export default {
       tracking: '',
     },
   },
+  direction: 'ltr',
   decorations: {
     base: {
       line: null,

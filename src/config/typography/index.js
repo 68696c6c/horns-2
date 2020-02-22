@@ -4,6 +4,8 @@ import defaultConfig from './config'
 
 export { default as typography } from './config'
 
+export const directions = ['ltr', 'rtl']
+
 const headingLevels = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
 
 export const fontStyles = [
@@ -78,6 +80,10 @@ class TypographyConfig {
   constructor(config = {}) {
     this.config = mergeConfigs(config, defaultConfig)
 
+    this.direction = directions.includes(this.config.direction)
+      ? this.config.direction
+      : 'ltr'
+
     const styles = {}
     fontStyles.forEach(styleName => {
       if (!headingLevels.includes(styleName)) {
@@ -91,6 +97,10 @@ class TypographyConfig {
       styles[level] = style
     })
     this.styles = styles
+  }
+
+  getDirection() {
+    return this.direction
   }
 
   getStyle(style) {
