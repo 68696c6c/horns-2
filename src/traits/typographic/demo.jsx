@@ -3,12 +3,12 @@
 import React from 'react'
 import { jsx } from '@emotion/core'
 
-import { fontStyles } from '../../config/typography'
+import { fontStyles } from '../../config'
 
 import { typographic } from '.'
 import * as Styled from './demo.styles'
 
-const Heading = ({ children, align, font }) => {
+const Heading = ({ children, font }) => {
   let Tag
   switch (font) {
     case 'h1':
@@ -33,7 +33,7 @@ const Heading = ({ children, align, font }) => {
       Tag = Styled.H1
       break
   }
-  return <Tag align={align}>{children}</Tag>
+  return <Tag>{children}</Tag>
 }
 
 Heading.propTypes = {
@@ -103,17 +103,6 @@ const Demo = () => (
           )
       }
     })}
-
-    <h2>Alignment</h2>
-    <p>
-      The <em>typographic</em> trait supports an <em>align</em> prop that
-      overrides the font-style alignment.
-    </p>
-    <p>
-      @TODO alignment should be a separate trait that is used by typography and
-      layout components.
-    </p>
-    <Styled.Text align="center">This typography is centered.</Styled.Text>
   </>
 )
 

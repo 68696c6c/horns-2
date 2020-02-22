@@ -11,8 +11,25 @@ describe('TypographyConfig', () => {
     expect(c instanceof TypographyConfig).toEqual(true)
   })
 
+  it('should set the text direction based on the specified value', () => {
+    c = new TypographyConfig({ direction: 'rtl' })
+    expect(c.direction).toBe('rtl')
+  })
+
+  it('should default to left-to-right if the specified direction is invalid', () => {
+    c = new TypographyConfig({ direction: 'ujnbds' })
+    expect(c.direction).toBe('ltr')
+  })
+
   it('should create a style for each style and heading level', () => {
     expect(Object.keys(c.styles).sort()).toEqual(fontStyles.sort())
+  })
+
+  describe('getDirection', () => {
+    it('should return the configured text direction', () => {
+      const result = c.getDirection()
+      expect(result).toEqual(c.direction)
+    })
   })
 
   describe('getStyle', () => {

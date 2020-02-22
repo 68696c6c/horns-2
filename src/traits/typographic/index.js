@@ -6,7 +6,7 @@ import { fontStyles } from '../../config'
 // eslint-disable-next-line import/prefer-default-export
 export const typographic = {
   styles: [
-    ({ theme, font, align, interactive }) => {
+    ({ theme, font, interactive }) => {
       const style = theme.typography.getStyle(font)
       const { hover, active } = style
       return css`
@@ -20,7 +20,7 @@ export const typographic = {
         letter-spacing: ${style.letterSpacing};
         line-height: ${style.lineHeight};
         quotes: ${style.quotes};
-        text-align: ${align || style.textAlign};
+        text-align: ${style.textAlign};
         text-align-last: ${style.textAlignLast};
         text-decoration-color: ${''};
         text-decoration-line: ${style.textDecorationLine};
@@ -51,12 +51,10 @@ export const typographic = {
   ],
   propTypes: () => ({
     font: PropTypes.oneOf(fontStyles),
-    align: PropTypes.oneOf(['', 'left', 'center', 'right', 'justify']),
     interactive: PropTypes.bool,
   }),
-  defaultProps: (font = 'text', align = '', interactive = false) => ({
+  defaultProps: (font = 'text', interactive = false) => ({
     font,
-    align,
     interactive,
   }),
 }
