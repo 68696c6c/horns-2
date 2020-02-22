@@ -3,36 +3,76 @@ import { css } from '@emotion/core'
 
 import { cursors } from '../../config'
 
-// hover, active
-// text-decoration, background-color, color
-// cursor
 // eslint-disable-next-line import/prefer-default-export
 export const interactive = {
   styles: [
-    ({ theme, inactive, cursor, color, font }) => {
+    ({ theme, inactive, typographic, cursor, color, font }) => {
       const c = theme.color.getColorway(color)
-      if (inactive) {
-        return css`
-          cursor: ${cursor};
-          background: ${c.inactive.base};
-          color: ${c.inactive.readable};
-          border-color: ${c.inactive.border};
-        `
+      let cs = {
+        inactive: {
+          background: null,
+          color: c.inactive.base,
+          border: null,
+        },
+        hover: {
+          background: null,
+          color: c.hover.base,
+          border: null,
+        },
+        active: {
+          background: null,
+          color: c.active.base,
+          border: null,
+        },
+      }
+      if (!typographic) {
+        cs = {
+          inactive: {
+            background: c.inactive.base,
+            color: c.inactive.readable,
+            border: c.inactive.border,
+          },
+          hover: {
+            background: c.hover.base,
+            color: c.hover.readable,
+            border: c.hover.border,
+          },
+          active: {
+            background: c.active.base,
+            color: c.active.readable,
+            border: c.active.border,
+          },
+        }
       }
       const s = theme.typography.getStyle(font)
+      const inactiveCSS = css`
+        cursor: ${cursor};
+        background: ${cs.inactive.base};
+        color: ${cs.inactive.readable};
+        border-color: ${cs.inactive.border};
+        text-decoration-line: ${s.inactive.textDecorationLine};
+        text-decoration-style: ${s.inactive.textDecorationStyle};
+      `
+      if (inactive) {
+        return inactiveCSS
+      }
       return css`
         cursor: ${cursor};
+        &:disabled,
+        &.inactive {
+          ${inactiveCSS}
+        }
         &:not(:disabled):not(.inactive):hover {
-          background: ${c.hover.base};
-          color: ${c.hover.readable};
-          border-color: ${c.hover.border};
+          background: ${cs.hover.base};
+          color: ${cs.hover.readable};
+          border-color: ${cs.hover.border};
           text-decoration-line: ${s.hover.textDecorationLine};
           text-decoration-style: ${s.hover.textDecorationStyle};
         }
         &:not(:disabled):not(.inactive):active {
-          background: ${c.active.base};
-          color: ${c.active.readable};
-          border-color: ${c.active.border};
+          background: ${cs.active.base};
+          color: ${cs.active.readable};
+          border-color: ${cs.active.border};
           text-decoration-line: ${s.active.textDecorationLine};
           text-decoration-style: ${s.active.textDecorationStyle};
         }
@@ -41,7 +81,12 @@ export const interactive = {
   ],
   propTypes: () => ({
     inactive: PropTypes.bool,
+    typographic: PropTypes.bool,
     cursor: PropTypes.oneOf(cursors),
   }),
-  defaultProps: (inactive = false, cursor = null) => ({ inactive, cursor }),
+  defaultProps: (inactive = false, typographic = false, cursor = null) => ({
+    inactive,
+    typographic,
+    cursor,
+  }),
 }
