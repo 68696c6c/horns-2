@@ -63,6 +63,14 @@ describe('ColorConfig', () => {
       const cw = c.getColorway('background')
       expect(cw).toEqual(c.colorways.background.base)
     })
+    it('should return a colorway with all null values if the provided color name is falsy', () => {
+      const cw = c.getColorway(null)
+      states.forEach(state => {
+        swatches.forEach(swatch => {
+          expect(cw[state][swatch]).toBe(null)
+        })
+      })
+    })
   })
 })
 

@@ -2,6 +2,8 @@ import styled from '@emotion/styled'
 import { css } from '@emotion/core'
 
 import { chromatic, chromaticSurface, chromaticText } from '.'
+import { interactive } from '../interactive'
+import { typographic } from '../typographic'
 
 const colorDemoCSS = ({ prominent, first, last, left, right }) =>
   css`
@@ -35,6 +37,7 @@ Color.defaultProps = {
 
 export const Colorway = styled.div(
   ...chromatic.styles,
+  ...interactive.styles,
   colorDemoCSS,
   ({ color }) => css`
     &::after {
@@ -54,8 +57,14 @@ export const Colorway = styled.div(
   `
 )
 
+Colorway.propTypes = {
+  ...interactive.propTypes(),
+  ...chromatic.propTypes(),
+}
+
 Colorway.defaultProps = {
-  interactive: true,
+  ...interactive.defaultProps(),
+  ...chromatic.defaultProps(),
 }
 
 export const ColorwayWrapper = styled.div`
@@ -81,14 +90,20 @@ export const DemoColumn = styled.div`
   }
 `
 
-export const TextColor = styled.span(...chromaticText.styles)
-
+export const TextColor = styled.span(
+  ...chromaticText.styles,
+  ...interactive.styles,
+  ...typographic.styles
+)
 TextColor.propTypes = {
   ...chromaticText.propTypes(),
+  ...interactive.propTypes(),
+  ...typographic.propTypes(),
 }
-
 TextColor.defaultProps = {
-  ...chromaticText.defaultProps('', true),
+  ...chromaticText.defaultProps(),
+  ...interactive.defaultProps(false, true),
+  ...typographic.defaultProps(),
 }
 
 export const Background = styled.div(

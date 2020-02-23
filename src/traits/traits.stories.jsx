@@ -6,6 +6,7 @@ export { default as Bordered } from './bordered/demo'
 export { default as Chromatic } from './chromatic/demo'
 export { default as Contained } from './contained/demo'
 export { default as Gridded } from './gridded/demo'
+export { default as Interactive } from './interactive/demo'
 export { default as Margined } from './margined/demo'
 export { default as Responsive } from './responsive/demo'
 export { default as Rounded } from './rounded/demo'
@@ -46,6 +47,12 @@ export const Index = () => (
     <p>
       The <em>gridded</em> trait organizes the children of a component into
       wrapping columns.
+    </p>
+
+    <h1>Interactive</h1>
+    <p>
+      The <em>interactive</em> trait provides a custom mouse cursor to a
+      component and enables the state variations of other traits.
     </p>
 
     <h1>Margined Trait</h1>

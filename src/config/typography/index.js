@@ -34,6 +34,7 @@ export const makeTypographyStyle = (c, styleName, level = 'h1') => {
   const s = c.styles[styleName]
   const family = c.families[s.family]
   const decoration = c.decorations[s.decoration]
+  const decorationInactive = c.decorations[s.inactive.decoration]
   const decorationHover = c.decorations[s.hover.decoration]
   const decorationActive = c.decorations[s.active.decoration]
   const fontSize = styleName === 'heading' ? c.sizes[level] : c.sizes[s.size]
@@ -67,6 +68,10 @@ export const makeTypographyStyle = (c, styleName, level = 'h1') => {
     wordWrap: null,
     writingMode: null,
     margin,
+    inactive: {
+      textDecorationLine: decorationInactive.line,
+      textDecorationStyle: decorationInactive.style,
+    },
     hover: {
       textDecorationLine: decorationHover.line,
       textDecorationStyle: decorationHover.style,

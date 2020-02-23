@@ -104,6 +104,9 @@ export default {
       letting: 'base',
       spacing: 'max',
       indent: 'max',
+      inactive: {
+        decoration: 'none',
+      },
       hover: {
         decoration: 'none',
       },
@@ -126,6 +129,9 @@ export default {
       letting: 'min',
       spacing: 'min',
       indent: 'base',
+      inactive: {
+        decoration: 'none',
+      },
       hover: {
         decoration: 'none',
       },
@@ -147,6 +153,9 @@ export default {
       letting: 'base',
       spacing: 'base',
       indent: 'base',
+      inactive: {
+        decoration: 'none',
+      },
       hover: {
         decoration: 'none',
       },
@@ -168,6 +177,9 @@ export default {
       letting: 'base',
       spacing: 'base',
       indent: 'base',
+      inactive: {
+        decoration: 'none',
+      },
       hover: {
         decoration: 'none',
       },
@@ -189,6 +201,9 @@ export default {
       letting: 'min',
       spacing: 'base',
       indent: 'base',
+      inactive: {
+        decoration: 'none',
+      },
       hover: {
         decoration: 'none',
       },
@@ -210,6 +225,9 @@ export default {
       letting: 'base',
       spacing: 'base',
       indent: 'base',
+      inactive: {
+        decoration: 'none',
+      },
       hover: {
         decoration: 'none',
       },
@@ -231,6 +249,9 @@ export default {
       letting: 'base',
       spacing: 'base',
       indent: 'base',
+      inactive: {
+        decoration: 'none',
+      },
       hover: {
         decoration: 'none',
       },
@@ -252,6 +273,9 @@ export default {
       letting: 'base',
       spacing: 'base',
       indent: 'base',
+      inactive: {
+        decoration: 'none',
+      },
       hover: {
         decoration: 'underline',
       },
@@ -273,6 +297,9 @@ export default {
       letting: 'base',
       spacing: 'base',
       indent: 'base',
+      inactive: {
+        decoration: 'none',
+      },
       hover: {
         decoration: 'none',
       },
@@ -294,6 +321,9 @@ export default {
       letting: 'base',
       spacing: 'base',
       indent: 'base',
+      inactive: {
+        decoration: 'none',
+      },
       hover: {
         decoration: 'none',
       },
@@ -315,6 +345,9 @@ export default {
       letting: 'base',
       spacing: 'base',
       indent: 'base',
+      inactive: {
+        decoration: 'none',
+      },
       hover: {
         decoration: 'none',
       },
@@ -336,6 +369,9 @@ export default {
       letting: 'base',
       spacing: 'base',
       indent: 'base',
+      inactive: {
+        decoration: 'none',
+      },
       hover: {
         decoration: 'none',
       },
@@ -357,6 +393,9 @@ export default {
       letting: 'base',
       spacing: 'base',
       indent: 'base',
+      inactive: {
+        decoration: 'none',
+      },
       hover: {
         decoration: 'none',
       },
@@ -378,6 +417,9 @@ export default {
       letting: 'base',
       spacing: 'base',
       indent: 'base',
+      inactive: {
+        decoration: 'none',
+      },
       hover: {
         decoration: 'none',
       },

@@ -6,9 +6,8 @@ import { fontStyles } from '../../config'
 // eslint-disable-next-line import/prefer-default-export
 export const typographic = {
   styles: [
-    ({ theme, font, interactive }) => {
+    ({ theme, font }) => {
       const style = theme.typography.getStyle(font)
-      const { hover, active } = style
       return css`
         font-family: ${style.fontFamily};
         font-kerning: ${style.fontKerning};
@@ -35,26 +34,11 @@ export const typographic = {
         word-wrap: ${style.wordWrap};
         writing-mode: ${style.writingMode};
         margin: ${style.margin};
-        ${interactive &&
-          css`
-            &:hover {
-              text-decoration-line: ${hover.textDecorationLine};
-              text-decoration-style: ${hover.textDecorationStyle};
-            }
-            &:active {
-              text-decoration-line: ${active.textDecorationLine};
-              text-decoration-style: ${active.textDecorationStyle};
-            }
-          `}
       `
     },
   ],
   propTypes: () => ({
     font: PropTypes.oneOf(fontStyles),
-    interactive: PropTypes.bool,
   }),
-  defaultProps: (font = 'text', interactive = false) => ({
-    font,
-    interactive,
-  }),
+  defaultProps: (font = 'text') => ({ font }),
 }

@@ -8,14 +8,12 @@ import { useTheme } from 'emotion-theming'
 import { chromatic, chromaticSurface, chromaticText } from '.'
 import * as Styled from './demo.styles'
 
-const Tone = ({ color, tone, nextTone, prominent }) => {
+const Tone = ({ color, tone, prominent }) => {
   const theme = useTheme()
   const c = theme.color.getTone(color)
   const t = theme.color.getTone(`${color}.${tone}`)
   const luminosity = t.luminosity().toFixed(2)
   const contrastB = t.contrast(c).toFixed(2)
-  const nextC = theme.color.getTone(`${nextTone}`)
-  // const nextContrast = nextTone ? t.contrast(nextC).toFixed(2) : 'n/a'
   const Tag = prominent ? 'h3' : 'h5'
   return (
     <Styled.Color color={color} tone={tone} prominent={prominent}>
@@ -31,10 +29,10 @@ const Tone = ({ color, tone, nextTone, prominent }) => {
 const Color = ({ color, children, showColorway }) => (
   <Styled.DemoColumn>
     <h3>
-      <TextColor color={color} />
+      <TextColor color={color} interactive />
     </h3>
     <div>{children}</div>
-    {showColorway && <Colorway color={color} />}
+    {showColorway && <Colorway color={color} interactive />}
   </Styled.DemoColumn>
 )
 Color.propTypes = { ...chromatic.propTypes(), showColorway: PropTypes.bool }
@@ -42,8 +40,8 @@ Color.defaultProps = { ...chromatic.defaultProps() }
 
 const Colorway = ({ color }) => (
   <Styled.ColorwayWrapper>
-    <Styled.Colorway color={color} first last left />
-    <Styled.Colorway color={color} className="inactive" first last right />
+    <Styled.Colorway color={color} first last left interactive />
+    <Styled.Colorway color={color} className="inactive" first last right interactive />
   </Styled.ColorwayWrapper>
 )
 Colorway.propTypes = { ...chromatic.propTypes() }
@@ -96,18 +94,6 @@ const TextColor = ({ color }) => (
 )
 TextColor.propTypes = { ...chromaticText.propTypes() }
 TextColor.defaultProps = { ...chromaticText.defaultProps() }
-
-const TextColors = () => (
-  <Styled.DemoGrid>
-    <TextColor color="primary" />
-    <TextColor color="secondary" />
-    <TextColor color="tertiary" />
-    <TextColor color="success" />
-    <TextColor color="info" />
-    <TextColor color="warning" />
-    <TextColor color="danger" />
-  </Styled.DemoGrid>
-)
 
 const Demo = () => (
   <>
@@ -222,6 +208,12 @@ const Demo = () => (
     <p>
       The <em>chromaticSurface</em> trait sets the background, font, and border
       color based on the themes color mode; either <q>dark</q> or <q>light</q>.
+    </p>
+    <p>
+      When combined with the <em>interactive</em> trait, the{' '}
+      <em>chromaticText</em> and <em>chromaticSurface</em> traits will change
+      colors on hover and active states, or if they are marked as disabled or
+      inactive.
     </p>
     <Styled.DemoColumn>
       <Background>
