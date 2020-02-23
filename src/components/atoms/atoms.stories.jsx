@@ -1,5 +1,7 @@
 import React from 'react'
 
+export { default as Button } from './button/stories'
+
 export const Index = () => (
   <>
     <p>Atoms are traits like Color, Responsiveness, Spacing, etc.</p>
