@@ -3,6 +3,7 @@ import { css } from '@emotion/core'
 
 import { sizes } from '../../config/sizing'
 
+// @TODO add props for top, bottom, left, right, etc padding
 // eslint-disable-next-line import/prefer-default-export
 export const padded = {
   styles: [
