@@ -29,7 +29,7 @@ const Tone = ({ color, tone, prominent }) => {
 const Color = ({ color, children, showColorway }) => (
   <Styled.DemoColumn>
     <h3>
-      <TextColor color={color} font="link" interactive />
+      <TextColor color={color} interactive />
     </h3>
     <div>{children}</div>
     {showColorway && <Colorway color={color} interactive />}

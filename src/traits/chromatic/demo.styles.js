@@ -103,7 +103,7 @@ TextColor.propTypes = {
 TextColor.defaultProps = {
   ...chromaticText.defaultProps(),
   ...interactive.defaultProps(false, true),
-  ...typographic.defaultProps('link'),
+  ...typographic.defaultProps(),
 }
 
 export const Background = styled.div(

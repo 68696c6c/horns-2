@@ -47,8 +47,8 @@ export const interactive = {
       const s = theme.typography.getStyle(font)
       const inactiveCSS = css`
         cursor: ${cursor};
-        background: ${cs.inactive.base};
-        color: ${cs.inactive.readable};
+        background: ${cs.inactive.background};
+        color: ${cs.inactive.color};
         border-color: ${cs.inactive.border};
         text-decoration-line: ${s.inactive.textDecorationLine};
         text-decoration-style: ${s.inactive.textDecorationStyle};
@@ -63,15 +63,15 @@ export const interactive = {
           ${inactiveCSS}
         }
         &:not(:disabled):not(.inactive):hover {
-          background: ${cs.hover.base};
-          color: ${cs.hover.readable};
+          background: ${cs.hover.background};
+          color: ${cs.hover.color};
           border-color: ${cs.hover.border};
           text-decoration-line: ${s.hover.textDecorationLine};
           text-decoration-style: ${s.hover.textDecorationStyle};
         }
         &:not(:disabled):not(.inactive):active {
-          background: ${cs.active.base};
-          color: ${cs.active.readable};
+          background: ${cs.active.background};
+          color: ${cs.active.color};
           border-color: ${cs.active.border};
           text-decoration-line: ${s.active.textDecorationLine};
           text-decoration-style: ${s.active.textDecorationStyle};
