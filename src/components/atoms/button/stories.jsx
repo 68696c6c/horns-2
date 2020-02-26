@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react'
 import { action } from '@storybook/addon-actions'
 
@@ -11,7 +12,7 @@ const Demo = () => (
     <Button onClick={action('clicked')}>A default button</Button>
     {colors.map(color => (
       <div style={{ margin: '1em 0' }}>
-        <Button color={color}>A {color} button</Button>
+        <Button color={color}>{color} button</Button>
       </div>
     ))}
   </>

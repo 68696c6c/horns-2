@@ -9,11 +9,13 @@ import {
   rounded,
   typographic,
 } from '../../../traits'
+import { handleProps } from '../../utils'
 
 import * as Styled from './styles'
 
 const Button = ({ children, ...others }) => (
-  <Styled.Button {...others}>{children}</Styled.Button>
+  // eslint-disable-next-line react/jsx-props-no-spreading
+  <Styled.Button {...handleProps(others, 'button')}>{children}</Styled.Button>
 )
 
 Button.propTypes = {
