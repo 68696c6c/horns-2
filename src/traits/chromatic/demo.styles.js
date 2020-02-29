@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { css } from '@emotion/core'
 
-import { chromatic, chromaticSurface, chromaticText } from '.'
+import { chromatic, chromaticSurface } from '.'
 import { interactive } from '../interactive'
 import { typographic } from '../typographic'
 
@@ -91,19 +91,19 @@ export const DemoColumn = styled.div`
 `
 
 export const TextColor = styled.span(
-  ...chromaticText.styles,
+  ...chromatic.styles,
   ...interactive.styles,
   ...typographic.styles
 )
 TextColor.propTypes = {
-  ...chromaticText.propTypes(),
+  ...chromatic.propTypes(),
   ...interactive.propTypes(),
   ...typographic.propTypes(),
 }
 TextColor.defaultProps = {
-  ...chromaticText.defaultProps(),
+  ...chromatic.defaultProps(),
   ...interactive.defaultProps(false, true),
-  ...typographic.defaultProps(),
+  ...typographic.defaultProps(null, true),
 }
 
 export const Background = styled.div(

@@ -13,6 +13,14 @@ import { handleProps } from '../../utils'
 
 import * as Styled from './styles'
 
+export const buttonDefaults = {
+  alignment: 'center',
+  color: 'background',
+  cursor: 'pointer',
+  paddingX: 'medium',
+  paddingY: 'xSmall',
+}
+
 const Button = ({ children, ...others }) => (
   // eslint-disable-next-line react/jsx-props-no-spreading
   <Styled.Button {...handleProps(others, 'button')}>{children}</Styled.Button>
@@ -23,19 +31,23 @@ Button.propTypes = {
   ...bordered.propTypes(),
   ...chromatic.propTypes(),
   ...interactive.propTypes(),
-  ...typographic.propTypes(),
   ...padded.propTypes(),
   ...rounded.propTypes(),
+  ...typographic.propTypes(),
 }
 
 Button.defaultProps = {
-  ...aligned.defaultProps('center'),
+  ...aligned.defaultProps(buttonDefaults.alignment),
   ...bordered.defaultProps(),
-  ...chromatic.defaultProps('background'),
-  ...interactive.defaultProps(false, false, 'pointer'),
-  ...typographic.defaultProps('button'),
-  ...padded.defaultProps('xSmall'),
+  ...chromatic.defaultProps(buttonDefaults.color),
+  ...interactive.defaultProps(false, false, buttonDefaults.cursor),
+  ...padded.defaultProps(
+    null,
+    buttonDefaults.paddingX,
+    buttonDefaults.paddingY
+  ),
   ...rounded.defaultProps(),
+  ...typographic.defaultProps('button'),
 }
 
 export default Button

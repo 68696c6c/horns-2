@@ -28,6 +28,17 @@ A.propTypes = {
   children: PropTypes.node.isRequired,
 }
 
+export const Box = styled.div`
+  padding: 1em;
+`
+
+export const Grid = styled.div`
+  display: grid;
+  grid-gap: 1em;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  align-items: center;
+`
+
 export const Wrapper = styled.div`
   margin: 1em 0;
 `
