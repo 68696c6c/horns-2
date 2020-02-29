@@ -17,7 +17,8 @@ export const buttonDefaults = {
   alignment: 'center',
   color: 'background',
   cursor: 'pointer',
-  padding: 'xSmall',
+  paddingX: 'medium',
+  paddingY: 'xSmall',
 }
 
 const Button = ({ children, ...others }) => (
@@ -40,7 +41,11 @@ Button.defaultProps = {
   ...bordered.defaultProps(),
   ...chromatic.defaultProps(buttonDefaults.color),
   ...interactive.defaultProps(false, false, buttonDefaults.cursor),
-  ...padded.defaultProps(buttonDefaults.padding),
+  ...padded.defaultProps(
+    null,
+    buttonDefaults.paddingX,
+    buttonDefaults.paddingY
+  ),
   ...rounded.defaultProps(),
   ...typographic.defaultProps('button'),
 }
