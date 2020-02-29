@@ -17,5 +17,12 @@
     "emotion/no-vanilla": "error",
     "emotion/import-from-emotion": "error",
     "emotion/styled-import": "error"
+  },
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": ".storybook/webpack.config.js"
+      }
+    }
   }
 }

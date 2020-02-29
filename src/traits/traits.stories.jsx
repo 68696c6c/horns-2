@@ -1,6 +1,8 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react'
 
+import { A } from '_story'
+
 export { default as Aligned } from './aligned/demo'
 export { default as Bordered } from './bordered/demo'
 export { default as Chromatic } from './chromatic/demo'
@@ -22,63 +24,64 @@ export const Index = () => (
 
     <h1>Aligned Trait</h1>
     <p>
-      The <em>aligned</em> trait provides text-alignment to a component.
+      The <A path="traits/aligned">aligned</A> trait provides text-alignment to
+      a component.
     </p>
 
     <h1>Bordered Trait</h1>
     <p>
-      The <em>bordered</em> trait provides border width and style to a
-      component.
+      The <A path="traits/bordered">bordered</A> trait provides border width and
+      style to a component.
     </p>
 
     <h1>Chromatic Trait</h1>
     <p>
-      The <em>chromatic</em> trait provides background, border, and/or font
-      color to a component.
+      The <A path="traits/chromatic">chromatic</A> trait provides background,
+      border, and/or font color to a component.
     </p>
 
     <h1>Contained Trait</h1>
     <p>
-      The <em>contained</em> trait provides container centering behavior to
-      fluid components.
+      The <A path="traits/contained">contained</A> trait provides container
+      centering behavior to fluid components.
     </p>
 
     <h1>Gridded</h1>
     <p>
-      The <em>gridded</em> trait organizes the children of a component into
-      wrapping columns.
+      The <A path="traits/gridded">gridded</A> trait organizes the children of a
+      component into wrapping columns.
     </p>
 
     <h1>Interactive</h1>
     <p>
-      The <em>interactive</em> trait provides a custom mouse cursor to a
-      component and enables the state variations of other traits.
+      The <A path="traits/interactive">interactive</A> trait provides a custom
+      mouse cursor to a component and enables the state variations of other
+      traits.
     </p>
 
-    <h1>Margined Trait</h1>
+    <h1>Margined & Padded Traits</h1>
     <p>
-      The <em>margined</em> trait provides external spacing to a component.
-    </p>
-
-    <h1>Padded Trait</h1>
-    <p>
-      The <em>padded</em> trait provides internal spacing to a component.
+      The <A path="traits/margined">margined</A> and{' '}
+      <A path="traits/margined">padded</A> traits provide external and internal
+      spacing to a component, respectively.
     </p>
 
     <h1>Responsive Trait</h1>
     <p>
-      The responsive trait allows components to change their styling based on
-      the window size.
+      The <A path="traits/responsive">responsive</A> trait allows components to
+      change their styling based on the window size.
     </p>
 
     <h1>Rounded Trait</h1>
     <p>
-      The <em>rounded</em> trait provides border-radius to a component.
+      The <A path="traits/rounded">rounded</A> trait provides border-radius to a
+      component.
     </p>
 
     <h1>Typographic Trait</h1>
     <p>
-      The <em>typographic</em> trait provides font-styling to a component.
+      The <A path="traits/typographic">typographic</A> trait provides
+      font-styling to a component.
     </p>
   </>
 )

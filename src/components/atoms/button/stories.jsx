@@ -2,7 +2,8 @@
 import React from 'react'
 import { action } from '@storybook/addon-actions'
 
-import { colors } from '../../../config'
+import { Wrapper } from '_story'
+import { colors } from 'config'
 
 import Button from '.'
 
@@ -11,9 +12,9 @@ const Demo = () => (
     <h1>Button</h1>
     <Button onClick={action('clicked')}>A default button</Button>
     {colors.map(color => (
-      <div style={{ margin: '1em 0' }}>
+      <Wrapper>
         <Button color={color}>{color} button</Button>
-      </div>
+      </Wrapper>
     ))}
   </>
 )
