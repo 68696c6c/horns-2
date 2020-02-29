@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types'
 import { css } from '@emotion/core'
-import { buttonDefaults } from '../../components/atoms/button'
 
 import { sizes } from '../../config/sizing'
 
@@ -68,7 +67,6 @@ export const padded = {
         paddingLeft,
         paddingRight,
       })
-      console.log('p', p)
       return css`
         padding-top: ${theme.sizing.getPX(p.top)};
         padding-right: ${theme.sizing.getPX(p.right)};
