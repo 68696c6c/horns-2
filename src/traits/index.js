@@ -1,6 +1,6 @@
 export { aligned } from './aligned'
 export { bordered } from './bordered'
-export { chromatic, chromaticText, chromaticSurface } from './chromatic'
+export { chromatic, chromaticSurface } from './chromatic'
 export { gridded } from './gridded'
 export { interactive } from './interactive'
 export { margined } from './margined'

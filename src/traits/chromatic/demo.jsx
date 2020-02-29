@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import { jsx } from '@emotion/core'
 import { useTheme } from 'emotion-theming'
 
-import { chromatic, chromaticSurface, chromaticText } from '.'
+import { chromatic, chromaticSurface } from '.'
 import * as Styled from './demo.styles'
 
 const Tone = ({ color, tone, prominent }) => {
@@ -41,7 +41,14 @@ Color.defaultProps = { ...chromatic.defaultProps() }
 const Colorway = ({ color }) => (
   <Styled.ColorwayWrapper>
     <Styled.Colorway color={color} first last left interactive />
-    <Styled.Colorway color={color} className="inactive" first last right interactive />
+    <Styled.Colorway
+      color={color}
+      className="inactive"
+      first
+      last
+      right
+      interactive
+    />
   </Styled.ColorwayWrapper>
 )
 Colorway.propTypes = { ...chromatic.propTypes() }
@@ -92,16 +99,15 @@ NeutralColorway.defaultProps = { ...chromatic.defaultProps() }
 const TextColor = ({ color }) => (
   <Styled.TextColor color={color}>{color}</Styled.TextColor>
 )
-TextColor.propTypes = { ...chromaticText.propTypes() }
-TextColor.defaultProps = { ...chromaticText.defaultProps() }
+TextColor.propTypes = { ...chromatic.propTypes() }
+TextColor.defaultProps = { ...chromatic.defaultProps(null, true) }
 
 const Demo = () => (
   <>
     <h1>Chromatic Traits</h1>
     <p>
       The chromatic traits provide color to a component. The chromatic trait has
-      three variations: <em>chromatic</em>, <em>chromaticText</em>, and{' '}
-      <em>chromaticSurface</em>.
+      two variations: <em>chromatic</em> and <em>chromaticSurface</em>.
     </p>
 
     <h2>Chromatic</h2>
@@ -201,19 +207,15 @@ const Demo = () => (
       </Color>
     </Styled.DemoGrid>
 
-    <h2>ChromaticSurface and ChromaticText</h2>
-    <p>
-      The <em>chromaticText</em> trait sets the font color to a specific color.
-    </p>
+    <h2>ChromaticSurface</h2>
     <p>
       The <em>chromaticSurface</em> trait sets the background, font, and border
       color based on the themes color mode; either <q>dark</q> or <q>light</q>.
     </p>
     <p>
-      When combined with the <em>interactive</em> trait, the{' '}
-      <em>chromaticText</em> and <em>chromaticSurface</em> traits will change
-      colors on hover and active states, or if they are marked as disabled or
-      inactive.
+      When combined with the <em>interactive</em> trait, the <em>chromatic</em>{' '}
+      and <em>chromaticSurface</em> traits will change colors on hover and
+      active states, or if they are marked as disabled or inactive.
     </p>
     <Styled.DemoColumn>
       <Background>

@@ -23,22 +23,7 @@ export const chromatic = {
     color: PropTypes.oneOf([null, ...colors]),
     typographic: PropTypes.bool,
   }),
-  defaultProps: (color = null) => ({ color, typographic: false }),
-}
-
-export const chromaticText = {
-  styles: [
-    ({ theme, color }) => {
-      const c = theme.color.getColorway(color)
-      return css`
-        color: ${c.base.base};
-      `
-    },
-  ],
-  propTypes: () => ({
-    color: PropTypes.oneOf([null, ...colors]),
-  }),
-  defaultProps: (color = null) => ({ color }),
+  defaultProps: (color = null, typographic = false) => ({ color, typographic }),
 }
 
 export const chromaticSurface = {
