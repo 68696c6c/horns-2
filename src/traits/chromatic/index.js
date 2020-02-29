@@ -5,8 +5,13 @@ import { colors, backgroundTones } from '../../config'
 
 export const chromatic = {
   styles: [
-    ({ theme, color }) => {
+    ({ theme, color, typographic }) => {
       const c = theme.color.getColorway(color)
+      if (typographic) {
+        return css`
+          color: ${c.base.base};
+        `
+      }
       return css`
         background: ${c.base.base};
         color: ${c.base.readable};
@@ -16,8 +21,9 @@ export const chromatic = {
   ],
   propTypes: () => ({
     color: PropTypes.oneOf([null, ...colors]),
+    typographic: PropTypes.bool,
   }),
-  defaultProps: (color = null) => ({ color }),
+  defaultProps: (color = null) => ({ color, typographic: false }),
 }
 
 export const chromaticText = {
