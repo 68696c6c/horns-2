@@ -24,7 +24,7 @@ const Demo = () => (
     <div>
       <Typography>default typography</Typography>
     </div>
-    <h2>Alias'</h2>
+    <h2>Aliases</h2>
     <p>The Typography component has several alias components.</p>
     <div>
       <T>The T component is a one-to-one alias for Typography.</T>

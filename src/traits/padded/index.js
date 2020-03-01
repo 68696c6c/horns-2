@@ -14,8 +14,9 @@ export const padded = {
     paddingBottom,
     paddingLeft,
     paddingRight,
+    fluid,
   }) => {
-    const { top, bottom, left, right } = theme.sizing.getSidesPX({
+    const spacing = theme.sizing.getSidesPX({
       all: padding,
       x: paddingX,
       y: paddingY,
@@ -24,11 +25,15 @@ export const padded = {
       left: paddingLeft,
       right: paddingRight,
     })
+    if (!fluid) {
+      spacing.left = null
+      spacing.right = null
+    }
     return css`
-      padding-top: ${top};
-      padding-bottom: ${bottom};
-      padding-left: ${left};
-      padding-right: ${right};
+      padding-top: ${spacing.top};
+      padding-bottom: ${spacing.bottom};
+      padding-left: ${spacing.left};
+      padding-right: ${spacing.right};
     `
   },
   propTypes: () => ({

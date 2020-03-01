@@ -14,8 +14,9 @@ export const margined = {
     marginBottom,
     marginLeft,
     marginRight,
+    fluid,
   }) => {
-    const { top, bottom, left, right } = theme.sizing.getSidesPX({
+    const spacing = theme.sizing.getSidesPX({
       all: margin,
       x: marginX,
       y: marginY,
@@ -24,11 +25,15 @@ export const margined = {
       left: marginLeft,
       right: marginRight,
     })
+    if (!fluid) {
+      spacing.left = null
+      spacing.right = null
+    }
     return css`
-      margin-top: ${top};
-      margin-right: ${bottom};
-      margin-bottom: ${left};
-      margin-left: ${right};
+      margin-top: ${spacing.top};
+      margin-right: ${spacing.bottom};
+      margin-bottom: ${spacing.left};
+      margin-left: ${spacing.right};
     `
   },
   propTypes: () => ({
