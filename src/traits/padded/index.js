@@ -3,7 +3,8 @@ import { css } from '@emotion/core'
 
 import { sizes } from '../../config/sizing'
 
-const getSideSizes = ({
+// @TODO test this.
+export const getSideSizes = ({
   padding,
   paddingX,
   paddingY,
@@ -44,8 +45,6 @@ const getSideSizes = ({
   }
 }
 
-// @TODO add props for top, bottom, left, right, etc padding
-// eslint-disable-next-line import/prefer-default-export
 export const padded = {
   styles: [
     ({
