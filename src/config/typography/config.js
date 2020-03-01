@@ -37,6 +37,10 @@ export default {
       line: 'underline',
       style: null,
     },
+    underlineDouble: {
+      line: 'underline',
+      style: 'double',
+    },
     wave: {
       line: 'underline',
       style: 'wavy',
@@ -243,7 +247,7 @@ export default {
       align: null,
       justify: null,
       transform: null,
-      decoration: 'base',
+      decoration: 'none',
       kerning: 'base',
       tracking: 'base',
       letting: 'base',
@@ -267,20 +271,20 @@ export default {
       align: null,
       justify: null,
       transform: null,
-      decoration: 'none',
+      decoration: 'underline',
       kerning: 'base',
       tracking: 'base',
       letting: 'base',
       spacing: 'base',
       indent: 'base',
       inactive: {
-        decoration: 'none',
+        decoration: 'underline',
       },
       hover: {
-        decoration: 'underline',
+        decoration: 'underlineDouble',
       },
       active: {
-        decoration: 'underline',
+        decoration: 'underlineDouble',
       },
     },
     caption: {

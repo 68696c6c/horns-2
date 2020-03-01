@@ -89,7 +89,9 @@ NeutralColor.defaultProps = { ...chromatic.defaultProps() }
 
 const NeutralColorway = ({ color }) => (
   <div>
-    <h3>{color}</h3>
+    <h3>
+      <TextColor color={color}>{color}</TextColor>
+    </h3>
     <Colorway color={color} />
   </div>
 )

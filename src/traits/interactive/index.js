@@ -9,37 +9,38 @@ export const interactive = {
     const c = theme.color.getColorway(color)
     let cs = {
       inactive: {
-        background: null,
-        color: c.inactive.base,
-        border: null,
+        background: c.inactive.base,
+        color: c.inactive.readable,
+        border: c.inactive.border,
       },
       hover: {
-        background: null,
-        color: c.hover.base,
-        border: null,
+        background: c.hover.base,
+        color: c.hover.readable,
+        border: c.hover.border,
       },
       active: {
-        background: null,
-        color: c.active.base,
-        border: null,
+        background: c.active.base,
+        color: c.active.readable,
+        border: c.active.border,
       },
     }
-    if (!typographic) {
+    if (typographic) {
+      const isBg = color === 'background'
       cs = {
         inactive: {
-          background: c.inactive.base,
-          color: c.inactive.readable,
-          border: c.inactive.border,
+          background: null,
+          color: isBg ? c.inactive.readable : c.inactive.base,
+          border: null,
         },
         hover: {
-          background: c.hover.base,
-          color: c.hover.readable,
-          border: c.hover.border,
+          background: null,
+          color: isBg ? c.hover.readable : c.hover.base,
+          border: null,
         },
         active: {
-          background: c.active.base,
-          color: c.active.readable,
-          border: c.active.border,
+          background: null,
+          color: isBg ? c.active.readable : c.active.base,
+          border: null,
         },
       }
     }

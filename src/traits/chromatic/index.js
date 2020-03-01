@@ -8,7 +8,7 @@ export const chromatic = {
     const c = theme.color.getColorway(color)
     if (typographic) {
       return css`
-        color: ${c.base.base};
+        color: ${color === 'background' ? c.base.readable : c.base.base};
       `
     }
     return css`

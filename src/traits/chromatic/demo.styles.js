@@ -7,7 +7,7 @@ import { typographic } from '../typographic'
 
 const colorDemoCSS = ({ prominent, first, last, left, right }) =>
   css`
-    padding: ${prominent ? '2em' : '1em'};
+    padding: ${prominent ? '1em' : '0.5em'};
     border-style: solid;
     border-left-width: ${left ? '1em' : '0'};
     border-right-width: ${right ? '1em' : '0'};
