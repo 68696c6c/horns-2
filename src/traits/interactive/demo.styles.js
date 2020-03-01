@@ -12,9 +12,9 @@ export const Wrapper = styled.div`
 `
 
 export const Box = styled.div(
-  ...interactive.styles,
-  ...chromatic.styles,
-  ...typographic.styles,
+  interactive.styles,
+  chromatic.styles,
+  typographic.styles,
   () => css`
     padding: 1em;
   `
@@ -31,8 +31,8 @@ Box.defaultProps = {
 }
 
 export const Text = styled.span(
-  ...interactive.styles,
-  ...typographic.styles,
+  interactive.styles,
+  typographic.styles,
   () => css`
     padding: 1em;
   `

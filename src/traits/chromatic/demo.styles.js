@@ -36,8 +36,8 @@ Color.defaultProps = {
 }
 
 export const Colorway = styled.div(
-  ...chromatic.styles,
-  ...interactive.styles,
+  chromatic.styles,
+  interactive.styles,
   colorDemoCSS,
   ({ color }) => css`
     &::after {
@@ -91,9 +91,9 @@ export const DemoColumn = styled.div`
 `
 
 export const TextColor = styled.span(
-  ...chromatic.styles,
-  ...interactive.styles,
-  ...typographic.styles
+  chromatic.styles,
+  interactive.styles,
+  typographic.styles
 )
 TextColor.propTypes = {
   ...chromatic.propTypes(),
@@ -107,7 +107,7 @@ TextColor.defaultProps = {
 }
 
 export const Background = styled.div(
-  ...chromaticSurface.styles,
+  chromaticSurface.styles,
   () => css`
     padding: 1em;
     border-width: 1em;

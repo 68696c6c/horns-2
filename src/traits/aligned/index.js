@@ -5,11 +5,9 @@ import { alignments } from '../../config'
 
 // eslint-disable-next-line import/prefer-default-export
 export const aligned = {
-  styles: [
-    ({ textAlign }) => css`
-      text-align: ${textAlign};
-    `,
-  ],
+  styles: ({ textAlign }) => css`
+    text-align: ${textAlign};
+  `,
   propTypes: () => ({
     textAlign: PropTypes.oneOf(alignments),
   }),

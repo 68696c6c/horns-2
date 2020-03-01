@@ -4,7 +4,7 @@ import { css } from '@emotion/core'
 import { responsive } from '.'
 
 // eslint-disable-next-line import/prefer-default-export
-export const Box = styled.div(...responsive.styles, ({ theme, breakpoint }) => {
+export const Box = styled.div(responsive.styles, ({ theme, breakpoint }) => {
   const minWidth = theme.grid.getBreakpoint(breakpoint)
   return css`
     background-color: red;
