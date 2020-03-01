@@ -27,7 +27,7 @@ export const baseProps = {
   defaultProps: {
     ...aligned.defaultProps(buttonDefaults.alignment),
     ...bordered.defaultProps(),
-    ...chromatic.defaultProps(buttonDefaults.color),
+    ...chromatic.defaultProps(buttonDefaults.color, true),
     ...interactive.defaultProps(false, true, buttonDefaults.cursor),
     ...padded.defaultProps(
       null,

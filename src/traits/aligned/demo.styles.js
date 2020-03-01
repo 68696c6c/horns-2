@@ -14,7 +14,7 @@ export const Alignment = styled.span`
 `
 
 export const Text = styled.span(
-  ...aligned.styles,
+  aligned.styles,
   () =>
     css`
       display: block;

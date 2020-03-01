@@ -6,7 +6,7 @@ import { breakpoints } from '../../config'
 // implements this trait to decide how to respond to its breakpoint.
 // eslint-disable-next-line import/prefer-default-export
 export const responsive = {
-  styles: [],
+  styles: () => {},
   propTypes: () => ({
     breakpoint: PropTypes.oneOf(breakpoints),
   }),

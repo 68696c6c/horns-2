@@ -4,7 +4,7 @@ import { css } from '@emotion/core'
 import { gridded } from '.'
 
 export const Grid = styled.div(
-  ...gridded.styles,
+  gridded.styles,
   () =>
     css`
       background-color: black;

@@ -5,7 +5,7 @@ import { bordered } from '.'
 
 // eslint-disable-next-line import/prefer-default-export
 export const Box = styled.div(
-  ...bordered.styles,
+  bordered.styles,
   () =>
     css`
       border-color: orange;

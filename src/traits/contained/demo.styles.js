@@ -4,7 +4,7 @@ import { css } from '@emotion/core'
 import { contained } from '.'
 
 export const Container = styled.div(
-  ...contained.styles,
+  contained.styles,
   () =>
     css`
       background-color: orange;

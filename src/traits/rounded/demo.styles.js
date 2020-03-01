@@ -5,7 +5,7 @@ import { rounded } from '.'
 
 // eslint-disable-next-line import/prefer-default-export
 export const Box = styled.div(
-  ...rounded.styles,
+  rounded.styles,
   () =>
     css`
       background-color: orange;

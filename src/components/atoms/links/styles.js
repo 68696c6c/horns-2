@@ -12,19 +12,19 @@ import {
 } from '../../../traits'
 
 export const Link = styled.a(
-  ...chromatic.styles,
-  ...interactive.styles,
-  ...typographic.styles
+  chromatic.styles,
+  interactive.styles,
+  typographic.styles
 )
 
 export const Button = styled.a(
-  ...aligned.styles,
-  ...bordered.styles,
-  ...chromatic.styles,
-  ...interactive.styles,
-  ...rounded.styles,
-  ...padded.styles,
-  ...typographic.styles,
+  aligned.styles,
+  bordered.styles,
+  chromatic.styles,
+  interactive.styles,
+  rounded.styles,
+  padded.styles,
+  typographic.styles,
   () =>
     css`
       display: inline-block;

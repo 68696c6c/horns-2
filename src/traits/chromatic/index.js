@@ -4,21 +4,19 @@ import { css } from '@emotion/core'
 import { colors, backgroundTones } from '../../config'
 
 export const chromatic = {
-  styles: [
-    ({ theme, color, typographic }) => {
-      const c = theme.color.getColorway(color)
-      if (typographic) {
-        return css`
-          color: ${c.base.base};
-        `
-      }
+  styles: ({ theme, color, typographic }) => {
+    const c = theme.color.getColorway(color)
+    if (typographic) {
       return css`
-        background: ${c.base.base};
-        color: ${c.base.readable};
-        border-color: ${c.base.border};
+        color: ${color === 'background' ? c.base.readable : c.base.base};
       `
-    },
-  ],
+    }
+    return css`
+      background: ${c.base.base};
+      color: ${c.base.readable};
+      border-color: ${c.base.border};
+    `
+  },
   propTypes: () => ({
     color: PropTypes.oneOf([null, ...colors]),
     typographic: PropTypes.bool,
@@ -27,16 +25,14 @@ export const chromatic = {
 }
 
 export const chromaticSurface = {
-  styles: [
-    ({ theme, tone }) => {
-      const c = theme.color.getBackground(tone)
-      return css`
-        background: ${c.base.base};
-        color: ${c.base.readable};
-        border-color: ${c.base.border};
-      `
-    },
-  ],
+  styles: ({ theme, tone }) => {
+    const c = theme.color.getBackground(tone)
+    return css`
+      background: ${c.base.base};
+      color: ${c.base.readable};
+      border-color: ${c.base.border};
+    `
+  },
   propTypes: () => ({
     tone: PropTypes.oneOf(backgroundTones),
   }),

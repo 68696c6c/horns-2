@@ -15,8 +15,8 @@ export const BoxContainer = styled.div(
 )
 
 export const Box = styled.div(
-  ...padded.styles,
-  ...margined.styles,
+  padded.styles,
+  margined.styles,
   () =>
     css`
       background-color: rgb(177, 189, 121);
