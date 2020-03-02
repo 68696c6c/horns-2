@@ -32,10 +32,10 @@ export const containedSplit = {
     const gutter = `calc(((100vw - ${container}) / 2))`
     return css`
       @media (min-width: ${container}) {
-        > :nth-child(odd) {
+        > :nth-child(1) {
           padding-left: ${gutter};
         }
-        > :nth-child(even) {
+        > :nth-last-child(1) {
           padding-right: ${gutter};
         }
       }

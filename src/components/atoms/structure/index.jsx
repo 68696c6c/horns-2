@@ -35,11 +35,11 @@ const Structure = ({ children, variant, ...others }) => {
 }
 
 Structure.propTypes = {
-  ...chromatic.defaultProps(),
-  ...contained.defaultProps(),
-  ...margined.defaultProps(),
-  ...padded.defaultProps(),
-  ...responsive.defaultProps(),
+  ...chromatic.propTypes(),
+  ...contained.propTypes(),
+  ...margined.propTypes(),
+  ...padded.propTypes(),
+  ...responsive.propTypes(),
   variant: PropTypes.oneOf(structuralVariants),
 }
 
