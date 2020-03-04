@@ -12,7 +12,7 @@ const Demo = () => (
     <p>
       The Columns component arranges its children into equally sized columns.
     </p>
-    <Columns color="dark">
+    <Columns color="dark" breakpoint="medium">
       <Column color="primary">Column 1</Column>
       <Column color="secondary">Column 2</Column>
       <Column color="tertiary">Column 3</Column>
