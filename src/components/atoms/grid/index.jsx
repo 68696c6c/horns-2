@@ -16,6 +16,13 @@ import * as Styled from './styles'
 
 export const gridVariants = ['areas', 'halves', 'thirds']
 
+const getPosition = ({offsetBase, spanBase, offset, span}) => {
+  let result = 0
+  result += offset ? offset : offsetBase
+  result += span ? span : spanBase
+  return result
+}
+
 const Grid = ({ children, variant, ...others }) => {
   const columns = (isArray(children) ? children : [children]).filter(
     c => !isUndefined(c.type)
@@ -26,10 +33,41 @@ const Grid = ({ children, variant, ...others }) => {
   useEffect(() => {
     const result = []
     let position = 0
+    let positionMin = 0
+    let positionSm = 0
+    let positionMd = 0
+    let positionLg = 0
+    let positionMax = 0
     columns.forEach(child => {
-      const { offset, span } = child.props
-      position += offset + span
-      result.push(position)
+      const {
+        span,
+        spanMin,
+        spanSm,
+        spanMd,
+        spanLg,
+        spanMax,
+        offset,
+        offsetMin,
+        offsetSm,
+        offsetMd,
+        offsetLg,
+        offsetMax
+      } = child.props
+      position += getPosition({ offsetBase: offset, spanBase: span })
+      positionMin += getPosition({ offsetBase: offset, spanBase: span, offset: offsetMin, span: spanMin })
+      positionSm += getPosition({ offsetBase: offset, spanBase: span, offset: offsetSm, span: spanSm })
+      positionMd += getPosition({ offsetBase: offset, spanBase: span, offset: offsetMd, span: spanMd })
+      positionLg += getPosition({ offsetBase: offset, spanBase: span, offset: offsetLg, span: spanLg })
+      positionMax += getPosition({ offsetBase: offset, spanBase: span, offset: offsetMax, span: spanMax })
+      const pos = {
+        base: position,
+        min: positionMin,
+        sm: positionSm,
+        md: positionMd,
+        lg: positionLg,
+        max: positionMax,
+      }
+      result.push(pos)
     })
     setPositions(result)
   }, [])

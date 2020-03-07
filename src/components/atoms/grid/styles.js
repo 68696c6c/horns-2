@@ -20,7 +20,8 @@ const getSpan = (span, offset) => {
   }
   return col.join(' / ')
 }
-const getArea = areaInt => {
+
+const getStart = areaInt => {
   const areas = [
     'zero',
     'one',
@@ -38,8 +39,6 @@ const getArea = areaInt => {
   ]
   return areas[areaInt]
 }
-const getStart = (position, offset) =>
-  offset && offset > 0 ? `${getArea(position)}` : null
 const getEnd = span => (span && span > 1 ? `span ${span}` : null)
 
 export const Column = styled.div(
@@ -49,7 +48,7 @@ export const Column = styled.div(
   responsive.styles,
   ({
     theme,
-    position,
+     position,
     span,
     spanMin,
     spanSm,
@@ -64,26 +63,26 @@ export const Column = styled.div(
     offsetMax,
   }) => {
     return css`
-      grid-column-start: ${getStart(position, offset)};
+      grid-column-start: ${getStart(position.base, offset)};
       grid-column-end: ${getEnd(span)};
       ${theme.grid.break('min')} {
-        grid-column-start: ${getStart(position, offsetMin)};
+        grid-column-start: ${getStart(position.min, offsetMin)};
         grid-column-end: ${getEnd(spanMin)};
       }
       ${theme.grid.break('small')} {
-        grid-column-start: ${getStart(position, offsetSm)};
+        grid-column-start: ${getStart(position.sm, offsetSm)};
         grid-column-end: ${getEnd(spanSm)};
       }
       ${theme.grid.break('medium')} {
-        grid-column-start: ${getStart(position, offsetMd)};
+        grid-column-start: ${getStart(position.md, offsetMd)};
         grid-column-end: ${getEnd(spanMd)};
       }
       ${theme.grid.break('large')} {
-        grid-column-start: ${getStart(position, offsetLg)};
+        grid-column-start: ${getStart(position.lg, offsetLg)};
         grid-column-end: ${getEnd(spanLg)};
       }
       ${theme.grid.break('max')} {
-        grid-column-start: ${getStart(position, offsetMax)};
+        grid-column-start: ${getStart(position.max, offsetMax)};
         grid-column-end: ${getEnd(spanMax)};
       }
     `
