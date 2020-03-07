@@ -10,12 +10,16 @@ export const gridded = {
       template = `repeat(auto-fit, minmax(${min}, 1fr))`
     }
     const gap = gapped ? theme.grid.getGap() : null
-    const displayCSS = breakpoint ? css`
-        display: block;
-        ${theme.grid.break(breakpoint)} {
+    const displayCSS = breakpoint
+      ? css`
+          display: block;
+          ${theme.grid.break(breakpoint)} {
+            display: grid;
+          }
+        `
+      : css`
           display: grid;
-        }
-      ` : css`display: grid;`
+        `
     return css`
       grid-gap: ${gap};
       grid-template-columns: ${template};
