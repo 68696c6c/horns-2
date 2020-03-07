@@ -41,3 +41,4 @@ Columns.defaultProps = {
 export default Columns
 
 export const Column = props => <Styled.Column {...props} />
+export const Row = props => <Styled.Columns {...props} columns={12} gapped />

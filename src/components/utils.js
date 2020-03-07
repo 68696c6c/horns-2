@@ -6,3 +6,11 @@ export const handleProps = (
   className: [className, propsClassName].join(' ').trim(),
   ...others,
 })
+
+export const isUndefined = val => {
+  return typeof val === 'undefined'
+}
+
+export const isArray = arr => {
+  return arr.constructor === Array
+}
