@@ -21,9 +21,9 @@ const getSpan = (span, offset) => {
   return col.join(' / ')
 }
 
-const getStart = areaInt => {
+const getStart = (areaInt, offset) => {
   const areas = [
-    'zero',
+    null,
     'one',
     'two',
     'three',
@@ -37,7 +37,7 @@ const getStart = areaInt => {
     'eleven',
     'twelve',
   ]
-  return areas[areaInt]
+  return offset ? areas[areaInt] : null
 }
 const getEnd = span => (span && span > 1 ? `span ${span}` : null)
 
@@ -88,40 +88,6 @@ export const Column = styled.div(
     `
   }
 )
-
-// export const DemoColumn = styled(Column)(({ theme }) => {
-//   return css`
-//     padding: 1em;
-//     ::after {
-//       content: 'default style';
-//     }
-//     ${theme.grid.break('min')} {
-//       ::after {
-//         content: 'min style';
-//       }
-//     }
-//     ${theme.grid.break('small')} {
-//       ::after {
-//         content: 'small style';
-//       }
-//     }
-//     ${theme.grid.break('medium')} {
-//       ::after {
-//         content: 'medium style';
-//       }
-//     }
-//     ${theme.grid.break('large')} {
-//       ::after {
-//         content: 'large style';
-//       }
-//     }
-//     ${theme.grid.break('max')} {
-//       ::after {
-//         content: 'max style';
-//       }
-//     }
-//   `
-// })
 
 export const Grid = styled.div(
   chromatic.styles,

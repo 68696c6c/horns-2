@@ -16,11 +16,8 @@ import * as Styled from './styles'
 
 export const gridVariants = ['areas', 'halves', 'thirds']
 
-const getPosition = ({offsetBase, spanBase, offset, span}) => {
-  let result = 0
-  result += offset ? offset : offsetBase
-  result += span ? span : spanBase
-  return result
+const getPosition = (offset, span) => {
+  return offset + span
 }
 
 const Grid = ({ children, variant, ...others }) => {
@@ -32,12 +29,23 @@ const Grid = ({ children, variant, ...others }) => {
 
   useEffect(() => {
     const result = []
-    let position = 0
-    let positionMin = 0
-    let positionSm = 0
-    let positionMd = 0
-    let positionLg = 0
-    let positionMax = 0
+    const position = {
+      base: 0,
+      min: 0,
+      sm: 0,
+      md: 0,
+      lg: 0,
+      max: 0,
+    }
+    const colCount = {
+      base: 0,
+      min: 0,
+      sm: 0,
+      md: 0,
+      lg: 0,
+      max: 0,
+    }
+
     columns.forEach(child => {
       const {
         span,
@@ -51,22 +59,67 @@ const Grid = ({ children, variant, ...others }) => {
         offsetSm,
         offsetMd,
         offsetLg,
-        offsetMax
+        offsetMax,
       } = child.props
-      position += getPosition({ offsetBase: offset, spanBase: span })
-      positionMin += getPosition({ offsetBase: offset, spanBase: span, offset: offsetMin, span: spanMin })
-      positionSm += getPosition({ offsetBase: offset, spanBase: span, offset: offsetSm, span: spanSm })
-      positionMd += getPosition({ offsetBase: offset, spanBase: span, offset: offsetMd, span: spanMd })
-      positionLg += getPosition({ offsetBase: offset, spanBase: span, offset: offsetLg, span: spanLg })
-      positionMax += getPosition({ offsetBase: offset, spanBase: span, offset: offsetMax, span: spanMax })
-      const pos = {
-        base: position,
-        min: positionMin,
-        sm: positionSm,
-        md: positionMd,
-        lg: positionLg,
-        max: positionMax,
+      console.log('------------------')
+      // console.log('offset', {
+      //   offset,
+      //   offsetMin,
+      //   offsetSm,
+      //   offsetMd,
+      //   offsetLg,
+      //   offsetMax,
+      // })
+      // console.log('span', {
+      //   span,
+      //   spanMin,
+      //   spanSm,
+      //   spanMd,
+      //   spanLg,
+      //   spanMax,
+      // })
+      const offsets = {
+        base: offset,
+        min: offsetMin || offset,
+        sm: offsetSm || offset,
+        md: offsetMd || offset,
+        lg: offsetLg || offset,
+        max: offsetMax || offset,
       }
+      console.log('offsets', offsets)
+      colCount.base += offsets.base
+      colCount.min += offsets.min
+      colCount.sm += offsets.sm
+      colCount.md += offsets.md
+      colCount.lg += offsets.lg
+      colCount.max += offsets.max
+      console.log('colCount', colCount)
+
+      position.base = colCount.base
+      position.min = colCount.min
+      position.sm = colCount.sm
+      position.md = colCount.md
+      position.lg = colCount.lg
+      position.max = colCount.max
+      const pos = { ...position }
+      console.log('pos', pos)
+
+      const spans = {
+        base: span,
+        min: spanMin || span,
+        sm: spanSm || span,
+        md: spanMd || span,
+        lg: spanLg || span,
+        max: spanMax || span,
+      }
+      console.log('spans', spans)
+      colCount.base += spans.base
+      colCount.min += spans.min
+      colCount.sm += spans.sm
+      colCount.md += spans.md
+      colCount.lg += spans.lg
+      colCount.max += spans.max
+      console.log('colCount', colCount)
       result.push(pos)
     })
     setPositions(result)
@@ -113,7 +166,7 @@ Column.propTypes = {
   ...margined.propTypes(),
   ...padded.propTypes(),
   ...responsive.propTypes(),
-  position: PropTypes.oneOf([0, ...spans]),
+  position: PropTypes.oneOf([...spans]),
   span: PropTypes.oneOf(spans),
   spanMin: PropTypes.oneOf([null, ...spans]),
   spanSm: PropTypes.oneOf([null, ...spans]),
@@ -133,7 +186,7 @@ Column.defaultProps = {
   ...margined.defaultProps(),
   ...padded.defaultProps(),
   ...responsive.defaultProps(),
-  position: 0,
+  position: 1,
   span: 1,
   spanMin: null,
   spanSm: null,
