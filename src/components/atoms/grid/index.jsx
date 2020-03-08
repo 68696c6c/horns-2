@@ -20,6 +20,7 @@ const getPosition = (offset, span) => {
   return offset + span
 }
 
+// @TODO hoist the stateful part up to a GridContainer and treat this component as a stateless row.
 const Grid = ({ children, variant, ...others }) => {
   const columns = (isArray(children) ? children : [children]).filter(
     c => !isUndefined(c.type)

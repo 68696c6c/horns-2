@@ -13,27 +13,45 @@ const Demo = () => (
       The Template component arranges its children according to a specified
       template.
     </p>
-    <Template color="dark">
+    <Template color="dark" marginY="medium">
       <Area color="primary">Area 1</Area>
       <Area color="secondary">Area 2</Area>
       <Area color="tertiary">Area 3</Area>
-      <Area color="success">Area 4</Area>
+    </Template>
+    <Template color="dark" marginY="medium" fluid>
+      <Area color="success">Area 1</Area>
+      <Area color="info">Area 2</Area>
+      <Area color="warning">Area 3</Area>
+      <Area color="danger">Area 4</Area>
     </Template>
 
     <h2>Halves</h2>
-    <Template color="neutral" variant="halves">
+    <Template color="neutral" variant="halves" marginY="medium">
       <Area color="info">Area 1</Area>
       <Area color="warning">Area 2</Area>
     </Template>
-
-    <h2>Thirds</h2>
-    <Template color="dark" variant="thirds" margin="medium">
+    <Template color="neutral" variant="halves" marginY="medium" fluid>
       <Area color="danger">Area 1</Area>
       <Area color="primary">Area 2</Area>
     </Template>
-    <Template color="neutral" variant="thirds" smallSide="right" margin="medium">
+
+    <h2>Thirds</h2>
+    <Template color="dark" variant="thirds" marginY="medium">
       <Area color="secondary">Area 1</Area>
       <Area color="tertiary">Area 2</Area>
+    </Template>
+    <Template color="neutral" variant="thirds" marginY="medium" reversed>
+      <Area color="success">Area 1</Area>
+      <Area color="info">Area 2</Area>
+    </Template>
+
+    <Template color="dark" variant="thirds" marginY="medium" fluid>
+      <Area color="warning">Area 1</Area>
+      <Area color="danger">Area 2</Area>
+    </Template>
+    <Template color="neutral" variant="thirds" marginY="medium" reversed fluid>
+      <Area color="primary">Area 1</Area>
+      <Area color="secondary">Area 2</Area>
     </Template>
 
     <h2>Areas</h2>

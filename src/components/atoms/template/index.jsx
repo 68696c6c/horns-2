@@ -44,7 +44,7 @@ Template.propTypes = {
   ...padded.propTypes(),
   ...responsive.propTypes(),
   variant: PropTypes.oneOf(gridVariants),
-  smallSide: PropTypes.oneOf(['left', 'right']),
+  reversed: PropTypes.bool,
 }
 
 Template.defaultProps = {
@@ -55,11 +55,12 @@ Template.defaultProps = {
   ...padded.defaultProps(),
   ...responsive.defaultProps(),
   variant: 'areas',
-  smallSide: 'left',
+  reversed: false,
 }
 
 export default Template
 
+// @TODO add Columns here as an alias
 export const Area = props => <Styled.Area {...props} />
 export const Areas = props => <Template {...props} variant="areas" />
 export const Halves = props => <Template {...props} variant="halves" />

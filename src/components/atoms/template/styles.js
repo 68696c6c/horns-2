@@ -56,8 +56,8 @@ export const Halves = styled.div(
 export const Thirds = styled.div(
   ...baseStyles,
   containedSplit.styles,
-  ({ smallSide }) => css`
-    grid-template-columns: ${smallSide === 'left' ? '1fr 2fr' : '2fr 1fr'};
+  ({ reversed }) => css`
+    grid-template-columns: ${reversed ? '2fr 1fr' : '1fr 2fr'};
     grid-template-areas: 'left right';
     > :nth-child(odd) {
       grid-area: left;
