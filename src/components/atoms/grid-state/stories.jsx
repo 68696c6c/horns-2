@@ -45,17 +45,17 @@ const Demo = () => (
       </Column>
     </Grid>
 
-    <h2>Column Start</h2>
+    <h2>Column Offsetting</h2>
     <Grid color="dark" breakpoint="medium">
-      <Column color="primary">Default start</Column>
-      <Column start={3} color="secondary">
-        Start at col 3
+      <Column color="primary">Offset None</Column>
+      <Column offset={1} color="secondary">
+        Offset 1
       </Column>
-      <Column start={5} color="tertiary">
-        Start at col 5
+      <Column offset={2} color="tertiary">
+        Offset 2
       </Column>
-      <Column start={7} color="success">
-        Start at col 7
+      <Column offset={3} color="success">
+        Offset 3
       </Column>
     </Grid>
 
@@ -95,11 +95,11 @@ const Demo = () => (
     <Grid color="dark">
       <Column
         color="primary"
-        startMin={1}
-        startSm={2}
-        startMd={3}
-        startLg={4}
-        startMax={5}
+        offsetMin={1}
+        offsetSm={2}
+        offsetMd={3}
+        offsetLg={4}
+        offsetMax={5}
         spanMin={5}
         spanSm={4}
         spanMd={3}
@@ -110,11 +110,11 @@ const Demo = () => (
       </Column>
       <Column
         color="secondary"
-        startMin={11}
-        startSm={10}
-        startMd={9}
-        startLg={8}
-        startMax={7}
+        offsetMin={5}
+        offsetSm={4}
+        offsetMd={3}
+        offsetLg={2}
+        offsetMax={1}
         spanMin={1}
         spanSm={2}
         spanMd={3}
@@ -128,7 +128,7 @@ const Demo = () => (
 )
 
 Demo.story = {
-  name: 'Grid',
+  name: 'Grid with State',
 }
 
 export default Demo

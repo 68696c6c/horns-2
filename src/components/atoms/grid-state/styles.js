@@ -10,7 +10,18 @@ import {
   responsive,
 } from '../../../traits'
 
-const getStart = start => {
+const getSpan = (span, offset) => {
+  const col = []
+  if (span && span > 1) {
+    col.push(`span ${span}`)
+  }
+  if (offset && offset > 0) {
+    col.push(`span ${offset}`)
+  }
+  return col.join(' / ')
+}
+
+const getStart = (areaInt, offset) => {
   const areas = [
     null,
     'one',
@@ -26,9 +37,8 @@ const getStart = start => {
     'eleven',
     'twelve',
   ]
-  return start !== null && areas[start] ? areas[start] : null
+  return offset ? areas[areaInt] : null
 }
-
 const getEnd = span => (span && span > 1 ? `span ${span}` : null)
 
 export const Column = styled.div(
@@ -38,40 +48,41 @@ export const Column = styled.div(
   responsive.styles,
   ({
     theme,
+     position,
     span,
     spanMin,
     spanSm,
     spanMd,
     spanLg,
     spanMax,
-    start,
-    startMin,
-    startSm,
-    startMd,
-    startLg,
-    startMax,
+    offset,
+    offsetMin,
+    offsetSm,
+    offsetMd,
+    offsetLg,
+    offsetMax,
   }) => {
     return css`
-      grid-column-start: ${getStart(start)};
+      grid-column-start: ${getStart(position.base, offset)};
       grid-column-end: ${getEnd(span)};
       ${theme.grid.break('min')} {
-        grid-column-start: ${getStart(startMin)};
+        grid-column-start: ${getStart(position.min, offsetMin)};
         grid-column-end: ${getEnd(spanMin)};
       }
       ${theme.grid.break('small')} {
-        grid-column-start: ${getStart(startSm)};
+        grid-column-start: ${getStart(position.sm, offsetSm)};
         grid-column-end: ${getEnd(spanSm)};
       }
       ${theme.grid.break('medium')} {
-        grid-column-start: ${getStart(startMd)};
+        grid-column-start: ${getStart(position.md, offsetMd)};
         grid-column-end: ${getEnd(spanMd)};
       }
       ${theme.grid.break('large')} {
-        grid-column-start: ${getStart(startLg)};
+        grid-column-start: ${getStart(position.lg, offsetLg)};
         grid-column-end: ${getEnd(spanLg)};
       }
       ${theme.grid.break('max')} {
-        grid-column-start: ${getStart(startMax)};
+        grid-column-start: ${getStart(position.max, offsetMax)};
         grid-column-end: ${getEnd(spanMax)};
       }
     `
