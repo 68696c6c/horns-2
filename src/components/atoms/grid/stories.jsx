@@ -1,8 +1,6 @@
 /* eslint-disable react/jsx-one-expression-per-line,jsx-a11y/anchor-is-valid */
 import React from 'react'
 
-import { colors } from 'config'
-
 import Grid, { Column } from '.'
 
 const columns = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
@@ -12,8 +10,12 @@ const Demo = () => (
   <>
     <h1>Grid</h1>
     <p>
-      The Grid component arranges its children according to a specified
-      template.
+      The Grid component arranges its children according to a 12 column layout
+      grid. Each Grid is its own row in the layout.
+    </p>
+    <p>
+      The Column component can be used to define column spanning and positioning
+      within a Grid.
     </p>
 
     <Grid color="dark">

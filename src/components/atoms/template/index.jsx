@@ -14,7 +14,7 @@ import { handleProps } from '../../utils'
 
 import * as Styled from './styles'
 
-export const gridVariants = ['areas', 'halves', 'thirds']
+export const gridVariants = ['areas', 'columns', 'halves', 'thirds']
 
 const Template = ({ children, variant, ...others }) => {
   const props = { ...others }
@@ -29,9 +29,14 @@ const Template = ({ children, variant, ...others }) => {
       Tag = Styled.Thirds
       className = 'grid-thirds'
       break
-    default:
+    case 'areas':
       Tag = Styled.Areas
       className = 'grid-areas'
+      break
+    case 'columns':
+    default:
+      Tag = Styled.Columns
+      className = 'columns'
   }
   return <Tag {...handleProps(props, className)}>{children}</Tag>
 }
@@ -54,7 +59,7 @@ Template.defaultProps = {
   ...margined.defaultProps(),
   ...padded.defaultProps(),
   ...responsive.defaultProps(),
-  variant: 'areas',
+  variant: 'columns',
   reversed: false,
 }
 
@@ -63,5 +68,6 @@ export default Template
 // @TODO add Columns here as an alias
 export const Area = props => <Styled.Area {...props} />
 export const Areas = props => <Template {...props} variant="areas" />
+export const Columns = props => <Template {...props} variant="columns" />
 export const Halves = props => <Template {...props} variant="halves" />
 export const Thirds = props => <Template {...props} variant="thirds" />

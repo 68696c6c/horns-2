@@ -1,6 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import {
   cellular,
@@ -16,9 +15,7 @@ import { handleProps } from '../../utils'
 import * as Styled from './styles'
 
 const Grid = ({ children, variant, ...others }) => (
-  <Styled.Grid {...handleProps(others, 'grid')}>
-    {children}
-  </Styled.Grid>
+  <Styled.Grid {...handleProps(others, 'grid')}>{children}</Styled.Grid>
 )
 
 Grid.propTypes = {
