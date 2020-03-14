@@ -33,9 +33,23 @@ export const Areas = styled.div(
   ...baseStyles,
   contained.styles,
   ({ areas }) => css`
-    grid-template-columns: ${null};
     grid-template-areas: ${areas};
   `
+)
+
+export const Columns = styled.div(
+  ...baseStyles,
+  contained.styles,
+  ({ theme, columns }) => {
+    let template = `repeat(${columns}, 1fr)`
+    if (columns === 0) {
+      const min = theme.grid.getColumnMin()
+      template = `repeat(auto-fit, minmax(${min}, 1fr))`
+    }
+    return css`
+      grid-template-columns: ${template};
+    `
+  }
 )
 
 export const Halves = styled.div(
