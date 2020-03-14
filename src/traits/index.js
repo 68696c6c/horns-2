@@ -1,6 +1,8 @@
 export { aligned } from './aligned'
 export { bordered } from './bordered'
+export { cellular } from './cellular'
 export { chromatic, chromaticSurface } from './chromatic'
+export { contained, containedSplit } from './contained'
 export { gridded } from './gridded'
 export { interactive } from './interactive'
 export { margined } from './margined'
