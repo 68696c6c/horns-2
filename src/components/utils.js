@@ -14,3 +14,11 @@ export const isUndefined = val => {
 export const isArray = arr => {
   return arr.constructor === Array
 }
+
+export const iterateChildren = (children, callback) => {
+  return (isArray(children) ? children : [children]).forEach(child => {
+    if (!isUndefined(child.type)) {
+      callback(child)
+    }
+  })
+}
