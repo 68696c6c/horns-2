@@ -10,7 +10,7 @@ const getJustifyContent = (justify, direction) => {
   if (direction === 'row' && Object.keys(rowMap).includes(value)) {
     value = rowMap[value]
   } else if (direction === 'column' && Object.keys(colMap).includes(value)) {
-    value = rowMap[value]
+    value = colMap[value]
   }
   switch (value) {
     case 'start':
@@ -37,7 +37,7 @@ const getAlignItems = (items, direction) => {
   if (direction === 'row' && Object.keys(rowMap).includes(value)) {
     value = rowMap[value]
   } else if (direction === 'column' && Object.keys(colMap).includes(value)) {
-    value = rowMap[value]
+    value = colMap[value]
   }
   switch (value) {
     case 'start':
@@ -89,99 +89,77 @@ const getDisplayCSS = (theme, breakpoint) => {
       `
 }
 
-export const flexible = {
-  styles: ({
-    theme,
-    breakpoint,
-    direction,
-    reversed,
-    x,
-    y,
-    content,
-    wrap,
-  }) => {
-    let justify = x
-    let items = y
-    if (direction === 'column') {
-      justify = y
-      items = x
-    }
-    return css`
-      flex-direction: ${reversed ? `${direction}-reversed` : direction};
-      justify-content: ${getJustifyContent(justify, direction)};
-      align-items: ${getAlignItems(items, direction)};
-      align-content: ${getAlignContent(content)};
-      flex-wrap: ${wrap};
-      ${getDisplayCSS(theme, breakpoint)}
+const getFlexCSS = ({
+  theme,
+  breakpoint,
+  direction,
+  justify,
+  items,
+  content,
+  wrap,
+  reversed,
+}) => css`
+  flex-direction: ${reversed ? `${direction}-reversed` : direction};
+  justify-content: ${getJustifyContent(justify, direction)};
+  align-items: ${getAlignItems(items, direction)};
+  align-content: ${getAlignContent(content)};
+  flex-wrap: ${wrap && 'wrap'};
+  ${getDisplayCSS(theme, breakpoint)}
 
-      > * {
-        flex-shrink: 1;
-        flex-grow: 0;
-        flex-basis: auto;
-      }
-    `
-  },
-  propTypes: direction => ({
+  > * {
+    flex-shrink: 1;
+    flex-grow: 0;
+    flex-basis: auto;
+  }
+`
+
+export const flexibleRow = {
+  styles: ({ x, y, ...others }) =>
+    getFlexCSS({ ...others, justify: x, items: y, direction: 'row' }),
+  propTypes: () => ({
     // breakpoint is granted by the responsive trait.
-    direction: PropTypes.oneOf(['column', 'row']).isRequired,
+    x: PropTypes.oneOf(flexProperties.row.x),
+    y: PropTypes.oneOf(flexProperties.row.y),
     reversed: PropTypes.bool,
     wrap: PropTypes.bool,
-    x: PropTypes.oneOf(flexProperties[direction].x),
-    y: PropTypes.oneOf(flexProperties[direction].y),
-    content: PropTypes.oneOf(flexProperties.content),
   }),
   defaultProps: (
     reversed = false,
-    wrap = false,
     x = null,
     y = null,
-    content = null
+    content = null,
+    wrap = false
   ) => ({
-    reversed,
-    wrap,
     x,
     y,
     content,
+    reversed,
+    wrap,
   }),
 }
 
-export const flexibleChild = {
-  styles: ({ order, grow, shrink, basis, self }) => {
-    return css`
-      order: ${order};
-      flex-grow: ${grow};
-      flex-shrink: ${shrink};
-      flex-basis: ${basis};
-      align-self: ${self};
-    `
-  },
+export const flexibleColumn = {
+  styles: ({ x, y, ...others }) =>
+    getFlexCSS({ ...others, justify: y, items: x, direction: 'column' }),
   propTypes: () => ({
     // breakpoint is granted by the responsive trait.
-    order: PropTypes.number,
-    grow: PropTypes.number,
-    shrink: PropTypes.number,
-    basis: PropTypes.oneOfType([null, PropTypes.number, PropTypes.string]),
-    self: PropTypes.oneOf([
-      null,
-      'auto',
-      'flex-start',
-      'flex-end',
-      'center',
-      'baseline',
-      'stretch',
-    ]),
+    x: PropTypes.oneOf(flexProperties.column.x),
+    y: PropTypes.oneOf(flexProperties.column.y),
+    content: PropTypes.oneOf(flexProperties.content),
+    reversed: PropTypes.bool,
+    wrap: PropTypes.bool,
   }),
   defaultProps: (
-    order = 0,
-    grow = 0,
-    shrink = 0,
-    basis = null,
-    self = null
+    reversed = false,
+    x = null,
+    y = null,
+    content = null,
+    wrap = false
   ) => ({
-    order,
-    grow,
-    shrink,
-    basis,
-    self,
+    x,
+    y,
+    content,
+    reversed,
+    wrap,
   }),
 }

@@ -1,12 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import {
   chromatic,
   contained,
-  flexible,
-  flexibleChild,
+  flexibleRow,
   margined,
   padded,
   responsive,
@@ -16,7 +14,7 @@ import { handleProps } from '../../../utils'
 import * as Styled from '../styles'
 
 const FlexRow = ({ children, ...others }) => (
-  <Styled.Flex {...handleProps(others, 'flex-row')} direction="row">
+  <Styled.Flex {...handleProps(others, 'flex-row')}>
     {children}
   </Styled.Flex>
 )
@@ -24,7 +22,7 @@ const FlexRow = ({ children, ...others }) => (
 FlexRow.propTypes = {
   ...chromatic.propTypes(),
   ...contained.propTypes(),
-  ...flexible.propTypes('row'),
+  ...flexibleRow.propTypes(),
   ...margined.propTypes(),
   ...padded.propTypes(),
   ...responsive.propTypes(),
@@ -33,7 +31,7 @@ FlexRow.propTypes = {
 FlexRow.defaultProps = {
   ...chromatic.defaultProps(),
   ...contained.defaultProps(),
-  ...flexible.defaultProps(),
+  ...flexibleRow.defaultProps(),
   ...margined.defaultProps(),
   ...padded.defaultProps(),
   ...responsive.defaultProps(),

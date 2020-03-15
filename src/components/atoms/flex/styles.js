@@ -2,8 +2,7 @@ import { css } from '@emotion/core'
 import styled from '@emotion/styled'
 
 import {
-  flexible,
-  flexibleChild,
+  flexibleColumn,
   chromatic,
   contained,
   margined,
@@ -13,7 +12,6 @@ import {
 
 export const Box = styled.div(
   chromatic.styles,
-  flexibleChild.styles,
   margined.styles,
   padded.styles,
   responsive.styles
@@ -22,7 +20,7 @@ export const Box = styled.div(
 export const Flex = styled.div(
   chromatic.styles,
   contained.styles,
-  flexible.styles,
+  flexibleColumn.styles,
   margined.styles,
   padded.styles,
   responsive.styles

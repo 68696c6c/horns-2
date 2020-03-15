@@ -1,12 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import {
   chromatic,
   contained,
-  flexible,
-  flexibleChild,
+  flexibleColumn,
   margined,
   padded,
   responsive,
@@ -16,7 +14,7 @@ import { handleProps } from '../../../utils'
 import * as Styled from '../styles'
 
 const FlexColumn = ({ children, ...others }) => (
-  <Styled.Flex {...handleProps(others, 'flex-column')} direction="column">
+  <Styled.Flex {...handleProps(others, 'flex-column')}>
     {children}
   </Styled.Flex>
 )
@@ -24,7 +22,7 @@ const FlexColumn = ({ children, ...others }) => (
 FlexColumn.propTypes = {
   ...chromatic.propTypes(),
   ...contained.propTypes(),
-  ...flexible.propTypes('column'),
+  ...flexibleColumn.propTypes(),
   ...margined.propTypes(),
   ...padded.propTypes(),
   ...responsive.propTypes(),
@@ -33,7 +31,7 @@ FlexColumn.propTypes = {
 FlexColumn.defaultProps = {
   ...chromatic.defaultProps(),
   ...contained.defaultProps(),
-  ...flexible.defaultProps(),
+  ...flexibleColumn.defaultProps(),
   ...margined.defaultProps(),
   ...padded.defaultProps(),
   ...responsive.defaultProps(),
