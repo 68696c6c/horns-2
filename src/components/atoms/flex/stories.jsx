@@ -1,23 +1,13 @@
 /* eslint-disable react/jsx-one-expression-per-line,jsx-a11y/anchor-is-valid */
 import React from 'react'
 
+import { iterateColors } from '_story'
 import { flexProperties } from 'config'
 
 import Flex, { Box, FlexColumn, FlexRow } from '.'
 
-// @TODO demo the remaining props
-const colors = [
-  'primary',
-  'secondary',
-  'tertiary',
-  'success',
-  'info',
-  'warning',
-  'danger',
-]
-
 const Demo = () => {
-  let colorCount = -1
+  const colorTracker = [-1]
   return (
     <>
       <h1>Flex</h1>
@@ -46,17 +36,11 @@ const Demo = () => {
           marginY="medium"
           justify={value}
         >
-          {[1, 2, 3].map(i => {
-            colorCount += 1
-            if (colorCount >= colors.length) {
-              colorCount = 0
-            }
-            return (
-              <Box color={colors[colorCount]}>
-                {value || 'default'} {i}
-              </Box>
-            )
-          })}
+          {iterateColors(3, colorTracker, (c, i) => (
+            <Box color={c}>
+              {value || 'default'} {i}
+            </Box>
+          ))}
         </FlexRow>
       ))}
       <h3>Items Prop</h3>
@@ -67,17 +51,11 @@ const Demo = () => {
           items={value}
           style={{ height: '100px' }}
         >
-          {[1, 2, 3].map(i => {
-            colorCount += 1
-            if (colorCount >= colors.length) {
-              colorCount = 0
-            }
-            return (
-              <Box color={colors[colorCount]}>
-                {value || 'default'} {i}
-              </Box>
-            )
-          })}
+          {iterateColors(3, colorTracker, (c, i) => (
+            <Box color={c}>
+              {value || 'default'} {i}
+            </Box>
+          ))}
         </FlexRow>
       ))}
       <h3>Content Prop</h3>
@@ -91,17 +69,11 @@ const Demo = () => {
             wrap="wrap"
             fluid
           >
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].map(i => {
-              colorCount += 1
-              if (colorCount >= colors.length) {
-                colorCount = 0
-              }
-              return (
-                <Box color={colors[colorCount]}>
-                  {value || 'default'} {i}
-                </Box>
-              )
-            })}
+            {iterateColors(16, colorTracker, (c, i) => (
+              <Box color={c}>
+                {value || 'default'} {i}
+              </Box>
+            ))}
           </FlexRow>
         ))}
       </div>
@@ -116,17 +88,11 @@ const Demo = () => {
           justify={value}
           style={{ height: '200px' }}
         >
-          {[1, 2, 3].map(i => {
-            colorCount += 1
-            if (colorCount >= colors.length) {
-              colorCount = 0
-            }
-            return (
-              <Box color={colors[colorCount]}>
-                {value || 'default'} {i}
-              </Box>
-            )
-          })}
+          {iterateColors(3, colorTracker, (c, i) => (
+            <Box color={c}>
+              {value || 'default'} {i}
+            </Box>
+          ))}
         </FlexColumn>
       ))}
       <h3>Items Prop</h3>
@@ -137,17 +103,11 @@ const Demo = () => {
           items={value}
           style={{ height: '100px' }}
         >
-          {[1, 2, 3].map(i => {
-            colorCount += 1
-            if (colorCount >= colors.length) {
-              colorCount = 0
-            }
-            return (
-              <Box color={colors[colorCount]}>
-                {value || 'default'} {i}
-              </Box>
-            )
-          })}
+          {iterateColors(3, colorTracker, (c, i) => (
+            <Box color={c}>
+              {value || 'default'} {i}
+            </Box>
+          ))}
         </FlexColumn>
       ))}
       <h3>Content Prop</h3>
@@ -160,17 +120,11 @@ const Demo = () => {
           wrap="wrap"
           fluid
         >
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].map(i => {
-            colorCount += 1
-            if (colorCount >= colors.length) {
-              colorCount = 0
-            }
-            return (
-              <Box color={colors[colorCount]}>
-                {value || 'default'} {i}
-              </Box>
-            )
-          })}
+          {iterateColors(16, colorTracker, (c, i) => (
+            <Box color={c}>
+              {value || 'default'} {i}
+            </Box>
+          ))}
         </FlexColumn>
       ))}
     </>
