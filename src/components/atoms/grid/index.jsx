@@ -14,6 +14,7 @@ import { handleProps } from '../../utils'
 
 import * as Styled from './styles'
 
+// @TODO combine with the Template component with this being the default variant.
 const Grid = ({ children, variant, ...others }) => (
   <Styled.Grid {...handleProps(others, 'grid')}>{children}</Styled.Grid>
 )

@@ -16,6 +16,7 @@ import * as Styled from './styles'
 
 export const gridVariants = ['areas', 'columns', 'halves', 'thirds']
 
+// @TODO combine with the Grid component.
 const Template = ({ children, variant, ...others }) => {
   const props = { ...others }
   let Tag
@@ -65,7 +66,6 @@ Template.defaultProps = {
 
 export default Template
 
-// @TODO add Columns here as an alias
 export const Area = props => <Styled.Area {...props} />
 export const Areas = props => <Template {...props} variant="areas" />
 export const Columns = props => <Template {...props} variant="columns" />
