@@ -40,3 +40,5 @@ FlexRow.defaultProps = {
 }
 
 export default FlexRow
+
+export const ItemRow = props => <FlexRow x="evenly" y="center" {...props} fluid />

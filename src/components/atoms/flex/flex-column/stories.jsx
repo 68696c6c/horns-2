@@ -1,11 +1,10 @@
 /* eslint-disable react/jsx-one-expression-per-line,jsx-a11y/anchor-is-valid */
 import React from 'react'
 
-import { iterateColors } from '_story'
+import { iterateColors, Box } from '_story'
 import { flexProperties } from 'config'
 
-import FlexColumn from '.'
-import { Box } from '..'
+import FlexColumn, { ItemColumn } from '.'
 
 const Demo = () => {
   const colorTracker = [-1]
@@ -13,15 +12,36 @@ const Demo = () => {
     <>
       <h1>FlexColumn</h1>
       <p>
-        The FlexColumn component arranges uses CSS flex properties to align
-        itself and/or its children.
+        The <em>FlexColumn</em> component arranges uses CSS flex properties to
+        align itself and/or its children.
       </p>
       <FlexColumn color="dark" marginY="medium">
         <Box color="primary">Box 1</Box>
         <Box color="secondary">Box 2</Box>
         <Box color="tertiary">Box 3</Box>
       </FlexColumn>
-      <FlexColumn color="dark" marginY="medium" fluid>
+
+      <h2>ItemColumn Alias</h2>
+      <p>
+        The <em>ItemColumn</em> component is an alias for{' '}
+        <code>{`<FlexColumn x="center" y="evenly" fluid />`}</code>
+      </p>
+      <ItemColumn
+        color="dark"
+        marginY="medium"
+        style={{ padding: '1em', height: '400px' }}
+      >
+        <Box color="primary">Box 1</Box>
+        <Box color="secondary">Box 2</Box>
+        <Box color="tertiary">Box 3</Box>
+        <Box color="success">Box 4</Box>
+      </ItemColumn>
+
+      <h2>Fluid Prop</h2>
+      <p>
+        The <em>fluid</em> prop disables container padding.
+      </p>
+      <FlexColumn color="neutral" marginY="medium" fluid>
         <Box color="success">Box 1</Box>
         <Box color="info">Box 2</Box>
         <Box color="warning">Box 3</Box>
@@ -50,7 +70,7 @@ const Demo = () => {
           color={index % 2 === 0 ? 'dark' : 'neutral'}
           marginY="medium"
           y={value}
-          style={{ height: '100px' }}
+          style={{ height: '400px' }}
         >
           {iterateColors(3, colorTracker, (c, i) => (
             <Box color={c}>
@@ -66,11 +86,11 @@ const Demo = () => {
           color={index % 2 === 0 ? 'dark' : 'neutral'}
           marginY="medium"
           content={value}
-          style={{ height: '60px' }}
+          style={{ height: '200px' }}
           wrap="wrap"
           fluid
         >
-          {iterateColors(16, colorTracker, (c, i) => (
+          {iterateColors(16, [-1], (c, i) => (
             <Box color={c}>
               {value || 'default'} {i}
             </Box>

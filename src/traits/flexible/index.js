@@ -65,8 +65,12 @@ const getAlignContent = content => {
       return 'flex-end'
     case 'stretch':
       return 'stretch'
-    case 'baseline':
-      return 'baseline'
+    case 'around':
+      return 'space-around'
+    case 'between':
+      return 'space-between'
+    case 'evenly':
+      return 'space-evenly'
     default:
       return null
   }
@@ -109,6 +113,12 @@ export const flexible = {
       align-content: ${getAlignContent(content)};
       flex-wrap: ${wrap};
       ${getDisplayCSS(theme, breakpoint)}
+
+      > * {
+        flex-shrink: 1;
+        flex-grow: 0;
+        flex-basis: auto;
+      }
     `
   },
   propTypes: direction => ({

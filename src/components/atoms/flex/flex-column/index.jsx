@@ -40,3 +40,7 @@ FlexColumn.defaultProps = {
 }
 
 export default FlexColumn
+
+export const ItemColumn = props => (
+  <FlexColumn x="center" y="evenly" {...props} fluid />
+)

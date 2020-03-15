@@ -2,8 +2,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import LinkTo from '@storybook/addon-links/react'
-import { jsx } from '@emotion/core'
+import { jsx, css } from '@emotion/core'
 import styled from '@emotion/styled'
+
+import { chromatic } from '../traits'
 
 const getPath = path => {
   const parts = path.split('/')
@@ -28,9 +30,12 @@ A.propTypes = {
   children: PropTypes.node.isRequired,
 }
 
-export const Box = styled.div`
-  padding: 1em;
-`
+export const Box = styled.div(
+  chromatic.styles,
+  () => css`
+    padding: 1em;
+  `
+)
 
 export const Grid = styled.div`
   display: grid;
