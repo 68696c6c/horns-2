@@ -5,7 +5,8 @@ import PropTypes from 'prop-types'
 import {
   chromatic,
   contained,
-  gridded,
+  flexible,
+  flexibleChild,
   margined,
   padded,
   responsive,
@@ -14,56 +15,47 @@ import { handleProps } from '../../utils'
 
 import * as Styled from './styles'
 
-export const flexVariants = ['areas', 'columns', 'halves', 'thirds']
-
-const Flex = ({ children, variant, ...others }) => {
-  const props = { ...others }
-  let Tag
-  let className = 'grid'
-  switch (variant) {
-    case 'halves':
-      Tag = Styled.Halves
-      className = 'grid-halves'
-      break
-    case 'thirds':
-      Tag = Styled.Thirds
-      className = 'grid-thirds'
-      break
-    case 'areas':
-      Tag = Styled.Areas
-      className = 'grid-areas'
-      break
-    case 'columns':
-    default:
-      Tag = Styled.Columns
-      className = 'columns'
-  }
-  return <Tag {...handleProps(props, className)}>{children}</Tag>
+const Flex = ({ children, ...others }) => {
+  return <Styled.Flex {...handleProps(others)}>{children}</Styled.Flex>
 }
 
 Flex.propTypes = {
   ...chromatic.propTypes(),
   ...contained.propTypes(),
-  ...gridded.propTypes(),
+  ...flexible.propTypes(),
   ...margined.propTypes(),
   ...padded.propTypes(),
   ...responsive.propTypes(),
-  variant: PropTypes.oneOf(flexVariants),
-  reversed: PropTypes.bool,
 }
 
 Flex.defaultProps = {
   ...chromatic.defaultProps(),
   ...contained.defaultProps(),
-  ...gridded.defaultProps(),
+  ...flexible.defaultProps(),
   ...margined.defaultProps(),
   ...padded.defaultProps(),
   ...responsive.defaultProps(),
-  variant: 'columns',
-  reversed: false,
 }
 
 export default Flex
 
+export const FlexRow = props => <Flex {...props} direction="row" />
+export const FlexColumn = props => <Flex {...props} direction="column" />
+
 export const Box = props => <Styled.Box {...props} />
-export const Areas = props => <Flex {...props} variant="areas" />
+
+Box.propTypes = {
+  ...chromatic.propTypes(),
+  ...flexibleChild.propTypes(),
+  ...margined.propTypes(),
+  ...padded.propTypes(),
+  ...responsive.propTypes(),
+}
+
+Box.defaultProps = {
+  ...chromatic.defaultProps(),
+  ...flexibleChild.defaultProps(),
+  ...margined.defaultProps(),
+  ...padded.defaultProps(),
+  ...responsive.defaultProps(),
+}
