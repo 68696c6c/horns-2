@@ -1,6 +1,7 @@
-/* eslint-disable default-case */
 import PropTypes from 'prop-types'
 import { css } from '@emotion/core'
+
+import { flexProperties } from '../../config'
 
 export const flexible = {
   styles: ({
@@ -15,13 +16,13 @@ export const flexible = {
   }) => {
     let justifyContent
     switch (justify) {
-      case 'left':
+      case 'start':
         justifyContent = 'flex-start'
         break
       case 'center':
         justifyContent = 'center'
         break
-      case 'right':
+      case 'end':
         justifyContent = 'flex-end'
         break
       case 'around':
@@ -33,17 +34,19 @@ export const flexible = {
       case 'evenly':
         justifyContent = 'space-evenly'
         break
+      default:
+        justifyContent = null
     }
 
     let alignItems
     switch (items) {
-      case 'top':
+      case 'start':
         alignItems = 'flex-start'
         break
       case 'center':
         alignItems = 'center'
         break
-      case 'bottom':
+      case 'end':
         alignItems = 'flex-end'
         break
       case 'stretch':
@@ -52,24 +55,32 @@ export const flexible = {
       case 'baseline':
         alignItems = 'baseline'
         break
+      default:
+        alignItems = null
     }
 
     let alignContent
     switch (content) {
-      case 'top':
+      case 'start':
         alignContent = 'flex-start'
         break
       case 'center':
         alignContent = 'center'
         break
-      case 'bottom':
+      case 'end':
         alignContent = 'flex-end'
         break
       case 'stretch':
         alignContent = 'stretch'
         break
-      case 'baseline':
-        alignContent = 'baseline'
+      case 'around':
+        alignContent = 'space-around'
+        break
+      case 'between':
+        alignContent = 'space-between'
+        break
+      case 'evenly':
+        alignContent = 'space-evenly'
         break
       default:
         alignContent = null
@@ -101,32 +112,9 @@ export const flexible = {
     direction: PropTypes.oneOf(['row', 'column']),
     reversed: PropTypes.bool,
     wrap: PropTypes.oneOf([null, 'nowrap', 'wrap', 'wrap-reverse']),
-    justify: PropTypes.oneOf([
-      null,
-      'left',
-      'center',
-      'right',
-      'around',
-      'between',
-      'evenly',
-    ]),
-    items: PropTypes.oneOf([
-      null,
-      'left',
-      'center',
-      'right',
-      'stretch',
-      'baseline',
-    ]),
-    content: PropTypes.oneOf([
-      null,
-      'left',
-      'center',
-      'right',
-      'stretch',
-      'around',
-      'between',
-    ]),
+    justify: PropTypes.oneOf(flexProperties.justify),
+    items: PropTypes.oneOf(flexProperties.items),
+    content: PropTypes.oneOf(flexProperties.content),
   }),
   defaultProps: (
     direction = 'row',

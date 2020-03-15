@@ -15,6 +15,7 @@ import { handleProps } from '../../utils'
 
 import * as Styled from './styles'
 
+// @TODO make FlexRow and FlexColumn separate components with intuitive props like left and top instead of start and end
 const Flex = ({ children, ...others }) => {
   return <Styled.Flex {...handleProps(others)}>{children}</Styled.Flex>
 }
