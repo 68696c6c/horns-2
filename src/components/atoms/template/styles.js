@@ -2,6 +2,7 @@ import { css } from '@emotion/core'
 import styled from '@emotion/styled'
 
 import {
+  cellular,
   chromatic,
   contained,
   containedSplit,
@@ -25,8 +26,16 @@ export const Area = styled.div(
   margined.styles,
   ({ area }) =>
     css`
-      grid-area: ${area};
+      grid-area: ${area && area};
     `
+)
+
+export const Column = styled.div(
+  cellular.styles,
+  chromatic.styles,
+  padded.styles,
+  margined.styles,
+  responsive.styles
 )
 
 export const Areas = styled.div(
@@ -50,6 +59,14 @@ export const Columns = styled.div(
       grid-template-columns: ${template};
     `
   }
+)
+
+export const Grid = styled.div(
+  ...baseStyles,
+  contained.styles,
+  () => css`
+    grid-template-areas: 'one two three four five six seven eight nine ten eleven twelve';
+  `
 )
 
 export const Halves = styled.div(

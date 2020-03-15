@@ -55,7 +55,7 @@ export const Wrapper = styled.div`
  * human-friendly values in a loop, the 0 index is sliced out so that the first item is displayed
  * as item 1.
  */
-const makeIntArray = itemCount =>
+export const makeIntArray = itemCount =>
   [...Array(itemCount + 1).keys()].slice(1, itemCount + 1)
 
 /**
