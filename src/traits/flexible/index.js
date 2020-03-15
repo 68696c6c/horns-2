@@ -124,10 +124,10 @@ export const flexibleRow = {
     wrap: PropTypes.bool,
   }),
   defaultProps: (
-    reversed = false,
     x = null,
     y = null,
     content = null,
+    reversed = false,
     wrap = false
   ) => ({
     x,
@@ -150,10 +150,10 @@ export const flexibleColumn = {
     wrap: PropTypes.bool,
   }),
   defaultProps: (
-    reversed = false,
     x = null,
     y = null,
     content = null,
+    reversed = false,
     wrap = false
   ) => ({
     x,

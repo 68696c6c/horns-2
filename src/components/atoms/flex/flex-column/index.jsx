@@ -3,7 +3,6 @@ import React from 'react'
 
 import {
   chromatic,
-  contained,
   flexibleColumn,
   margined,
   padded,
@@ -14,14 +13,13 @@ import { handleProps } from '../../../utils'
 import * as Styled from '../styles'
 
 const FlexColumn = ({ children, ...others }) => (
-  <Styled.Flex {...handleProps(others, 'flex-column')}>
+  <Styled.FlexColumn {...handleProps(others, 'flex-column')}>
     {children}
-  </Styled.Flex>
+  </Styled.FlexColumn>
 )
 
 FlexColumn.propTypes = {
   ...chromatic.propTypes(),
-  ...contained.propTypes(),
   ...flexibleColumn.propTypes(),
   ...margined.propTypes(),
   ...padded.propTypes(),
@@ -30,15 +28,10 @@ FlexColumn.propTypes = {
 
 FlexColumn.defaultProps = {
   ...chromatic.defaultProps(),
-  ...contained.defaultProps(),
-  ...flexibleColumn.defaultProps(),
+  ...flexibleColumn.defaultProps('center', 'evenly'),
   ...margined.defaultProps(),
   ...padded.defaultProps(),
   ...responsive.defaultProps(),
 }
 
 export default FlexColumn
-
-export const ItemColumn = props => (
-  <FlexColumn x="center" y="evenly" {...props} fluid />
-)

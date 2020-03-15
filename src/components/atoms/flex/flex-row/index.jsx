@@ -3,7 +3,6 @@ import React from 'react'
 
 import {
   chromatic,
-  contained,
   flexibleRow,
   margined,
   padded,
@@ -14,14 +13,13 @@ import { handleProps } from '../../../utils'
 import * as Styled from '../styles'
 
 const FlexRow = ({ children, ...others }) => (
-  <Styled.Flex {...handleProps(others, 'flex-row')}>
+  <Styled.FlexRow {...handleProps(others, 'flex-row')}>
     {children}
-  </Styled.Flex>
+  </Styled.FlexRow>
 )
 
 FlexRow.propTypes = {
   ...chromatic.propTypes(),
-  ...contained.propTypes(),
   ...flexibleRow.propTypes(),
   ...margined.propTypes(),
   ...padded.propTypes(),
@@ -30,13 +28,10 @@ FlexRow.propTypes = {
 
 FlexRow.defaultProps = {
   ...chromatic.defaultProps(),
-  ...contained.defaultProps(),
-  ...flexibleRow.defaultProps(),
+  ...flexibleRow.defaultProps('evenly', 'center'),
   ...margined.defaultProps(),
   ...padded.defaultProps(),
   ...responsive.defaultProps(),
 }
 
 export default FlexRow
-
-export const ItemRow = props => <FlexRow x="evenly" y="center" {...props} fluid />
