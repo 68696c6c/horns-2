@@ -7,6 +7,7 @@ import * as Styled from './demo.styles'
 
 const cols = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
+// @TODO this demo currently doesn't work because the column behavior was removed from the gridded trait.
 const Demo = () => (
   <>
     <h1>Gridded</h1>

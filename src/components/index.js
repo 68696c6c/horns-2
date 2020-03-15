@@ -1,5 +1,7 @@
 export {
   Button,
+  FlexRow,
+  FlexColumn,
   Grid,
   Column,
   Link,

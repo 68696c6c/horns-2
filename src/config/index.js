@@ -1,4 +1,5 @@
 export { colors, backgroundTones } from './color'
+export { flexProperties } from './flex'
 export { breakpoints } from './grid'
 export { sizes } from './sizing'
 export { fontStyles, alignments, directions } from './typography'
