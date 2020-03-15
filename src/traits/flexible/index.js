@@ -3,132 +3,134 @@ import { css } from '@emotion/core'
 
 import { flexProperties } from '../../config'
 
+const getJustifyContent = (justify, direction) => {
+  let value = justify
+  const rowMap = { left: 'start', right: 'end' }
+  const colMap = { top: 'start', bottom: 'end' }
+  if (direction === 'row' && Object.keys(rowMap).includes(value)) {
+    value = rowMap[value]
+  } else if (direction === 'column' && Object.keys(colMap).includes(value)) {
+    value = rowMap[value]
+  }
+  switch (value) {
+    case 'start':
+      return 'flex-start'
+    case 'center':
+      return 'center'
+    case 'end':
+      return 'flex-end'
+    case 'around':
+      return 'space-around'
+    case 'between':
+      return 'space-between'
+    case 'evenly':
+      return 'space-evenly'
+    default:
+      return null
+  }
+}
+
+const getAlignItems = (items, direction) => {
+  let value = items
+  const rowMap = { top: 'start', bottom: 'end' }
+  const colMap = { left: 'start', right: 'end' }
+  if (direction === 'row' && Object.keys(rowMap).includes(value)) {
+    value = rowMap[value]
+  } else if (direction === 'column' && Object.keys(colMap).includes(value)) {
+    value = rowMap[value]
+  }
+  switch (value) {
+    case 'start':
+      return 'flex-start'
+    case 'center':
+      return 'center'
+    case 'end':
+      return 'flex-end'
+    case 'stretch':
+      return 'stretch'
+    case 'baseline':
+      return 'baseline'
+    default:
+      return null
+  }
+}
+
+const getAlignContent = content => {
+  switch (content) {
+    case 'start':
+      return 'flex-start'
+    case 'center':
+      return 'center'
+    case 'end':
+      return 'flex-end'
+    case 'stretch':
+      return 'stretch'
+    case 'baseline':
+      return 'baseline'
+    default:
+      return null
+  }
+}
+
+const getDisplayCSS = (theme, breakpoint) => {
+  return breakpoint
+    ? css`
+        display: block;
+        ${theme.grid.break(breakpoint)} {
+          display: flex;
+        }
+      `
+    : css`
+        display: flex;
+      `
+}
+
 export const flexible = {
   styles: ({
     theme,
     breakpoint,
     direction,
     reversed,
-    justify,
-    items,
+    x,
+    y,
     content,
     wrap,
   }) => {
-    let justifyContent
-    switch (justify) {
-      case 'start':
-        justifyContent = 'flex-start'
-        break
-      case 'center':
-        justifyContent = 'center'
-        break
-      case 'end':
-        justifyContent = 'flex-end'
-        break
-      case 'around':
-        justifyContent = 'space-around'
-        break
-      case 'between':
-        justifyContent = 'space-between'
-        break
-      case 'evenly':
-        justifyContent = 'space-evenly'
-        break
-      default:
-        justifyContent = null
+    let justify = x
+    let items = y
+    if (direction === 'column') {
+      justify = y
+      items = x
     }
-
-    let alignItems
-    switch (items) {
-      case 'start':
-        alignItems = 'flex-start'
-        break
-      case 'center':
-        alignItems = 'center'
-        break
-      case 'end':
-        alignItems = 'flex-end'
-        break
-      case 'stretch':
-        alignItems = 'stretch'
-        break
-      case 'baseline':
-        alignItems = 'baseline'
-        break
-      default:
-        alignItems = null
-    }
-
-    let alignContent
-    switch (content) {
-      case 'start':
-        alignContent = 'flex-start'
-        break
-      case 'center':
-        alignContent = 'center'
-        break
-      case 'end':
-        alignContent = 'flex-end'
-        break
-      case 'stretch':
-        alignContent = 'stretch'
-        break
-      case 'around':
-        alignContent = 'space-around'
-        break
-      case 'between':
-        alignContent = 'space-between'
-        break
-      case 'evenly':
-        alignContent = 'space-evenly'
-        break
-      default:
-        alignContent = null
-    }
-
-    const displayCSS = breakpoint
-      ? css`
-          display: block;
-          ${theme.grid.break(breakpoint)} {
-            display: flex;
-          }
-        `
-      : css`
-          display: flex;
-        `
-    let flexDirection = direction
-    flexDirection = reversed ? `${flexDirection}-reversed` : flexDirection
     return css`
-      flex-direction: ${flexDirection};
-      justify-content: ${justifyContent};
-      align-items: ${alignItems};
-      align-content: ${alignContent};
+      flex-direction: ${reversed ? `${direction}-reversed` : direction};
+      justify-content: ${getJustifyContent(justify, direction)};
+      align-items: ${getAlignItems(items, direction)};
+      align-content: ${getAlignContent(content)};
       flex-wrap: ${wrap};
-      ${displayCSS}
+      ${getDisplayCSS(theme, breakpoint)}
     `
   },
-  propTypes: () => ({
+  propTypes: direction => ({
     // breakpoint is granted by the responsive trait.
-    direction: PropTypes.oneOf(['row', 'column']),
+    direction: PropTypes.oneOf(['column', 'row']).isRequired,
     reversed: PropTypes.bool,
-    wrap: PropTypes.oneOf([null, 'nowrap', 'wrap', 'wrap-reverse']),
-    justify: PropTypes.oneOf(flexProperties.justify),
-    items: PropTypes.oneOf(flexProperties.items),
+    wrap: PropTypes.bool,
+    x: PropTypes.oneOf(flexProperties[direction].x),
+    y: PropTypes.oneOf(flexProperties[direction].y),
     content: PropTypes.oneOf(flexProperties.content),
   }),
   defaultProps: (
-    direction = 'row',
     reversed = false,
-    wrap = null,
-    justify = null,
-    items = null,
+    wrap = false,
+    x = null,
+    y = null,
     content = null
   ) => ({
-    direction,
     reversed,
     wrap,
-    justify,
-    items,
+    x,
+    y,
     content,
   }),
 }

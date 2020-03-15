@@ -4,8 +4,6 @@ import PropTypes from 'prop-types'
 
 import {
   chromatic,
-  contained,
-  flexible,
   flexibleChild,
   margined,
   padded,
@@ -15,35 +13,10 @@ import { handleProps } from '../../utils'
 
 import * as Styled from './styles'
 
-// @TODO make FlexRow and FlexColumn separate components with intuitive props like left and top instead of start and end
-const Flex = ({ children, ...others }) => {
-  return <Styled.Flex {...handleProps(others)}>{children}</Styled.Flex>
-}
+export { default as FlexColumn } from './flex-column'
+export { default as FlexRow } from './flex-row'
 
-Flex.propTypes = {
-  ...chromatic.propTypes(),
-  ...contained.propTypes(),
-  ...flexible.propTypes(),
-  ...margined.propTypes(),
-  ...padded.propTypes(),
-  ...responsive.propTypes(),
-}
-
-Flex.defaultProps = {
-  ...chromatic.defaultProps(),
-  ...contained.defaultProps(),
-  ...flexible.defaultProps(),
-  ...margined.defaultProps(),
-  ...padded.defaultProps(),
-  ...responsive.defaultProps(),
-}
-
-export default Flex
-
-export const FlexRow = props => <Flex {...props} direction="row" />
-export const FlexColumn = props => <Flex {...props} direction="column" />
-
-export const Box = props => <Styled.Box {...props} />
+export const Box = props => <Styled.Box {...handleProps(props, 'flex-box')} />
 
 Box.propTypes = {
   ...chromatic.propTypes(),
