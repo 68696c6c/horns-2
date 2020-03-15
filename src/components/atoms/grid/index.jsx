@@ -17,8 +17,7 @@ import * as Styled from './styles'
 
 export const gridVariants = ['areas', 'columns', 'grid', 'halves', 'thirds']
 
-// @TODO combine with the Grid component.
-const Template = ({ children, variant, ...others }) => {
+const BaseGrid = ({ children, variant, ...others }) => {
   const props = { ...others }
   let Tag
   let className
@@ -47,7 +46,7 @@ const Template = ({ children, variant, ...others }) => {
   return <Tag {...handleProps(props, className)}>{children}</Tag>
 }
 
-Template.propTypes = {
+BaseGrid.propTypes = {
   ...chromatic.propTypes(),
   ...contained.propTypes(),
   ...gridded.propTypes(),
@@ -58,7 +57,7 @@ Template.propTypes = {
   reversed: PropTypes.bool,
 }
 
-Template.defaultProps = {
+BaseGrid.defaultProps = {
   ...chromatic.defaultProps(),
   ...contained.defaultProps(),
   ...gridded.defaultProps(),
@@ -99,10 +98,10 @@ Area.defaultProps = {
   area: '',
 }
 
-const Grid = props => <Template columns={12} gapped {...props} variant="grid" />
+const Grid = props => <BaseGrid columns={12} gapped {...props} variant="grid" />
 export default Grid
 
-export const Areas = props => <Template {...props} variant="areas" />
-export const Columns = props => <Template {...props} variant="columns" />
-export const Halves = props => <Template {...props} variant="halves" />
-export const Thirds = props => <Template {...props} variant="thirds" />
+export const Areas = props => <BaseGrid {...props} variant="areas" />
+export const Columns = props => <BaseGrid {...props} variant="columns" />
+export const Halves = props => <BaseGrid {...props} variant="halves" />
+export const Thirds = props => <BaseGrid {...props} variant="thirds" />

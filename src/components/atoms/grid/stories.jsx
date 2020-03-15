@@ -214,7 +214,7 @@ const Demo = () => (
 )
 
 Demo.story = {
-  name: 'Template',
+  name: 'Grid',
 }
 
 export default Demo
