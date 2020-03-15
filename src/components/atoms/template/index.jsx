@@ -65,7 +65,7 @@ Template.defaultProps = {
   ...margined.defaultProps(),
   ...padded.defaultProps(),
   ...responsive.defaultProps(),
-  variant: 'columns',
+  variant: 'grid',
   reversed: false,
 }
 
@@ -99,14 +99,10 @@ Area.defaultProps = {
   area: '',
 }
 
-
-const Grid = props => (
-  <Template columns={12} gapped {...props} variant="grid" />
-)
+const Grid = props => <Template columns={12} gapped {...props} variant="grid" />
 export default Grid
 
 export const Areas = props => <Template {...props} variant="areas" />
 export const Columns = props => <Template {...props} variant="columns" />
 export const Halves = props => <Template {...props} variant="halves" />
 export const Thirds = props => <Template {...props} variant="thirds" />
-
