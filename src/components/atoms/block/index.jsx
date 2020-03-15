@@ -15,7 +15,7 @@ import * as Styled from './styles'
 
 export const structuralVariants = ['div', 'section', 'header', 'footer']
 
-const Structure = ({ children, variant, ...others }) => {
+const Block = ({ children, variant, ...others }) => {
   const props = { ...others }
   let Tag
   switch (variant) {
@@ -34,7 +34,7 @@ const Structure = ({ children, variant, ...others }) => {
   return <Tag {...handleProps(props)}>{children}</Tag>
 }
 
-Structure.propTypes = {
+Block.propTypes = {
   ...chromatic.propTypes(),
   ...contained.propTypes(),
   ...margined.propTypes(),
@@ -43,7 +43,7 @@ Structure.propTypes = {
   variant: PropTypes.oneOf(structuralVariants),
 }
 
-Structure.defaultProps = {
+Block.defaultProps = {
   ...chromatic.defaultProps(),
   ...contained.defaultProps(),
   ...margined.defaultProps(),
@@ -52,9 +52,9 @@ Structure.defaultProps = {
   variant: 'div',
 }
 
-export default Structure
+export default Block
 
-export const Div = props => <Structure {...props} variant="div" />
-export const Section = props => <Structure {...props} variant="section" />
-export const Header = props => <Structure {...props} variant="header" />
-export const Footer = props => <Structure {...props} variant="footer" />
+export const Div = props => <Block {...props} variant="div" />
+export const Section = props => <Block {...props} variant="section" />
+export const Header = props => <Block {...props} variant="header" />
+export const Footer = props => <Block {...props} variant="footer" />

@@ -1,16 +1,16 @@
+export { default as Block, Div, Section, Header, Footer } from './block'
 export { default as Button } from './button'
-export { FlexColumn, FlexRow } from './flexes'
-export { default as Grid, Column } from './grid'
-export { Link, LinkEmail, LinkPhone } from './links'
-export { default as Structure, Div, Section, Header, Footer } from './structure'
+export { FlexColumn, FlexRow } from './flex'
 export {
-  default as Template,
+  default as Grid,
   Area,
   Areas,
+  Column,
   Columns,
   Halves,
   Thirds,
-} from './template'
+} from './grid'
+export { Link, LinkEmail, LinkPhone } from './links'
 export {
   default as Typography,
   T,
