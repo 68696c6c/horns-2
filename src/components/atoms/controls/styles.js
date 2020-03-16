@@ -1,24 +1,8 @@
 import styled from '@emotion/styled'
 import MaskedInput from 'react-text-mask'
 
-import {
-  bordered,
-  chromaticSurface,
-  margined,
-  padded,
-  rounded,
-  typographic,
-} from '../../../traits'
+import { baseControl } from './utils'
 
-const baseStyles = [
-  bordered.styles,
-  chromaticSurface.styles,
-  margined.styles,
-  padded.styles,
-  rounded.styles,
-  typographic.styles,
-]
-
-export const Input = styled.input(...baseStyles)
+export const Input = styled.input(...baseControl.styles)
 export const InputHidden = styled.input()
-export const InputMasked = styled(MaskedInput)(...baseStyles)
+export const InputMasked = styled(MaskedInput)(...baseControl.styles)

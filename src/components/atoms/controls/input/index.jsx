@@ -5,7 +5,7 @@ import createNumberMask from 'text-mask-addons/dist/createNumberMask'
 
 import { handleProps } from '../../../utils'
 
-import { baseProps } from '../utils'
+import { baseControl } from '../utils'
 import * as Styled from '../styles'
 
 // eslint-disable-next-line
@@ -69,12 +69,12 @@ const Input = ({ currency, type, ...others }) => {
 }
 
 Input.propTypes = {
-  ...baseProps.propTypes,
+  ...baseControl.propTypes,
   type: PropTypes.oneOf(inputTypes),
 }
 
 Input.defaultProps = {
-  ...baseProps.defaultProps,
+  ...baseControl.defaultProps,
   type: 'text',
 }
 

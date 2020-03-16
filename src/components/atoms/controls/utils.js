@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types'
+import { css } from '@emotion/core'
 
 import {
   bordered,
@@ -10,7 +11,24 @@ import {
 } from '../../../traits'
 
 // eslint-disable-next-line import/prefer-default-export
-export const baseProps = {
+export const baseControl = {
+  styles: [
+    bordered.styles,
+    chromaticSurface.styles,
+    margined.styles,
+    padded.styles,
+    rounded.styles,
+    typographic.styles,
+    ({ theme, font }) => {
+      // Force the element height to match the line-height to ensure that inputs that have controls
+      // inside them (e.g. type="datetime-local") don't end up a different size than standard inputs.
+      const f = theme.typography.getStyle(font)
+      return css`
+        box-sizing: content-box;
+        height: ${f.lineHeight};
+      `
+    },
+  ],
   propTypes: {
     ...bordered.propTypes(),
     ...chromaticSurface.propTypes(),
@@ -27,9 +45,9 @@ export const baseProps = {
     ...bordered.defaultProps(),
     ...chromaticSurface.defaultProps(),
     ...margined.defaultProps(),
-    ...padded.defaultProps(),
+    ...padded.defaultProps('xSmall'),
     ...rounded.defaultProps(),
-    ...typographic.defaultProps(),
+    ...typographic.defaultProps('control'),
     placeholder: '',
     required: false,
   },
