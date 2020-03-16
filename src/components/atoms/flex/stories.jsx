@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react'
 
-import { Box } from '_story'
+import * as Story from '_story'
 
 import { FlexColumn, FlexRow } from '.'
 
@@ -19,9 +19,9 @@ const Demo = () => (
       arrange its children horizontally.
     </p>
     <FlexRow color="dark" marginY="medium" style={{ height: '200px' }}>
-      <Box color="primary">Box 1</Box>
-      <Box color="secondary">Box 2</Box>
-      <Box color="tertiary">Box 3</Box>
+      <Story.Box color="primary">Box 1</Story.Box>
+      <Story.Box color="secondary">Box 2</Story.Box>
+      <Story.Box color="tertiary">Box 3</Story.Box>
     </FlexRow>
 
     <h2>FlexColumn</h2>
@@ -30,9 +30,9 @@ const Demo = () => (
       arrange its children vertically.
     </p>
     <FlexColumn color="dark" marginY="medium" style={{ height: '400px' }}>
-      <Box color="primary">Box 1</Box>
-      <Box color="secondary">Box 2</Box>
-      <Box color="tertiary">Box 3</Box>
+      <Story.Box color="primary">Box 1</Story.Box>
+      <Story.Box color="secondary">Box 2</Story.Box>
+      <Story.Box color="tertiary">Box 3</Story.Box>
     </FlexColumn>
   </>
 )

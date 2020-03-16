@@ -13,7 +13,7 @@ import { buttonDefaults } from '../button'
 
 import * as Styled from './styles'
 
-export const baseProps = {
+export const baseLink = {
   propTypes: {
     ...aligned.propTypes(),
     ...bordered.propTypes(),

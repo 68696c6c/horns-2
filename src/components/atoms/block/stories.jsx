@@ -13,21 +13,21 @@ const Demo = () => (
       specifically, divs, sections, headers, and footers. By default, Blocks
       contain their children to the content width dictated by the theme.
     </p>
-    <Block>default structure</Block>
+    <Block>default block</Block>
 
     <h2>Aliases</h2>
     <p>The Block component has several alias components.</p>
-    <Div color="primary">div structure</Div>
-    <Section color="secondary">section structure</Section>
-    <Header color="tertiary">header structure</Header>
-    <Footer color="prominent">footer structure</Footer>
+    <Div color="primary">div block</Div>
+    <Section color="secondary">section block</Section>
+    <Header color="tertiary">header block</Header>
+    <Footer color="prominent">footer block</Footer>
 
     <h2>Fluid Prop</h2>
-    <Block fluid>fluid structure</Block>
+    <Block fluid>fluid block</Block>
 
     <h2>Color Prop</h2>
     {colors.map(color => (
-      <Block color={color}>{color} structure</Block>
+      <Block color={color}>{color} block</Block>
     ))}
 
     <h2>Margin Props</h2>
@@ -36,10 +36,10 @@ const Demo = () => (
       set if the Block is also <em>fluid</em>.
     </p>
     <Block color="primary" margin="medium">
-      margined contained structure
+      margined contained block
     </Block>
     <Block color="secondary" margin="medium" fluid>
-      margined fluid structure
+      margined fluid block
     </Block>
 
     <h2>Padding Props</h2>
@@ -48,10 +48,10 @@ const Demo = () => (
       be set if the Block is also <em>fluid</em>.
     </p>
     <Block color="primary" padding="medium">
-      padded contained structure
+      padded contained block
     </Block>
     <Block color="secondary" padding="medium" fluid>
-      padded fluid structure
+      padded fluid block
     </Block>
   </>
 )

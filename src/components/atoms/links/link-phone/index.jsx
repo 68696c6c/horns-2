@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 import { handleProps } from '../../../utils'
 
-import { baseProps, getVariantProps } from '../utils'
+import { baseLink, getVariantProps } from '../utils'
 
 const LinkPhone = ({ children, variant, phone, ...others }) => {
   const { Tag, font, isText } = getVariantProps(variant)
@@ -21,12 +21,12 @@ const LinkPhone = ({ children, variant, phone, ...others }) => {
 }
 
 LinkPhone.propTypes = {
-  ...baseProps.propTypes,
+  ...baseLink.propTypes,
   phone: PropTypes.string,
 }
 
 LinkPhone.defaultProps = {
-  ...baseProps.defaultProps,
+  ...baseLink.defaultProps,
   phone: '',
 }
 

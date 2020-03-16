@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-one-expression-per-line,jsx-a11y/anchor-is-valid */
 import React from 'react'
 
-import { Box, Grid } from '_story'
+import * as Story from '_story'
 import { colors } from 'config'
 
 import LinkEmail from '.'
@@ -9,13 +9,13 @@ import LinkEmail from '.'
 const Demo = () => (
   <>
     <h1>LinkEmail</h1>
-    <Grid>
-      <Box>
+    <Story.Grid>
+      <Story.Box>
         <LinkEmail email="example@example.com" subject="example" body="example">
           A default email link
         </LinkEmail>
-      </Box>
-      <Box>
+      </Story.Box>
+      <Story.Box>
         <LinkEmail
           variant="button"
           email="example@example.com"
@@ -24,11 +24,11 @@ const Demo = () => (
         >
           A default button email link
         </LinkEmail>
-      </Box>
-    </Grid>
+      </Story.Box>
+    </Story.Grid>
     {colors.map(color => (
-      <Grid>
-        <Box>
+      <Story.Grid>
+        <Story.Box>
           <LinkEmail
             color={color}
             email="example@example.com"
@@ -37,8 +37,8 @@ const Demo = () => (
           >
             {color} email link
           </LinkEmail>
-        </Box>
-        <Box>
+        </Story.Box>
+        <Story.Box>
           <LinkEmail
             variant="button"
             color={color}
@@ -48,8 +48,8 @@ const Demo = () => (
           >
             {color} button email link
           </LinkEmail>
-        </Box>
-      </Grid>
+        </Story.Box>
+      </Story.Grid>
     ))}
   </>
 )

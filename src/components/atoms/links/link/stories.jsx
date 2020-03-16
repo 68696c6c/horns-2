@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-one-expression-per-line,jsx-a11y/anchor-is-valid */
 import React from 'react'
 
-import { Box, Grid } from '_story'
+import * as Story from '_story'
 import { colors } from 'config'
 
 import Link from '.'
@@ -9,24 +9,24 @@ import Link from '.'
 const Demo = () => (
   <>
     <h1>Link</h1>
-    <Grid>
-      <Box>
+    <Story.Grid>
+      <Story.Box>
         <Link onClick={e => e.preventDefault()}>A default link</Link>
-      </Box>
-      <Box>
+      </Story.Box>
+      <Story.Box>
         <Link variant="button" onClick={e => e.preventDefault()}>
           A default button link
         </Link>
-      </Box>
-    </Grid>
+      </Story.Box>
+    </Story.Grid>
     {colors.map(color => (
-      <Grid>
-        <Box>
+      <Story.Grid>
+        <Story.Box>
           <Link color={color} onClick={e => e.preventDefault()}>
             {color} link
           </Link>
-        </Box>
-        <Box>
+        </Story.Box>
+        <Story.Box>
           <Link
             variant="button"
             color={color}
@@ -34,8 +34,8 @@ const Demo = () => (
           >
             {color} button link
           </Link>
-        </Box>
-      </Grid>
+        </Story.Box>
+      </Story.Grid>
     ))}
   </>
 )
