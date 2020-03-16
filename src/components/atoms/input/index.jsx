@@ -3,7 +3,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import createNumberMask from 'text-mask-addons/dist/createNumberMask'
 
-import { chromaticSurface, margined, padded } from '../../../traits'
+import { bordered, chromaticSurface, margined, padded } from '../../../traits'
 import { handleProps } from '../../utils'
 
 import * as Styled from './styles'
@@ -33,17 +33,16 @@ export const inputTypes = [
 
 const Input = ({ currency, type, ...others }) => {
   const props = { ...others }
+  props.type = type
   let Tag
   switch (type) {
     case 'hidden':
       Tag = Styled.InputHidden
-      props.type = type
       break
     case 'tel':
       Tag = Styled.InputMasked
       props.mask = phoneMask
       props.placeholderChar = '_'
-      props.type = type
       break
     case 'currency':
       Tag = Styled.InputMasked
@@ -70,6 +69,7 @@ const Input = ({ currency, type, ...others }) => {
 }
 
 Input.propTypes = {
+  ...bordered.propTypes(),
   ...chromaticSurface.propTypes(),
   ...margined.propTypes(),
   ...padded.propTypes(),
@@ -81,9 +81,10 @@ Input.propTypes = {
 }
 
 Input.defaultProps = {
+  ...bordered.defaultProps(),
   ...chromaticSurface.defaultProps(),
   ...margined.defaultProps(),
-  ...padded.defaultProps(),
+  ...padded.defaultProps('xxSmall'),
   type: 'text',
   placeholder: '',
   required: false,
