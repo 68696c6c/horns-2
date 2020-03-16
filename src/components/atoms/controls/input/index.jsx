@@ -3,10 +3,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import createNumberMask from 'text-mask-addons/dist/createNumberMask'
 
-import { bordered, chromaticSurface, margined, padded } from '../../../traits'
-import { handleProps } from '../../utils'
+import { handleProps } from '../../../utils'
 
-import * as Styled from './styles'
+import { baseProps } from '../utils'
+import * as Styled from '../styles'
 
 // eslint-disable-next-line
 const phoneMask = [ /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, /\d/ ]
@@ -69,25 +69,13 @@ const Input = ({ currency, type, ...others }) => {
 }
 
 Input.propTypes = {
-  ...bordered.propTypes(),
-  ...chromaticSurface.propTypes(),
-  ...margined.propTypes(),
-  ...padded.propTypes(),
+  ...baseProps.propTypes,
   type: PropTypes.oneOf(inputTypes),
-  placeholder: PropTypes.string,
-  required: PropTypes.bool,
-  name: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
 }
 
 Input.defaultProps = {
-  ...bordered.defaultProps(),
-  ...chromaticSurface.defaultProps(),
-  ...margined.defaultProps(),
-  ...padded.defaultProps('xxSmall'),
+  ...baseProps.defaultProps,
   type: 'text',
-  placeholder: '',
-  required: false,
 }
 
 export default Input
