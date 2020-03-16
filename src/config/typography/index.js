@@ -15,6 +15,7 @@ export const fontStyles = [
   'paragraph',
   'quote',
   'text',
+  'control',
   'label',
   'message',
   'button',
