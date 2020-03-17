@@ -10,7 +10,9 @@ const Demo = () => (
     <h1>Input</h1>
     <p>
       The <em>Input</em> component applies theming to the HTML{' '}
-      <code>input</code> tag. It provides no additional behavior.
+      <code>input</code> tag, other than <code>type=&quot;checkbox&quot;</code>{' '}
+      and <code>type=&quot;radio&quot;</code>. It provides no additional
+      behavior.
     </p>
     {inputTypes.map(type => {
       const id = `input-${type}`
