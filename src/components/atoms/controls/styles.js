@@ -54,3 +54,7 @@ export const ToggleControl = styled.label(
     `
   }
 )
+
+export const Select = styled.select``
+
+export const Multiselect = styled.select``

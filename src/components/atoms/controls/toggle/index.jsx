@@ -22,7 +22,7 @@ const Toggle = ({ id, font, type, ...others }) => {
         htmlFor={id}
         font={font}
         type={type}
-        className="toggle-control"
+        className="toggle--control"
       />
     </>
   )

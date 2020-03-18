@@ -65,7 +65,7 @@ const Input = ({ currency, type, ...others }) => {
     default:
       Tag = Styled.Input
   }
-  return <Tag {...handleProps(props, 'input')} />
+  return <Tag {...handleProps(props, 'control')} />
 }
 
 Input.propTypes = {
