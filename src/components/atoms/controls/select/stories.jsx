@@ -12,21 +12,9 @@ const Demo = () => (
       The <em>Select</em> component applies theming to the HTML{' '}
       <code>select</code> tag.
     </p>
-    <Select
-      id="select-example"
-      name="select_example"
-      placeholder="Placeholder"
-    />
-    <Multiselect
-      id="multiselect-example"
-      name="multiselect_example"
-      placeholder="Placeholder"
-    />
-
-    <h2>Options</h2>
     <Story.Grid>
       <div>
-        <label htmlFor="select-example-2">Select: </label>
+        <Story.Label htmlFor="select-example-2">Select: </Story.Label>
         <Select
           id="select-example-2"
           name="select_example"
@@ -38,7 +26,7 @@ const Demo = () => (
         </Select>
       </div>
       <div>
-        <label htmlFor="multiselect-example-2">Multiselect: </label>
+        <Story.Label htmlFor="multiselect-example-2">Multiselect: </Story.Label>
         <Multiselect
           id="multiselect-example-2"
           name="multiselect_example"

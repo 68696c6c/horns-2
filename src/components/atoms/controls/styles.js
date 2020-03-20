@@ -4,57 +4,17 @@ import MaskedInput from 'react-text-mask'
 
 import { baseControl } from './utils'
 
-export const Input = styled.input(...baseControl.styles)
-export const InputHidden = styled.input()
-export const InputMasked = styled(MaskedInput)(...baseControl.styles)
-
-export const Toggle = styled.input(({ theme, tone }) => {
-  const c = theme.color.getBackground(tone)
+const heightStyles = ({ theme, font }) => {
+  // Force the element height to match the line-height to ensure that inputs that have controls
+  // inside them (e.g. type="datetime-local") don't end up a different size than standard inputs.
+  const f = theme.typography.getStyle(font)
   return css`
-    display: none;
-    font-size: 1em;
-    vertical-align: baseline;
-    margin: 0 1em 0 0;
-    height: 1em;
-    ~ label.toggle-label,
-    ~ label.toggle-message {
-      vertical-align: middle;
-      display: inline-block;
-    }
-    &:checked + label.toggle-control {
-      background: ${c.active.base};
-    }
-    &:disabled + label.toggle-control {
-      background: ${c.inactive.base};
-      cursor: not-allowed;
-    }
-    &:disabled + label.toggle-control + label.toggle-label {
-      cursor: not-allowed;
-    }
+    height: ${f.lineHeight};
+    min-width: ${f.lineHeight};
   `
-})
+}
 
-export const ToggleControl = styled.label(
-  ...baseControl.styles,
-  ({ theme, font, type }) => {
-    const f = theme.typography.getStyle(font)
-    const roundCSS =
-      type === 'radio' &&
-      css`
-        border-radius: 50%;
-      `
-    return css`
-      content: ' ';
-      display: inline-block;
-      width: ${f.lineHeight};
-      min-width: ${f.lineHeight};
-      height: ${f.lineHeight};
-      ${roundCSS}
-    `
-  }
-)
-
-const selectCSS = () => css`
+const selectStyles = () => css`
   appearance: none;
   cursor: pointer;
   &::-ms-expand {
@@ -62,13 +22,52 @@ const selectCSS = () => css`
   }
 `
 
-export const Select = styled.select(selectCSS, ...baseControl.styles)
-
-export const Multiselect = styled.select(
-  selectCSS,
+export const Input = styled.input(...baseControl.styles, heightStyles)
+export const InputHidden = styled.input()
+export const InputMasked = styled(MaskedInput)(
   ...baseControl.styles,
-  () =>
+  heightStyles
+)
+
+export const Select = styled.select(
+  ...baseControl.styles,
+  selectStyles,
+  heightStyles
+)
+export const Multiselect = styled.select(...baseControl.styles, selectStyles)
+
+export const Textarea = styled.textarea(...baseControl.styles)
+
+export const Toggle = styled.input(({ theme, tone }) => {
+  const c = theme.color.getBackground(tone)
+  return css`
+    display: none;
+    ~ label.toggle-label,
+    ~ label.toggle-message {
+      vertical-align: middle;
+      display: inline-block;
+    }
+    &:checked + label.control {
+      background: ${c.active.base};
+    }
+    &:disabled + label.control {
+      background: ${c.inactive.base};
+      cursor: not-allowed;
+    }
+    &:disabled + label.control + label.toggle-label {
+      cursor: not-allowed;
+    }
+  `
+})
+
+export const ToggleControl = styled.label(
+  ...baseControl.styles,
+  ({ type }) =>
     css`
-      height: auto;
+      content: ' ';
+      ${type === 'radio' &&
+        css`
+          border-radius: 50%;
+        `}
     `
 )

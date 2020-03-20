@@ -9,32 +9,20 @@ import * as Styled from '../styles'
 
 export const toggleTypes = ['checkbox', 'radio']
 
-const Toggle = ({ id, font, type, ...others }) => {
-  return (
-    <>
-      <Styled.Toggle
-        id={id}
-        font={font}
-        type={type}
-        {...handleProps(others, 'toggle')}
-      />
-      <Styled.ToggleControl
-        htmlFor={id}
-        font={font}
-        type={type}
-        className="toggle--control"
-      />
-    </>
-  )
-}
+const Toggle = ({ id, ...others }) => (
+  <>
+    <Styled.Toggle id={id} {...handleProps(others, 'toggle')} />
+    <Styled.ToggleControl htmlFor={id} {...handleProps(others, 'control')} />
+  </>
+)
 
 Toggle.propTypes = {
-  ...baseControl.propTypes,
+  ...baseControl.propTypes(),
   type: PropTypes.oneOf(toggleTypes),
 }
 
 Toggle.defaultProps = {
-  ...baseControl.defaultProps,
+  ...baseControl.defaultProps('pointer'),
   type: 'checkbox',
 }
 

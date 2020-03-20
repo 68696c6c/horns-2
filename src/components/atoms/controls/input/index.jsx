@@ -69,12 +69,12 @@ const Input = ({ currency, type, ...others }) => {
 }
 
 Input.propTypes = {
-  ...baseControl.propTypes,
+  ...baseControl.propTypes(),
   type: PropTypes.oneOf(inputTypes),
 }
 
 Input.defaultProps = {
-  ...baseControl.defaultProps,
+  ...baseControl.defaultProps(),
   type: 'text',
 }
 

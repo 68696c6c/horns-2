@@ -13,12 +13,12 @@ const Select = ({ multiple, ...others }) => {
 }
 
 Select.propTypes = {
-  ...baseControl.propTypes,
+  ...baseControl.propTypes(),
   multiselect: PropTypes.bool,
 }
 
 Select.defaultProps = {
-  ...baseControl.defaultProps,
+  ...baseControl.defaultProps(),
   multiselect: false,
 }
 

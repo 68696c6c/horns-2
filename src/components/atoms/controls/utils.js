@@ -4,6 +4,7 @@ import { css } from '@emotion/core'
 import {
   bordered,
   chromaticSurface,
+  interactive,
   margined,
   padded,
   rounded,
@@ -15,24 +16,21 @@ export const baseControl = {
   styles: [
     bordered.styles,
     chromaticSurface.styles,
+    interactive.styles,
     margined.styles,
     padded.styles,
     rounded.styles,
     typographic.styles,
-    ({ theme, font }) => {
-      // Force the element height to match the line-height to ensure that inputs that have controls
-      // inside them (e.g. type="datetime-local") don't end up a different size than standard inputs.
-      const f = theme.typography.getStyle(font)
-      return css`
-        box-sizing: content-box;
-        vertical-align: middle;
-        height: ${f.lineHeight};
-      `
-    },
+    () => css`
+      display: inline-flex;
+      box-sizing: content-box;
+      vertical-align: middle;
+    `,
   ],
-  propTypes: {
+  propTypes: () => ({
     ...bordered.propTypes(),
     ...chromaticSurface.propTypes(),
+    ...interactive.propTypes(),
     ...margined.propTypes(),
     ...padded.propTypes(),
     ...rounded.propTypes(),
@@ -41,15 +39,16 @@ export const baseControl = {
     required: PropTypes.bool,
     name: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
-  },
-  defaultProps: {
+  }),
+  defaultProps: (cursor = 'text') => ({
     ...bordered.defaultProps(),
     ...chromaticSurface.defaultProps(),
+    ...interactive.defaultProps(false, false, cursor),
     ...margined.defaultProps(),
     ...padded.defaultProps('xSmall'),
     ...rounded.defaultProps(),
     ...typographic.defaultProps('control'),
     placeholder: '',
     required: false,
-  },
+  }),
 }

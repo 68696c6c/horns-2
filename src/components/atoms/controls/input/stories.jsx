@@ -18,9 +18,7 @@ const Demo = () => (
       const id = `input-${type}`
       return (
         <Story.Box>
-          <label htmlFor={id} style={{ display: 'block' }}>
-            {type}
-          </label>
+          <Story.Label htmlFor={id}>{type}</Story.Label>
           <Input id={id} name="example" type={type} placeholder={type} />
         </Story.Box>
       )

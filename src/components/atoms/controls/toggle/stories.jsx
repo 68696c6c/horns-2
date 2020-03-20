@@ -14,32 +14,28 @@ const Demo = () => (
       <code>type=&quot;checkbox&quot;</code> It provides no additional behavior
       beyond what native HTML checkboxes and radios provide, e.g. toggle logic.
     </p>
-    {toggleTypes.map(type => (
-      <Story.Box>
-        <label style={{ display: 'block' }}>{type}</label>
+    <Story.Grid>
+      {toggleTypes.map(type => (
         <div>
+          <Story.Label>{type}</Story.Label>
           <Toggle
             id={`toggle-${type}-1`}
             name={`example-${type}`}
             type={type}
           />
-        </div>
-        <div>
           <Toggle
             id={`toggle-${type}-2`}
             name={`example-${type}`}
             type={type}
           />
-        </div>
-        <div>
           <Toggle
             id={`toggle-${type}-3`}
             name={`example-${type}`}
             type={type}
           />
         </div>
-      </Story.Box>
-    ))}
+      ))}
+    </Story.Grid>
   </>
 )
 
