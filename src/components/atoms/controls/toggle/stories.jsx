@@ -3,7 +3,7 @@ import React from 'react'
 
 import * as Story from '_story'
 
-import Toggle, { toggleTypes } from '.'
+import Toggle, { toggleTypes, Checkbox, Radio } from '.'
 
 const Demo = () => (
   <>
@@ -14,6 +14,8 @@ const Demo = () => (
       <code>type=&quot;checkbox&quot;</code> It provides no additional behavior
       beyond what native HTML checkboxes and radios provide, e.g. toggle logic.
     </p>
+    <Checkbox id="toggle-checkbox-0" name="toggle-checkbox-0" />
+    <Radio id="toggle-radio-0" name="toggle-radio-0" />
     <Story.Grid>
       {toggleTypes.map(type => (
         <div>

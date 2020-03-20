@@ -27,3 +27,6 @@ Toggle.defaultProps = {
 }
 
 export default Toggle
+
+export const Checkbox = props => <Toggle {...props} type="checkbox" />
+export const Radio = props => <Toggle {...props} type="radio" />
