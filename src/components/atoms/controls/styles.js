@@ -8,20 +8,14 @@ export const Input = styled.input(...baseControl.styles)
 export const InputHidden = styled.input()
 export const InputMasked = styled(MaskedInput)(...baseControl.styles)
 
-export const Toggle = styled.input(({ theme, tone, type }) => {
+export const Toggle = styled.input(({ theme, tone }) => {
   const c = theme.color.getBackground(tone)
-  const roundCSS =
-    type === 'radio' &&
-    css`
-      border-radius: 50%;
-    `
   return css`
     display: none;
     font-size: 1em;
     vertical-align: baseline;
     margin: 0 1em 0 0;
     height: 1em;
-    ${roundCSS};
     ~ label.toggle-label,
     ~ label.toggle-message {
       vertical-align: middle;
@@ -42,15 +36,20 @@ export const Toggle = styled.input(({ theme, tone, type }) => {
 
 export const ToggleControl = styled.label(
   ...baseControl.styles,
-  ({ theme, font }) => {
+  ({ theme, font, type }) => {
     const f = theme.typography.getStyle(font)
+    const roundCSS =
+      type === 'radio' &&
+      css`
+        border-radius: 50%;
+      `
     return css`
       content: ' ';
       display: inline-block;
       width: ${f.lineHeight};
       min-width: ${f.lineHeight};
       height: ${f.lineHeight};
-      vertical-align: middle;
+      ${roundCSS}
     `
   }
 )
