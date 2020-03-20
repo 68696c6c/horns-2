@@ -55,6 +55,21 @@ export const ToggleControl = styled.label(
   }
 )
 
-export const Select = styled.select``
+const selectCSS = () => css`
+  appearance: none;
+  cursor: pointer;
+  &::-ms-expand {
+    display: none;
+  }
+`
 
-export const Multiselect = styled.select``
+export const Select = styled.select(selectCSS, ...baseControl.styles)
+
+export const Multiselect = styled.select(
+  selectCSS,
+  ...baseControl.styles,
+  () =>
+    css`
+      height: auto;
+    `
+)

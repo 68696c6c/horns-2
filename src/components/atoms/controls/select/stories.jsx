@@ -22,6 +22,34 @@ const Demo = () => (
       name="multiselect_example"
       placeholder="Placeholder"
     />
+
+    <h2>Options</h2>
+    <Story.Grid>
+      <div>
+        <label htmlFor="select-example-2">Select: </label>
+        <Select
+          id="select-example-2"
+          name="select_example"
+          placeholder="Placeholder"
+        >
+          {Story.makeIntArray(10).map(i => (
+            <option value={i}>Option {i}</option>
+          ))}
+        </Select>
+      </div>
+      <div>
+        <label htmlFor="multiselect-example-2">Multiselect: </label>
+        <Multiselect
+          id="multiselect-example-2"
+          name="multiselect_example"
+          placeholder="Placeholder"
+        >
+          {Story.makeIntArray(10).map(i => (
+            <option value={i}>Option {i}</option>
+          ))}
+        </Multiselect>
+      </div>
+    </Story.Grid>
   </>
 )
 

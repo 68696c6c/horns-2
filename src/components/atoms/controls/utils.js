@@ -25,6 +25,7 @@ export const baseControl = {
       const f = theme.typography.getStyle(font)
       return css`
         box-sizing: content-box;
+        vertical-align: middle;
         height: ${f.lineHeight};
       `
     },
