@@ -22,3 +22,4 @@ storybook-static
 .DS_Store
 .npmrc
 _notes
+.dev

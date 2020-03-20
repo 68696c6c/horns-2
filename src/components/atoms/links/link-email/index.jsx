@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 import { handleProps } from '../../../utils'
 
-import { baseProps, getVariantProps } from '../utils'
+import { baseLink, getVariantProps } from '../utils'
 
 const getEmailHref = (email, subject, body) => {
   let href = `mailto:${email}?`
@@ -28,14 +28,14 @@ const LinkEmail = ({ children, variant, email, subject, body, ...others }) => {
 }
 
 LinkEmail.propTypes = {
-  ...baseProps.propTypes,
+  ...baseLink.propTypes,
   email: PropTypes.string,
   subject: PropTypes.string,
   body: PropTypes.string,
 }
 
 LinkEmail.defaultProps = {
-  ...baseProps.defaultProps,
+  ...baseLink.defaultProps,
   email: '',
   subject: '',
   body: '',

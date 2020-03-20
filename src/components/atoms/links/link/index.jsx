@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import { handleProps } from '../../../utils'
 
-import { baseProps, getVariantProps } from '../utils'
+import { baseLink, getVariantProps } from '../utils'
 
 const Link = ({ children, variant, ...others }) => {
   const { Tag, font, isText } = getVariantProps(variant)
@@ -16,12 +16,12 @@ const Link = ({ children, variant, ...others }) => {
 }
 
 Link.propTypes = {
-  ...baseProps.propTypes,
+  ...baseLink.propTypes,
   href: PropTypes.string,
 }
 
 Link.defaultProps = {
-  ...baseProps.defaultProps,
+  ...baseLink.defaultProps,
   href: '#',
 }
 

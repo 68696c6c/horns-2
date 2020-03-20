@@ -25,7 +25,7 @@ export const padded = {
       left: paddingLeft,
       right: paddingRight,
     })
-    if (!fluid) {
+    if (typeof fluid !== 'undefined' && !fluid) {
       spacing.left = null
       spacing.right = null
     }

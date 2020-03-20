@@ -25,7 +25,7 @@ export const margined = {
       left: marginLeft,
       right: marginRight,
     })
-    if (!fluid) {
+    if (typeof fluid !== 'undefined' && !fluid) {
       spacing.left = null
       spacing.right = null
     }

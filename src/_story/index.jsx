@@ -48,6 +48,10 @@ export const Wrapper = styled.div`
   margin: 1em 0;
 `
 
+export const Label = styled.label`
+  display: block;
+`
+
 /**
  * Returns an array of sequential integers starting at 1 of the given length. This is used instead
  * of `const items = new Array(itemCount)` because that returns an array of empty values, which

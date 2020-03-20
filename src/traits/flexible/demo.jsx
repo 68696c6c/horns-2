@@ -3,7 +3,7 @@
 import React from 'react'
 import { jsx } from '@emotion/core'
 
-import { Box, iterateColors } from '_story'
+import * as Story from '_story'
 import { flexProperties } from 'config'
 
 import * as Styled from './demo.styles'
@@ -24,14 +24,14 @@ const Demo = () => {
         <em>align-items</em> property and the <em>y</em> prop controls the{' '}
         <em>justify-content</em> property.
       </p>
-      <Box>
+      <Story.Box>
         <h3>X Prop</h3>
         {flexProperties.row.x.map((value, index) => (
           <Styled.FlexRow index={index} x={value}>
-            {iterateColors(3, colorTracker, (c, i) => (
-              <Box color={c}>
+            {Story.iterateColors(3, colorTracker, (c, i) => (
+              <Story.Box color={c}>
                 {value || 'default'} {i}
-              </Box>
+              </Story.Box>
             ))}
           </Styled.FlexRow>
         ))}
@@ -39,10 +39,10 @@ const Demo = () => {
         <h3>Y Prop</h3>
         {flexProperties.row.y.map((value, index) => (
           <Styled.FlexRow index={index} y={value} style={{ height: '100px' }}>
-            {iterateColors(3, colorTracker, (c, i) => (
-              <Box color={c}>
+            {Story.iterateColors(3, colorTracker, (c, i) => (
+              <Story.Box color={c}>
                 {value || 'default'} {i}
-              </Box>
+              </Story.Box>
             ))}
           </Styled.FlexRow>
         ))}
@@ -56,15 +56,15 @@ const Demo = () => {
               style={{ height: '300px' }}
               wrap
             >
-              {iterateColors(16, [-1], (c, i) => (
-                <Box color={c}>
+              {Story.iterateColors(16, [-1], (c, i) => (
+                <Story.Box color={c}>
                   {value || 'default'} {i}
-                </Box>
+                </Story.Box>
               ))}
             </Styled.FlexRow>
           ))}
         </div>
-      </Box>
+      </Story.Box>
 
       <h2>flexibleColumn</h2>
       <p>
@@ -72,7 +72,7 @@ const Demo = () => {
         <em>justify-content</em> property and the <em>y</em> prop controls the{' '}
         <em>align-items</em> property.
       </p>
-      <Box>
+      <Story.Box>
         <h3>X Prop</h3>
         {flexProperties.column.x.map((value, index) => (
           <Styled.FlexColumn
@@ -80,10 +80,10 @@ const Demo = () => {
             x={value}
             style={{ height: '200px' }}
           >
-            {iterateColors(3, colorTracker, (c, i) => (
-              <Box color={c}>
+            {Story.iterateColors(3, colorTracker, (c, i) => (
+              <Story.Box color={c}>
                 {value || 'default'} {i}
-              </Box>
+              </Story.Box>
             ))}
           </Styled.FlexColumn>
         ))}
@@ -95,10 +95,10 @@ const Demo = () => {
             y={value}
             style={{ height: '400px' }}
           >
-            {iterateColors(3, colorTracker, (c, i) => (
-              <Box color={c}>
+            {Story.iterateColors(3, colorTracker, (c, i) => (
+              <Story.Box color={c}>
                 {value || 'default'} {i}
-              </Box>
+              </Story.Box>
             ))}
           </Styled.FlexColumn>
         ))}
@@ -111,14 +111,14 @@ const Demo = () => {
             style={{ height: '200px' }}
             wrap="wrap"
           >
-            {iterateColors(16, [-1], (c, i) => (
-              <Box color={c}>
+            {Story.iterateColors(16, [-1], (c, i) => (
+              <Story.Box color={c}>
                 {value || 'default'} {i}
-              </Box>
+              </Story.Box>
             ))}
           </Styled.FlexColumn>
         ))}
-      </Box>
+      </Story.Box>
     </>
   )
 }
