@@ -1,0 +1,35 @@
+/* eslint-disable react/jsx-one-expression-per-line */
+import React from 'react'
+
+import * as Story from '_story'
+
+import Message, { messageVariants } from '.'
+
+const Demo = () => (
+  <>
+    <h1>Message</h1>
+    <p>
+      The <em>Message</em> component provides themed notification text.
+    </p>
+    {messageVariants.map(variant => {
+      return (
+        <Story.Grid>
+          <Story.Box>
+            <Message variant={variant}>{variant} message</Message>
+          </Story.Box>
+          <Story.Box>
+            <Message variant={variant} withIcon>
+              {variant} message with icon
+            </Message>
+          </Story.Box>
+        </Story.Grid>
+      )
+    })}
+  </>
+)
+
+Demo.story = {
+  name: 'Message',
+}
+
+export default Demo

@@ -15,6 +15,7 @@ export { default as Toggle } from './controls/toggle/stories'
 export { default as Link } from './links/link/stories'
 export { default as LinkEmail } from './links/link-email/stories'
 export { default as LinkPhone } from './links/link-phone/stories'
+export { default as Message } from './message/stories'
 export { default as Typography } from './typography/stories'
 
 export const Index = () => (
