@@ -13,7 +13,7 @@ import {
 
 // eslint-disable-next-line import/prefer-default-export
 export const baseControl = {
-  styles: [
+  styles: () => [
     bordered.styles,
     chromaticSurface.styles,
     interactive.styles,

@@ -2,6 +2,8 @@ import { css } from '@emotion/core'
 import styled from '@emotion/styled'
 import MaskedInput from 'react-text-mask'
 
+import { chromatic, margined, padded, typographic } from '../../../traits'
+
 import { baseControl } from './utils'
 
 const heightStyles = ({ theme, font }) => {
@@ -22,21 +24,24 @@ const selectStyles = () => css`
   }
 `
 
-export const Input = styled.input(...baseControl.styles, heightStyles)
+export const Input = styled.input(baseControl.styles, heightStyles)
 export const InputHidden = styled.input()
-export const InputMasked = styled(MaskedInput)(
-  ...baseControl.styles,
-  heightStyles
+export const InputMasked = styled(MaskedInput)(baseControl.styles, heightStyles)
+
+export const Label = styled.label(
+  chromatic.styles,
+  margined.styles,
+  typographic.styles
 )
 
 export const Select = styled.select(
-  ...baseControl.styles,
+  baseControl.styles,
   selectStyles,
   heightStyles
 )
-export const Multiselect = styled.select(...baseControl.styles, selectStyles)
+export const Multiselect = styled.select(baseControl.styles, selectStyles)
 
-export const Textarea = styled.textarea(...baseControl.styles)
+export const Textarea = styled.textarea(baseControl.styles)
 
 export const Toggle = styled.input(({ theme, tone }) => {
   const c = theme.color.getBackground(tone)
@@ -61,7 +66,7 @@ export const Toggle = styled.input(({ theme, tone }) => {
 })
 
 export const ToggleControl = styled.label(
-  ...baseControl.styles,
+  baseControl.styles,
   ({ type }) =>
     css`
       content: ' ';

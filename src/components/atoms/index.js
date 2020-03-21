@@ -2,6 +2,7 @@ export { default as Block, Div, Section, Header, Footer } from './block'
 export { default as Button } from './button'
 export {
   Input,
+  Label,
   Select,
   Multiselect,
   Textarea,
