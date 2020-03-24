@@ -8,18 +8,21 @@ pids
 *.pid
 *.seed
 
-# Dependency directories
+# NPM
 node_modules
-
-# Optional npm cache directory
 .npm
+.npmrc
 
 # Storybook
 storybook-static
 
-# Other
+# Jest coverage
+coverage
+
+# IntelliJ IDE
 .idea
+
+# Other
 .DS_Store
-.npmrc
-_notes
 .dev
+_notes
