@@ -2,6 +2,7 @@
 import React from 'react'
 import * as PropTypes from 'prop-types'
 
+import { fontWeights } from '../../../../config'
 import { chromatic, margined, typographic } from '../../../../traits'
 import { handleProps } from '../../../utils'
 
@@ -18,12 +19,14 @@ Label.propTypes = {
   ...margined.propTypes(),
   ...typographic.propTypes(),
   for: PropTypes.string.isRequired,
+  weight: PropTypes.oneOf(fontWeights),
 }
 
 Label.defaultProps = {
   ...chromatic.defaultProps(null, true),
   ...margined.defaultProps('xSmall'),
   ...typographic.defaultProps('label'),
+  weight: 'semiBold',
 }
 
 export default Label
