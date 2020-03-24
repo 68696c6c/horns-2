@@ -5,7 +5,7 @@ import {
   FaInfoCircle,
   FaExclamationCircle,
   FaCheckCircle,
-  FaTimesCircle,
+  FaSkull,
 } from 'react-icons/fa'
 
 import {
@@ -26,7 +26,7 @@ const Message = ({ children, block, variant, withIcon, ...others }) => {
   let Icon
   switch (variant) {
     case 'danger':
-      Icon = FaTimesCircle
+      Icon = FaSkull
       break
     case 'info':
       Icon = FaInfoCircle
