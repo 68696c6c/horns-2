@@ -1,4 +1,4 @@
-/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/jsx-props-no-spreading,default-case */
 import React from 'react'
 import PropTypes from 'prop-types'
 
@@ -37,11 +37,11 @@ const BaseGrid = ({ children, variant, ...others }) => {
     case 'columns':
       Tag = Styled.Columns
       className = 'columns'
-    // eslint-disable-next-line no-fallthrough
+      break
     case 'grid':
-    default:
       Tag = Styled.Grid
       className = 'grid'
+      break
   }
   return <Tag {...handleProps(props, className)}>{children}</Tag>
 }

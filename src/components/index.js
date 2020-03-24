@@ -6,6 +6,7 @@ export {
   Footer,
   Button,
   Input,
+  Label,
   Select,
   Multiselect,
   Textarea,

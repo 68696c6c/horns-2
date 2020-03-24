@@ -10,6 +10,15 @@ export const alignments = [null, 'center', 'left', 'right', 'justify']
 
 const headingLevels = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
 
+export const fontWeights = [
+  'base',
+  'lighter',
+  'light',
+  'semiBold',
+  'bold',
+  'bolder',
+]
+
 export const fontStyles = [
   ...headingLevels,
   'paragraph',
