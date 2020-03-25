@@ -8,7 +8,6 @@ import { baseLink, getVariantProps } from '../utils'
 const Link = ({ children, variant, ...others }) => {
   const { Tag, font, isText } = getVariantProps(variant)
   return (
-    // eslint-disable-next-line react/jsx-props-no-spreading
     <Tag {...handleProps(others, 'link')} font={font} typographic={isText}>
       {children}
     </Tag>

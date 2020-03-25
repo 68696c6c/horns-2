@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading,default-case */
 import React from 'react'
 import PropTypes from 'prop-types'
 import {
@@ -24,6 +23,7 @@ export const messageVariants = ['success', 'info', 'warning', 'danger']
 const Message = ({ children, block, variant, withIcon, ...others }) => {
   const Tag = block ? Styled.MessageBlock : Styled.MessageInline
   let Icon
+  // eslint-disable-next-line default-case
   switch (variant) {
     case 'danger':
       Icon = FaSkull

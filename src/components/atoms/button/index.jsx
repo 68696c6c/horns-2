@@ -22,7 +22,6 @@ export const buttonDefaults = {
 }
 
 const Button = ({ children, ...others }) => (
-  // eslint-disable-next-line react/jsx-props-no-spreading
   <Styled.Button {...handleProps(others, 'button')}>{children}</Styled.Button>
 )
 
