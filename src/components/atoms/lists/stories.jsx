@@ -24,7 +24,7 @@ const makeItems = colorName =>
 
 const actionItems = () =>
   ['success', 'info', 'warning', 'danger'].map(i => (
-    <ListItem color={i} icon={FaSkull}>
+    <ListItem color={i} icon={<FaSkull />}>
       {i} item
     </ListItem>
   ))
@@ -35,18 +35,27 @@ const Demo = () => (
     <Story.Grid>
       <Story.Box>
         <List>
-          <ListItem>unordered item 1</ListItem>
-          <ListItem>unordered item 2</ListItem>
-          <ListItem>unordered item 3</ListItem>
-          <ListItem>unordered item 4</ListItem>
+          {Story.makeIntArray(10).map(i => (
+            <ListItem>unordered item {i}</ListItem>
+          ))}
+          <ListItem>unordered item 100</ListItem>
         </List>
       </Story.Box>
       <Story.Box>
+        <ol>
+          {Story.makeIntArray(10).map(i => (
+            <li>native ordered item {i}</li>
+          ))}
+          <li>native ordered item 100</li>
+        </ol>
+      </Story.Box>
+      <Story.Box>
         <List ordered>
-          <ListItem>ordered item 1</ListItem>
-          <ListItem>ordered item 2</ListItem>
-          <ListItem>ordered item 3</ListItem>
-          <ListItem>ordered item 4</ListItem>
+          {Story.makeIntArray(10).map(i => (
+            <ListItem>ordered item {i}</ListItem>
+          ))}
+          <ListItem>ordered item 11</ListItem>
+          <ListItem counter={100}>ordered item 100</ListItem>
         </List>
       </Story.Box>
     </Story.Grid>

@@ -1,14 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { handleProps } from '../../../utils'
+import { childrenPropTypes, handleProps } from '../../../utils'
 import { chromatic, typographic } from '../../../../traits'
 
 import * as Styled from '../styles'
 
-// TODO shouldn't need to force 'typographic' prop on the list item.
 const ListItem = ({ icon, children, ...others }) => (
-  <Styled.ListItem {...handleProps(others, 'list-item')} typographic>
+  <Styled.ListItem {...handleProps(others, 'list-item')}>
     {icon}
     {children}
   </Styled.ListItem>
@@ -17,16 +16,13 @@ const ListItem = ({ icon, children, ...others }) => (
 ListItem.propTypes = {
   ...chromatic.propTypes(),
   ...typographic.propTypes(),
-  icon: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired
+  icon: childrenPropTypes().isRequired,
 }
 
-ListItem.defaultPropts = {
+ListItem.defaultProps = {
   ...chromatic.defaultProps(null, true),
   ...typographic.defaultProps(),
-  icon: <span>*</span>,
+  icon: <></>,
 }
 
 export default ListItem

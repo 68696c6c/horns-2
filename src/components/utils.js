@@ -1,4 +1,6 @@
 // eslint-disable-next-line import/prefer-default-export
+import PropTypes from 'prop-types'
+
 export const handleProps = (
   { className: propsClassName, ...others },
   className = ''
@@ -22,3 +24,5 @@ export const iterateChildren = (children, callback) => {
     }
   })
 }
+
+export const childrenPropTypes = () => PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node])

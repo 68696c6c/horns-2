@@ -8,8 +8,7 @@ import * as Styled from '../styles'
 
 const List = ({ ordered, ...others }) => {
   const Tag = ordered ? Styled.ListOrdered : Styled.ListUnordered
-  // TODO shouldn't need to force 'typographic' prop here.
-  return <Tag ordered={ordered} {...handleProps(others, 'list')} typographic />
+  return <Tag ordered={ordered} {...handleProps(others, 'list')} />
 }
 
 List.propTypes = {
@@ -18,7 +17,7 @@ List.propTypes = {
   ordered: PropTypes.bool,
 }
 
-List.defaultPropts = {
+List.defaultProps = {
   ...chromatic.defaultProps(null, true),
   ...typographic.defaultProps(),
   ordered: false,
