@@ -19,6 +19,7 @@ export const basePallet = {
   black: '#010101',
 }
 
+// TODO add an 'action' color to work as a default message/button color
 export default {
   mode: MODE_DEFAULT,
   prominent: 'primary',
