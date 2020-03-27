@@ -1,6 +1,7 @@
 import { css } from '@emotion/core'
 import styled from '@emotion/styled'
 
+import { listTypes } from '../../utils'
 import { typographic } from '../../../traits'
 
 const LIST_COUNTER = 'li'
@@ -61,12 +62,13 @@ export const ListOrdered = styled.ol(...baseStyles, () => {
   `
 })
 
-export const ListUnordered = styled.ul(...baseStyles, () => {
+export const ListUnordered = styled.ul(...baseStyles, ({ type }) => {
+  const content = listTypes.unordered[type] || listTypes.unordered.disc
   return css`
     .icon {
       justify-content: center;
       &.bullet::before {
-        content: '\\2022';
+        content: '${content}';
       }
       > * {
         width: 1em;

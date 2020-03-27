@@ -36,7 +36,7 @@ const Demo = () => (
       <Story.Box>
         <List>
           {Story.makeIntArray(10).map(i => (
-            <ListItem>unordered item {i}</ListItem>
+            <ListItem type="circle">unordered item {i}</ListItem>
           ))}
           <ListItem>unordered item 100</ListItem>
         </List>
