@@ -1,27 +1,34 @@
 import { css } from '@emotion/core'
 import styled from '@emotion/styled'
 
-import { chromatic, typographic } from '../../../traits'
+import { typographic } from '../../../traits'
 
 const LIST_COUNTER = 'li'
 
 export const ListItem = styled.li(
-  // chromatic.styles,
   typographic.styles,
-  ({ theme, color, counter }) => {
-    const c = theme.color.getColorway(color)
-    const content = counter ? `'${counter}'` : `counter(${LIST_COUNTER})`
-    return css`
-      &::before {
-        color: ${color === 'background' ? c.base.readable : c.base.base} !important;
-        content: ${content} '.';
-        margin-right: 0.25em;
-        display: inline-flex;
-        justify-content: flex-end;
-      }
-    `
-  }
+  () => css`
+    display: flex;
+    align-items: center;
+  `
 )
+
+export const ListItemIcon = styled.i(({ theme, color }) => {
+  const c = theme.color.getColorway(color)
+  return css`
+    display: inline-flex;
+    justify-content: flex-end;
+    font-style: unset;
+    color: ${color === 'background' ? c.base.readable : c.base.base} !important;
+    width: 2em;
+    &::before {
+      display: inline-flex;
+      font-size: 1em;
+      line-height: 1em;
+      height: 1em;
+    }
+  `
+})
 
 const baseStyles = [
   typographic.styles,
@@ -29,7 +36,8 @@ const baseStyles = [
     const c = theme.color.getColorway(color)
     return css`
       list-style-type: none;
-      li::before {
+      padding-left: 0;
+      .icon {
         color: ${color === 'background' ? c.base.readable : c.base.base};
       }
     `
@@ -38,23 +46,31 @@ const baseStyles = [
 
 export const ListOrdered = styled.ol(...baseStyles, () => {
   return css`
-    padding-left: 2em;
     counter-reset: ${LIST_COUNTER};
-    li::before {
+    .icon {
       counter-increment: ${LIST_COUNTER};
-      width: 2em;
-      margin-left: -2em;
+      justify-content: flex-end;
+      padding-right: 0.5em;
+      &.bullet {
+        width: 2em;
+        &::before {
+          content: counter(${LIST_COUNTER}) '.';
+        }
+      }
     }
   `
 })
 
 export const ListUnordered = styled.ul(...baseStyles, () => {
   return css`
-    padding-left: 1em;
-    li::before {
-      content: '\\2022';
-      width: 1em;
-      margin-left: -1em;
+    .icon {
+      justify-content: center;
+      &.bullet::before {
+        content: '\\2022';
+      }
+      > * {
+        width: 1em;
+      }
     }
   `
 })
