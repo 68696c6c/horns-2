@@ -5,13 +5,13 @@ import {
   childrenPropTypes,
   handleProps,
   isFragment,
-  listTypes,
 } from '../../../utils'
 import { chromatic, typographic } from '../../../../traits'
 
+import { listTypes } from '../utils'
 import * as Styled from '../styles'
 
-const ListItem = ({ color, icon, children, ...others }) => {
+const ListItem = ({ color, icon, type, children, ...others }) => {
   return (
     <Styled.ListItem {...handleProps(others, 'list-item')}>
       <Styled.ListItemIcon

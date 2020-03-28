@@ -3,14 +3,48 @@ import { css } from '@emotion/core'
 
 import { chromatic, typographic } from '../../../traits'
 
-// eslint-disable-next-line import/prefer-default-export
+export const listTypes = {
+  ordered: [
+    'armenian',
+    'cjk-ideographic',
+    'decimal',
+    'decimal-leading-zero',
+    'georgian',
+    'hebrew',
+    'hiragana',
+    'hiragana-iroha',
+    'katakana',
+    'katakana-iroha',
+    'lower-alpha',
+    'lower-greek',
+    'lower-latin',
+    'lower-roman',
+    'none',
+    'upper-alpha',
+    'upper-greek',
+    'upper-latin',
+    'upper-roman',
+  ],
+  unordered: {
+    disc: '●',
+    circle: '○',
+    none: '',
+    square: '■',
+  },
+}
+
 export const baseList = {
   styles: () => [
-    chromatic.styles,
     typographic.styles,
-    () => {
+    ({ theme, color }) => {
+      const c = theme.color.getColorway(color)
       return css`
+        list-style-type: none;
         list-style-position: inside;
+        padding-left: 0;
+        .icon {
+          color: ${color === 'background' ? c.base.readable : c.base.base};
+        }
       `
     },
   ],

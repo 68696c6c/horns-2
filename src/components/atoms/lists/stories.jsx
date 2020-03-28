@@ -10,10 +10,9 @@ import {
 import * as Story from '_story'
 import { colors } from 'config'
 
-import Link from '../links/link'
-
-import List from './list'
-import ListItem from './item'
+import ListOrdered from './list-ordered'
+import ListUnordered from './list-unordered'
+import ListItem from './list-item'
 
 const makeItems = colorName =>
   Story.makeIntArray(4).map(i => (
@@ -34,12 +33,19 @@ const Demo = () => (
     <h1>Lists</h1>
     <Story.Grid>
       <Story.Box>
-        <List>
+        <ListUnordered>
           {Story.makeIntArray(10).map(i => (
-            <ListItem type="circle">unordered item {i}</ListItem>
+            <ListItem type="disc">unordered item {i}</ListItem>
           ))}
-          <ListItem>unordered item 100</ListItem>
-        </List>
+          <ListItem>
+            very long text is long, very, very, very long, much too long
+            really, if we're being honest, it really should have ended
+            long ago, why are you still reading this, this is a catastrophe
+          </ListItem>
+          <ListItem type="circle">circle item</ListItem>
+          <ListItem type="none">none item</ListItem>
+          <ListItem type="square">square item</ListItem>
+        </ListUnordered>
       </Story.Box>
       <Story.Box>
         <ol>
@@ -50,28 +56,28 @@ const Demo = () => (
         </ol>
       </Story.Box>
       <Story.Box>
-        <List ordered>
+        <ListOrdered>
           {Story.makeIntArray(10).map(i => (
             <ListItem>ordered item {i}</ListItem>
           ))}
           <ListItem>ordered item 11</ListItem>
           <ListItem counter={100}>ordered item 100</ListItem>
-        </List>
+        </ListOrdered>
       </Story.Box>
     </Story.Grid>
     {colors.map(color => (
       <Story.Grid>
         <Story.Box>
-          <List color={color}>
+          <ListUnordered color={color} type="square">
             {makeItems(color)}
             {actionItems()}
-          </List>
+          </ListUnordered>
         </Story.Box>
         <Story.Box>
-          <List color={color} ordered>
+          <ListOrdered color={color}>
             {makeItems(color)}
             {actionItems()}
-          </List>
+          </ListOrdered>
         </Story.Box>
       </Story.Grid>
     ))}
