@@ -1,11 +1,6 @@
 /* eslint-disable react/jsx-one-expression-per-line,jsx-a11y/anchor-is-valid */
 import React from 'react'
-import {
-  FaInfoCircle,
-  FaExclamationCircle,
-  FaCheckCircle,
-  FaSkull,
-} from 'react-icons/fa'
+import { FaSkullCrossbones } from 'react-icons/fa'
 
 import * as Story from '_story'
 import { colors } from 'config'
@@ -23,7 +18,7 @@ const makeItems = colorName =>
 
 const actionItems = () =>
   ['success', 'info', 'warning', 'danger'].map(i => (
-    <ListItem color={i} icon={<FaSkull />}>
+    <ListItem color={i} icon={<FaSkullCrossbones />}>
       {i} item
     </ListItem>
   ))
@@ -35,7 +30,7 @@ const Demo = () => (
       <Story.Box>
         <ListUnordered>
           {Story.makeIntArray(10).map(i => (
-            <ListItem type="disc">unordered item {i}</ListItem>
+            <ListItem>unordered item {i}</ListItem>
           ))}
           <ListItem>
             very long text is long, very, very, very long, much too long

@@ -6,16 +6,17 @@ import {
   handleProps,
   isFragment,
 } from '../../../utils'
-import { chromatic, typographic } from '../../../../traits'
+import { chromatic, margined, typographic } from '../../../../traits'
 
 import { listTypes } from '../utils'
-import * as Styled from '../styles'
+import * as Styled from './styles'
 
 const ListItem = ({ color, icon, type, children, ...others }) => {
   return (
     <Styled.ListItem {...handleProps(others, 'list-item')}>
       <Styled.ListItemIcon
         color={color}
+        type={type}
         className={`icon ${isFragment(icon) && 'bullet'}`}
       >
         {icon}
@@ -27,6 +28,7 @@ const ListItem = ({ color, icon, type, children, ...others }) => {
 
 ListItem.propTypes = {
   ...chromatic.propTypes(),
+  ...margined.propTypes(),
   ...typographic.propTypes(),
   icon: childrenPropTypes().isRequired,
   type: PropTypes.oneOf([
@@ -38,6 +40,7 @@ ListItem.propTypes = {
 
 ListItem.defaultProps = {
   ...chromatic.defaultProps(null, true),
+  ...margined.defaultProps(null, null, 'xxSmall'),
   ...typographic.defaultProps(),
   icon: <></>,
   type: null,

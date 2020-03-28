@@ -31,9 +31,9 @@ export const margined = {
     }
     return css`
       margin-top: ${spacing.top};
-      margin-right: ${spacing.bottom};
-      margin-bottom: ${spacing.left};
-      margin-left: ${spacing.right};
+      margin-bottom: ${spacing.bottom};
+      margin-left: ${spacing.left};
+      margin-right: ${spacing.right};
     `
   },
   propTypes: () => ({

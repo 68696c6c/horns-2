@@ -28,7 +28,7 @@ export const listTypes = {
   unordered: {
     disc: '●',
     circle: '○',
-    none: '',
+    none: ' ',
     square: '■',
   },
 }
