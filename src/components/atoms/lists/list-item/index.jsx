@@ -13,7 +13,6 @@ const ListItem = ({ color, icon, type, value, children, ...others }) => {
   if (hasIcon) {
     iconContent = (
       <Styled.ListItemMarker
-        color={color}
         type={type}
         value={value}
         className="icon"
@@ -24,13 +23,14 @@ const ListItem = ({ color, icon, type, value, children, ...others }) => {
   }
   return (
     <Styled.ListItem
+      color={color}
       type={type}
       value={value}
       {...handleProps(others, 'list-item')}
       hasIcon={hasIcon}
     >
       {iconContent}
-      <span>{children}</span>
+      <Styled.ListItemText color={color} className="item-text">{children}</Styled.ListItemText>
     </Styled.ListItem>
   )
 }

@@ -1,6 +1,11 @@
 /* eslint-disable react/jsx-one-expression-per-line,jsx-a11y/anchor-is-valid */
 import React from 'react'
-import { FaSkull, FaSkullCrossbones, FaExclamationCircle, FaInfoCircle } from 'react-icons/fa'
+import {
+  FaSkull,
+  FaSkullCrossbones,
+  FaExclamationCircle,
+  FaInfoCircle,
+} from 'react-icons/fa'
 
 import * as Story from '_story'
 import { colors } from 'config'
@@ -24,8 +29,6 @@ const actionItems = () =>
     </ListItem>
   ))
 
-
-
 const Demo = () => (
   <>
     <h1>Lists</h1>
@@ -37,24 +40,79 @@ const Demo = () => (
       The <em>ListItem</em> component applies theme styling to the HTML{' '}
       <code>li</code> element and is used with both ordered and unordered lists.
     </p>
-    {/*<Story.Grid>*/}
-    {/*  <Story.Box>*/}
-    {/*    <ListOrdered>*/}
-    {/*      {Story.makeIntArray(4).map(() => (*/}
-    {/*        <ListItem>item</ListItem>*/}
-    {/*      ))}*/}
-    {/*    </ListOrdered>*/}
-    {/*  </Story.Box>*/}
-    {/*  <Story.Box>*/}
-    {/*    <ListUnordered>*/}
-    {/*      {Story.makeIntArray(4).map(() => (*/}
-    {/*        <ListItem>unitem</ListItem>*/}
-    {/*      ))}*/}
-    {/*    </ListUnordered>*/}
-    {/*  </Story.Box>*/}
-    {/*</Story.Grid>*/}
 
-    <h2>Unordered Lists</h2>
+    <h2>Color and MarkerColor Props</h2>
+    <Story.Grid>
+      <Story.Box color="dark">
+        <ListOrdered>
+          <ListItem>primary item</ListItem>
+          <ListItem icon={<FaSkull />}>primary icon item</ListItem>
+        </ListOrdered>
+      </Story.Box>
+      <Story.Box>
+        <ListUnordered>
+          <ListItem>primary item</ListItem>
+          <ListItem icon={<FaSkull />}>primary icon item</ListItem>
+        </ListUnordered>
+      </Story.Box>
+    </Story.Grid>
+    <p>
+      The <em>color</em> prop should color both the marker and the text.
+    </p>
+    <Story.Grid>
+      <Story.Box color="dark">
+        <ListOrdered color="primary">
+          <ListItem>primary item</ListItem>
+          <ListItem icon={<FaSkull />}>primary icon item</ListItem>
+          <ListItem color="secondary">secondary item</ListItem>
+          <ListItem color="secondary" icon={<FaSkull />}>
+            secondary icon item
+          </ListItem>
+        </ListOrdered>
+      </Story.Box>
+      <Story.Box>
+        <ListUnordered color="primary">
+          <ListItem>primary item</ListItem>
+          <ListItem icon={<FaSkull />}>primary icon item</ListItem>
+          <ListItem color="secondary">secondary item</ListItem>
+          <ListItem color="secondary" icon={<FaSkull />}>
+            secondary icon item
+          </ListItem>
+        </ListUnordered>
+      </Story.Box>
+    </Story.Grid>
+    <p>
+      The <em>markerColor</em> prop should color only the marker (only works on native markers in Firefox and Safari >= 11.1).
+    </p>
+    <Story.Grid>
+      <Story.Box color="dark">
+        <ListOrdered markerColor="primary">
+          <ListItem>primary item</ListItem>
+          <ListItem icon={<FaSkull />}>primary icon item</ListItem>
+          <ListItem markerColor="secondary">secondary item</ListItem>
+          <ListItem markerColor="secondary" icon={<FaSkull />}>
+            secondary icon item
+          </ListItem>
+        </ListOrdered>
+      </Story.Box>
+      <Story.Box>
+        <ListUnordered markerColor="primary">
+          <ListItem>primary item</ListItem>
+          <ListItem icon={<FaSkull />}>primary icon item</ListItem>
+          <ListItem markerColor="secondary">secondary item</ListItem>
+          <ListItem markerColor="secondary" icon={<FaSkull />}>
+            secondary icon item
+          </ListItem>
+        </ListUnordered>
+      </Story.Box>
+    </Story.Grid>
+
+
+    <h2>Icon Prop</h2>
+    <p>
+      The <em>ListItem</em> component icon prop accepts a React component to use
+      in place of a list marker.
+    </p>
     <Story.Grid>
       <Story.Box>
         <ListUnordered>
@@ -65,10 +123,15 @@ const Demo = () => (
             <ListItem icon={<FaSkull />}>item</ListItem>
           </ListUnordered>
           <ListItem icon={<FaExclamationCircle />}>item</ListItem>
-          <ListItem icon={<FaInfoCircle />}>item</ListItem>
+          <ListItem icon={<FaSkullCrossbones />}>item</ListItem>
         </ListUnordered>
       </Story.Box>
+    </Story.Grid>
+
+    <h2>Unordered Lists</h2>
+    <Story.Grid>
       <Story.Box>
+        <h3>Horns</h3>
         <ListUnordered type="disc">
           <ListItem>item</ListItem>
           <ListItem>item</ListItem>
@@ -91,6 +154,7 @@ const Demo = () => (
         </ListUnordered>
       </Story.Box>
       <Story.Box>
+        <h3>Native</h3>
         <ul type="disc">
           <li>item</li>
           <li>item</li>
@@ -117,15 +181,20 @@ const Demo = () => (
     <h2>Ordered Lists</h2>
     <Story.Grid>
       <Story.Box>
+        <h3>Horns</h3>
         <ListOrdered type="l">
           <ListItem>item</ListItem>
           <ListItem>item</ListItem>
           <ListOrdered type="l">
             <ListItem>item</ListItem>
-            <ListItem value={100} type="l">item with value</ListItem>
+            <ListItem value={100} type="l">
+              item with value
+            </ListItem>
           </ListOrdered>
           <ListItem>item</ListItem>
-          <ListItem value={100} type="l">item with value</ListItem>
+          <ListItem value={100} type="l">
+            item with value
+          </ListItem>
         </ListOrdered>
         <ListOrdered type="A">
           <ListItem>item</ListItem>
@@ -149,6 +218,7 @@ const Demo = () => (
         </ListOrdered>
       </Story.Box>
       <Story.Box>
+        <h3>Native</h3>
         <ol type="l">
           <li>item</li>
           <li>item</li>
@@ -181,95 +251,6 @@ const Demo = () => (
         </ol>
       </Story.Box>
     </Story.Grid>
-
-    {/*<h2>Type Prop</h2>*/}
-    {/*<p>*/}
-    {/*  The <em>ListOrdered</em> and <em>ListUnordered</em> components accept a{' '}*/}
-    {/*  <em>type</em> prop determines what kind of marker to use for the list*/}
-    {/*  items.*/}
-    {/*</p>*/}
-    {/*<p>*/}
-    {/*  The <em>ListItem</em> component also accepts a <em>type</em> prop that*/}
-    {/*  will take priority over the marker of the parent list.*/}
-    {/*</p>*/}
-    {/*<p>*/}
-    {/*  The <em>type</em> prop accepts any value accepted by the{' '}*/}
-    {/*  <code>list-style-type</code> CSS property.*/}
-    {/*</p>*/}
-    {/*<Story.Grid>*/}
-    {/*  <Story.Box>*/}
-    {/*    <ListOrdered>*/}
-    {/*      <ListItem>default item</ListItem>*/}
-    {/*      {listTypes.ordered.map(i => (*/}
-    {/*        <ListItem type={i}>{i} item</ListItem>*/}
-    {/*      ))}*/}
-    {/*    </ListOrdered>*/}
-    {/*  </Story.Box>*/}
-    {/*  <Story.Box>*/}
-    {/*    <ListUnordered>*/}
-    {/*      <ListItem>default unitem</ListItem>*/}
-    {/*      {listTypes.unordered.map(i => (*/}
-    {/*        <ListItem type={i}>{i} unitem</ListItem>*/}
-    {/*      ))}*/}
-    {/*    </ListUnordered>*/}
-    {/*  </Story.Box>*/}
-    {/*</Story.Grid>*/}
-
-    {/*<Story.Grid>*/}
-    {/*  <Story.Box>*/}
-    {/*    <ListUnordered>*/}
-    {/*      {Story.makeIntArray(10).map(i => (*/}
-    {/*        <ListItem>unitem {i}</ListItem>*/}
-    {/*      ))}*/}
-    {/*      <ListItem>*/}
-    {/*        Ili e-Ol balazodareji, od aala tahilanu-os netaabe: daluga*/}
-    {/*        vaomesareji elonusa cape-mi-ali varoesa cala homila; Azazel*/}
-    {/*        qui-i-inu toltoregi cahisa i cahisaji em ozodien; Pilada noanu*/}
-    {/*        vaunalahe balata od-vaoan. Micama! goho Pe-IAD! zodir com-selahe*/}
-    {/*        azodien biabe os-lon-dohe.*/}
-    {/*      </ListItem>*/}
-    {/*      <ListItem type="circle">circle item</ListItem>*/}
-    {/*      <ListItem type="none">none item</ListItem>*/}
-    {/*      <ListItem type="square">square item</ListItem>*/}
-    {/*    </ListUnordered>*/}
-    {/*  </Story.Box>*/}
-    {/*  <Story.Box>*/}
-    {/*    <ListOrdered>*/}
-    {/*      {Story.makeIntArray(10).map(i => (*/}
-    {/*        <ListItem>item {i}</ListItem>*/}
-    {/*      ))}*/}
-    {/*      <ListItem>item 11</ListItem>*/}
-    {/*      <ListItem counter={100}>item 100</ListItem>*/}
-    {/*    </ListOrdered>*/}
-    {/*  </Story.Box>*/}
-    {/*</Story.Grid>*/}
-
-    {/*<h2>Color Prop</h2>*/}
-    {/*<p>*/}
-    {/*  The <em>ListOrdered</em> and <em>ListUnordered</em> components accept a{' '}*/}
-    {/*  <em>color</em> prop that colors the list item markers, but not the font*/}
-    {/*  color of the items.*/}
-    {/*</p>*/}
-    {/*<p>*/}
-    {/*  The <em>ListItem</em> component also accepts a <em>color</em> prop that*/}
-    {/*  will take priority over the color of the parent list.*/}
-    {/*</p>*/}
-    {/*{colors.map(color => (*/}
-    {/*  <Story.Grid>*/}
-    {/*    <Story.Box>*/}
-    {/*      <ListOrdered color={color}>*/}
-    {/*        {makeItems(color)}*/}
-    {/*        {actionItems()}*/}
-    {/*      </ListOrdered>*/}
-    {/*    </Story.Box>*/}
-    {/*    <Story.Box>*/}
-    {/*      <ListUnordered color={color}>*/}
-    {/*        {makeItems(color)}*/}
-    {/*        {actionItems()}*/}
-    {/*      </ListUnordered>*/}
-    {/*    </Story.Box>*/}
-    {/*  </Story.Grid>*/}
-    {/*))}*/}
   </>
 )
 

@@ -8,37 +8,52 @@ import { chromatic, margined, typographic } from '../../../../traits'
 export const ListItem = styled.li(
   typographic.styles,
   margined.styles,
-  ({ hasIcon }) =>
-    hasIcon &&
-    css`
-      display: flex;
-      margin-left: -2em;
-      align-items: center;
-    `
-)
-
-export const ListItemMarker = styled.i(
-  chromatic.styles,
-  ({ theme, color, type, value }) => {
+  ({ theme, color, markerColor, hasIcon }) => {
     const c = theme.color.getColorway(color)
     const cc = color === 'background' ? c.base.readable : c.base.base
+
+    const mkc = markerColor || color
+    const mc = theme.color.getColorway(mkc)
+    const mcc = markerColor === 'background' ? mc.base.readable : mc.base.base
+    const baseCSS =
+      hasIcon &&
+      css`
+        display: flex;
+        margin-left: -2em;
+        align-items: center;
+      `
     return css`
-      display: inline-flex;
-      justify-content: center;
-      font-style: unset;
+      ${baseCSS};
       color: ${cc && `${cc} !important`};
-      width: 2em;
-      &:not(.icon)::before {
-        content: ${getListItemMarker({ type, value }, true)};
+      &::marker {
+        color: ${mcc && `${mcc} !important`};
+      }
+      i {
+        color: ${mcc && `${mcc} !important`};
       }
     `
   }
 )
 
-ListItemMarker.propTypes = {
+ListItem.propTypes = {
   ...chromatic.propTypes(),
 }
 
-ListItemMarker.defaultProps = {
+ListItem.defaultProps = {
   ...chromatic.defaultProps(null, true),
 }
+
+export const ListItemMarker = styled.i(chromatic.styles, () => {
+  return css`
+    display: inline-flex;
+    justify-content: center;
+    font-style: unset;
+    width: 2em;
+  `
+})
+
+export const ListItemText = styled.span(({ theme, color }) => {
+  const c = theme.color.getColorway(color)
+  const cc = color === 'background' ? c.base.readable : c.base.base
+  return css``
+})

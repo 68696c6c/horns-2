@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
 import { css } from '@emotion/core'
 
+import { colors } from '../../../config'
 import { chromatic, typographic } from '../../../traits'
 
 export const LIST_COUNTER = 'li'
@@ -75,12 +76,21 @@ export const getListItemMarker = ({type, counter, value}, isItem) => {
 export const baseList = {
   styles: () => [
     typographic.styles,
-    ({ theme, color }) => {
+    ({ theme, color, markerColor }) => {
       const c = theme.color.getColorway(color)
+      const cc = color === 'background' ? c.base.readable : c.base.base
+
+      const mkc = markerColor || color
+      const mc = theme.color.getColorway(mkc)
+      const mcc = markerColor === 'background' ? mc.base.readable : mc.base.base
       return css`
         padding-left: 2em;
-        .marker {
-          color: ${color === 'background' ? c.base.readable : c.base.base};
+        color: ${cc};
+        .list-item::marker {
+          color: ${mcc};
+        }
+        i {
+          color: ${mcc};
         }
       `
     },
@@ -88,9 +98,11 @@ export const baseList = {
   propTypes: () => ({
     ...chromatic.propTypes(),
     ...typographic.propTypes(),
+    markerColor: PropTypes.oneOf([null, ...colors]),
   }),
   defaultProps: () => ({
     ...chromatic.defaultProps(null, true),
     ...typographic.defaultProps(),
+    markerColor: null,
   }),
 }
