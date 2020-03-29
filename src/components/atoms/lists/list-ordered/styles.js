@@ -1,28 +1,23 @@
 import { css } from '@emotion/core'
 import styled from '@emotion/styled'
 
-import { baseList } from '../utils'
-
-const LIST_COUNTER = 'li'
+import { baseList, getListItemMarker } from '../utils'
 
 // eslint-disable-next-line import/prefer-default-export
 export const ListOrdered = styled.ol(
   ...baseList.styles(),
-  () => css`
-    counter-reset: ${LIST_COUNTER};
+  ({ type, counter }) => css`
+    counter-reset: ${counter};
     .list-item {
       display: flex;
       align-items: center;
     }
-    .icon {
-      counter-increment: ${LIST_COUNTER};
+    .marker {
+      counter-increment: ${counter};
       justify-content: flex-end;
       padding-right: 0.5em;
-      &.bullet {
-        width: 2em;
-        &::before {
-          content: counter(${LIST_COUNTER}) '.';
-        }
+      &:not(.icon)::before {
+        content: ${getListItemMarker(type, false)};
       }
     }
   `

@@ -14,13 +14,13 @@ import * as Styled from './styles'
 const ListItem = ({ color, icon, type, children, ...others }) => {
   return (
     <Styled.ListItem {...handleProps(others, 'list-item')}>
-      <Styled.ListItemIcon
+      <Styled.ListItemMarker
         color={color}
         type={type}
-        className={`icon ${isFragment(icon) && 'bullet'}`}
+        className={`marker ${!isFragment(icon) && 'icon'}`}
       >
         {icon}
-      </Styled.ListItemIcon>
+      </Styled.ListItemMarker>
       {children}
     </Styled.ListItem>
   )

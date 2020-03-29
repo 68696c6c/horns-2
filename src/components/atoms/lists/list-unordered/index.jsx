@@ -14,13 +14,13 @@ const ListUnordered = ({ ...others }) => (
 ListUnordered.propTypes = {
   ...chromatic.propTypes(),
   ...typographic.propTypes(),
-  type: PropTypes.oneOf([null, ...Object.keys(listTypes.unordered)]),
+  type: PropTypes.oneOf([null, ...listTypes.unordered]),
 }
 
 ListUnordered.defaultProps = {
   ...chromatic.defaultProps(null, true),
   ...typographic.defaultProps(),
-  type: null,
+  type: 'disc',
 }
 
 export default ListUnordered

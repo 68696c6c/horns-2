@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
+import uuid from 'uuid/v4'
 
 import { handleProps } from '../../../utils'
 import { chromatic, typographic } from '../../../../traits'
@@ -7,9 +8,17 @@ import { chromatic, typographic } from '../../../../traits'
 import { listTypes } from '../utils'
 import * as Styled from './styles'
 
-const ListOrdered = ({ ordered, ...others }) => (
-  <Styled.ListOrdered {...handleProps(others, 'list')} />
-)
+const ListOrdered = ({ ordered, ...others }) => {
+  const [counter, setCounter] = useState('ol')
+  useEffect(() => {
+    const c = uuid()
+    console.log('use effect', c)
+    setCounter(c)
+  }, [])
+  return (
+    <Styled.ListOrdered {...handleProps(others, 'list')} counter={counter} />
+  )
+}
 
 ListOrdered.propTypes = {
   ...chromatic.propTypes(),
@@ -20,7 +29,7 @@ ListOrdered.propTypes = {
 ListOrdered.defaultProps = {
   ...chromatic.defaultProps(null, true),
   ...typographic.defaultProps(),
-  type: null,
+  type: 'decimal',
 }
 
 export default ListOrdered
