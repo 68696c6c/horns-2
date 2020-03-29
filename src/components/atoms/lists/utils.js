@@ -88,11 +88,9 @@ export const baseList = {
   propTypes: () => ({
     ...chromatic.propTypes(),
     ...typographic.propTypes(),
-    ordered: PropTypes.bool,
   }),
   defaultProps: () => ({
     ...chromatic.defaultProps(null, true),
     ...typographic.defaultProps(),
-    ordered: false,
   }),
 }

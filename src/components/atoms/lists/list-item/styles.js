@@ -5,17 +5,26 @@ import { getListItemMarker } from '../utils'
 import { chromatic, margined, typographic } from '../../../../traits'
 
 // The chromatic trait is not used here because we want to color the item bullet, not the item text.
-export const ListItem = styled.li(typographic.styles, margined.styles)
+export const ListItem = styled.li(
+  typographic.styles,
+  margined.styles,
+  ({ hasIcon }) =>
+    hasIcon &&
+    css`
+      display: flex;
+      margin-left: -2em;
+      align-items: center;
+    `
+)
 
 export const ListItemMarker = styled.i(
   chromatic.styles,
   ({ theme, color, type, value }) => {
-    console.log('list marker value', value)
     const c = theme.color.getColorway(color)
     const cc = color === 'background' ? c.base.readable : c.base.base
     return css`
       display: inline-flex;
-      justify-content: flex-end;
+      justify-content: center;
       font-style: unset;
       color: ${cc && `${cc} !important`};
       width: 2em;

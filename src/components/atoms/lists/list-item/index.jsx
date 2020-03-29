@@ -1,29 +1,36 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import {
-  childrenPropTypes,
-  handleProps,
-  isFragment,
-} from '../../../utils'
+import { childrenPropTypes, handleProps, isFragment } from '../../../utils'
 import { chromatic, margined, typographic } from '../../../../traits'
 
 import { listTypes } from '../utils'
 import * as Styled from './styles'
 
 const ListItem = ({ color, icon, type, value, children, ...others }) => {
-  console.log('list item value', value)
-  return (
-    <Styled.ListItem value={value} {...handleProps(others, 'list-item')}>
+  const hasIcon = !isFragment(icon)
+  let iconContent
+  if (hasIcon) {
+    iconContent = (
       <Styled.ListItemMarker
         color={color}
         type={type}
         value={value}
-        className={`marker ${!isFragment(icon) && 'icon'}`}
+        className="icon"
       >
         {icon}
       </Styled.ListItemMarker>
-      {children}
+    )
+  }
+  return (
+    <Styled.ListItem
+      type={type}
+      value={value}
+      {...handleProps(others, 'list-item')}
+      hasIcon={hasIcon}
+    >
+      {iconContent}
+      <span>{children}</span>
     </Styled.ListItem>
   )
 }
@@ -33,11 +40,7 @@ ListItem.propTypes = {
   ...margined.propTypes(),
   ...typographic.propTypes(),
   icon: childrenPropTypes(),
-  type: PropTypes.oneOf([
-    null,
-    listTypes.unordered,
-    ...listTypes.ordered,
-  ]),
+  type: PropTypes.oneOf([null, listTypes.unordered, ...listTypes.ordered]),
 }
 
 ListItem.defaultProps = {
