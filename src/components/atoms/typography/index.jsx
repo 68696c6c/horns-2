@@ -7,6 +7,7 @@ import { handleProps } from '../../utils'
 
 import * as Styled from './styles'
 
+// @TODO add support for HTML u tag https://www.w3schools.com/tags/tag_u.asp
 export const typographicFonts = [
   ...fontStyles,
   'blockquote',
