@@ -21,3 +21,5 @@ ListOrdered.defaultProps = {
 }
 
 export default ListOrdered
+
+export const OL = props => <ListOrdered {...props} />

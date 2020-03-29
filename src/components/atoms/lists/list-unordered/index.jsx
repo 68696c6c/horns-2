@@ -21,3 +21,5 @@ ListUnordered.defaultProps = {
 }
 
 export default ListUnordered
+
+export const UL = props => <ListUnordered {...props} />

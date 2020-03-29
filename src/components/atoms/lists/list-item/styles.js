@@ -1,35 +1,31 @@
 import { css } from '@emotion/core'
 import styled from '@emotion/styled'
 
-import { getListItemMarker } from '../utils'
 import { chromatic, margined, typographic } from '../../../../traits'
+import { getItemColors } from '../utils'
 
-// The chromatic trait is not used here because we want to color the item bullet, not the item text.
 export const ListItem = styled.li(
+  chromatic.styles,
   typographic.styles,
   margined.styles,
   ({ theme, color, markerColor, hasIcon }) => {
-    const c = theme.color.getColorway(color)
-    const cc = color === 'background' ? c.base.readable : c.base.base
-
-    const mkc = markerColor || color
-    const mc = theme.color.getColorway(mkc)
-    const mcc = markerColor === 'background' ? mc.base.readable : mc.base.base
-    const baseCSS =
-      hasIcon &&
-      css`
-        display: flex;
-        margin-left: -2em;
-        align-items: center;
-      `
+    const c = getItemColors(theme, color, markerColor, true)
+    // Note that in browsers that do not support the ::marker selector (e.g. Chrome), combining it
+    // with any other supported selectors will cause the entire rule to fail, hence the separate
+    // blocks for ::marker and .list-item-marker.
     return css`
-      ${baseCSS};
-      color: ${cc && `${cc} !important`};
+      ${hasIcon &&
+        css`
+      display: grid;
+      grid-template-columns: 2em auto;
+      align-items: center;
+      margin-left: -2em;
+        `};
       &::marker {
-        color: ${mcc && `${mcc} !important`};
+        color: ${c.markerColor};
       }
-      i {
-        color: ${mcc && `${mcc} !important`};
+      .list-item-marker {
+        color: ${c.markerColor};
       }
     `
   }
@@ -43,17 +39,17 @@ ListItem.defaultProps = {
   ...chromatic.defaultProps(null, true),
 }
 
-export const ListItemMarker = styled.i(chromatic.styles, () => {
+export const ListItemMarker = styled.i(({ theme, font }) => {
+  // In order to position the marker correctly for items that have multiple lines of text, we need
+  // to make the height of the marker match the line-height of the text.
+  const style = theme.typography.getStyle(font)
   return css`
-    display: inline-flex;
+    display: flex;
     justify-content: center;
-    font-style: unset;
+    align-self: baseline;
+    align-items: center;
     width: 2em;
+    height: ${style.lineHeight};
+    font-style: unset;
   `
-})
-
-export const ListItemText = styled.span(({ theme, color }) => {
-  const c = theme.color.getColorway(color)
-  const cc = color === 'background' ? c.base.readable : c.base.base
-  return css``
 })

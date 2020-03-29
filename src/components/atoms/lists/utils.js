@@ -4,99 +4,50 @@ import { css } from '@emotion/core'
 import { colors } from '../../../config'
 import { chromatic, typographic } from '../../../traits'
 
-export const LIST_COUNTER = 'li'
-
 export const listTypes = {
-  ordered: [
-    'A',
-    'a',
-    'I',
-    'i',
-    'l',
-    // 'armenian',
-    // 'cjk-ideographic',
-    // 'decimal',
-    // 'decimal-leading-zero',
-    // 'georgian',
-    // 'hebrew',
-    // 'hiragana',
-    // 'hiragana-iroha',
-    // 'katakana',
-    // 'katakana-iroha',
-    // 'lower-alpha',
-    // 'lower-greek',
-    // 'lower-latin',
-    // 'lower-roman',
-    // 'none',
-    // 'upper-alpha',
-    // 'upper-greek',
-    // 'upper-latin',
-    // 'upper-roman',
-  ],
+  ordered: ['A', 'a', 'I', 'i', 'l'],
   unordered: ['disc', 'circle', 'none', 'square'],
 }
 
-export const orderedTypeMap = {
-  A: 'upper-alpha',
-  a: 'lower-alpha',
-  I: 'upper-roman',
-  i: 'lower-roman',
-  l: 'decimal',
-}
+export const getItemColors = (theme, color, markerColor, isItem) => {
+  const c = theme.color.getColorway(color)
+  const cc = color === 'background' ? c.base.readable : c.base.base
 
-export const unorderedTypeMap = {
-  disc: '●',
-  circle: '○',
-  none: ' ',
-  square: '■',
-}
+  const mc = theme.color.getColorway(markerColor || color)
+  let mcc = markerColor === 'background' ? mc.base.readable : mc.base.base
 
-export const getListItemMarker = ({type, counter, value}, isItem) => {
-  console.log('type', type)
-  if (!value && type === null) {
-    return null
+  if (mcc && isItem) {
+    mcc = `${mcc} !important`
   }
-  let content
-  if (value) {
-    content = `'${value}.'`
-  } else if (listTypes.ordered.indexOf(type) > -1) {
-    content = `counter(${counter}, ${orderedTypeMap[type]}) '.'`
-  } else if (listTypes.unordered.indexOf(type) > -1) {
-    content = `'${unorderedTypeMap.disc}'`
-    if (type && unorderedTypeMap[type]) {
-      content = `'${unorderedTypeMap[type]}'`
-    }
+
+  return {
+    color: cc,
+    markerColor: mcc,
   }
-  if (isItem) {
-    content = `${content} !important`
-  }
-  return content
 }
 
 export const baseList = {
   styles: () => [
+    chromatic.styles,
     typographic.styles,
     ({ theme, color, markerColor }) => {
-      const c = theme.color.getColorway(color)
-      const cc = color === 'background' ? c.base.readable : c.base.base
-
-      const mkc = markerColor || color
-      const mc = theme.color.getColorway(mkc)
-      const mcc = markerColor === 'background' ? mc.base.readable : mc.base.base
+      const c = getItemColors(theme, color, markerColor, false)
+      // Note that in browsers that do not support the ::marker selector (e.g. Chrome), combining it
+      // with any other supported selectors will cause the entire rule to fail, hence the separate
+      // blocks for ::marker and .list-item-marker.
       return css`
         padding-left: 2em;
-        color: ${cc};
         .list-item::marker {
-          color: ${mcc};
+          color: ${c.markerColor};
         }
-        i {
-          color: ${mcc};
+        .list-item-marker {
+          color: ${c.markerColor};
         }
       `
     },
   ],
   propTypes: () => ({
-    ...chromatic.propTypes(),
+    ...chromatic.propTypes(null, true),
     ...typographic.propTypes(),
     markerColor: PropTypes.oneOf([null, ...colors]),
   }),

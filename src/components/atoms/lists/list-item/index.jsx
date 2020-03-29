@@ -7,30 +7,16 @@ import { chromatic, margined, typographic } from '../../../../traits'
 import { listTypes } from '../utils'
 import * as Styled from './styles'
 
-const ListItem = ({ color, icon, type, value, children, ...others }) => {
+const ListItem = ({ icon, font, children, ...others }) => {
   const hasIcon = !isFragment(icon)
-  let iconContent
-  if (hasIcon) {
-    iconContent = (
-      <Styled.ListItemMarker
-        type={type}
-        value={value}
-        className="icon"
-      >
-        {icon}
-      </Styled.ListItemMarker>
-    )
-  }
   return (
-    <Styled.ListItem
-      color={color}
-      type={type}
-      value={value}
-      {...handleProps(others, 'list-item')}
-      hasIcon={hasIcon}
-    >
-      {iconContent}
-      <Styled.ListItemText color={color} className="item-text">{children}</Styled.ListItemText>
+    <Styled.ListItem {...handleProps(others, 'list-item')} font={font} hasIcon={hasIcon}>
+      {hasIcon && (
+        <Styled.ListItemMarker className="list-item-marker" font={font}>
+          {icon}
+        </Styled.ListItemMarker>
+      )}
+      {children}
     </Styled.ListItem>
   )
 }
@@ -52,3 +38,5 @@ ListItem.defaultProps = {
 }
 
 export default ListItem
+
+export const LI = props => <ListItem {...props} />
