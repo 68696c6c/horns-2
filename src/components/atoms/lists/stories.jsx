@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-one-expression-per-line,jsx-a11y/anchor-is-valid */
 import React from 'react'
-import { FaSkullCrossbones } from 'react-icons/fa'
+import { FaSkull, FaSkullCrossbones, FaExclamationCircle, FaInfoCircle } from 'react-icons/fa'
 
 import * as Story from '_story'
 import { colors } from 'config'
@@ -24,6 +24,8 @@ const actionItems = () =>
     </ListItem>
   ))
 
+
+
 const Demo = () => (
   <>
     <h1>Lists</h1>
@@ -39,47 +41,143 @@ const Demo = () => (
     {/*  <Story.Box>*/}
     {/*    <ListOrdered>*/}
     {/*      {Story.makeIntArray(4).map(() => (*/}
-    {/*        <ListItem>ordered item</ListItem>*/}
+    {/*        <ListItem>item</ListItem>*/}
     {/*      ))}*/}
     {/*    </ListOrdered>*/}
     {/*  </Story.Box>*/}
     {/*  <Story.Box>*/}
     {/*    <ListUnordered>*/}
     {/*      {Story.makeIntArray(4).map(() => (*/}
-    {/*        <ListItem>unordered item</ListItem>*/}
+    {/*        <ListItem>unitem</ListItem>*/}
     {/*      ))}*/}
     {/*    </ListUnordered>*/}
     {/*  </Story.Box>*/}
     {/*</Story.Grid>*/}
 
-    <h2>Nested Lists</h2>
+    <h2>Unordered Lists</h2>
     <Story.Grid>
       <Story.Box>
-        <ListOrdered>
-          <ListItem>ordered item</ListItem>
-          <ListItem>ordered item</ListItem>
-          <ListOrdered>
-            <ListItem>ordered item</ListItem>
-            <ListItem>ordered item</ListItem>
-            <ListItem>ordered item</ListItem>
-            <ListItem>ordered item</ListItem>
+        <ListUnordered>
+          <ListItem>item</ListItem>
+          <ListItem>item</ListItem>
+          <ListUnordered>
+            <ListItem>item</ListItem>
+            <ListItem icon={<FaSkull />}>item</ListItem>
+          </ListUnordered>
+          <ListItem icon={<FaExclamationCircle />}>item</ListItem>
+          <ListItem icon={<FaInfoCircle />}>item</ListItem>
+        </ListUnordered>
+      </Story.Box>
+      <Story.Box>
+        <ListUnordered type="disc">
+          <ListItem>item</ListItem>
+          <ListItem>item</ListItem>
+          <ListUnordered type="circle">
+            <ListItem>item</ListItem>
+            <ListItem type="square">item with type</ListItem>
+          </ListUnordered>
+          <ListItem>item</ListItem>
+          <ListItem type="square">item with type</ListItem>
+        </ListUnordered>
+        <ListUnordered type="square">
+          <ListItem>item</ListItem>
+          <ListItem>item</ListItem>
+          <ListUnordered type="none">
+            <ListItem>item</ListItem>
+            <ListItem type="circle">item with type</ListItem>
+          </ListUnordered>
+          <ListItem>item</ListItem>
+          <ListItem type="disc">item with type</ListItem>
+        </ListUnordered>
+      </Story.Box>
+      <Story.Box>
+        <ul type="disc">
+          <li>item</li>
+          <li>item</li>
+          <ul type="circle">
+            <li>item</li>
+            <li type="square">item with type</li>
+          </ul>
+          <li>item</li>
+          <li type="square">item with type</li>
+        </ul>
+        <ul type="square">
+          <li>item</li>
+          <li>item</li>
+          <ul type="none">
+            <li>item</li>
+            <li type="circle">item with type</li>
+          </ul>
+          <li>item</li>
+          <li type="disc">item with type</li>
+        </ul>
+      </Story.Box>
+    </Story.Grid>
+
+    <h2>Ordered Lists</h2>
+    <Story.Grid>
+      <Story.Box>
+        <ListOrdered type="l">
+          <ListItem>item</ListItem>
+          <ListItem>item</ListItem>
+          <ListOrdered type="l">
+            <ListItem>item</ListItem>
+            <ListItem value={100} type="l">item with value</ListItem>
           </ListOrdered>
-          <ListItem>ordered item</ListItem>
-          <ListItem>ordered item</ListItem>
+          <ListItem>item</ListItem>
+          <ListItem value={100} type="l">item with value</ListItem>
+        </ListOrdered>
+        <ListOrdered type="A">
+          <ListItem>item</ListItem>
+          <ListItem>item</ListItem>
+          <ListOrdered type="a">
+            <ListItem>item</ListItem>
+            <ListItem value={100}>item with value</ListItem>
+          </ListOrdered>
+          <ListItem>item</ListItem>
+          <ListItem value={100}>item with value</ListItem>
+        </ListOrdered>
+        <ListOrdered type="I">
+          <ListItem>item</ListItem>
+          <ListItem>item</ListItem>
+          <ListOrdered type="i">
+            <ListItem>item</ListItem>
+            <ListItem value={100}>item with value</ListItem>
+          </ListOrdered>
+          <ListItem>item</ListItem>
+          <ListItem value={100}>item with value</ListItem>
         </ListOrdered>
       </Story.Box>
       <Story.Box>
-        <ol>
+        <ol type="l">
           <li>item</li>
           <li>item</li>
-          <ol>
+          <ol type="l">
             <li>item</li>
-            <li>item</li>
-            <li>item</li>
-            <li>item</li>
+            <li value={100}>item with value</li>
           </ol>
           <li>item</li>
+          <li value={100}>item with value</li>
+        </ol>
+        <ol type="A">
           <li>item</li>
+          <li>item</li>
+          <ol type="a">
+            <li>item</li>
+            <li value={100}>item with value</li>
+          </ol>
+          <li>item</li>
+          <li value={100}>item with value</li>
+        </ol>
+        <ol type="I">
+          <li>item</li>
+          <li>item</li>
+          <ol type="i">
+            <li>item</li>
+            <li value={100}>item with value</li>
+          </ol>
+          <li>item</li>
+          <li value={100}>item with value</li>
         </ol>
       </Story.Box>
     </Story.Grid>
@@ -101,17 +199,17 @@ const Demo = () => (
     {/*<Story.Grid>*/}
     {/*  <Story.Box>*/}
     {/*    <ListOrdered>*/}
-    {/*      <ListItem>default ordered item</ListItem>*/}
+    {/*      <ListItem>default item</ListItem>*/}
     {/*      {listTypes.ordered.map(i => (*/}
-    {/*        <ListItem type={i}>{i} ordered item</ListItem>*/}
+    {/*        <ListItem type={i}>{i} item</ListItem>*/}
     {/*      ))}*/}
     {/*    </ListOrdered>*/}
     {/*  </Story.Box>*/}
     {/*  <Story.Box>*/}
     {/*    <ListUnordered>*/}
-    {/*      <ListItem>default unordered item</ListItem>*/}
+    {/*      <ListItem>default unitem</ListItem>*/}
     {/*      {listTypes.unordered.map(i => (*/}
-    {/*        <ListItem type={i}>{i} unordered item</ListItem>*/}
+    {/*        <ListItem type={i}>{i} unitem</ListItem>*/}
     {/*      ))}*/}
     {/*    </ListUnordered>*/}
     {/*  </Story.Box>*/}
@@ -121,7 +219,7 @@ const Demo = () => (
     {/*  <Story.Box>*/}
     {/*    <ListUnordered>*/}
     {/*      {Story.makeIntArray(10).map(i => (*/}
-    {/*        <ListItem>unordered item {i}</ListItem>*/}
+    {/*        <ListItem>unitem {i}</ListItem>*/}
     {/*      ))}*/}
     {/*      <ListItem>*/}
     {/*        Ili e-Ol balazodareji, od aala tahilanu-os netaabe: daluga*/}
@@ -138,10 +236,10 @@ const Demo = () => (
     {/*  <Story.Box>*/}
     {/*    <ListOrdered>*/}
     {/*      {Story.makeIntArray(10).map(i => (*/}
-    {/*        <ListItem>ordered item {i}</ListItem>*/}
+    {/*        <ListItem>item {i}</ListItem>*/}
     {/*      ))}*/}
-    {/*      <ListItem>ordered item 11</ListItem>*/}
-    {/*      <ListItem counter={100}>ordered item 100</ListItem>*/}
+    {/*      <ListItem>item 11</ListItem>*/}
+    {/*      <ListItem counter={100}>item 100</ListItem>*/}
     {/*    </ListOrdered>*/}
     {/*  </Story.Box>*/}
     {/*</Story.Grid>*/}

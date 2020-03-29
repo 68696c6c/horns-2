@@ -11,12 +11,14 @@ import { chromatic, margined, typographic } from '../../../../traits'
 import { listTypes } from '../utils'
 import * as Styled from './styles'
 
-const ListItem = ({ color, icon, type, children, ...others }) => {
+const ListItem = ({ color, icon, type, value, children, ...others }) => {
+  console.log('list item value', value)
   return (
-    <Styled.ListItem {...handleProps(others, 'list-item')}>
+    <Styled.ListItem value={value} {...handleProps(others, 'list-item')}>
       <Styled.ListItemMarker
         color={color}
         type={type}
+        value={value}
         className={`marker ${!isFragment(icon) && 'icon'}`}
       >
         {icon}
@@ -30,10 +32,10 @@ ListItem.propTypes = {
   ...chromatic.propTypes(),
   ...margined.propTypes(),
   ...typographic.propTypes(),
-  icon: childrenPropTypes().isRequired,
+  icon: childrenPropTypes(),
   type: PropTypes.oneOf([
     null,
-    ...Object.keys(listTypes.unordered),
+    listTypes.unordered,
     ...listTypes.ordered,
   ]),
 }

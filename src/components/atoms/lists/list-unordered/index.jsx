@@ -8,13 +8,13 @@ import { listTypes } from '../utils'
 import * as Styled from './styles'
 
 const ListUnordered = ({ ...others }) => (
-  <Styled.ListUnordered {...handleProps(others, 'list')} />
+  <Styled.ListUnordered {...handleProps(others, 'list-unordered')} />
 )
 
 ListUnordered.propTypes = {
   ...chromatic.propTypes(),
   ...typographic.propTypes(),
-  type: PropTypes.oneOf([null, ...listTypes.unordered]),
+  type: PropTypes.oneOf([...listTypes.unordered]),
 }
 
 ListUnordered.defaultProps = {

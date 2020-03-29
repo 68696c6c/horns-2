@@ -7,27 +7,40 @@ export const LIST_COUNTER = 'li'
 
 export const listTypes = {
   ordered: [
-    'armenian',
-    'cjk-ideographic',
-    'decimal',
-    'decimal-leading-zero',
-    'georgian',
-    'hebrew',
-    'hiragana',
-    'hiragana-iroha',
-    'katakana',
-    'katakana-iroha',
-    'lower-alpha',
-    'lower-greek',
-    'lower-latin',
-    'lower-roman',
-    'none',
-    'upper-alpha',
-    'upper-greek',
-    'upper-latin',
-    'upper-roman',
+    'A',
+    'a',
+    'I',
+    'i',
+    'l',
+    // 'armenian',
+    // 'cjk-ideographic',
+    // 'decimal',
+    // 'decimal-leading-zero',
+    // 'georgian',
+    // 'hebrew',
+    // 'hiragana',
+    // 'hiragana-iroha',
+    // 'katakana',
+    // 'katakana-iroha',
+    // 'lower-alpha',
+    // 'lower-greek',
+    // 'lower-latin',
+    // 'lower-roman',
+    // 'none',
+    // 'upper-alpha',
+    // 'upper-greek',
+    // 'upper-latin',
+    // 'upper-roman',
   ],
   unordered: ['disc', 'circle', 'none', 'square'],
+}
+
+export const orderedTypeMap = {
+  A: 'upper-alpha',
+  a: 'lower-alpha',
+  I: 'upper-roman',
+  i: 'lower-roman',
+  l: 'decimal',
 }
 
 export const unorderedTypeMap = {
@@ -37,12 +50,16 @@ export const unorderedTypeMap = {
   square: '■',
 }
 
-export const getListItemMarker = (type, isItem, counter) => {
+export const getListItemMarker = ({type, counter, value}, isItem) => {
+  console.log('type', type)
+  if (!value && type === null) {
+    return null
+  }
   let content
-  if (type === 'none') {
-    content = `' '`
+  if (value) {
+    content = `'${value}.'`
   } else if (listTypes.ordered.indexOf(type) > -1) {
-    content = `counter(${counter}, ${type}) '.'`
+    content = `counter(${counter}, ${orderedTypeMap[type]}) '.'`
   } else if (listTypes.unordered.indexOf(type) > -1) {
     content = `'${unorderedTypeMap.disc}'`
     if (type && unorderedTypeMap[type]) {
@@ -61,9 +78,7 @@ export const baseList = {
     ({ theme, color }) => {
       const c = theme.color.getColorway(color)
       return css`
-        list-style-type: none;
-        list-style-position: inside;
-        padding-left: 1em;
+        padding-left: 2em;
         .marker {
           color: ${color === 'background' ? c.base.readable : c.base.base};
         }

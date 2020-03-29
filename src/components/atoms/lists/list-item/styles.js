@@ -9,7 +9,8 @@ export const ListItem = styled.li(typographic.styles, margined.styles)
 
 export const ListItemMarker = styled.i(
   chromatic.styles,
-  ({ theme, color, type }) => {
+  ({ theme, color, type, value }) => {
+    console.log('list marker value', value)
     const c = theme.color.getColorway(color)
     const cc = color === 'background' ? c.base.readable : c.base.base
     return css`
@@ -18,9 +19,8 @@ export const ListItemMarker = styled.i(
       font-style: unset;
       color: ${cc && `${cc} !important`};
       width: 2em;
-      margin-left: -1em;
       &:not(.icon)::before {
-        content: ${getListItemMarker(type, true)};
+        content: ${getListItemMarker({ type, value }, true)};
       }
     `
   }
