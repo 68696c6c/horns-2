@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+// @TODO need a way to set icons at the theme level so different themes can use different iconsets.
 import {
   FaInfoCircle,
   FaExclamationCircle,
