@@ -4,6 +4,8 @@ import { css } from '@emotion/core'
 import { colors } from '../../../config'
 import { chromatic, margined, typographic } from '../../../traits'
 
+// This hardcoded spacing is used because if the spacing on the list changes, the list item has no
+// way to know how much negative offset to apply to the list item icon.
 export const listDefaults = {
   spacingLeft: 'xLarge',
 }
