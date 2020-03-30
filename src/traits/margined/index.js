@@ -3,6 +3,8 @@ import { css } from '@emotion/core'
 
 import { sizes } from '../../config'
 
+const merge = require('deepmerge')
+
 // eslint-disable-next-line import/prefer-default-export
 export const margined = {
   styles: ({
@@ -31,9 +33,9 @@ export const margined = {
     }
     return css`
       margin-top: ${spacing.top};
-      margin-right: ${spacing.bottom};
-      margin-bottom: ${spacing.left};
-      margin-left: ${spacing.right};
+      margin-bottom: ${spacing.bottom};
+      margin-left: ${spacing.left};
+      margin-right: ${spacing.right};
     `
   },
   propTypes: () => ({
@@ -45,13 +47,17 @@ export const margined = {
     marginLeft: PropTypes.oneOf([null, ...sizes]),
     marginRight: PropTypes.oneOf([null, ...sizes]),
   }),
-  defaultProps: (margin = null, marginX = null, marginY = null) => ({
-    margin,
-    marginX,
-    marginY,
-    marginTop: null,
-    marginBottom: null,
-    marginLeft: null,
-    marginRight: null,
-  }),
+  defaultProps: (provided = {}) =>
+    merge(
+      {
+        margin: null,
+        marginX: null,
+        marginY: null,
+        marginTop: null,
+        marginBottom: null,
+        marginLeft: null,
+        marginRight: null,
+      },
+      provided
+    ),
 }

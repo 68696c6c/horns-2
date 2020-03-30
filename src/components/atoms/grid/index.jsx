@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading,default-case */
 import React from 'react'
 import PropTypes from 'prop-types'
 
@@ -21,6 +20,7 @@ const BaseGrid = ({ children, variant, ...others }) => {
   const props = { ...others }
   let Tag
   let className
+  // eslint-disable-next-line default-case
   switch (variant) {
     case 'halves':
       Tag = Styled.Halves

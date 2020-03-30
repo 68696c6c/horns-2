@@ -21,10 +21,10 @@ export {
   Thirds,
 } from './grid'
 export { Link, LinkEmail, LinkPhone } from './links'
+export { ListItem, LI, ListOrdered, OL, ListUnordered, UL } from './lists'
 export {
   default as Typography,
   T,
-  Label,
   P,
   Pre,
   Heading,

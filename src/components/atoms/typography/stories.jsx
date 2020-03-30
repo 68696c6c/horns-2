@@ -18,40 +18,49 @@ const Demo = () => (
   <>
     <h1>Typography</h1>
     <p>
-      The Typography component can be used to render any HTML font tag and any
-      font style from the theme.
+      The <em>Typography</em> component can be used to render any HTML font tag
+      and any font style from the theme.
     </p>
     <div>
       <Typography>default typography</Typography>
     </div>
     <h2>Aliases</h2>
-    <p>The Typography component has several alias components.</p>
+    <p>
+      The <em>Typography</em> component has several alias components.
+    </p>
     <div>
-      <T>The T component is a one-to-one alias for Typography.</T>
+      <T>
+        The <em>T</em> component is a one-to-one alias for <em>Typography</em>.
+      </T>
     </div>
     <div>
       <Label>
-        The Label component is an alias using the <em>label</em> font style.
+        The <em>Label</em> component is an alias using the <code>label</code>{' '}
+        font style.
       </Label>
     </div>
     <div>
       <P>
-        The P component is an alias using the <em>paragraph</em> font style.
+        The <em>P</em> component is an alias using the <code>paragraph</code>{' '}
+        font style.
       </P>
     </div>
     <div>
       <Pre>
-        The Pre component is an alias using the <em>pre</em> font style.
+        The <em>Pre</em> component is an alias using the <code>pre</code> font
+        style.
       </Pre>
     </div>
     <div>
       <Heading>
-        The Heading component is an alias using the <em>h1</em> font style.
+        The <em>Heading</em> component is an alias using the <code>h1</code>{' '}
+        font style.
       </Heading>
     </div>
     <div>
       <SubHeading>
-        The SubHeading component is an alias using the <em>h2</em> font style.
+        The <em>SubHeading</em> component is an alias using the <code>h2</code>{' '}
+        font style.
       </SubHeading>
     </div>
     <h2>Font Prop</h2>

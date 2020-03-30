@@ -3,6 +3,8 @@ import { css } from '@emotion/core'
 
 import { sizes } from '../../config'
 
+const merge = require('deepmerge')
+
 // eslint-disable-next-line import/prefer-default-export
 export const padded = {
   styles: ({
@@ -45,13 +47,17 @@ export const padded = {
     paddingLeft: PropTypes.oneOf([null, ...sizes]),
     paddingRight: PropTypes.oneOf([null, ...sizes]),
   }),
-  defaultProps: (padding = null, paddingX = null, paddingY = null) => ({
-    padding,
-    paddingX,
-    paddingY,
-    paddingTop: null,
-    paddingBottom: null,
-    paddingLeft: null,
-    paddingRight: null,
-  }),
+  defaultProps: (provided = {}) =>
+    merge(
+      {
+        padding: null,
+        paddingX: null,
+        paddingY: null,
+        paddingTop: null,
+        paddingBottom: null,
+        paddingLeft: null,
+        paddingRight: null,
+      },
+      provided
+    ),
 }

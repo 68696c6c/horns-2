@@ -45,7 +45,7 @@ export const baseControl = {
     ...chromaticSurface.defaultProps(),
     ...interactive.defaultProps(false, false, cursor),
     ...margined.defaultProps(),
-    ...padded.defaultProps('xSmall'),
+    ...padded.defaultProps({ padding: 'xSmall' }),
     ...rounded.defaultProps(),
     ...typographic.defaultProps('control'),
     placeholder: '',

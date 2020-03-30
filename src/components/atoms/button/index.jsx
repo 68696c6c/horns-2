@@ -22,7 +22,6 @@ export const buttonDefaults = {
 }
 
 const Button = ({ children, ...others }) => (
-  // eslint-disable-next-line react/jsx-props-no-spreading
   <Styled.Button {...handleProps(others, 'button')}>{children}</Styled.Button>
 )
 
@@ -41,11 +40,10 @@ Button.defaultProps = {
   ...bordered.defaultProps(),
   ...chromatic.defaultProps(buttonDefaults.color),
   ...interactive.defaultProps(false, false, buttonDefaults.cursor),
-  ...padded.defaultProps(
-    null,
-    buttonDefaults.paddingX,
-    buttonDefaults.paddingY
-  ),
+  ...padded.defaultProps({
+    paddingX: buttonDefaults.paddingX,
+    paddingY: buttonDefaults.paddingY,
+  }),
   ...rounded.defaultProps(),
   ...typographic.defaultProps('button'),
 }

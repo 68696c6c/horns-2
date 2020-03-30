@@ -1,6 +1,6 @@
-/* eslint-disable react/jsx-props-no-spreading,default-case */
 import React from 'react'
 import PropTypes from 'prop-types'
+// @TODO need a way to set icons at the theme level so different themes can use different iconsets.
 import {
   FaInfoCircle,
   FaExclamationCircle,
@@ -24,6 +24,7 @@ export const messageVariants = ['success', 'info', 'warning', 'danger']
 const Message = ({ children, block, variant, withIcon, ...others }) => {
   const Tag = block ? Styled.MessageBlock : Styled.MessageInline
   let Icon
+  // eslint-disable-next-line default-case
   switch (variant) {
     case 'danger':
       Icon = FaSkull
@@ -61,7 +62,7 @@ Message.defaultProps = {
   ...bordered.defaultProps(),
   ...chromatic.defaultProps(),
   ...margined.defaultProps(),
-  ...padded.defaultProps('small', 'medium'),
+  ...padded.defaultProps({ padding: 'small', paddingX: 'medium' }),
   ...typographic.defaultProps(),
   variant: 'info',
   block: false,

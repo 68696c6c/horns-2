@@ -45,7 +45,6 @@ Heading.defaultProps = {
 }
 
 const Link = ({ children, ...others }) => (
-  // eslint-disable-next-line react/jsx-props-no-spreading
   <Styled.A href="#" {...others}>
     {children}
   </Styled.A>
@@ -60,7 +59,6 @@ Link.defaultProps = {
 }
 
 const Button = ({ children, ...others }) => (
-  // eslint-disable-next-line react/jsx-props-no-spreading
   <Styled.Button {...others}>{children}</Styled.Button>
 )
 

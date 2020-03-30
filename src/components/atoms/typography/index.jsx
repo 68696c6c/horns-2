@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react'
 import PropTypes from 'prop-types'
 
@@ -8,6 +7,7 @@ import { handleProps } from '../../utils'
 
 import * as Styled from './styles'
 
+// @TODO add support for HTML u tag https://www.w3schools.com/tags/tag_u.asp
 export const typographicFonts = [
   ...fontStyles,
   'blockquote',
@@ -140,7 +140,6 @@ Typography.defaultProps = {
 export default Typography
 
 export const T = props => <Typography {...props} />
-export const Label = props => <Typography {...props} font="label" />
 export const P = props => <Typography {...props} font="paragraph" />
 export const Pre = props => <Typography {...props} font="pre" />
 export const Heading = props => <Typography {...props} font="h1" />
