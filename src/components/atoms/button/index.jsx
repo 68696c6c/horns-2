@@ -40,11 +40,10 @@ Button.defaultProps = {
   ...bordered.defaultProps(),
   ...chromatic.defaultProps(buttonDefaults.color),
   ...interactive.defaultProps(false, false, buttonDefaults.cursor),
-  ...padded.defaultProps(
-    null,
-    buttonDefaults.paddingX,
-    buttonDefaults.paddingY
-  ),
+  ...padded.defaultProps({
+    paddingX: buttonDefaults.paddingX,
+    paddingY: buttonDefaults.paddingY,
+  }),
   ...rounded.defaultProps(),
   ...typographic.defaultProps('button'),
 }

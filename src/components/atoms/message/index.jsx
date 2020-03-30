@@ -62,7 +62,7 @@ Message.defaultProps = {
   ...bordered.defaultProps(),
   ...chromatic.defaultProps(),
   ...margined.defaultProps(),
-  ...padded.defaultProps('small', 'medium'),
+  ...padded.defaultProps({ padding: 'small', paddingX: 'medium' }),
   ...typographic.defaultProps(),
   variant: 'info',
   block: false,

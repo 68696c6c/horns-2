@@ -2,7 +2,11 @@ import PropTypes from 'prop-types'
 import { css } from '@emotion/core'
 
 import { colors } from '../../../config'
-import { chromatic, typographic } from '../../../traits'
+import { chromatic, margined, typographic } from '../../../traits'
+
+export const listDefaults = {
+  spacingLeft: 'xLarge',
+}
 
 export const listTypes = {
   ordered: ['A', 'a', 'I', 'i', 'l'],
@@ -29,14 +33,16 @@ export const getItemColors = (theme, color, markerColor, isItem) => {
 export const baseList = {
   styles: () => [
     chromatic.styles,
+    margined.styles,
     typographic.styles,
     ({ theme, color, markerColor }) => {
       const c = getItemColors(theme, color, markerColor, false)
+      const spacing = theme.sizing.getPX(listDefaults.spacingLeft)
       // Note that in browsers that do not support the ::marker selector (e.g. Chrome), combining it
       // with any other supported selectors will cause the entire rule to fail, hence the separate
       // blocks for ::marker and .list-item-marker.
       return css`
-        padding-left: 2em;
+        padding-left: ${spacing};
         .list-item::marker {
           color: ${c.markerColor};
         }
@@ -48,11 +54,13 @@ export const baseList = {
   ],
   propTypes: () => ({
     ...chromatic.propTypes(null, true),
+    ...margined.propTypes(),
     ...typographic.propTypes(),
     markerColor: PropTypes.oneOf([null, ...colors]),
   }),
   defaultProps: () => ({
     ...chromatic.defaultProps(null, true),
+    ...margined.defaultProps({ margin: 'min' }),
     ...typographic.defaultProps(),
     markerColor: null,
   }),

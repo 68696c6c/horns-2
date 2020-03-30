@@ -17,14 +17,15 @@ Label.propTypes = {
   ...chromatic.propTypes(),
   ...margined.propTypes(),
   ...typographic.propTypes(),
-  for: PropTypes.string.isRequired,
+  for: PropTypes.string,
   weight: PropTypes.oneOf(fontWeights),
 }
 
 Label.defaultProps = {
   ...chromatic.defaultProps(null, true),
-  ...margined.defaultProps('xSmall'),
+  ...margined.defaultProps({ margin: 'xSmall' }),
   ...typographic.defaultProps('label'),
+  for: null,
   weight: 'semiBold',
 }
 

@@ -10,7 +10,11 @@ import * as Styled from './styles'
 const ListItem = ({ icon, font, children, ...others }) => {
   const hasIcon = !isFragment(icon)
   return (
-    <Styled.ListItem {...handleProps(others, 'list-item')} font={font} hasIcon={hasIcon}>
+    <Styled.ListItem
+      {...handleProps(others, 'list-item')}
+      font={font}
+      hasIcon={hasIcon}
+    >
       {hasIcon && (
         <Styled.ListItemMarker className="list-item-marker" font={font}>
           {icon}
@@ -31,7 +35,7 @@ ListItem.propTypes = {
 
 ListItem.defaultProps = {
   ...chromatic.defaultProps(null, true),
-  ...margined.defaultProps(null, null, 'xxSmall'),
+  ...margined.defaultProps({ marginY: 'xxSmall' }),
   ...typographic.defaultProps(),
   icon: <></>,
   type: null,

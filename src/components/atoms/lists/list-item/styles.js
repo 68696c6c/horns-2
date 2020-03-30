@@ -2,7 +2,7 @@ import { css } from '@emotion/core'
 import styled from '@emotion/styled'
 
 import { chromatic, margined, typographic } from '../../../../traits'
-import { getItemColors } from '../utils'
+import { getItemColors, listDefaults } from '../utils'
 
 export const ListItem = styled.li(
   chromatic.styles,
@@ -10,17 +10,21 @@ export const ListItem = styled.li(
   margined.styles,
   ({ theme, color, markerColor, hasIcon }) => {
     const c = getItemColors(theme, color, markerColor, true)
+    let iconCSS
+    if (hasIcon) {
+      const spacing = theme.sizing.getPX(listDefaults.spacingLeft)
+      iconCSS = css`
+        display: grid;
+        grid-template-columns: 2em auto;
+        align-items: center;
+        margin-left: ${spacing && `-${spacing}`};
+      `
+    }
     // Note that in browsers that do not support the ::marker selector (e.g. Chrome), combining it
     // with any other supported selectors will cause the entire rule to fail, hence the separate
     // blocks for ::marker and .list-item-marker.
     return css`
-      ${hasIcon &&
-        css`
-      display: grid;
-      grid-template-columns: 2em auto;
-      align-items: center;
-      margin-left: -2em;
-        `};
+      ${iconCSS};
       &::marker {
         color: ${c.markerColor};
       }

@@ -29,11 +29,10 @@ export const baseLink = {
     ...bordered.defaultProps(),
     ...chromatic.defaultProps(buttonDefaults.color, true),
     ...interactive.defaultProps(false, true, buttonDefaults.cursor),
-    ...padded.defaultProps(
-      null,
-      buttonDefaults.paddingX,
-      buttonDefaults.paddingY
-    ),
+    ...padded.defaultProps({
+      paddingX: buttonDefaults.paddingX,
+      paddingY: buttonDefaults.paddingY,
+    }),
     ...rounded.defaultProps(),
     ...typographic.defaultProps('link'),
     variant: 'link',

@@ -140,7 +140,6 @@ Typography.defaultProps = {
 export default Typography
 
 export const T = props => <Typography {...props} />
-export const Label = props => <Typography {...props} font="label" />
 export const P = props => <Typography {...props} font="paragraph" />
 export const Pre = props => <Typography {...props} font="pre" />
 export const Heading = props => <Typography {...props} font="h1" />
