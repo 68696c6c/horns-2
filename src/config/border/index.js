@@ -3,8 +3,6 @@ import SizingConfig from '../sizing'
 
 import defaultConfig from './config'
 
-export { default as borders } from './config'
-
 class BorderConfig {
   constructor(sizingConfig, config = {}) {
     if (!(sizingConfig instanceof SizingConfig)) {
