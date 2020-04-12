@@ -1,6 +1,18 @@
 /* global describe, it, expect, beforeEach */
 import BorderConfig from '.'
 import SizingConfig from '../sizing'
+import { isString } from '../utils'
+
+const sortedConfigSides = [
+  'all',
+  'x',
+  'y',
+  'top',
+  'bottom',
+  'left',
+  'right',
+].sort()
+const sortedComputedSides = ['top', 'bottom', 'left', 'right'].sort()
 
 describe('BorderConfig', () => {
   let c
@@ -16,24 +28,41 @@ describe('BorderConfig', () => {
     expect(() => new BorderConfig()).toThrowError()
   })
 
-  it('should create a borders property with width and style properties', () => {
-    expect(Object.keys(c.borders).sort()).toEqual(['style', 'width'].sort())
+  it('should create a borderSides property with properties for all configurable sides', () => {
+    const borderSides = Object.keys(c.borderSides)
+    expect(borderSides.sort()).toEqual(sortedConfigSides)
   })
 
-  describe('getBorder', () => {
-    it('should return a object with width and style properties', () => {
-      const result = c.getBorder()
-      expect(Object.keys(result).sort()).toEqual(['style', 'width'].sort())
+  it('should create width and style properties for all borderSides', () => {
+    const sortedProps = ['style', 'width'].sort()
+    Object.keys(c.borderSides).forEach(s => {
+      expect(Object.keys(c.borderSides[s]).sort()).toEqual(sortedProps)
     })
-    it('should return a null width if the width is 0', () => {
-      c = new BorderConfig(new SizingConfig(), { width: 'min' })
-      const result = c.getBorder()
-      expect(result.width).toBeNull()
+  })
+
+  describe('getSidesWidth', () => {
+    it('should return an object with properties for each computed side', () => {
+      const result = c.getSidesWidth()
+      expect(Object.keys(result).sort()).toEqual(sortedComputedSides)
     })
-    it('should return a null style if the style is "none"', () => {
-      c = new BorderConfig(new SizingConfig(), { style: 'none' })
-      const result = c.getBorder()
-      expect(result.style).toBeNull()
+    it('should return values in pixels', () => {
+      const result = c.getSidesWidth()
+      Object.keys(result).forEach(s => {
+        expect(result[s]).toContain('px')
+      })
+    })
+  })
+
+  describe('getSidesStyle', () => {
+    it('should return an object with properties for each computed side', () => {
+      const result = c.getSidesStyle()
+      expect(Object.keys(result).sort()).toEqual(sortedComputedSides)
+    })
+    it('should return values as strings', () => {
+      const result = c.getSidesStyle()
+      Object.keys(result).forEach(s => {
+        expect(isString(result[s])).toEqual(true)
+      })
     })
   })
 })

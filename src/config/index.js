@@ -1,3 +1,4 @@
+export { borderStyles } from './border'
 export { colors, backgroundTones } from './color'
 export { flexProperties } from './flex'
 export { breakpoints } from './grid'
