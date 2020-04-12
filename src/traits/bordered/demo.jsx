@@ -44,7 +44,7 @@ const Demo = () => (
         </Styled.Box>
       </Story.Box>
       <Story.Box>
-        <Styled.Box borderLeft={{ width: 'tiny', style: 'dotted' }}>
+        <Styled.Box borderLeft={{ width: 'medium' }}>
           borderLeft override
         </Styled.Box>
       </Story.Box>

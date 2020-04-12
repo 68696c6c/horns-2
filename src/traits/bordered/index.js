@@ -22,33 +22,25 @@ export const bordered = {
     borderLeft,
     borderRight,
   }) => {
-    const widths = theme.borders.getSidesWidth({
-      all: theme.sizing.getPX(borderAll.width),
-      x: theme.sizing.getPX(borderX.width),
-      y: theme.sizing.getPX(borderY.width),
-      top: theme.sizing.getPX(borderTop.width),
-      bottom: theme.sizing.getPX(borderBottom.width),
-      left: theme.sizing.getPX(borderLeft.width),
-      right: theme.sizing.getPX(borderRight.width),
+    const b = theme.borders.getBorders({
+      all: borderAll,
+      x: borderX,
+      y: borderY,
+      top: borderTop,
+      bottom: borderBottom,
+      left: borderLeft,
+      right: borderRight,
     })
-    const styles = theme.borders.getSidesStyle({
-      all: borderAll.style,
-      x: borderX.style,
-      y: borderY.style,
-      top: borderTop.style,
-      bottom: borderBottom.style,
-      left: borderLeft.style,
-      right: borderRight.style,
-    })
+    const { top, bottom, left, right } = b
     return css`
-      border-top-width: ${widths.top};
-      border-top-style: ${styles.top};
-      border-bottom-width: ${widths.bottom};
-      border-bottom-style: ${styles.bottom};
-      border-left-width: ${widths.left};
-      border-left-style: ${styles.left};
-      border-right-width: ${widths.right};
-      border-right-style: ${styles.right};
+      border-top-width: ${top.width};
+      border-top-style: ${top.style};
+      border-bottom-width: ${bottom.width};
+      border-bottom-style: ${bottom.style};
+      border-left-width: ${left.width};
+      border-left-style: ${left.style};
+      border-right-width: ${right.width};
+      border-right-style: ${right.style};
     `
   },
   propTypes: () => ({

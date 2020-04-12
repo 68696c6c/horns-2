@@ -31,7 +31,6 @@ export const isNumber = v => typeof v === 'number' && !isNaN(v)
 export const isString = v =>
   Object.prototype.toString.call(v) === '[object String]'
 
-
 export const getSideValues = (sides = {}) => {
   const { all, x, y, top, bottom, left, right } = sides
   const result = {

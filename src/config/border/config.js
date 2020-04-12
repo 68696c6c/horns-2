@@ -1,6 +1,8 @@
 export default {
-  width: 'tiny',
-  style: 'solid',
+  all: {
+    width: 'tiny',
+    style: 'solid',
+  },
   x: {
     width: null,
     style: null,
