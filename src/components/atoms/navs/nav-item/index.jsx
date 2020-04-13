@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { handleProps } from '../../../utils'
-import { borderStyles, sizes } from '../../../../config'
+import { borderStyles, colors, sizes } from '../../../../config'
 import {
   chromatic,
   interactive,
@@ -16,24 +16,17 @@ import * as Styled from './styles'
 const NavItem = ({ children, variant, ...others }) => {
   let Tag
   switch (variant) {
-    case 'background':
-      Tag = Styled.NavItemBackground
+    case 'colorway':
+      Tag = Styled.NavItemColorway
       break
     case 'underline':
       Tag = Styled.NavItemUnderline
-      break
-    case 'font':
-      Tag = Styled.NavItemFont
       break
     case 'border':
     default:
       Tag = Styled.NavItemBordered
   }
-  return (
-    <Tag {...handleProps(others, 'nav-item')}>
-      {children}
-    </Tag>
-  )
+  return <Tag {...handleProps(others, 'nav-item')}>{children}</Tag>
 }
 
 NavItem.propTypes = {
@@ -44,10 +37,11 @@ NavItem.propTypes = {
   ...typographic.propTypes(),
   href: PropTypes.string,
   current: PropTypes.bool,
-  variant: PropTypes.oneOf(['border', 'background', 'underline', 'font']),
+  variant: PropTypes.oneOf(['border', 'colorway', 'underline', 'font']),
   layout: PropTypes.oneOf(['horizontal', 'vertical']),
-  borderWidth: PropTypes.oneOf([null, sizes]),
-  borderStyle: PropTypes.oneOf([null, ...borderStyles]),
+  currentColor: PropTypes.oneOf([null, ...colors]),
+  currentWidth: PropTypes.oneOf([null, sizes]),
+  currentStyle: PropTypes.oneOf([null, ...borderStyles]),
 }
 
 NavItem.defaultProps = {
@@ -60,9 +54,9 @@ NavItem.defaultProps = {
   current: false,
   variant: 'border',
   layout: 'horizontal',
-  borderColor: 'prominent',
-  borderWidth: 'xSmall',
-  borderStyle: 'solid',
+  currentColor: 'prominent',
+  currentWidth: 'xSmall',
+  currentStyle: 'solid',
 }
 
 export default NavItem

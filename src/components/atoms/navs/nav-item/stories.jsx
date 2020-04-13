@@ -39,21 +39,22 @@ const Demo = () => (
       </Story.Box>
     </Story.Grid>
 
-    <h2>Current Prop</h2>
+    <h2>Border Variant</h2>
     <p>
-      The <em>borderColor</em>, <em>borderWidth</em>, and <em>borderStyle</em> props control the
-      properties of the <em>current</em> indicator when <code>variant=&quot;border&quot;</code>.
+      The <em>currentColor</em>, <em>currentWidth</em>, and{' '}
+      <em>currentStyle</em> props control the properties of the <em>current</em>{' '}
+      indicator when <code>variant=&quot;border&quot;</code>.
     </p>
     <Story.Grid>
       <Story.Box>
-        <NavItem color="secondary" onClick={e => e.preventDefault()} current>
+        <NavItem onClick={e => e.preventDefault()} color="secondary" current>
           current horizontal nav item
         </NavItem>
       </Story.Box>
       <Story.Box>
         <NavItem
-          color="tertiary"
           onClick={e => e.preventDefault()}
+          color="tertiary"
           layout="vertical"
           current
         >
@@ -64,10 +65,10 @@ const Demo = () => (
     <Story.Grid>
       <Story.Box>
         <NavItem
-          color="neutral"
           onClick={e => e.preventDefault()}
-          borderColor="success"
-          borderStyle="dotted"
+          color="neutral"
+          currentColor="success"
+          currentStyle="dotted"
           current
         >
           current horizontal nav item
@@ -75,11 +76,90 @@ const Demo = () => (
       </Story.Box>
       <Story.Box>
         <NavItem
-          color="neutral"
           onClick={e => e.preventDefault()}
+          color="neutral"
           layout="vertical"
-          borderColor="info"
-          borderWidth="xxSmall"
+          currentColor="info"
+          currentWidth="xxSmall"
+          current
+        >
+          current vertical nav item
+        </NavItem>
+      </Story.Box>
+    </Story.Grid>
+
+    <h2>Background Variant</h2>
+    <p>
+      The <em>currentColor</em> prop controls the color of the <em>current</em>{' '}
+      item when <code>variant=&quot;background&quot;</code>.
+    </p>
+    <Story.Grid>
+      <Story.Box>
+        <NavItem
+          onClick={e => e.preventDefault()}
+          color="secondary"
+          variant="background"
+          current
+        >
+          current horizontal nav item
+        </NavItem>
+      </Story.Box>
+      <Story.Box>
+        <NavItem
+          onClick={e => e.preventDefault()}
+          color="tertiary"
+          layout="vertical"
+          variant="background"
+          current
+        >
+          current vertical nav item
+        </NavItem>
+      </Story.Box>
+    </Story.Grid>
+    <Story.Grid>
+      <Story.Box>
+        <NavItem
+          onClick={e => e.preventDefault()}
+          color="neutral"
+          variant="background"
+          currentColor="success"
+          current
+        >
+          current horizontal nav item
+        </NavItem>
+      </Story.Box>
+      <Story.Box>
+        <NavItem
+          onClick={e => e.preventDefault()}
+          color="neutral"
+          layout="vertical"
+          variant="background"
+          currentColor="info"
+          current
+        >
+          current vertical nav item
+        </NavItem>
+      </Story.Box>
+    </Story.Grid>
+
+    <h2>Underline Variant</h2>
+    <Story.Grid>
+      <Story.Box>
+        <NavItem
+          onClick={e => e.preventDefault()}
+          color="secondary"
+          variant="underline"
+          current
+        >
+          current horizontal nav item
+        </NavItem>
+      </Story.Box>
+      <Story.Box>
+        <NavItem
+          onClick={e => e.preventDefault()}
+          color="tertiary"
+          layout="vertical"
+          variant="underline"
           current
         >
           current vertical nav item
@@ -91,7 +171,7 @@ const Demo = () => (
     {colors.map(color => (
       <Story.Grid>
         <Story.Box>
-          <NavItem color={color} onClick={e => e.preventDefault()}>
+          <NavItem onClick={e => e.preventDefault()} color={color}>
             {color} nav item
           </NavItem>
         </Story.Box>

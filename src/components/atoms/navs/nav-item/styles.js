@@ -21,28 +21,47 @@ const baseStyles = [
   `,
 ]
 
-// @TODO implement these
-export const NavItemBackground = styled.a(...baseStyles)
-export const NavItemUnderline = styled.a(...baseStyles)
-export const NavItemFont = styled.a(...baseStyles)
+// Indicates the current item by overriding the colorway.
+export const NavItemColorway = styled.a(
+  ...baseStyles,
+  ({ theme, current, currentColor }) => {
+    if (current) {
+      return [
+        chromatic.styles({ theme, color: currentColor }),
+        interactive.styles({ theme, color: currentColor }),
+      ]
+    }
+    return null
+  }
+)
+
+// Indicates the current item using a typographic underline.
+export const NavItemUnderline = styled.a(...baseStyles, ({ current }) => {
+  return (
+    current &&
+    css`
+      text-decoration: underline !important;
+    `
+  )
+})
 
 // Indicates the current item using a colored border.
 export const NavItemBordered = styled.a(...baseStyles, props => {
   const {
     theme,
-    borderColor,
     current,
     layout,
     paddingX,
     paddingY,
-    borderWidth,
-    borderStyle,
+    currentColor,
+    currentWidth,
+    currentStyle,
   } = props
 
   let currentCSS
   if (current) {
-    const c = theme.color.getColorway(borderColor)
-    const bColor = borderColor === 'background' ? c.base.readable : c.base.base
+    const c = theme.color.getColorway(currentColor)
+    const bColor = currentColor === 'background' ? c.base.readable : c.base.base
 
     let side = 'left'
     let borderKey = 'borderLeft'
@@ -54,7 +73,7 @@ export const NavItemBordered = styled.a(...baseStyles, props => {
     }
 
     const pv = theme.sizing.getValue(padding)
-    const bv = theme.sizing.getValue(borderWidth)
+    const bv = theme.sizing.getValue(currentWidth)
     const paddingValue = pv - bv
 
     currentCSS = css`
@@ -63,7 +82,7 @@ export const NavItemBordered = styled.a(...baseStyles, props => {
       ${bordered.styles({
         ...props,
         borderAll: { width: 'min' },
-        [borderKey]: { width: borderWidth, style: borderStyle },
+        [borderKey]: { width: currentWidth, style: currentStyle },
       })}
     `
   }
