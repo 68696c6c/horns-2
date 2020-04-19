@@ -22,7 +22,8 @@
   "settings": {
     "import/resolver": {
       "webpack": {
-        "config": ".storybook/webpack.config.js"
+        "config": ".storybook/webpack.config.js",
+        "setup-test": "test/setup.jsx"
       }
     }
   }

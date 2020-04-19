@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Link should render as default 1`] = `
+<div>
+  <a
+    class="link css-z7mqwi"
+    color="background"
+    cursor="pointer"
+    href="#"
+  >
+    example
+  </a>
+</div>
+`;

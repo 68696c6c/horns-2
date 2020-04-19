@@ -5,7 +5,6 @@ import {
   bordered,
   chromatic,
   interactive,
-  margined,
   padded,
   typographic,
 } from '../../../../traits'
@@ -13,7 +12,6 @@ import {
 const baseStyles = [
   chromatic.styles,
   interactive.styles,
-  margined.styles,
   padded.styles,
   typographic.styles,
   () => css`
