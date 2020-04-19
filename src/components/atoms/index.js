@@ -20,7 +20,9 @@ export {
   Halves,
   Thirds,
 } from './grid'
-export { Link, LinkEmail, LinkPhone } from './links'
+export { default as Link } from './link'
+export { default as LinkEmail } from './link-email'
+export { default as LinkPhone } from './link-phone'
 export { ListItem, LI, ListOrdered, OL, ListUnordered, UL } from './lists'
 export {
   default as Typography,

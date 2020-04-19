@@ -1,9 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { handleProps } from '../../../utils'
-
-import { baseLink, getVariantProps } from '../utils'
+import { handleProps } from '../../utils'
+import { anchor, getLinkVariantProps } from '../../hadrons'
 
 const getEmailHref = (email, subject, body) => {
   let href = `mailto:${email}?`
@@ -13,7 +12,7 @@ const getEmailHref = (email, subject, body) => {
 }
 
 const LinkEmail = ({ children, variant, email, subject, body, ...others }) => {
-  const { Tag, font, isText } = getVariantProps(variant)
+  const { Tag, font, isText } = getLinkVariantProps(variant)
   return (
     <Tag
       {...handleProps(others, 'link-email')}
@@ -27,14 +26,14 @@ const LinkEmail = ({ children, variant, email, subject, body, ...others }) => {
 }
 
 LinkEmail.propTypes = {
-  ...baseLink.propTypes,
+  ...anchor.propTypes('link'),
   email: PropTypes.string,
   subject: PropTypes.string,
   body: PropTypes.string,
 }
 
 LinkEmail.defaultProps = {
-  ...baseLink.defaultProps,
+  ...anchor.defaultProps('link'),
   email: '',
   subject: '',
   body: '',

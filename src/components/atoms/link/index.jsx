@@ -1,12 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { handleProps } from '../../../utils'
-
-import { baseLink, getVariantProps } from '../utils'
+import { handleProps } from '../../utils'
+import { anchor, getLinkVariantProps } from '../../hadrons'
 
 const Link = ({ children, variant, ...others }) => {
-  const { Tag, font, isText } = getVariantProps(variant)
+  const { Tag, font, isText } = getLinkVariantProps(variant)
   return (
     <Tag {...handleProps(others, 'link')} font={font} typographic={isText}>
       {children}
@@ -15,12 +14,12 @@ const Link = ({ children, variant, ...others }) => {
 }
 
 Link.propTypes = {
-  ...baseLink.propTypes,
+  ...anchor.propTypes('link'),
   href: PropTypes.string,
 }
 
 Link.defaultProps = {
-  ...baseLink.defaultProps,
+  ...anchor.defaultProps('link'),
   href: '#',
 }
 

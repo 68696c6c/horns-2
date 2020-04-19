@@ -1,51 +1,18 @@
 import React from 'react'
 
-import {
-  aligned,
-  bordered,
-  chromatic,
-  interactive,
-  padded,
-  rounded,
-  typographic,
-} from '../../../traits'
 import { handleProps } from '../../utils'
-
-import * as Styled from './styles'
-
-export const buttonDefaults = {
-  alignment: 'center',
-  color: 'background',
-  cursor: 'pointer',
-  paddingX: 'medium',
-  paddingY: 'xSmall',
-}
+import { anchor, StyledButton } from '../../hadrons'
 
 const Button = ({ children, ...others }) => (
-  <Styled.Button {...handleProps(others, 'button')}>{children}</Styled.Button>
+  <StyledButton {...handleProps(others, 'button')}>{children}</StyledButton>
 )
 
 Button.propTypes = {
-  ...aligned.propTypes(),
-  ...bordered.propTypes(),
-  ...chromatic.propTypes(),
-  ...interactive.propTypes(),
-  ...padded.propTypes(),
-  ...rounded.propTypes(),
-  ...typographic.propTypes(),
+  ...anchor.propTypes('button'),
 }
 
 Button.defaultProps = {
-  ...aligned.defaultProps(buttonDefaults.alignment),
-  ...bordered.defaultProps(),
-  ...chromatic.defaultProps(buttonDefaults.color),
-  ...interactive.defaultProps(false, false, buttonDefaults.cursor),
-  ...padded.defaultProps({
-    paddingX: buttonDefaults.paddingX,
-    paddingY: buttonDefaults.paddingY,
-  }),
-  ...rounded.defaultProps(),
-  ...typographic.defaultProps('button'),
+  ...anchor.defaultProps('button', { font: 'button', isTypographic: false }),
 }
 
 export default Button
