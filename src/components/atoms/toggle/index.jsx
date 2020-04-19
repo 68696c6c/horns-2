@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { handleProps } from '../../../utils'
-import { control, StyledToggle, StyledToggleControl } from '../../../hadrons'
+import { handleProps } from '../../utils'
+import { control, StyledToggle, StyledToggleControl } from '../../hadrons'
 
 export const toggleTypes = ['checkbox', 'radio']
 

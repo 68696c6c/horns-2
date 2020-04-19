@@ -2,13 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import createNumberMask from 'text-mask-addons/dist/createNumberMask'
 
-import { handleProps } from '../../../utils'
+import { handleProps } from '../../utils'
 import {
   control,
   StyledInput,
   StyledInputHidden,
   StyledInputMasked,
-} from '../../../hadrons'
+} from '../../hadrons'
 
 // eslint-disable-next-line
 const phoneMask = [ /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, /\d/ ]

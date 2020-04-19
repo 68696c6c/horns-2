@@ -1,9 +1,9 @@
 import React from 'react'
 import * as PropTypes from 'prop-types'
 
-import { fontWeights } from '../../../../config'
-import { chromatic, margined, typographic } from '../../../../traits'
-import { handleProps } from '../../../utils'
+import { fontWeights } from '../../../config'
+import { chromatic, margined, typographic } from '../../../traits'
+import { handleProps } from '../../utils'
 
 import * as Styled from './styles'
 

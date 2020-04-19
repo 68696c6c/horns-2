@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { handleProps } from '../../../utils'
-import { control, StyledSelect, StyledMultiselect } from '../../../hadrons'
+import { handleProps } from '../../utils'
+import { control, StyledSelect, StyledMultiselect } from '../../hadrons'
 
 const Select = ({ multiple, ...others }) => {
   const Tag = multiple ? StyledMultiselect : StyledSelect

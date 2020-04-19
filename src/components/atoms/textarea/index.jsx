@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { handleProps } from '../../../utils'
-import { control, StyledTextarea } from '../../../hadrons'
+import { handleProps } from '../../utils'
+import { control, StyledTextarea } from '../../hadrons'
 
 const Textarea = ({ children, ...others }) => (
   <StyledTextarea {...handleProps(others, 'control')}>
