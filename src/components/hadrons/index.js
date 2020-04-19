@@ -5,4 +5,4 @@ export {
   Button as StyledButton,
   LinkButton as StyledLinkButton,
   getLinkVariantProps,
-} from './anchor'
+} from './clickable'

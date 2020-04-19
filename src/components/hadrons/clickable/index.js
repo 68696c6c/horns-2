@@ -14,7 +14,7 @@ import {
 
 const merge = require('deepmerge')
 
-const anchorDefaultProps = {
+const clickableDefaultProps = {
   alignment: 'center',
   color: 'background',
   cursor: 'pointer',
@@ -36,7 +36,7 @@ const base = {
     ...typographic.propTypes(),
   }),
   defaultProps: (dp = {}) => {
-    const defaultProps = merge({ ...anchorDefaultProps }, dp)
+    const defaultProps = merge({ ...clickableDefaultProps }, dp)
     const {
       alignment,
       color,
