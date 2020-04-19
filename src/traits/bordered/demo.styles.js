@@ -11,3 +11,11 @@ export const Box = styled.div(
       border-color: orange;
     `
 )
+
+Box.propTypes = {
+  ...bordered.propTypes(),
+}
+
+Box.defaultProps = {
+  ...bordered.defaultProps(),
+}

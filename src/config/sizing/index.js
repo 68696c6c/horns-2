@@ -1,4 +1,4 @@
-import { mergeConfigs } from '../utils'
+import { mergeConfigs, getSideValues } from '../utils'
 
 import defaultConfig from './config'
 
@@ -17,37 +17,6 @@ export const sizes = [
   'giant',
   'max',
 ]
-
-export const getSideSizes = (sides = {}) => {
-  const { all, x, y, top, bottom, left, right } = sides
-  const result = {
-    top: all,
-    right: all,
-    bottom: all,
-    left: all,
-  }
-  if (x) {
-    result.left = x
-    result.right = x
-  }
-  if (y) {
-    result.top = y
-    result.bottom = y
-  }
-  if (top) {
-    result.top = top
-  }
-  if (bottom) {
-    result.bottom = bottom
-  }
-  if (left) {
-    result.left = left
-  }
-  if (right) {
-    result.right = right
-  }
-  return result
-}
 
 class SizingConfig {
   constructor(config = {}) {
@@ -75,7 +44,7 @@ class SizingConfig {
   }
 
   getSidesPX(sides) {
-    const result = getSideSizes(sides)
+    const result = getSideValues(sides)
     return {
       top: this.getPX(result.top),
       bottom: this.getPX(result.bottom),

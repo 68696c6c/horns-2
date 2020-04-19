@@ -1,6 +1,9 @@
 /* global describe, it, expect, beforeEach */
 import BorderConfig from '.'
 import SizingConfig from '../sizing'
+import { isString } from '../utils'
+
+const sortedComputedSides = ['top', 'bottom', 'left', 'right'].sort()
 
 describe('BorderConfig', () => {
   let c
@@ -16,24 +19,32 @@ describe('BorderConfig', () => {
     expect(() => new BorderConfig()).toThrowError()
   })
 
-  it('should create a borders property with width and style properties', () => {
-    expect(Object.keys(c.borders).sort()).toEqual(['style', 'width'].sort())
-  })
+  describe('getBorders', () => {
+    it('should return an object with properties for each computed side', () => {
+      const result = c.getBorders()
+      expect(Object.keys(result).sort()).toEqual(sortedComputedSides)
+    })
 
-  describe('getBorder', () => {
-    it('should return a object with width and style properties', () => {
-      const result = c.getBorder()
-      expect(Object.keys(result).sort()).toEqual(['style', 'width'].sort())
+    it('should return width and style properties for each computed side', () => {
+      const sortedProps = ['style', 'width'].sort()
+      const result = c.getBorders()
+      Object.keys(result).forEach(s => {
+        expect(Object.keys(result[s]).sort()).toEqual(sortedProps)
+      })
     })
-    it('should return a null width if the width is 0', () => {
-      c = new BorderConfig(new SizingConfig(), { width: 'min' })
-      const result = c.getBorder()
-      expect(result.width).toBeNull()
+
+    it('should return width values in pixels', () => {
+      const result = c.getBorders()
+      Object.keys(result).forEach(s => {
+        expect(result[s].width).toContain('px')
+      })
     })
-    it('should return a null style if the style is "none"', () => {
-      c = new BorderConfig(new SizingConfig(), { style: 'none' })
-      const result = c.getBorder()
-      expect(result.style).toBeNull()
+
+    it('should return style values as strings', () => {
+      const result = c.getBorders()
+      Object.keys(result).forEach(s => {
+        expect(isString(result[s].style)).toEqual(true)
+      })
     })
   })
 })
