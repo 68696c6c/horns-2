@@ -37,7 +37,7 @@ NavItem.propTypes = {
   ...typographic.propTypes(),
   href: PropTypes.string,
   current: PropTypes.bool,
-  variant: PropTypes.oneOf(['border', 'colorway', 'underline', 'font']),
+  variant: PropTypes.oneOf(['border', 'colorway', 'underline']),
   layout: PropTypes.oneOf(['horizontal', 'vertical']),
   currentColor: PropTypes.oneOf([null, ...colors]),
   currentWidth: PropTypes.oneOf([null, sizes]),
