@@ -7,3 +7,5 @@ export {
   LinkButton as StyledLinkButton,
   getLinkVariantProps,
 } from './clickable'
+
+export { control } from './controllable'
