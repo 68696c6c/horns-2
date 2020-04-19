@@ -1,18 +1,20 @@
 import React from 'react'
 
 import { handleProps } from '../../utils'
-import { anchor, StyledButton } from '../../hadrons'
+import { button, StyledButton } from '../../hadrons'
 
 const Button = ({ children, ...others }) => (
   <StyledButton {...handleProps(others, 'button')}>{children}</StyledButton>
 )
 
 Button.propTypes = {
-  ...anchor.propTypes('button'),
+  ...button.propTypes(),
 }
 
 Button.defaultProps = {
-  ...anchor.defaultProps('button', { font: 'button', isTypographic: false }),
+  ...button.defaultProps(),
+  font: 'button',
+  typographic: false,
 }
 
 export default Button

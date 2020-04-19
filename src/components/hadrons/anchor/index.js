@@ -14,6 +14,16 @@ import {
 
 const merge = require('deepmerge')
 
+const anchorDefaultProps = {
+  alignment: 'center',
+  color: 'background',
+  cursor: 'pointer',
+  font: 'link',
+  isTypographic: true,
+  paddingX: 'medium',
+  paddingY: 'xSmall',
+}
+
 const base = {
   styles: () => [chromatic.styles, interactive.styles, typographic.styles],
   propTypes: () => ({
@@ -25,26 +35,30 @@ const base = {
     ...rounded.propTypes(),
     ...typographic.propTypes(),
   }),
-  defaultProps: ({
-    alignment,
-    color,
-    cursor,
-    font,
-    isTypographic,
-    paddingX,
-    paddingY,
-  }) => ({
-    ...aligned.defaultProps(alignment),
-    ...bordered.defaultProps(),
-    ...chromatic.defaultProps(color, isTypographic),
-    ...interactive.defaultProps(false, isTypographic, cursor),
-    ...padded.defaultProps({ paddingX, paddingY }),
-    ...rounded.defaultProps(),
-    ...typographic.defaultProps(font),
-  }),
+  defaultProps: (dp = {}) => {
+    const defaultProps = merge({ ...anchorDefaultProps }, dp)
+    const {
+      alignment,
+      color,
+      cursor,
+      font,
+      isTypographic,
+      paddingX,
+      paddingY,
+    } = defaultProps
+    return {
+      ...aligned.defaultProps(alignment),
+      ...bordered.defaultProps(),
+      ...chromatic.defaultProps(color, isTypographic),
+      ...interactive.defaultProps(false, isTypographic, cursor),
+      ...padded.defaultProps({ paddingX, paddingY }),
+      ...rounded.defaultProps(),
+      ...typographic.defaultProps(font),
+    }
+  },
 }
 
-const button = {
+export const button = {
   styles: () => [
     ...base.styles(),
     aligned.styles,
@@ -56,9 +70,16 @@ const button = {
         display: inline-block;
       `,
   ],
+  propTypes: () => ({
+    ...base.propTypes(),
+  }),
+  defaultProps: dp => ({
+    ...base.defaultProps(dp),
+  }),
 }
 
-const link = {
+export const link = {
+  styles: () => [...base.styles()],
   propTypes: () => ({
     ...base.propTypes(),
     variant: PropTypes.oneOf(['button', 'link']),
@@ -69,58 +90,10 @@ const link = {
   }),
 }
 
-const anchorDefaultProps = {
-  alignment: 'center',
-  color: 'background',
-  cursor: 'pointer',
-  font: 'link',
-  isTypographic: true,
-  paddingX: 'medium',
-  paddingY: 'xSmall',
-}
+export const Link = styled.a(...link.styles())
 
-// eslint-disable-next-line import/prefer-default-export
-export const anchor = {
-  styles: type => {
-    switch (type) {
-      case 'button':
-        return button.styles()
-      // case 'navItem':
-      //   return block.styles()
-      case 'link':
-      default:
-        return base.styles()
-    }
-  },
-  propTypes: type => {
-    switch (type) {
-      case 'button':
-        return base.propTypes()
-      // case 'navItem':
-      //   return block.propTypes()
-      case 'link':
-      default:
-        return link.propTypes()
-    }
-  },
-  defaultProps: (type, dp = {}) => {
-    const defaultProps = merge({ ...anchorDefaultProps }, dp)
-    switch (type) {
-      case 'button':
-        return base.defaultProps(defaultProps)
-      // case 'navItem':
-      //   return block.defaultProps(defaultProps)
-      case 'link':
-      default:
-        return link.defaultProps(defaultProps)
-    }
-  },
-}
-
-export const Link = styled.a(...anchor.styles('link'))
-
-export const Button = styled.button(...anchor.styles('button'))
-export const LinkButton = styled.a(...anchor.styles('button'))
+export const Button = styled.button(...button.styles())
+export const LinkButton = styled.a(...button.styles())
 
 export const getLinkVariantProps = variant => {
   if (variant === 'button') {

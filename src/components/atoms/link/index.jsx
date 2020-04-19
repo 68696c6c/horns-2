@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { handleProps } from '../../utils'
-import { anchor, getLinkVariantProps } from '../../hadrons'
+import { link, getLinkVariantProps } from '../../hadrons'
 
 const Link = ({ children, variant, ...others }) => {
   const { Tag, font, isText } = getLinkVariantProps(variant)
@@ -14,12 +14,12 @@ const Link = ({ children, variant, ...others }) => {
 }
 
 Link.propTypes = {
-  ...anchor.propTypes('link'),
+  ...link.propTypes(),
   href: PropTypes.string,
 }
 
 Link.defaultProps = {
-  ...anchor.defaultProps('link'),
+  ...link.defaultProps(),
   href: '#',
 }
 
