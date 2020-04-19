@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavItem should render as default 1`] = `
+<div>
+  <a
+    class="nav-item css-1e72kte"
+    color="background"
+    cursor="pointer"
+    href="#"
+  >
+    example
+  </a>
+</div>
+`;
