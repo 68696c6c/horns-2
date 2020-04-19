@@ -11,6 +11,11 @@ const Demo = () => (
   <>
     <h1>Button</h1>
     <Button onClick={action('clicked')}>A default button</Button>
+    <Wrapper>
+      <Button onClick={action('clicked')} color="prominent" typographic>
+        An outlined button
+      </Button>
+    </Wrapper>
     {colors.map(color => (
       <Wrapper>
         <Button color={color}>{color} button</Button>

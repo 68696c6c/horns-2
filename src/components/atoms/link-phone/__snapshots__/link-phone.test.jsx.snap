@@ -3,7 +3,7 @@
 exports[`LinkPhone should render as default 1`] = `
 <div>
   <a
-    class="link-phone css-z7mqwi"
+    class="link-phone css-155nhey"
     color="background"
     cursor="pointer"
     href="tel:"

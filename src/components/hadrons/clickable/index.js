@@ -28,11 +28,9 @@ const base = {
   styles: () => [chromatic.styles, interactive.styles, typographic.styles],
   propTypes: () => ({
     ...aligned.propTypes(),
-    ...bordered.propTypes(),
     ...chromatic.propTypes(),
     ...interactive.propTypes(),
     ...padded.propTypes(),
-    ...rounded.propTypes(),
     ...typographic.propTypes(),
   }),
   defaultProps: (dp = {}) => {
@@ -48,11 +46,9 @@ const base = {
     } = defaultProps
     return {
       ...aligned.defaultProps(alignment),
-      ...bordered.defaultProps(),
       ...chromatic.defaultProps(color, isTypographic),
       ...interactive.defaultProps(false, isTypographic, cursor),
       ...padded.defaultProps({ paddingX, paddingY }),
-      ...rounded.defaultProps(),
       ...typographic.defaultProps(font),
     }
   },
@@ -72,9 +68,15 @@ export const button = {
   ],
   propTypes: () => ({
     ...base.propTypes(),
+    ...bordered.propTypes(),
+    ...rounded.propTypes(),
   }),
   defaultProps: dp => ({
     ...base.defaultProps(dp),
+    ...bordered.defaultProps(),
+    ...rounded.defaultProps(),
+    font: 'button',
+    typographic: false,
   }),
 }
 
@@ -82,11 +84,34 @@ export const link = {
   styles: () => [...base.styles()],
   propTypes: () => ({
     ...base.propTypes(),
+    ...bordered.propTypes(),
+    ...rounded.propTypes(),
     variant: PropTypes.oneOf(['button', 'link']),
   }),
   defaultProps: dp => ({
     ...base.defaultProps(dp),
+    ...bordered.defaultProps(),
+    ...rounded.defaultProps(),
     variant: 'link',
+  }),
+}
+
+export const navItem = {
+  styles: () => [
+    ...base.styles(),
+    padded.styles,
+    () =>
+      css`
+        display: inline-block;
+      `,
+  ],
+  propTypes: () => ({
+    ...base.propTypes(),
+  }),
+  defaultProps: dp => ({
+    ...base.defaultProps(dp),
+    font: 'text',
+    typographic: false,
   }),
 }
 

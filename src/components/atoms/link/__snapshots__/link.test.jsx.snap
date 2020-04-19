@@ -3,7 +3,7 @@
 exports[`Link should render as default 1`] = `
 <div>
   <a
-    class="link css-z7mqwi"
+    class="link css-155nhey"
     color="background"
     cursor="pointer"
     href="#"

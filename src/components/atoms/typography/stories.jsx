@@ -4,15 +4,7 @@ import React from 'react'
 import { Box } from '_story'
 import { colors } from 'config'
 
-import Typography, {
-  typographicFonts,
-  T,
-  Label,
-  P,
-  Pre,
-  Heading,
-  SubHeading,
-} from '.'
+import Typography, { typographicFonts, T, P, Pre, Heading, SubHeading } from '.'
 
 const Demo = () => (
   <>
@@ -32,12 +24,6 @@ const Demo = () => (
       <T>
         The <em>T</em> component is a one-to-one alias for <em>Typography</em>.
       </T>
-    </div>
-    <div>
-      <Label>
-        The <em>Label</em> component is an alias using the <code>label</code>{' '}
-        font style.
-      </Label>
     </div>
     <div>
       <P>

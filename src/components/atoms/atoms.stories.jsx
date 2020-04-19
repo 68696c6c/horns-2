@@ -17,7 +17,7 @@ export { default as LinkEmail } from './link-email/stories'
 export { default as LinkPhone } from './link-phone/stories'
 export { default as Lists } from './lists/stories'
 export { default as Message } from './message/stories'
-export { default as NavItem } from './navs/nav-item/stories'
+export { default as NavItem } from './nav-item/stories'
 export { default as Typography } from './typography/stories'
 
 export const Index = () => (

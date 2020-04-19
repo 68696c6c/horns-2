@@ -5,23 +5,12 @@ import {
   bordered,
   chromatic,
   interactive,
-  padded,
-  typographic,
-} from '../../../../traits'
-
-const baseStyles = [
-  chromatic.styles,
-  interactive.styles,
-  padded.styles,
-  typographic.styles,
-  () => css`
-    display: inline-block;
-  `,
-]
+} from '../../../traits'
+import { navItem } from '../../hadrons'
 
 // Indicates the current item by overriding the colorway.
 export const NavItemColorway = styled.a(
-  ...baseStyles,
+  ...navItem.styles(),
   ({ theme, current, currentColor }) => {
     if (current) {
       return [
@@ -34,7 +23,7 @@ export const NavItemColorway = styled.a(
 )
 
 // Indicates the current item using a typographic underline.
-export const NavItemUnderline = styled.a(...baseStyles, ({ current }) => {
+export const NavItemUnderline = styled.a(...navItem.styles(), ({ current }) => {
   return (
     current &&
     css`
@@ -44,7 +33,7 @@ export const NavItemUnderline = styled.a(...baseStyles, ({ current }) => {
 })
 
 // Indicates the current item using a colored border.
-export const NavItemBordered = styled.a(...baseStyles, props => {
+export const NavItemBordered = styled.a(...navItem.styles(), props => {
   const {
     theme,
     current,

@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { handleProps } from '../../../utils'
-import { borderStyles, colors, sizes } from '../../../../config'
-import { chromatic, interactive, padded, typographic } from '../../../../traits'
+import { borderStyles, colors, sizes } from '../../../config'
+import { handleProps } from '../../utils'
+import { navItem } from '../../hadrons'
 
 import * as Styled from './styles'
 
@@ -24,10 +24,7 @@ const NavItem = ({ children, variant, ...others }) => {
 }
 
 NavItem.propTypes = {
-  ...chromatic.propTypes(),
-  ...interactive.propTypes(),
-  ...padded.propTypes(),
-  ...typographic.propTypes(),
+  ...navItem.propTypes(),
   href: PropTypes.string,
   current: PropTypes.bool,
   variant: PropTypes.oneOf(['border', 'colorway', 'underline']),
@@ -38,10 +35,7 @@ NavItem.propTypes = {
 }
 
 NavItem.defaultProps = {
-  ...chromatic.defaultProps('background'),
-  ...interactive.defaultProps(false, false, 'pointer'),
-  ...padded.defaultProps({ paddingX: 'medium', paddingY: 'xSmall' }),
-  ...typographic.defaultProps(),
+  ...navItem.defaultProps(),
   href: '#',
   current: false,
   variant: 'border',

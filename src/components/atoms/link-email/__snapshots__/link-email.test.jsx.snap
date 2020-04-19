@@ -3,7 +3,7 @@
 exports[`LinkEmail should render as default 1`] = `
 <div>
   <a
-    class="link-email css-z7mqwi"
+    class="link-email css-155nhey"
     color="background"
     cursor="pointer"
     href="mailto:?"

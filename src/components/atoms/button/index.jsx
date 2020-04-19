@@ -13,8 +13,6 @@ Button.propTypes = {
 
 Button.defaultProps = {
   ...button.defaultProps(),
-  font: 'button',
-  typographic: false,
 }
 
 export default Button

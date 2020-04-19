@@ -3,7 +3,7 @@
 exports[`NavItem should render as default 1`] = `
 <div>
   <a
-    class="nav-item css-1e72kte"
+    class="nav-item css-151kpns"
     color="background"
     cursor="pointer"
     href="#"
