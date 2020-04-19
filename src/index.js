@@ -1,4 +1,5 @@
 export {
+  ThemeProvider,
   Block,
   Div,
   Section,
@@ -37,6 +38,4 @@ export {
   Pre,
   Heading,
   SubHeading,
-} from './atoms'
-
-export { default as ThemeProvider } from './theme-provider'
+} from './components'

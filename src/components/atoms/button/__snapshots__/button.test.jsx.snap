@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button should render as default 1`] = `
+<div>
+  <button
+    class="button css-1344lvb"
+    color="background"
+    cursor="pointer"
+  >
+    example
+  </button>
+</div>
+`;
