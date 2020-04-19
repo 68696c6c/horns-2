@@ -7,11 +7,7 @@ import Textarea from '.'
 
 describe('Textarea', () => {
   it('should render as default', () => {
-    const { container } = render(
-      <Textarea id="example" name="example">
-        example
-      </Textarea>
-    )
+    const { container } = render(<Textarea id="example" name="example" />)
     expect(container).toMatchSnapshot()
   })
 })

@@ -2,27 +2,26 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { handleProps } from '../../../utils'
-
-import { baseControl } from '../utils'
-import * as Styled from '../styles'
+import { control, StyledToggle, StyledToggleControl } from '../../../hadrons'
 
 export const toggleTypes = ['checkbox', 'radio']
 
 const Toggle = ({ id, ...others }) => (
   <>
-    <Styled.Toggle id={id} {...handleProps(others, 'toggle')} />
-    <Styled.ToggleControl htmlFor={id} {...handleProps(others, 'control')} />
+    <StyledToggle id={id} {...handleProps(others, 'toggle')} />
+    <StyledToggleControl htmlFor={id} {...handleProps(others, 'control')} />
   </>
 )
 
 Toggle.propTypes = {
-  ...baseControl.propTypes(),
+  ...control.propTypes(),
   type: PropTypes.oneOf(toggleTypes),
 }
 
 Toggle.defaultProps = {
-  ...baseControl.defaultProps('pointer'),
+  ...control.defaultProps('pointer'),
   type: 'checkbox',
+  cursor: 'pointer',
 }
 
 export default Toggle

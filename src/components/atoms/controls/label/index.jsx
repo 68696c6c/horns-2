@@ -5,10 +5,10 @@ import { fontWeights } from '../../../../config'
 import { chromatic, margined, typographic } from '../../../../traits'
 import { handleProps } from '../../../utils'
 
-import * as Styled from '../styles'
+import * as Styled from './styles'
 
 const Label = ({ for: htmlFor, children, ...others }) => (
-  <Styled.Label htmlFor={htmlFor} {...handleProps(others, 'control-label')}>
+  <Styled.Label htmlFor={htmlFor} {...handleProps(others, 'label')}>
     {children}
   </Styled.Label>
 )

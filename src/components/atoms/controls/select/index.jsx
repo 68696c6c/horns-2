@@ -2,22 +2,20 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { handleProps } from '../../../utils'
-
-import { baseControl } from '../utils'
-import * as Styled from '../styles'
+import { control, StyledSelect, StyledMultiselect } from '../../../hadrons'
 
 const Select = ({ multiple, ...others }) => {
-  const Tag = multiple ? Styled.Multiselect : Styled.Select
+  const Tag = multiple ? StyledMultiselect : StyledSelect
   return <Tag {...handleProps(others, 'control')} multiple={multiple} />
 }
 
 Select.propTypes = {
-  ...baseControl.propTypes(),
+  ...control.propTypes(),
   multiselect: PropTypes.bool,
 }
 
 Select.defaultProps = {
-  ...baseControl.defaultProps(),
+  ...control.defaultProps(),
   multiselect: false,
 }
 
