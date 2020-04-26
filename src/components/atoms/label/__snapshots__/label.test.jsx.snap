@@ -1,9 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Label should render as default 1`] = `
+.emotion-0 {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  margin-left: 8px;
+  margin-right: 8px;
+  font-family: Helvetica,sans-serif;
+  font-size: medium;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1em;
+}
+
 <div>
   <label
-    class="label css-1k2l92a"
+    class="label emotion-0"
   >
     example
   </label>
