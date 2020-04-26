@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 
 import { borderStyles, colors, sizes } from '../../../config'
 import { handleProps } from '../../utils'
-import { navItem } from '../../hadrons'
 
+import { navItem } from '../_base/clickable'
 import * as Styled from './styles'
 
 const NavItem = ({ children, variant, ...others }) => {

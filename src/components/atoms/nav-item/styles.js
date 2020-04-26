@@ -6,7 +6,8 @@ import {
   chromatic,
   interactive,
 } from '../../../traits'
-import { navItem } from '../../hadrons'
+
+import { navItem } from '../_base/clickable'
 
 // Indicates the current item by overriding the colorway.
 export const NavItemColorway = styled.a(

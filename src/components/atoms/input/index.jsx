@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import createNumberMask from 'text-mask-addons/dist/createNumberMask'
 
 import { handleProps } from '../../utils'
-import { control } from '../../hadrons'
 
+import { control } from '../_base/controllable'
 import * as Styled from './styles'
 
 // eslint-disable-next-line

@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { css } from '@emotion/core'
 
-import { control } from '../../hadrons'
+import { control } from '../_base/controllable'
 
 const selectStyles = () => css`
   appearance: none;

@@ -2,7 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { handleProps } from '../../utils'
-import { link, getLinkVariantProps } from '../../hadrons'
+
+import { link, getLinkVariantProps } from '../_base/clickable'
 
 const getEmailHref = (email, subject, body) => {
   let href = `mailto:${email}?`

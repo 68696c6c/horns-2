@@ -1,8 +1,8 @@
 import React from 'react'
 
 import { handleProps } from '../../utils'
-import { control } from '../../hadrons'
 
+import { control } from '../_base/controllable'
 import * as Styled from './styles'
 
 const Textarea = ({ children, ...others }) => (

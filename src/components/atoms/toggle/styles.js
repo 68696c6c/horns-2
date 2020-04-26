@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import { css } from '@emotion/core'
 
-import { control } from '../../hadrons'
+import { control } from '../_base/controllable'
 
 export const Toggle = styled.input(({ theme, tone }) => {
   const c = theme.color.getBackground(tone)
