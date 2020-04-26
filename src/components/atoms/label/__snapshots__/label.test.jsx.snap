@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Label should render as default 1`] = `
+<div>
+  <label
+    class="label css-1k2l92a"
+  >
+    example
+  </label>
+</div>
+`;

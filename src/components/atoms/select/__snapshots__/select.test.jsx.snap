@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Select should render as default 1`] = `
+<div>
+  <select
+    class="control css-43mrbj"
+    cursor="text"
+    id="example"
+    name="example"
+    placeholder=""
+  />
+</div>
+`;

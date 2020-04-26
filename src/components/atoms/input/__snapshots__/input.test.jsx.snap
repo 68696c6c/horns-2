@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input should render as default 1`] = `
+<div>
+  <input
+    class="control css-b5shpp"
+    cursor="text"
+    id="example"
+    name="example"
+    placeholder=""
+    type="text"
+  />
+</div>
+`;

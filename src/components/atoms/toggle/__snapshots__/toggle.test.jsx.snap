@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Toggle should render as default 1`] = `
+<div>
+  <input
+    class="toggle css-1rjhdhh"
+    cursor="pointer"
+    id="example"
+    name="example"
+    placeholder=""
+    type="checkbox"
+  />
+  <label
+    class="control css-1k7ht1i"
+    cursor="pointer"
+    for="example"
+    name="example"
+    placeholder=""
+    type="checkbox"
+  />
+</div>
+`;

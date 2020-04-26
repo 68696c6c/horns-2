@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Textarea should render as default 1`] = `
+<div>
+  <textarea
+    class="control css-1tjhl6s"
+    cursor="text"
+    id="example"
+    name="example"
+    placeholder=""
+  />
+</div>
+`;
