@@ -33,12 +33,12 @@ exports[`Select should render as default 1`] = `
   display: inline-flex;
   box-sizing: content-box;
   vertical-align: middle;
+  height: 1em;
+  min-width: 1em;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   cursor: pointer;
-  height: 1em;
-  min-width: 1em;
 }
 
 .emotion-0:disabled,

@@ -2,10 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { handleProps } from '../../utils'
-import { control, StyledSelect, StyledMultiselect } from '../../hadrons'
+import { control } from '../../hadrons'
+
+import * as Styled from './styles'
 
 const Select = ({ multiple, ...others }) => {
-  const Tag = multiple ? StyledMultiselect : StyledSelect
+  const Tag = multiple ? Styled.Multiselect : Styled.Select
   return <Tag {...handleProps(others, 'control')} multiple={multiple} />
 }
 

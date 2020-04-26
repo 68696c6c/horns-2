@@ -3,12 +3,9 @@ import PropTypes from 'prop-types'
 import createNumberMask from 'text-mask-addons/dist/createNumberMask'
 
 import { handleProps } from '../../utils'
-import {
-  control,
-  StyledInput,
-  StyledInputHidden,
-  StyledInputMasked,
-} from '../../hadrons'
+import { control } from '../../hadrons'
+
+import * as Styled from './styles'
 
 // eslint-disable-next-line
 const phoneMask = [ /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, /\d/ ]
@@ -39,15 +36,15 @@ const Input = ({ currency, type, ...others }) => {
   let Tag
   switch (type) {
     case 'hidden':
-      Tag = StyledInputHidden
+      Tag = Styled.InputHidden
       break
     case 'tel':
-      Tag = StyledInputMasked
+      Tag = Styled.InputMasked
       props.mask = phoneMask
       props.placeholderChar = '_'
       break
     case 'currency':
-      Tag = StyledInputMasked
+      Tag = Styled.InputMasked
       props.mask = createNumberMask({
         prefix: currency,
         allowDecimal: true,
@@ -56,7 +53,7 @@ const Input = ({ currency, type, ...others }) => {
       props.type = 'text'
       break
     case 'percentage':
-      Tag = StyledInputMasked
+      Tag = Styled.InputMasked
       props.mask = createNumberMask({
         prefix: '',
         suffix: '%',
@@ -65,7 +62,7 @@ const Input = ({ currency, type, ...others }) => {
       props.type = 'text'
       break
     default:
-      Tag = StyledInput
+      Tag = Styled.Input
   }
   return <Tag {...handleProps(props, 'control')} />
 }
