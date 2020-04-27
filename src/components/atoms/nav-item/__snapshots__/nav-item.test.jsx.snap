@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Button should render as default 1`] = `
+exports[`NavItem should render as default 1`] = `
 .emotion-0 {
   background: rgb(255,255,255);
   color: rgb(1,1,1);
@@ -9,28 +9,15 @@ exports[`Button should render as default 1`] = `
   font-family: Helvetica,sans-serif;
   font-size: medium;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 400;
   line-height: 1.6em;
-  -webkit-text-decoration-line: none;
-  text-decoration-line: none;
-  text-align: center;
-  border-top-width: 2px;
-  border-top-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-style: solid;
-  border-left-width: 2px;
-  border-left-style: solid;
-  border-right-width: 2px;
-  border-right-style: solid;
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 16px;
   padding-right: 16px;
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px;
   display: inline-block;
+  -webkit-text-decoration: none;
+  text-decoration: none;
 }
 
 .emotion-0:disabled,
@@ -60,12 +47,13 @@ exports[`Button should render as default 1`] = `
 }
 
 <div>
-  <button
-    class="button emotion-0"
+  <a
+    class="nav-item emotion-0"
     color="background"
     cursor="pointer"
+    href="#"
   >
     example
-  </button>
+  </a>
 </div>
 `;

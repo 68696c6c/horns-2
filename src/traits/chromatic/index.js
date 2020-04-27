@@ -7,8 +7,10 @@ export const chromatic = {
   styles: ({ theme, color, typographic }) => {
     const c = theme.color.getColorway(color)
     if (typographic) {
+      const tColor = color === 'background' ? c.base.readable : c.base.base
       return css`
-        color: ${color === 'background' ? c.base.readable : c.base.base};
+        color: ${tColor};
+        border-color: ${tColor};
       `
     }
     return css`

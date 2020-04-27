@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LinkPhone should render as default 1`] = `
+.emotion-0 {
+  color: rgb(1,1,1);
+  border-color: rgb(1,1,1);
+  cursor: pointer;
+  font-family: Helvetica,sans-serif;
+  font-size: medium;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.6em;
+  -webkit-text-decoration-line: underline;
+  text-decoration-line: underline;
+}
+
+.emotion-0:disabled,
+.emotion-0.inactive {
+  cursor: pointer;
+  color: rgb(1,1,1);
+  -webkit-text-decoration-line: underline;
+  text-decoration-line: underline;
+}
+
+.emotion-0:not(:disabled):not(.inactive):hover {
+  color: rgb(1,1,1);
+  -webkit-text-decoration-line: underline;
+  text-decoration-line: underline;
+  -webkit-text-decoration-style: double;
+  text-decoration-style: double;
+}
+
+.emotion-0:not(:disabled):not(.inactive):active {
+  color: rgb(1,1,1);
+  -webkit-text-decoration-line: underline;
+  text-decoration-line: underline;
+  -webkit-text-decoration-style: double;
+  text-decoration-style: double;
+}
+
+<div>
+  <a
+    class="link-phone emotion-0"
+    color="background"
+    cursor="pointer"
+    href="tel:"
+  >
+    example
+  </a>
+</div>
+`;

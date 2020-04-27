@@ -1,51 +1,19 @@
 import React from 'react'
 
-import {
-  aligned,
-  bordered,
-  chromatic,
-  interactive,
-  padded,
-  rounded,
-  typographic,
-} from '../../../traits'
 import { handleProps } from '../../utils'
 
-import * as Styled from './styles'
-
-export const buttonDefaults = {
-  alignment: 'center',
-  color: 'background',
-  cursor: 'pointer',
-  paddingX: 'medium',
-  paddingY: 'xSmall',
-}
+import { button, Button as StyledButton } from '../_base/clickable'
 
 const Button = ({ children, ...others }) => (
-  <Styled.Button {...handleProps(others, 'button')}>{children}</Styled.Button>
+  <StyledButton {...handleProps(others, 'button')}>{children}</StyledButton>
 )
 
 Button.propTypes = {
-  ...aligned.propTypes(),
-  ...bordered.propTypes(),
-  ...chromatic.propTypes(),
-  ...interactive.propTypes(),
-  ...padded.propTypes(),
-  ...rounded.propTypes(),
-  ...typographic.propTypes(),
+  ...button.propTypes(),
 }
 
 Button.defaultProps = {
-  ...aligned.defaultProps(buttonDefaults.alignment),
-  ...bordered.defaultProps(),
-  ...chromatic.defaultProps(buttonDefaults.color),
-  ...interactive.defaultProps(false, false, buttonDefaults.cursor),
-  ...padded.defaultProps({
-    paddingX: buttonDefaults.paddingX,
-    paddingY: buttonDefaults.paddingY,
-  }),
-  ...rounded.defaultProps(),
-  ...typographic.defaultProps('button'),
+  ...button.defaultProps(),
 }
 
 export default Button
