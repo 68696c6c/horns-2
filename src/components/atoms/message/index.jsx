@@ -1,72 +1,29 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-// @TODO need a way to set icons at the theme level so different themes can use different iconsets.
-import {
-  FaInfoCircle,
-  FaExclamationCircle,
-  FaCheckCircle,
-  FaSkull,
-} from 'react-icons/fa'
 
-import {
-  bordered,
-  chromatic,
-  margined,
-  padded,
-  typographic,
-} from '../../../traits'
+import { chromatic, typographic } from '../../../traits'
 import { handleProps } from '../../utils'
 
 import * as Styled from './styles'
 
 export const messageVariants = ['success', 'info', 'warning', 'danger']
 
-const Message = ({ children, block, variant, withIcon, ...others }) => {
-  const Tag = block ? Styled.MessageBlock : Styled.MessageInline
-  let Icon
-  // eslint-disable-next-line default-case
-  switch (variant) {
-    case 'danger':
-      Icon = FaSkull
-      break
-    case 'info':
-      Icon = FaInfoCircle
-      break
-    case 'success':
-      Icon = FaCheckCircle
-      break
-    case 'warning':
-      Icon = FaExclamationCircle
-      break
-  }
-  return (
-    <Tag {...handleProps(others, 'message')} color={variant}>
-      {withIcon && <Icon className="icon" />}
-      {children}
-    </Tag>
-  )
-}
+const Message = ({ children, variant, ...others }) => (
+  <Styled.Message {...handleProps(others, 'message')} color={variant}>
+    {children}
+  </Styled.Message>
+)
 
 Message.propTypes = {
-  ...bordered.propTypes(),
   ...chromatic.propTypes(),
-  ...margined.propTypes(),
-  ...padded.propTypes(),
   ...typographic.propTypes(),
   variant: PropTypes.oneOf(messageVariants),
-  block: PropTypes.bool,
-  withIcon: PropTypes.bool,
 }
 
 Message.defaultProps = {
-  ...bordered.defaultProps(),
-  ...chromatic.defaultProps(),
-  ...margined.defaultProps(),
-  ...padded.defaultProps({ padding: 'small', paddingX: 'medium' }),
+  ...chromatic.defaultProps(null, true),
   ...typographic.defaultProps(),
   variant: 'info',
-  block: false,
-  withIcon: false,
 }
 
 export default Message
