@@ -23,7 +23,7 @@ Label.propTypes = {
 
 Label.defaultProps = {
   ...chromatic.defaultProps(null, true),
-  ...margined.defaultProps({ margin: 'xSmall' }),
+  ...margined.defaultProps(),
   ...typographic.defaultProps('label'),
   for: null,
   weight: 'semiBold',
