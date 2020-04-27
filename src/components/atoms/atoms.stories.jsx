@@ -3,6 +3,7 @@ import React from 'react'
 
 import { A } from '_story'
 
+export { default as Alert } from './alert/stories'
 export { default as Block } from './block/stories'
 export { default as Button } from './button/stories'
 export { default as Flex } from './flex/stories'
