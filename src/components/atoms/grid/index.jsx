@@ -38,6 +38,10 @@ const BaseGrid = ({ children, variant, ...others }) => {
       Tag = Styled.Columns
       className = 'columns'
       break
+    case 'stack':
+      Tag = Styled.Stack
+      className = 'stack'
+      break
     case 'grid':
       Tag = Styled.Grid
       className = 'grid'
@@ -55,6 +59,7 @@ BaseGrid.propTypes = {
   ...responsive.propTypes(),
   variant: PropTypes.oneOf(gridVariants),
   reversed: PropTypes.bool,
+  columns: PropTypes.number,
 }
 
 BaseGrid.defaultProps = {
@@ -66,6 +71,7 @@ BaseGrid.defaultProps = {
   ...responsive.defaultProps(),
   variant: 'grid',
   reversed: false,
+  columns: 0,
 }
 
 export const Column = props => <Styled.Column {...props} />
@@ -103,5 +109,6 @@ export default Grid
 
 export const Areas = props => <BaseGrid {...props} variant="areas" />
 export const Columns = props => <BaseGrid {...props} variant="columns" />
+export const Stack = props => <BaseGrid {...props} variant="stack" />
 export const Halves = props => <BaseGrid {...props} variant="halves" />
 export const Thirds = props => <BaseGrid {...props} variant="thirds" />

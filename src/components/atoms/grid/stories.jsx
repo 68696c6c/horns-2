@@ -3,7 +3,7 @@ import React from 'react'
 
 import { makeIntArray } from '_story'
 
-import Grid, { Area, Areas, Column, Columns, Halves, Thirds } from '.'
+import Grid, { Area, Areas, Column, Columns, Stack, Halves, Thirds } from '.'
 
 // @TODO demo the remaining props
 const Demo = () => (
@@ -150,6 +150,19 @@ const Demo = () => (
       <Area color="warning">Area 6</Area>
       <Area color="danger">Area 7</Area>
     </Columns>
+
+    <hr />
+
+    <h2>Stack</h2>
+    <Stack color="dark" gapped>
+      <Area color="primary">Area 1</Area>
+      <Area color="secondary">Area 2</Area>
+      <Area color="tertiary">Area 3</Area>
+      <Area color="success">Area 4</Area>
+      <Area color="info">Area 5</Area>
+      <Area color="warning">Area 6</Area>
+      <Area color="danger">Area 7</Area>
+    </Stack>
 
     <hr />
 

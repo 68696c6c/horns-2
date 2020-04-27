@@ -61,6 +61,14 @@ export const Columns = styled.div(
   }
 )
 
+export const Stack = styled.div(
+  ...baseStyles,
+  contained.styles,
+  () => css`
+    grid-template-rows: auto;
+  `
+)
+
 export const Grid = styled.div(
   ...baseStyles,
   contained.styles,
