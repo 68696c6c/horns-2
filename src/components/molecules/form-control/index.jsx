@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 // import uuid from 'uuid/v4'
 
 import { gridded } from '../../../traits'
-import { control } from '../../atoms/_base/controllable'
+// import { control } from '../../atoms/_base/controllable'
 import { handleProps } from '../../utils'
 
 import {
@@ -35,8 +35,8 @@ const ToggleGroup = ({
   placeholder,
   required,
   hasError,
-                       horizontal,
-                       className,
+  horizontal,
+  className,
   ...others
 }) => {
   // const Tag = options.length <= 5 ? Styled.ToggleGroupStack : Styled.ToggleGroupColumns
@@ -59,11 +59,7 @@ const ToggleGroup = ({
               className={className}
               {...others}
             />
-            <Label
-              htmlFor={id}
-              required={required}
-              className={className}
-            >
+            <Label htmlFor={id} required={required} className={className}>
               {key}
             </Label>
           </Styled.ToggleGroupOption>

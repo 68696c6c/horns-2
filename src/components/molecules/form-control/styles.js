@@ -21,8 +21,8 @@ export const FormControlHorizontal = styled(Areas)(({ multiLine }) => {
           grid-template-areas:
             'label input'
             'message input';
-          input[type="checkbox"],
-          input[type="radio"],
+          input[type='checkbox'],
+          input[type='radio'],
           select[multiple],
           textarea {
             grid-row-start: span 2;
@@ -75,5 +75,5 @@ export const ToggleGroupOption = styled.div(() => {
       margin-top: 0.25em;
       margin-bottom: 0.25em;
     }
-`
+  `
 })
