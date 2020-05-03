@@ -6,20 +6,20 @@ import { handleProps } from '../../utils'
 import { grid } from '../_base/grid'
 import * as Styled from './styles'
 
-const Grid = ({ children, ...others }) => (
-  <Styled.Grid {...handleProps(others, 'grid')} columns={12} gapped>
+const Columns = ({ children, ...others }) => (
+  <Styled.Columns {...handleProps(others, 'columns')}>
     {children}
-  </Styled.Grid>
+  </Styled.Columns>
 )
 
-Grid.propTypes = {
+Columns.propTypes = {
   ...grid.propTypes(),
   columns: PropTypes.number,
 }
 
-Grid.defaultProps = {
+Columns.defaultProps = {
   ...grid.defaultProps(),
   columns: 0,
 }
 
-export default Grid
+export default Columns

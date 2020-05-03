@@ -3,15 +3,15 @@ import React from 'react'
 
 import { render } from 'setup-test'
 
-import Grid from '.'
+import Halves from '.'
 
-describe('Grid', () => {
+describe('Halves', () => {
   it('should render as default', () => {
     const { container } = render(
-      <Grid>
+      <Halves>
         <div>a</div>
         <div>b</div>
-      </Grid>
+      </Halves>
     )
     expect(container).toMatchSnapshot()
   })

@@ -1,7 +1,8 @@
 import { css } from '@emotion/core'
 import styled from '@emotion/styled'
 
-import { Areas, Stack } from '../../atoms/grid/styles'
+import { Areas } from '../../atoms/areas/styles'
+import { Stack } from '../../atoms/stack/styles'
 
 export const FormControl = styled(Stack)(({ theme }) => {
   const c = theme.color.getColorway('danger')

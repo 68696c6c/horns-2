@@ -3,16 +3,11 @@ import React from 'react'
 
 import { render } from 'setup-test'
 
-import Grid from '.'
+import Column from '.'
 
-describe('Grid', () => {
+describe('Column', () => {
   it('should render as default', () => {
-    const { container } = render(
-      <Grid>
-        <div>a</div>
-        <div>b</div>
-      </Grid>
-    )
+    const { container } = render(<Column>example</Column>)
     expect(container).toMatchSnapshot()
   })
 })
