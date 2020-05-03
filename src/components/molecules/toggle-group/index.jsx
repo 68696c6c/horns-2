@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import uuid from 'uuid/v4'
 
-import { Label, Toggle } from '../../atoms'
+import { handleProps } from '../../utils'
+import { toggleTypes, Label, Toggle } from '../../atoms'
 
 import * as Styled from './styles'
 
@@ -12,8 +13,6 @@ const ToggleGroup = ({
   name,
   id,
   required,
-  hasError,
-  horizontal,
   className,
   ...others
 }) => {
@@ -26,26 +25,20 @@ const ToggleGroup = ({
     setToggleIDs(idMap)
   }, [])
 
-  if (!toggleIDs) {
-    return <div>Loading</div>
-  }
-
   return (
-    <Styled.ToggleGroupFlex
+    <Styled.ToggleGroup
+      {...handleProps(others, 'toggle-group')}
       length={options.length}
-      columns={options.length >= 10 ? 10 : options.length}
-      horizontal={horizontal}
     >
       {options.map(({ key, value }) => {
-        const toggleID = toggleIDs[key]
+        const toggleID = toggleIDs[key] || uuid()
         return (
-          <Styled.ToggleGroupOption>
+          <Styled.ToggleGroupOption key={toggleID}>
             <Toggle
               id={toggleID}
               type={type}
               name={name}
               required={required}
-              hasError={hasError}
               value={value}
               className={className}
               {...others}
@@ -56,23 +49,26 @@ const ToggleGroup = ({
           </Styled.ToggleGroupOption>
         )
       })}
-    </Styled.ToggleGroupFlex>
+    </Styled.ToggleGroup>
   )
 }
 
 ToggleGroup.propTypes = {
+  className: PropTypes.string,
   required: PropTypes.bool,
   name: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
+  type: PropTypes.oneOf(toggleTypes).isRequired,
   options: PropTypes.arrayOf(
     PropTypes.shape({
       key: PropTypes.string,
-      value: PropTypes.oneOf([PropTypes.string, PropTypes.number]),
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     })
   ),
 }
 
 ToggleGroup.defaultProps = {
+  className: '',
   required: false,
   options: [],
 }
