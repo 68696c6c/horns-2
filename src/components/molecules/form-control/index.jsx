@@ -11,10 +11,10 @@ import {
   Input,
   Select,
   Textarea,
-  Toggle,
   Label,
   Message,
 } from '../../atoms'
+import ToggleGroup from '../toggle-group'
 
 import * as Styled from './styles'
 
@@ -26,61 +26,6 @@ export const controlTypes = [
   'radio',
   ...inputTypes,
 ]
-
-const ToggleGroup = ({
-  options,
-  type,
-  name,
-  id,
-  placeholder,
-  required,
-  hasError,
-  horizontal,
-  className,
-  ...others
-}) => {
-  // const Tag = options.length <= 5 ? Styled.ToggleGroupStack : Styled.ToggleGroupColumns
-  return (
-    <Styled.ToggleGroupFlex
-      length={options.length}
-      columns={options.length >= 10 ? 10 : options.length}
-      horizontal={horizontal}
-    >
-      {options.map(({ key, value }) => {
-        return (
-          <Styled.ToggleGroupOption>
-            <Toggle
-              id={id}
-              type={type}
-              name={name}
-              required={required}
-              hasError={hasError}
-              value={value}
-              className={className}
-              {...others}
-            />
-            <Label htmlFor={id} required={required} className={className}>
-              {key}
-            </Label>
-          </Styled.ToggleGroupOption>
-        )
-      })}
-    </Styled.ToggleGroupFlex>
-  )
-}
-
-ToggleGroup.propTypes = {
-  options: PropTypes.arrayOf(
-    PropTypes.shape({
-      key: PropTypes.string,
-      value: PropTypes.oneOf([PropTypes.string, PropTypes.number]),
-    })
-  ),
-}
-
-ToggleGroup.defaultProps = {
-  options: [],
-}
 
 const FormControl = ({
   type,
