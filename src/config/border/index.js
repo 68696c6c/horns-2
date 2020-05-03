@@ -39,6 +39,10 @@ class BorderConfig {
     this.config = mergeConfigs(config, defaultConfig)
   }
 
+  getWidthPX() {
+    return this.sizing.getPX(this.config.all.width)
+  }
+
   getBorders(sides = {}) {
     const { all, x, y, top, bottom, left, right } = merge(
       defaultBorders(),

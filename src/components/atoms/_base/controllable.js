@@ -26,9 +26,12 @@ export const control = {
     chromaticSurface.styles,
     interactive.styles,
     margined.styles,
-    padded.styles,
     rounded.styles,
     typographic.styles,
+    ({ theme }) => {
+      const { x, y } = theme.padding.getSizes('controls')
+      return padded.styles({ theme, paddingX: x, paddingY: y })
+    },
     ({ theme, font }) => {
       let heightCSS
       if (inline) {
