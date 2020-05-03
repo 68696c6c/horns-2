@@ -1,11 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-// import uuid from 'uuid/v4'
 
 import { gridded } from '../../../traits'
-// import { control } from '../../atoms/_base/controllable'
-import { handleProps } from '../../utils'
-
+import { control } from '../../atoms/_base/controllable'
 import {
   inputTypes,
   Input,
@@ -14,6 +11,8 @@ import {
   Label,
   Message,
 } from '../../atoms'
+import { handleProps } from '../../utils'
+
 import ToggleGroup from '../toggle-group'
 
 import * as Styled from './styles'
@@ -42,15 +41,26 @@ const FormControl = ({
 }) => {
   const errorClass = hasError && 'error'
   let WrapperTag = Styled.FormControl
-  let wrapperProps = { columns: 1, gapped: true, gap: 'xxSmall' }
+  let wrapperProps = {}
   const inputProps = {}
   if (horizontal) {
     WrapperTag = Styled.FormControlHorizontal
-    // wrapperProps = { areas: `"label input message"` }
-    wrapperProps = {}
+    wrapperProps = { columns: 2 }
   }
   let Tag
   switch (type) {
+    case 'hidden':
+      inputProps.type = type
+      return (
+        <Input
+          type={type}
+          name={name}
+          id={id}
+          placeholder={placeholder}
+          required={required}
+          {...handleProps(inputProps, errorClass)}
+        />
+      )
     case 'select':
       Tag = Select
       inputProps.options = options
@@ -69,7 +79,9 @@ const FormControl = ({
     case 'radio':
       Tag = ToggleGroup
       inputProps.options = options
-      inputProps.horizontal = horizontal
+      if (horizontal) {
+        wrapperProps.multiLine = true
+      }
       break
     default:
       Tag = Input
@@ -78,13 +90,7 @@ const FormControl = ({
   return (
     <WrapperTag {...wrapperProps} {...handleProps(others, 'form-control')}>
       {label && (
-        <Label
-          htmlFor={id}
-          required={required}
-          hasError={hasError}
-          area="label"
-          className={errorClass}
-        >
+        <Label htmlFor={id} required={required} className={errorClass}>
           {label}
         </Label>
       )}
@@ -93,12 +99,11 @@ const FormControl = ({
         name={name}
         id={id}
         placeholder={placeholder}
-        required={required ? 'required' : ''}
+        required={required}
         {...handleProps(inputProps, errorClass)}
-        area="input"
       />
       {errorMessage && (
-        <Message htmlFor={id} variant="danger" area="message">
+        <Message htmlFor={id} variant="danger">
           {errorMessage}
         </Message>
       )}
@@ -108,12 +113,16 @@ const FormControl = ({
 
 FormControl.propTypes = {
   ...gridded.propTypes(),
+  ...control.propTypes(),
   horizontal: PropTypes.bool,
 }
 
 FormControl.defaultProps = {
   ...gridded.defaultProps(true),
+  ...control.defaultProps(),
   horizontal: false,
+  fluid: true,
+  gap: 'xSmall',
 }
 
 export default FormControl

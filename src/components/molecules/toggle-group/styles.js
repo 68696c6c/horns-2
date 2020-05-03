@@ -5,6 +5,8 @@ export const ToggleGroup = styled.div(
   ({ theme, length }) => css`
     column-width: ${theme.grid.getColumnMin()};
     column-count: ${Math.floor(length / 3) || 1};
+    margin-top: -0.25em;
+    margin-bottom: -0.25em;
   `
 )
 
@@ -14,7 +16,8 @@ export const ToggleGroupOption = styled.div(
     align-items: center;
     break-inside: avoid-column;
     clear: left;
-    margin-bottom: 0.5em;
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
     .label {
       margin-inline-start: 0.333em;
       margin-inline-end: 0.6666em;
