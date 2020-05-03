@@ -250,7 +250,7 @@ export default {
       decoration: 'base',
       kerning: 'base',
       tracking: 'base',
-      letting: 'base',
+      letting: 'min',
       spacing: 'base',
       indent: 'base',
       inactive: {

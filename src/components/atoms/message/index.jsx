@@ -22,7 +22,7 @@ Message.propTypes = {
 
 Message.defaultProps = {
   ...chromatic.defaultProps(null, true),
-  ...typographic.defaultProps(),
+  ...typographic.defaultProps('message'),
   variant: 'info',
 }
 
