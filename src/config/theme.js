@@ -1,6 +1,7 @@
 import BorderConfig, { borders } from './border'
 import ColorConfig, { color } from './color'
 import GridConfig, { grid } from './grid'
+import PaddingConfig from './padding'
 import RadiusConfig, { radius } from './radius'
 import SizingConfig, { sizing } from './sizing'
 import TypographyConfig, { typography } from './typography'
@@ -389,6 +390,7 @@ class Theme {
 
     // Dependent Configs
     this.borders = new BorderConfig(this.sizing, config.borders)
+    this.padding = new PaddingConfig(this.sizing, config.padding)
     this.radius = new RadiusConfig(this.sizing, config.radius)
     this.grid = new GridConfig(this.sizing, config.grid)
 

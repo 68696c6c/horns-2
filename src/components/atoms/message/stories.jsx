@@ -11,20 +11,13 @@ const Demo = () => (
     <p>
       The <em>Message</em> component provides themed notification text.
     </p>
-    {messageVariants.map(variant => {
-      return (
-        <Story.Grid>
-          <Story.Box>
-            <Message variant={variant}>{variant} message</Message>
-          </Story.Box>
-          <Story.Box>
-            <Message variant={variant} withIcon>
-              {variant} message with icon
-            </Message>
-          </Story.Box>
-        </Story.Grid>
-      )
-    })}
+    {messageVariants.map(variant => (
+      <Story.Grid>
+        <Story.Box>
+          <Message variant={variant}>{variant} message</Message>
+        </Story.Box>
+      </Story.Grid>
+    ))}
   </>
 )
 

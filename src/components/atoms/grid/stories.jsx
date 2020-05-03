@@ -3,38 +3,25 @@ import React from 'react'
 
 import { makeIntArray } from '_story'
 
-import Grid, { Area, Areas, Column, Columns, Halves, Thirds } from '.'
+import Column from '../column'
+import Grid from '.'
 
 // @TODO demo the remaining props
 const Demo = () => (
   <>
     <h1>Grid</h1>
     <p>
-      The <em>Grid</em> component arranges its children according to a specified
-      template.
+      The <em>Grid</em> component arranges its children according to a 12 column
+      layout grid. Unlike the <em>Columns</em> component, the <em>Grid</em>{' '}
+      component never wraps its children as it is intended to be a single row in
+      a grid layout.
     </p>
-    <Grid color="dark" marginY="medium">
-      <Area color="primary">Area 1</Area>
-      <Area color="secondary">Area 2</Area>
-      <Area color="tertiary">Area 3</Area>
-    </Grid>
-
-    <h2>Default Grid</h2>
-    <p>
-      By default, the <em>Grid</em> component arranges its children according to
-      a 12 column layout grid. Each Grid is its own row in the layout.
-    </p>
-    <p>
-      The Column component can be used to define column spanning and positioning
-      within a Grid.
-    </p>
-
     <Grid color="dark">
       {makeIntArray(12).map(i => (
         <Column color="primary">Column {i}</Column>
       ))}
     </Grid>
-    <Grid color="dark">
+    <Grid color="neutral">
       {makeIntArray(12).map(i => (
         <Column color="secondary">Column {i}</Column>
       ))}
@@ -45,7 +32,18 @@ const Demo = () => (
       ))}
     </Grid>
 
+    <h2>Column Children</h2>
+    <p>
+      The children of the <em>Grid</em> component can be any other type of
+      component, but using the <em>Column</em> component for the children
+      provides additional functionality.
+    </p>
+
     <h3>Column Spanning</h3>
+    <p>
+      The <em>Column</em> component can be used to define column spanning and
+      positioning within a <em>Grid</em>.
+    </p>
     <Grid color="neutral">
       <Column span={2} color="success">
         Column span 2
@@ -137,79 +135,6 @@ const Demo = () => (
         right
       </Column>
     </Grid>
-
-    <hr />
-
-    <h2>Columns</h2>
-    <Columns color="dark" gapped>
-      <Area color="primary">Area 1</Area>
-      <Area color="secondary">Area 2</Area>
-      <Area color="tertiary">Area 3</Area>
-      <Area color="success">Area 4</Area>
-      <Area color="info">Area 5</Area>
-      <Area color="warning">Area 6</Area>
-      <Area color="danger">Area 7</Area>
-    </Columns>
-
-    <hr />
-
-    <h2>Halves</h2>
-    <Halves color="neutral" marginY="medium">
-      <Area color="info">Area 1</Area>
-      <Area color="warning">Area 2</Area>
-    </Halves>
-    <Halves color="neutral" marginY="medium" fluid>
-      <Area color="danger">Fluid Area 1</Area>
-      <Area color="primary">Fluid Area 2</Area>
-    </Halves>
-
-    <hr />
-
-    <h2>Thirds</h2>
-    <Thirds color="dark" marginY="medium">
-      <Area color="secondary">Area 1</Area>
-      <Area color="tertiary">Area 2</Area>
-    </Thirds>
-    <Thirds color="neutral" marginY="medium" reversed>
-      <Area color="success">Area 1</Area>
-      <Area color="info">Area 2</Area>
-    </Thirds>
-
-    <Thirds color="dark" marginY="medium" fluid>
-      <Area color="warning">Area 1</Area>
-      <Area color="danger">Area 2</Area>
-    </Thirds>
-    <Thirds color="neutral" marginY="medium" reversed fluid>
-      <Area color="primary">Area 1</Area>
-      <Area color="secondary">Area 2</Area>
-    </Thirds>
-
-    <hr />
-
-    <h2>Areas</h2>
-    <Areas color="dark" areas="'a b b c' 'a d e f' 'g g g g'" gapped>
-      <Area color="success" area="a">
-        Area A
-      </Area>
-      <Area color="info" area="b">
-        Area B
-      </Area>
-      <Area color="warning" area="c">
-        Area C
-      </Area>
-      <Area color="danger" area="d">
-        Area D
-      </Area>
-      <Area color="primary" area="e">
-        Area E
-      </Area>
-      <Area color="secondary" area="f">
-        Area F
-      </Area>
-      <Area color="tertiary" area="g">
-        Area G
-      </Area>
-    </Areas>
   </>
 )
 

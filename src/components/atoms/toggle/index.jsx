@@ -17,12 +17,11 @@ const Toggle = ({ id, ...others }) => (
 
 Toggle.propTypes = {
   ...control.propTypes(),
-  type: PropTypes.oneOf(toggleTypes),
+  type: PropTypes.oneOf(toggleTypes).isRequired,
 }
 
 Toggle.defaultProps = {
   ...control.defaultProps('pointer'),
-  type: 'checkbox',
   cursor: 'pointer',
 }
 

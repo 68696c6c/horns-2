@@ -7,11 +7,6 @@ export const Toggle = styled.input(({ theme, tone }) => {
   const c = theme.color.getBackground(tone)
   return css`
     display: none;
-    ~ label.toggle-label,
-    ~ label.toggle-message {
-      vertical-align: middle;
-      display: inline-block;
-    }
     &:checked + label.control {
       background: ${c.active.base};
     }
