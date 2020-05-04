@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import { handleProps } from '../../utils'
 
-import { control } from '../_base/controllable'
+import { control } from '../_base'
 import * as Styled from './styles'
 
 const Select = ({ children, id, multiple, options, ...others }) => {

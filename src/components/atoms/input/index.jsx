@@ -4,7 +4,7 @@ import createNumberMask from 'text-mask-addons/dist/createNumberMask'
 
 import { handleProps } from '../../utils'
 
-import { control } from '../_base/controllable'
+import { control } from '../_base'
 import * as Styled from './styles'
 
 // eslint-disable-next-line

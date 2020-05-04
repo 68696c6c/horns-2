@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { gridded } from '../../../traits'
-import { control } from '../../atoms/_base/controllable'
+import { control } from '../../atoms/_base'
 import {
   inputTypes,
   Input,
