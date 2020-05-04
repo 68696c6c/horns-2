@@ -36,5 +36,5 @@ export default [
   'w-resize',
   'wait',
   'zoom-in',
-  'zoom-out'
+  'zoom-out',
 ]

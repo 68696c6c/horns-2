@@ -1,6 +1,6 @@
 /* global describe, it, expect, beforeEach */
-import GridConfig, { breakpoints } from '.'
-import SizingConfig, { sizing } from '../sizing'
+import GridConfig from '.'
+import SizingConfig from '../sizing'
 
 describe('GridConfig', () => {
   let c

@@ -11,4 +11,5 @@ const baseStyles = [
   },
 ]
 
+// eslint-disable-next-line import/prefer-default-export
 export const Message = styled.label(...baseStyles)

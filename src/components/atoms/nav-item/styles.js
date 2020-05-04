@@ -1,11 +1,7 @@
 import { css } from '@emotion/core'
 import styled from '@emotion/styled'
 
-import {
-  bordered,
-  chromatic,
-  interactive,
-} from '../../../traits'
+import { bordered, chromatic, interactive } from '../../../traits'
 
 import { navItem } from '../_base/clickable'
 
