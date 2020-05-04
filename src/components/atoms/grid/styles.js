@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 
 import { contained } from '../../../traits'
 
-import { grid } from '../_base/grid'
+import { grid } from '../_base'
 
 // eslint-disable-next-line import/prefer-default-export
 export const Grid = styled.div(

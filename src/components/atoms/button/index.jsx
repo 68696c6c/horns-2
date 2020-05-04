@@ -2,7 +2,7 @@ import React from 'react'
 
 import { handleProps } from '../../utils'
 
-import { button, Button as StyledButton } from '../_base/clickable'
+import { button, Button as StyledButton } from '../_base'
 
 const Button = ({ children, ...others }) => (
   <StyledButton {...handleProps(others, 'button')}>{children}</StyledButton>

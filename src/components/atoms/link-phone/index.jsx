@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import { handleProps } from '../../utils'
 
-import { link, getLinkVariantProps } from '../_base/clickable'
+import { link, getLinkVariantProps } from '../_base'
 
 const LinkPhone = ({ children, variant, phone, ...others }) => {
   const { Tag, font, isText } = getLinkVariantProps(variant)

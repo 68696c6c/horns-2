@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 
 import { containedSplit } from '../../../traits'
 
-import { grid } from '../_base/grid'
+import { grid } from '../_base'
 
 // eslint-disable-next-line import/prefer-default-export
 export const Halves = styled.div(

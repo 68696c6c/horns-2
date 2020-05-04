@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import { handleProps } from '../../utils'
 
-import { grid } from '../_base/grid'
+import { grid } from '../_base'
 import * as Styled from './styles'
 
 const Thirds = ({ children, ...others }) => (

@@ -2,7 +2,7 @@ import React from 'react'
 
 import { handleProps } from '../../utils'
 
-import { grid } from '../_base/grid'
+import { grid } from '../_base'
 import * as Styled from './styles'
 
 const Halves = ({ children, ...others }) => (

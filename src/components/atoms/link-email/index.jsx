@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import { handleProps } from '../../utils'
 
-import { link, getLinkVariantProps } from '../_base/clickable'
+import { link, getLinkVariantProps } from '../_base'
 
 const getEmailHref = (email, subject, body) => {
   let href = `mailto:${email}?`
