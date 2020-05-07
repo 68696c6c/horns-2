@@ -9,7 +9,7 @@ const Demo = () => (
   <>
     <h1>SelectNative</h1>
     <p>
-      The <em>Select</em> component applies theming to the HTML{' '}
+      The <em>SelectNative</em> component applies theming to the HTML{' '}
       <code>select</code> tag. Note that only the input itself is styled, not
       the dropdown or options which retain their default styling provided by the
       user&apos;s OS. The <Story.A path="molecules/select">Select</Story.A>{' '}
