@@ -6,7 +6,7 @@ import { control } from '../../atoms/_base'
 import {
   inputTypes,
   Input,
-  Select,
+  SelectNative,
   Textarea,
   Label,
   Message,
@@ -62,11 +62,11 @@ const FormControl = ({
         />
       )
     case 'select':
-      Tag = Select
+      Tag = SelectNative
       inputProps.options = options
       break
     case 'multiselect':
-      Tag = Select
+      Tag = SelectNative
       wrapperProps.multiLine = true
       inputProps.multiple = true
       inputProps.options = options
