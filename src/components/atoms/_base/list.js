@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { css } from '@emotion/core'
 
 import { colors } from '../../../config'
-import { chromatic, margined, typographic } from '../../../traits'
+import { chromatic, gridded, margined, typographic } from '../../../traits'
 
 // This hardcoded spacing is used because if the spacing on the list changes, the list item has no
 // way to know how much negative offset to apply to the list item icon.
@@ -33,9 +33,10 @@ export const getItemColors = (theme, color, markerColor, isItem) => {
   }
 }
 
-export const baseList = {
+export const list = {
   styles: () => [
     chromatic.styles,
+    gridded.styles,
     margined.styles,
     typographic.styles,
     ({ theme, color, markerColor }) => {
@@ -45,6 +46,7 @@ export const baseList = {
       // with any other supported selectors will cause the entire rule to fail, hence the separate
       // blocks for ::marker and .list-item-marker.
       return css`
+        grid-template-rows: auto;
         padding-left: ${spacing};
         .list-item::marker {
           color: ${c.markerColor};
@@ -56,13 +58,15 @@ export const baseList = {
     },
   ],
   propTypes: () => ({
-    ...chromatic.propTypes(null, true),
+    ...chromatic.propTypes(),
+    ...gridded.propTypes(),
     ...margined.propTypes(),
     ...typographic.propTypes(),
     markerColor: PropTypes.oneOf([null, ...colors]),
   }),
   defaultProps: () => ({
     ...chromatic.defaultProps(null, true),
+    ...gridded.defaultProps(true, 'xxSmall'),
     ...margined.defaultProps({ margin: 'min' }),
     ...typographic.defaultProps(),
     markerColor: null,

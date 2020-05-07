@@ -1,22 +1,22 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { handleProps } from '../../../utils'
+import { handleProps } from '../../utils'
 
-import { baseList, listTypes } from '../utils'
+import { list, listTypes } from '../_base'
 import * as Styled from './styles'
 
-const ListUnordered = ({ ...others }) => (
-  <Styled.ListUnordered {...handleProps(others, 'list-unordered')} />
+const ListUnordered = props => (
+  <Styled.ListOrdered {...handleProps(props, 'list-unordered')} />
 )
 
 ListUnordered.propTypes = {
-  ...baseList.propTypes(),
+  ...list.propTypes(),
   type: PropTypes.oneOf([...listTypes.unordered]),
 }
 
 ListUnordered.defaultProps = {
-  ...baseList.defaultProps(),
+  ...list.defaultProps(),
   type: 'disc',
 }
 

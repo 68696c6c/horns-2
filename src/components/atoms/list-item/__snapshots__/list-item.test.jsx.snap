@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListItem should render as default 1`] = `
+.emotion-0 {
+  font-family: Helvetica,sans-serif;
+  font-size: medium;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.6em;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+<div>
+  <ul>
+    <li
+      class="list-item emotion-0"
+    >
+      example
+    </li>
+    <li
+      class="list-item emotion-0"
+    >
+      example
+    </li>
+  </ul>
+</div>
+`;

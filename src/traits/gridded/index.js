@@ -30,8 +30,8 @@ export const gridded = {
     gap: PropTypes.oneOf([null, ...sizes]),
     // breakpoint is granted by the responsive trait.
   }),
-  defaultProps: (gapped = false) => ({
+  defaultProps: (gapped = false, gap = null) => ({
     gapped,
-    gap: null,
+    gap,
   }),
 }

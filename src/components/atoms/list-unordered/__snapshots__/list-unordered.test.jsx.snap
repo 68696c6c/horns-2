@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ListUnordered should render as default 1`] = `
+.emotion-0 {
+  grid-gap: 4px;
+  display: grid;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  font-family: Helvetica,sans-serif;
+  font-size: medium;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.6em;
+  grid-template-rows: auto;
+  padding-left: 32px;
+}
+
+<div>
+  <ol
+    class="list-unordered emotion-0"
+    type="disc"
+  >
+    <li>
+      example
+    </li>
+    <li>
+      example
+    </li>
+  </ol>
+</div>
+`;

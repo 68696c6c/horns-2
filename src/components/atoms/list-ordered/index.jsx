@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { handleProps } from '../../../utils'
+import { handleProps } from '../../utils'
 
-import { listTypes, baseList } from '../utils'
+import { list, listTypes } from '../_base'
 import * as Styled from './styles'
 
 const ListOrdered = props => (
@@ -11,12 +11,12 @@ const ListOrdered = props => (
 )
 
 ListOrdered.propTypes = {
-  ...baseList.propTypes(),
+  ...list.propTypes(),
   type: PropTypes.oneOf([...listTypes.ordered]),
 }
 
 ListOrdered.defaultProps = {
-  ...baseList.defaultProps(),
+  ...list.defaultProps(),
   type: 'l',
 }
 

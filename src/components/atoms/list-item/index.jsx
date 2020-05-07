@@ -1,10 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { childrenPropTypes, handleProps, isFragment } from '../../../utils'
-import { chromatic, margined, typographic } from '../../../../traits'
+import { colors } from '../../../config'
+import { chromatic, margined, typographic } from '../../../traits'
+import { childrenPropTypes, handleProps, isFragment } from '../../utils'
 
-import { listTypes } from '../utils'
+import { listTypes } from '../_base'
 import * as Styled from './styles'
 
 const ListItem = ({ icon, font, children, ...others }) => {
@@ -31,14 +32,16 @@ ListItem.propTypes = {
   ...typographic.propTypes(),
   icon: childrenPropTypes(),
   type: PropTypes.oneOf([null, listTypes.unordered, ...listTypes.ordered]),
+  markerColor: PropTypes.oneOf([null, ...colors]),
 }
 
 ListItem.defaultProps = {
   ...chromatic.defaultProps(null, true),
-  ...margined.defaultProps({ marginY: 'xxSmall' }),
+  ...margined.defaultProps({ marginY: 'min' }),
   ...typographic.defaultProps(),
   icon: <></>,
   type: null,
+  markerColor: null,
 }
 
 export default ListItem

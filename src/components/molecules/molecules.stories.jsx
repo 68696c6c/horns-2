@@ -9,7 +9,8 @@ export { default as ToggleGroup } from './toggle-group/stories'
 export const Index = () => (
   <>
     <p>
-      Molecules simple components made from multiple <A path="traits">Atoms</A>.
+      Molecules are simple components made from multiple{' '}
+      <A path="traits">Atoms</A>.
     </p>
   </>
 )
