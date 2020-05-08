@@ -30,7 +30,7 @@ export const inputTypes = [
   'percentage',
 ]
 
-const Input = ({ currency, type, ...others }) => {
+const Input = ({ currency, type, forwardedRef, ...others }) => {
   const props = { ...others }
   props.type = type
   let Tag
@@ -64,7 +64,7 @@ const Input = ({ currency, type, ...others }) => {
     default:
       Tag = Styled.Input
   }
-  return <Tag {...handleProps(props, 'control')} />
+  return <Tag {...handleProps(props, 'control')} ref={forwardedRef} />
 }
 
 Input.propTypes = {
@@ -77,4 +77,6 @@ Input.defaultProps = {
   type: 'text',
 }
 
-export default Input
+export default React.forwardRef((props, ref) => (
+  <Input {...props} forwardedRef={ref} />
+))

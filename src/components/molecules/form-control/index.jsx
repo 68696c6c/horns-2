@@ -18,8 +18,8 @@ import ToggleGroup from '../toggle-group'
 import * as Styled from './styles'
 
 export const controlTypes = [
-  'select',
-  'multiselect',
+  'select-native',
+  'multiselect-native',
   'textarea',
   'checkbox',
   'radio',
@@ -61,11 +61,11 @@ const FormControl = ({
           {...handleProps(inputProps, errorClass)}
         />
       )
-    case 'select':
+    case 'select-native':
       Tag = SelectNative
       inputProps.options = options
       break
-    case 'multiselect':
+    case 'multiselect-native':
       Tag = SelectNative
       wrapperProps.multiLine = true
       inputProps.multiple = true
