@@ -4,33 +4,57 @@ import _debounce from 'lodash.debounce'
 
 import { handleProps } from '../../utils'
 import { control } from '../../atoms/_base'
-import { Input, SelectNative, MultiselectNative } from '../../atoms'
+import { Input } from '../../atoms'
 
 import * as Styled from './styles'
 
-export const filterOptions = _debounce(() => {
-  console.log('filter options')
-}, 100)
-
-// const BaseSelect = React.forwardRef((props, ref) => (
-//   <SelectNative ref={ref} {...props} />
-// ))
+export const defaultFilterOptions = (value, options, callback) => {
+  console.log(options)
+  setTimeout(
+    () =>
+      callback(
+        value === ''
+          ? options
+          : options.filter(option =>
+              option.key.toLowerCase().includes(value.toLowerCase())
+            )
+      ),
+    1000
+  )
+}
 
 const Select = ({
   children,
   id,
   multiple,
   options: propsOptions,
+  filterOptions,
   ...others
 }) => {
   const [text, setText] = useState('')
-  const [filter, setFilter] = useState('')
   const [open, setOpen] = useState(false)
   const [values, setValues] = useState([])
   const [options, setOptions] = useState(propsOptions)
 
   const selectRef = useRef(null)
   const filterRef = useRef(null)
+
+  const filterOptionsD = _debounce(filterOptions, 100, { leading: true })
+
+  const handleFilter = () =>
+    filterOptionsD(
+      filterRef.current && filterRef.current.value,
+      options,
+      result => setOptions(result)
+    )
+
+  const handleChange = event => {
+    console.log('change', event)
+    const value = `${event.target.getAttribute('value')}`
+    // @TODO handle multiple values
+    setValues(value)
+    setText(event.target.getAttribute('label'))
+  }
 
   const toggleOpen = () => {
     setOpen(!open)
@@ -77,11 +101,16 @@ const Select = ({
             type="search"
             id={`select-filter-${id}`}
             name={`select_filter_${id}`}
-            onKeyUp={filterOptions}
+            onKeyUp={handleFilter}
             ref={filterRef}
           />
           {options.map(({ key, value }) => (
-            <Styled.Option value={value} key={`select-option-${id}-${key}`}>
+            <Styled.Option
+              value={value}
+              key={`select-option-${id}-${key}`}
+              onClick={handleChange}
+              label={key}
+            >
               {key}
             </Styled.Option>
           ))}
@@ -100,12 +129,14 @@ Select.propTypes = {
       value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     })
   ),
+  filterOptions: PropTypes.func,
 }
 
 Select.defaultProps = {
   ...control.defaultProps(),
   multiple: false,
   options: [],
+  filterOptions: defaultFilterOptions,
 }
 
 export default Select
