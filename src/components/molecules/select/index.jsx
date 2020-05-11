@@ -26,12 +26,14 @@ const Select = ({
   ...others
 }) => {
   const [displayValues, setDisplayValues] = useState([])
-  const [open, setOpen] = useState(false)
+  const [minWidth, setMinWidth] = useState('0')
+  const [open, setOpen] = useState(true)
   const [values, setValues] = useState([])
   const [options, setOptions] = useState(propsOptions)
 
   const selectRef = useRef(null)
   const filterRef = useRef(null)
+  const dropDownRef = useRef(null)
 
   const filterOptionsD = _debounce(filterOptions, 100, { leading: true })
 
@@ -76,6 +78,11 @@ const Select = ({
     }
   }, [open])
 
+  useEffect(() => {
+    setMinWidth(dropDownRef.current.offsetWidth)
+    setOpen(false)
+  }, [])
+
   const handleClick = useCallback(event => {
     if (selectRef.current !== event.target) {
       setOpen(false)
@@ -98,35 +105,38 @@ const Select = ({
         name={`select_value_${id}`}
         value={values.join(',')}
       />
-      <div>
+      <Styled.SelectContainer>
         <Styled.Select
           {...handleProps(others, 'control')}
           multiple={multiple}
           onClick={toggleOpen}
           ref={selectRef}
+          style={{minWidth: `${minWidth}px`}}
         >
           {displayValues.join(',')}
         </Styled.Select>
-        <Styled.Dropdown open={open}>
-          <Input
-            type="search"
-            id={`select-filter-${id}`}
-            name={`select_filter_${id}`}
-            onKeyUp={handleFilter}
-            ref={filterRef}
-          />
-          {options.map(({ key, value }) => (
-            <Styled.Option
-              value={value}
-              key={`select-option-${id}-${key}`}
-              onClick={handleChange}
-              label={key}
-            >
-              {key}
-            </Styled.Option>
-          ))}
-        </Styled.Dropdown>
-      </div>
+        <Styled.DropdownContainer>
+          <Styled.Dropdown open={open} ref={dropDownRef}>
+            <Input
+              type="search"
+              id={`select-filter-${id}`}
+              name={`select_filter_${id}`}
+              onKeyUp={handleFilter}
+              ref={filterRef}
+            />
+            {options.map(({ key, value }) => (
+              <Styled.Option
+                value={value}
+                key={`select-option-${id}-${key}`}
+                onClick={handleChange}
+                label={key}
+              >
+                {key}
+              </Styled.Option>
+            ))}
+          </Styled.Dropdown>
+        </Styled.DropdownContainer>
+      </Styled.SelectContainer>
     </>
   )
 }
