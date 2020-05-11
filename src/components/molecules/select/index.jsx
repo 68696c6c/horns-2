@@ -8,20 +8,14 @@ import { Input } from '../../atoms'
 
 import * as Styled from './styles'
 
-export const defaultFilterOptions = (value, options, callback) => {
-  console.log(options)
-  setTimeout(
-    () =>
-      callback(
-        value === ''
-          ? options
-          : options.filter(option =>
-              option.key.toLowerCase().includes(value.toLowerCase())
-            )
-      ),
-    1000
+export const defaultFilterOptions = (value, options, callback) =>
+  callback(
+    value === ''
+      ? options
+      : options.filter(option =>
+          option.key.toLowerCase().includes(value.toLowerCase())
+        )
   )
-}
 
 const Select = ({
   children,
@@ -31,7 +25,7 @@ const Select = ({
   filterOptions,
   ...others
 }) => {
-  const [text, setText] = useState('')
+  const [displayValues, setDisplayValues] = useState([])
   const [open, setOpen] = useState(false)
   const [values, setValues] = useState([])
   const [options, setOptions] = useState(propsOptions)
@@ -49,11 +43,27 @@ const Select = ({
     )
 
   const handleChange = event => {
-    console.log('change', event)
-    const value = `${event.target.getAttribute('value')}`
-    // @TODO handle multiple values
-    setValues(value)
-    setText(event.target.getAttribute('label'))
+    const value = event.target.getAttribute('value')
+    const displayValue = event.target.getAttribute('label')
+
+    if (multiple) {
+      // If the value is already selected, unselect it.
+      if (values.includes(value)) {
+        const finalValues = values.filter(v => v !== value)
+        setValues(finalValues)
+
+        const finalDisplayValues = displayValues.filter(
+          dv => dv !== displayValue
+        )
+        setDisplayValues(finalDisplayValues)
+      } else {
+        setValues([...values, value])
+        setDisplayValues([...displayValues, displayValue])
+      }
+    } else {
+      setValues([value])
+      setDisplayValues([displayValue])
+    }
   }
 
   const toggleOpen = () => {
@@ -86,6 +96,7 @@ const Select = ({
         type="hidden"
         id={`select-value-${id}`}
         name={`select_value_${id}`}
+        value={values.join(',')}
       />
       <div>
         <Styled.Select
@@ -94,7 +105,7 @@ const Select = ({
           onClick={toggleOpen}
           ref={selectRef}
         >
-          {text}
+          {displayValues.join(',')}
         </Styled.Select>
         <Styled.Dropdown open={open}>
           <Input

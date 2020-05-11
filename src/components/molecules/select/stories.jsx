@@ -12,11 +12,26 @@ const options = [
   { key: 'Four', value: 4 },
 ]
 
+const exampleFilterOptions = (value, opts, callback) => {
+  setTimeout(
+    () =>
+      callback(
+        value === ''
+          ? opts
+          : opts.filter(option =>
+              option.key.toLowerCase().includes(value.toLowerCase())
+            )
+      ),
+    1000
+  )
+}
+
 const Demo = () => (
   <>
     <h1>Select</h1>
     <p>
-      The <em>Select</em> component is a fully themed replacement for the HTML <code>select</code> tag.
+      The <em>Select</em> component is a fully themed replacement for the HTML{' '}
+      <code>select</code> tag.
     </p>
     <Story.Grid>
       <div>
@@ -26,6 +41,7 @@ const Demo = () => (
           name="select_example"
           placeholder="Placeholder"
           options={options}
+          filterOptions={exampleFilterOptions}
         />
       </div>
       <div>
@@ -35,6 +51,7 @@ const Demo = () => (
           name="multiselect_example"
           placeholder="Placeholder"
           options={options}
+          filterOptions={exampleFilterOptions}
         />
       </div>
     </Story.Grid>
