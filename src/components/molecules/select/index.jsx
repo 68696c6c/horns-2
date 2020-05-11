@@ -111,7 +111,8 @@ const Select = ({
           multiple={multiple}
           onClick={toggleOpen}
           ref={selectRef}
-          style={{minWidth: `${minWidth}px`}}
+          open={open}
+          style={{ minWidth: `${minWidth}px` }}
         >
           {displayValues.join(',')}
         </Styled.Select>

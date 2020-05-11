@@ -72,7 +72,7 @@ export const control = {
       ...bordered.defaultProps(),
       ...chromaticSurface.defaultProps(),
       ...interactive.defaultProps(false, false, cursor),
-      ...margined.defaultProps(),
+      ...margined.defaultProps({ margin: 'min' }),
       ...padded.defaultProps({ padding }),
       ...rounded.defaultProps(),
       ...typographic.defaultProps(font),
