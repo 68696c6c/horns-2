@@ -1,23 +1,19 @@
-import React from 'react'
-import * as PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
+import styled from '@emotion/styled'
 
 import { fontWeights } from '../../../config'
 import { chromatic, margined, typographic } from '../../../traits'
-import { handleProps } from '../../utils'
 
-import * as Styled from './styles'
-
-const Label = ({ for: htmlFor, children, ...others }) => (
-  <Styled.Label htmlFor={htmlFor} {...handleProps(others, 'label')}>
-    {children}
-  </Styled.Label>
+const Label = styled.label(
+  chromatic.styles,
+  margined.styles,
+  typographic.styles
 )
 
 Label.propTypes = {
   ...chromatic.propTypes(),
   ...margined.propTypes(),
   ...typographic.propTypes(),
-  for: PropTypes.string,
   weight: PropTypes.oneOf(fontWeights),
 }
 
@@ -25,7 +21,6 @@ Label.defaultProps = {
   ...chromatic.defaultProps(null, true),
   ...margined.defaultProps(),
   ...typographic.defaultProps('label'),
-  for: null,
   weight: 'semiBold',
 }
 

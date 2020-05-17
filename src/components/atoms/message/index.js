@@ -1,29 +1,22 @@
-import React from 'react'
 import PropTypes from 'prop-types'
+import styled from '@emotion/styled'
 
 import { chromatic, typographic } from '../../../traits'
-import { handleProps } from '../../utils'
-
-import * as Styled from './styles'
 
 export const messageVariants = ['success', 'info', 'warning', 'danger']
 
-const Message = ({ children, variant, ...others }) => (
-  <Styled.Message {...handleProps(others, 'message')} color={variant}>
-    {children}
-  </Styled.Message>
-)
+const Message = styled.label(chromatic.styles, typographic.styles)
 
 Message.propTypes = {
   ...chromatic.propTypes(),
   ...typographic.propTypes(),
-  variant: PropTypes.oneOf(messageVariants),
+  color: PropTypes.oneOf(messageVariants),
 }
 
 Message.defaultProps = {
   ...chromatic.defaultProps(null, true),
   ...typographic.defaultProps('message'),
-  variant: 'info',
+  color: 'info',
 }
 
 export default Message

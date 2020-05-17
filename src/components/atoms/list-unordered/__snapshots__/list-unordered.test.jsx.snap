@@ -18,8 +18,8 @@ exports[`ListUnordered should render as default 1`] = `
 }
 
 <div>
-  <ol
-    class="list-unordered emotion-0"
+  <ul
+    class="emotion-0"
     type="disc"
   >
     <li>
@@ -28,6 +28,6 @@ exports[`ListUnordered should render as default 1`] = `
     <li>
       example
     </li>
-  </ol>
+  </ul>
 </div>
 `;

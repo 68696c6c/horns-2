@@ -1,17 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Label should render as default 1`] = `
+exports[`Message should render as default 1`] = `
 .emotion-0 {
+  color: rgb(23,162,184);
+  border-color: rgb(23,162,184);
   font-family: Helvetica,sans-serif;
   font-size: medium;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 400;
   line-height: 1em;
 }
 
 <div>
   <label
     class="emotion-0"
+    color="info"
   >
     example
   </label>
