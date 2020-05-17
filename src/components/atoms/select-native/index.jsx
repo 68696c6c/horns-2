@@ -6,7 +6,7 @@ import { handleProps } from '../../utils'
 import { control } from '../_base'
 import * as Styled from './styles'
 
-const Select = ({ children, id, multiple, options, ...others }) => {
+const SelectNative = ({ children, id, multiple, options, ...others }) => {
   const Tag = multiple ? Styled.Multiselect : Styled.Select
   return (
     <Tag {...handleProps(others, 'control')} multiple={multiple}>
@@ -20,7 +20,7 @@ const Select = ({ children, id, multiple, options, ...others }) => {
   )
 }
 
-Select.propTypes = {
+SelectNative.propTypes = {
   ...control.propTypes(),
   multiple: PropTypes.bool,
   options: PropTypes.arrayOf(
@@ -31,12 +31,12 @@ Select.propTypes = {
   ),
 }
 
-Select.defaultProps = {
+SelectNative.defaultProps = {
   ...control.defaultProps(),
   multiple: false,
   options: [],
 }
 
-export default Select
+export default SelectNative
 
-export const Multiselect = props => <Select {...props} multiple />
+export const MultiselectNative = props => <SelectNative {...props} multiple />

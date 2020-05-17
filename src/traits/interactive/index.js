@@ -56,6 +56,7 @@ export const interactive = {
     if (inactive) {
       return inactiveCSS
     }
+    // @TODO the inactiveCSS interpolation is somehow causing emotion to add a class name of 'inactiveCSS'.
     return css`
       cursor: ${cursor};
       &:disabled,

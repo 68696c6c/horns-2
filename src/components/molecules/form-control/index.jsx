@@ -6,19 +6,22 @@ import { control } from '../../atoms/_base'
 import {
   inputTypes,
   Input,
-  Select,
+  SelectNative,
   Textarea,
   Label,
   Message,
 } from '../../atoms'
 import { handleProps } from '../../utils'
 
+import Select from '../select'
 import ToggleGroup from '../toggle-group'
 
 import * as Styled from './styles'
 
 export const controlTypes = [
+  'select-native',
   'select',
+  'multiselect-native',
   'multiselect',
   'textarea',
   'checkbox',
@@ -61,6 +64,16 @@ const FormControl = ({
           {...handleProps(inputProps, errorClass)}
         />
       )
+    case 'select-native':
+      Tag = SelectNative
+      inputProps.options = options
+      break
+    case 'multiselect-native':
+      Tag = SelectNative
+      wrapperProps.multiLine = true
+      inputProps.multiple = true
+      inputProps.options = options
+      break
     case 'select':
       Tag = Select
       inputProps.options = options

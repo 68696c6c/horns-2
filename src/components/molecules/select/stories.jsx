@@ -5,11 +5,32 @@ import * as Story from '_story'
 
 import Select, { Multiselect } from '.'
 
+const options = [
+  { key: 'One', value: 1 },
+  { key: 'Two', value: 2 },
+  { key: 'Three', value: 3 },
+  { key: 'Four', value: 4 },
+]
+
+const exampleFilterOptions = (value, opts, callback) => {
+  setTimeout(
+    () =>
+      callback(
+        value === ''
+          ? opts
+          : opts.filter(option =>
+              option.key.toLowerCase().includes(value.toLowerCase())
+            )
+      ),
+    1000
+  )
+}
+
 const Demo = () => (
   <>
     <h1>Select</h1>
     <p>
-      The <em>Select</em> component applies theming to the HTML{' '}
+      The <em>Select</em> component is a fully themed replacement for the HTML{' '}
       <code>select</code> tag.
     </p>
     <Story.Grid>
@@ -19,11 +40,9 @@ const Demo = () => (
           id="select-example-2"
           name="select_example"
           placeholder="Placeholder"
-        >
-          {Story.makeIntArray(10).map(i => (
-            <option value={i}>Option {i}</option>
-          ))}
-        </Select>
+          options={options}
+          filterOptions={exampleFilterOptions}
+        />
       </div>
       <div>
         <Story.Label htmlFor="multiselect-example-2">Multiselect: </Story.Label>
@@ -31,11 +50,9 @@ const Demo = () => (
           id="multiselect-example-2"
           name="multiselect_example"
           placeholder="Placeholder"
-        >
-          {Story.makeIntArray(10).map(i => (
-            <option value={i}>Option {i}</option>
-          ))}
-        </Multiselect>
+          options={options}
+          filterOptions={exampleFilterOptions}
+        />
       </div>
     </Story.Grid>
   </>
