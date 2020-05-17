@@ -5,11 +5,20 @@ import { contained } from '../../../traits'
 
 import { grid } from '../_base'
 
-// eslint-disable-next-line import/prefer-default-export
-export const Areas = styled.div(
+const Stack = styled.div(
   ...grid.styles(),
   contained.styles,
-  ({ areas }) => css`
-    grid-template-areas: ${areas};
+  () => css`
+    grid-template-rows: auto;
   `
 )
+
+Stack.propTypes = {
+  ...grid.propTypes(),
+}
+
+Stack.defaultProps = {
+  ...grid.defaultProps(),
+}
+
+export default Stack

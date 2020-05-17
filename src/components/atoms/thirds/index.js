@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { css } from '@emotion/core'
 import styled from '@emotion/styled'
 
@@ -5,12 +6,11 @@ import { containedSplit } from '../../../traits'
 
 import { grid } from '../_base'
 
-// eslint-disable-next-line import/prefer-default-export
-export const Halves = styled.div(
+const Thirds = styled.div(
   ...grid.styles(),
   containedSplit.styles,
-  () => css`
-    grid-template-columns: 1fr 1fr;
+  ({ reversed }) => css`
+    grid-template-columns: ${reversed ? '2fr 1fr' : '1fr 2fr'};
     grid-template-areas: 'left right';
     > :nth-child(odd) {
       grid-area: left;
@@ -20,3 +20,15 @@ export const Halves = styled.div(
     }
   `
 )
+
+Thirds.propTypes = {
+  ...grid.propTypes(),
+  reversed: PropTypes.bool,
+}
+
+Thirds.defaultProps = {
+  ...grid.defaultProps(),
+  reversed: false,
+}
+
+export default Thirds

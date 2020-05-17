@@ -1,12 +1,18 @@
-import React from 'react'
 import PropTypes from 'prop-types'
+import { css } from '@emotion/core'
+import styled from '@emotion/styled'
 
 import { chromatic, margined, padded } from '../../../traits'
-import { handleProps } from '../../utils'
 
-import * as Styled from './styles'
-
-const Area = props => <Styled.Area {...handleProps(props, 'area')} />
+const Area = styled.div(
+  chromatic.styles,
+  margined.styles,
+  padded.styles,
+  ({ area }) =>
+    css`
+      grid-area: ${area && area};
+    `
+)
 
 Area.propTypes = {
   ...chromatic.propTypes(),

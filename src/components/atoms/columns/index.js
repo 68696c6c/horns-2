@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { css } from '@emotion/core'
 import styled from '@emotion/styled'
 
@@ -5,8 +6,7 @@ import { contained } from '../../../traits'
 
 import { grid } from '../_base'
 
-// eslint-disable-next-line import/prefer-default-export
-export const Columns = styled.div(
+const Columns = styled.div(
   ...grid.styles(),
   contained.styles,
   ({ theme, columns }) => {
@@ -20,3 +20,15 @@ export const Columns = styled.div(
     `
   }
 )
+
+Columns.propTypes = {
+  ...grid.propTypes(),
+  columns: PropTypes.number,
+}
+
+Columns.defaultProps = {
+  ...grid.defaultProps(),
+  columns: 0,
+}
+
+export default Columns

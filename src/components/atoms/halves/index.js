@@ -5,12 +5,11 @@ import { containedSplit } from '../../../traits'
 
 import { grid } from '../_base'
 
-// eslint-disable-next-line import/prefer-default-export
-export const Thirds = styled.div(
+const Halves = styled.div(
   ...grid.styles(),
   containedSplit.styles,
-  ({ reversed }) => css`
-    grid-template-columns: ${reversed ? '2fr 1fr' : '1fr 2fr'};
+  () => css`
+    grid-template-columns: 1fr 1fr;
     grid-template-areas: 'left right';
     > :nth-child(odd) {
       grid-area: left;
@@ -20,3 +19,13 @@ export const Thirds = styled.div(
     }
   `
 )
+
+Halves.propTypes = {
+  ...grid.propTypes(),
+}
+
+Halves.defaultProps = {
+  ...grid.defaultProps(),
+}
+
+export default Halves
