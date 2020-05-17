@@ -79,12 +79,22 @@ const Select = ({
   }, [open])
 
   useEffect(() => {
-    setMinWidth(dropDownRef.current.offsetWidth)
+    const selectWidth = selectRef.current.offsetWidth
+    const dropdownWidth = dropDownRef.current.offsetWidth
+    if (selectWidth < dropdownWidth) {
+      setMinWidth(dropdownWidth)
+    } else if (selectWidth > dropdownWidth) {
+      setMinWidth(selectWidth)
+    }
     setOpen(false)
   }, [])
 
   const handleClick = useCallback(event => {
-    if (selectRef.current !== event.target) {
+    console.log('event', event)
+    if (
+      event.target !== selectRef.current &&
+      event.target !== filterRef.current
+    ) {
       setOpen(false)
     }
   }, [])
@@ -105,26 +115,27 @@ const Select = ({
         name={`select_value_${id}`}
         value={values.join(',')}
       />
-      <Styled.SelectContainer>
+      <Styled.SelectContainer style={{ minWidth: `${minWidth}px` }}>
         <Styled.Select
           {...handleProps(others, 'control')}
           multiple={multiple}
           onClick={toggleOpen}
           ref={selectRef}
           open={open}
-          style={{ minWidth: `${minWidth}px` }}
         >
           {displayValues.join(',')}
         </Styled.Select>
         <Styled.DropdownContainer>
           <Styled.Dropdown open={open} ref={dropDownRef}>
-            <Input
-              type="search"
-              id={`select-filter-${id}`}
-              name={`select_filter_${id}`}
-              onKeyUp={handleFilter}
-              ref={filterRef}
-            />
+            <Styled.OptionFilter key={`select-option-${id}-filter`}>
+              <Input
+                type="search"
+                id={`select-filter-${id}`}
+                name={`select_filter_${id}`}
+                onKeyUp={handleFilter}
+                ref={filterRef}
+              />
+            </Styled.OptionFilter>
             {options.map(({ key, value }) => (
               <Styled.Option
                 value={value}
@@ -155,7 +166,7 @@ Select.propTypes = {
 }
 
 Select.defaultProps = {
-  ...control.defaultProps(),
+  ...control.defaultProps({ cursor: 'pointer' }),
   multiple: false,
   options: [],
   filterOptions: defaultFilterOptions,

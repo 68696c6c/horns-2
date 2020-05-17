@@ -38,5 +38,5 @@ export const chromaticSurface = {
   propTypes: () => ({
     tone: PropTypes.oneOf(backgroundTones),
   }),
-  defaultProps: (tone = 'base') => ({ tone }),
+  defaultProps: (tone = 'base') => ({ color: 'background', tone }),
 }

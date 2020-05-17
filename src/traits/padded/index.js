@@ -5,10 +5,13 @@ import { sizes } from '../../config'
 
 const merge = require('deepmerge')
 
+export const paddingConfigTargets = ['controls']
+
 // eslint-disable-next-line import/prefer-default-export
 export const padded = {
   styles: ({
     theme,
+    paddingConfig,
     padding,
     paddingX,
     paddingY,
@@ -18,15 +21,21 @@ export const padded = {
     paddingRight,
     fluid,
   }) => {
-    const spacing = theme.sizing.getSidesPX({
-      all: padding,
-      x: paddingX,
-      y: paddingY,
-      top: paddingTop,
-      bottom: paddingBottom,
-      left: paddingLeft,
-      right: paddingRight,
-    })
+    let spacing
+    if (paddingConfig) {
+      const { x, y } = theme.padding.getSizes(paddingConfig)
+      spacing = theme.sizing.getSidesPX({ x, y })
+    } else {
+      spacing = theme.sizing.getSidesPX({
+        all: padding,
+        x: paddingX,
+        y: paddingY,
+        top: paddingTop,
+        bottom: paddingBottom,
+        left: paddingLeft,
+        right: paddingRight,
+      })
+    }
     if (typeof fluid !== 'undefined' && !fluid) {
       spacing.left = null
       spacing.right = null
@@ -39,6 +48,7 @@ export const padded = {
     `
   },
   propTypes: () => ({
+    paddingConfig: PropTypes.oneOf([null, ...paddingConfigTargets]),
     padding: PropTypes.oneOf([null, ...sizes]),
     paddingX: PropTypes.oneOf([null, ...sizes]),
     paddingY: PropTypes.oneOf([null, ...sizes]),
@@ -50,6 +60,7 @@ export const padded = {
   defaultProps: (provided = {}) =>
     merge(
       {
+        paddingConfig: null,
         padding: null,
         paddingX: null,
         paddingY: null,

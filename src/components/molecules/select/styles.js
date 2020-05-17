@@ -1,21 +1,23 @@
 import { css } from '@emotion/core'
 import styled from '@emotion/styled'
-import { bordered } from '../../../traits/bordered'
-import { chromaticSurface } from '../../../traits/chromatic'
-import { gridded } from '../../../traits/gridded'
-import { interactive } from '../../../traits/interactive'
-import { margined } from '../../../traits/margined'
-import { rounded } from '../../../traits/rounded'
-import { typographic } from '../../../traits/typographic'
 
-import { control, list } from '../../atoms/_base'
+import {
+  bordered,
+  chromaticSurface,
+  interactive,
+  margined,
+  padded,
+  rounded,
+  typographic,
+} from '../../../traits'
+
+import { control } from '../../atoms/_base'
 
 export const SelectContainer = styled.div(
   () =>
     css`
       display: inline-flex;
       flex-direction: column;
-      align-items: stretch;
     `
 )
 
@@ -27,41 +29,84 @@ export const DropdownContainer = styled.div(
 )
 
 export const Dropdown = styled.ul(
-  ...control.styles(false),
-  gridded.styles,
+  bordered.styles,
+  chromaticSurface.styles,
+  margined.styles,
+  rounded.styles,
+  typographic.styles,
   ({ theme, open }) => {
-    const spacing = theme.sizing.getPX('xSmall')
-    const width = theme.borders.getWidthPX()
     return css`
-      display: ${open ? 'grid' : 'none'};
-      grid-template-rows: auto;
-      padding-left: ${spacing};
+      padding: 0;
+      display: ${open ? 'block' : 'none'};
       border-top: none;
       border-top-right-radius: 0;
       border-top-left-radius: 0;
       position: absolute;
-      top: -${width};
-      cursor: pointer;
-      width: 100%;
+      top: -${theme.borders.getWidthPX()};
+      list-style-type: none;
       box-sizing: border-box;
+      min-width: 100%;
     `
   }
 )
 
-Dropdown.defaultProps = {
-  ...control.defaultProps(),
-  ...gridded.defaultProps(true, 'xxSmall'),
-  type: 'none',
+Dropdown.propTypes = {
+  ...control.propTypes(),
 }
 
-export const Option = styled.li()
+Dropdown.defaultProps = {
+  ...control.defaultProps({ cursor: 'pointer' }),
+}
+
+export const Option = styled.li(
+  chromaticSurface.styles,
+  interactive.styles,
+  padded.styles
+)
+
+Option.propTypes = {
+  ...chromaticSurface.propTypes(),
+  ...interactive.propTypes(),
+  ...padded.propTypes(),
+}
+
+Option.defaultProps = {
+  ...chromaticSurface.defaultProps(),
+  ...interactive.defaultProps(false, false, 'pointer'),
+  ...padded.defaultProps({ padding: 'xSmall' }),
+}
+
+export const OptionFilter = styled.li(
+  chromaticSurface.styles,
+  padded.styles,
+  () => {
+    return css`
+      input {
+        box-sizing: border-box;
+        height: auto;
+        min-height: 1em;
+        width: 100%;
+      }
+    `
+  }
+)
+
+OptionFilter.propTypes = {
+  ...chromaticSurface.propTypes(),
+  ...padded.propTypes(),
+}
+
+OptionFilter.defaultProps = {
+  ...chromaticSurface.defaultProps(),
+  ...padded.defaultProps({ padding: 'xSmall' }),
+}
+
 export const Select = styled.div(...control.styles(), ({ open }) => {
   return (
     open &&
     css`
       border-bottom-right-radius: 0;
       border-bottom-left-radius: 0;
-      cursor: pointer;
     `
   )
 })
