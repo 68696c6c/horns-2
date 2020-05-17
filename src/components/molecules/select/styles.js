@@ -10,6 +10,7 @@ import {
   rounded,
   typographic,
 } from '../../../traits'
+import { Input } from '../../atoms'
 
 import { control } from '../../atoms/_base'
 
@@ -18,6 +19,11 @@ export const SelectContainer = styled.div(
     css`
       display: inline-flex;
       flex-direction: column;
+    `,
+  ({ open }) =>
+    open &&
+    css`
+      box-shadow: 0 5px 5px rgba(0, 0, 0, 0.6);
     `
 )
 
@@ -47,7 +53,12 @@ export const Dropdown = styled.ul(
       box-sizing: border-box;
       min-width: 100%;
     `
-  }
+  },
+  ({ open }) =>
+    open &&
+    css`
+      box-shadow: 0 5px 5px rgba(0, 0, 0, 0.6);
+    `
 )
 
 Dropdown.propTypes = {
@@ -76,20 +87,16 @@ Option.defaultProps = {
   ...padded.defaultProps({ padding: 'xSmall' }),
 }
 
-export const OptionFilter = styled.li(
-  chromaticSurface.styles,
-  padded.styles,
-  () => {
-    return css`
-      input {
-        box-sizing: border-box;
-        height: auto;
-        min-height: 1em;
-        width: 100%;
-      }
-    `
-  }
+export const Filter = styled(Input)(
+  () => css`
+    box-sizing: border-box;
+    height: auto;
+    min-height: 1em;
+    width: 100%;
+  `
 )
+
+export const OptionFilter = styled.li(chromaticSurface.styles, padded.styles)
 
 OptionFilter.propTypes = {
   ...chromaticSurface.propTypes(),

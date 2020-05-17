@@ -115,7 +115,7 @@ const Select = ({
         name={`select_value_${id}`}
         value={values.join(',')}
       />
-      <Styled.SelectContainer style={{ minWidth: `${minWidth}px` }}>
+      <Styled.SelectContainer style={{ minWidth: `${minWidth}px` }} open={open}>
         <Styled.Select
           {...handleProps(others, 'control')}
           multiple={multiple}
@@ -123,12 +123,12 @@ const Select = ({
           ref={selectRef}
           open={open}
         >
-          {displayValues.join(',')}
+          {displayValues.join(', ')}
         </Styled.Select>
         <Styled.DropdownContainer>
           <Styled.Dropdown open={open} ref={dropDownRef}>
             <Styled.OptionFilter key={`select-option-${id}-filter`}>
-              <Input
+              <Styled.Filter
                 type="search"
                 id={`select-filter-${id}`}
                 name={`select_filter_${id}`}
