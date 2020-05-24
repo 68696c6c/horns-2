@@ -5,7 +5,7 @@ import { jsx } from '@emotion/core'
 
 import { sizes } from '../../config/sizing'
 
-import * as Styled from './demo.styles'
+import * as Styled from './stories.styles'
 
 const Demo = () => (
   <>

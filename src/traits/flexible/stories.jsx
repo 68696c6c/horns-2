@@ -6,7 +6,7 @@ import { jsx } from '@emotion/core'
 import * as Story from '_story'
 import { flexProperties } from 'config'
 
-import * as Styled from './demo.styles'
+import * as Styled from './stories.styles'
 
 const Demo = () => {
   const colorTracker = [-1]

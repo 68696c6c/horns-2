@@ -6,7 +6,7 @@ import { jsx } from '@emotion/core'
 import { fontStyles } from '../../config'
 
 import { typographic } from '.'
-import * as Styled from './demo.styles'
+import * as Styled from './stories.styles'
 
 const Heading = ({ children, font }) => {
   let Tag

@@ -3,21 +3,21 @@
 import React from 'react'
 import { jsx } from '@emotion/core'
 
-import * as Styled from './demo.styles'
+import * as Styled from './stories.styles'
 
 const Demo = () => (
   <>
-    <h1>Responsive</h1>
+    <h1>Rounded</h1>
     <p>
       The <em>rounded</em> trait provides border radius to a component based on
       a globally configured value.
     </p>
-    <Styled.Box>This box changes color at the mobile breakpoint.</Styled.Box>
+    <Styled.Box>This box is rounded.</Styled.Box>
   </>
 )
 
 Demo.story = {
-  name: 'Responsive',
+  name: 'Rounded',
 }
 
 export default Demo

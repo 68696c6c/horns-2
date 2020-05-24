@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react'
 
-import * as Styled from './demo.styles'
+import * as Styled from './stories.styles'
 
 const Demo = () => (
   <>

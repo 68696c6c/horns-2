@@ -3,7 +3,7 @@ import React from 'react'
 
 import { alignments } from '../../config'
 
-import * as Styled from './demo.styles'
+import * as Styled from './stories.styles'
 
 const Demo = () => (
   <>

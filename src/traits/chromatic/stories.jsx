@@ -6,7 +6,7 @@ import { jsx } from '@emotion/core'
 import { useTheme } from 'emotion-theming'
 
 import { chromatic, chromaticSurface } from '.'
-import * as Styled from './demo.styles'
+import * as Styled from './stories.styles'
 
 const Tone = ({ color, tone, prominent }) => {
   const theme = useTheme()
