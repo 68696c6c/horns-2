@@ -90,7 +90,6 @@ const Select = ({
   }, [])
 
   const handleClick = useCallback(event => {
-    console.log('event', event)
     if (
       event.target !== selectRef.current &&
       event.target !== filterRef.current
