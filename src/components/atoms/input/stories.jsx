@@ -17,7 +17,7 @@ const Demo = () => (
     {inputTypes.map(type => {
       const id = `input-${type}`
       return (
-        <Story.Box>
+        <Story.Box key={type}>
           <Story.Label htmlFor={id}>{type}</Story.Label>
           <Input id={id} name="example" type={type} placeholder={type} />
         </Story.Box>
