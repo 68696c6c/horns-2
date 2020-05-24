@@ -13,7 +13,7 @@ const Demo = () => (
       <code>textarea</code> tag.
     </p>
     <Story.Label htmlFor="textarea-example">textarea</Story.Label>
-    <Textarea id="textarea-example">henlo</Textarea>
+    <Textarea id="textarea-example" name="textarea_example">henlo</Textarea>
   </>
 )
 
