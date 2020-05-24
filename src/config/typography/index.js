@@ -35,6 +35,7 @@ export const fontStyles = [
   'emphasized',
   'strong',
   'variable',
+  'mistake',
 ]
 
 // @TODO set initial kerning and tracking based on font-family
