@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Column should render as default 1`] = `
+<div>
+  <div
+    class="emotion-0"
+    span="1"
+  >
+    example
+  </div>
+</div>
+`;

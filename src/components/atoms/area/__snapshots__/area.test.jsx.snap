@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Area should render as default 1`] = `
+<div>
+  <div
+    class="css-1dcsceh"
+  >
+    example
+  </div>
+</div>
+`;
