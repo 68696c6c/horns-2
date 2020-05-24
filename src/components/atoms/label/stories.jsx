@@ -18,7 +18,7 @@ const Demo = () => (
       const id = `example-${color}`
       return (
         <Story.Box>
-          <Label for={id} color={color}>
+          <Label htmlFor={id} color={color}>
             {color} label
           </Label>
           <input id={id} name={id} />

@@ -16,6 +16,9 @@ const NavItem = ({ children, variant, ...others }) => {
     case 'underline':
       Tag = Styled.NavItemUnderline
       break
+    case 'background':
+      Tag = Styled.NavItemBackground
+      break
     case 'border':
     default:
       Tag = Styled.NavItemBordered
@@ -27,7 +30,7 @@ NavItem.propTypes = {
   ...navItem.propTypes(),
   href: PropTypes.string,
   current: PropTypes.bool,
-  variant: PropTypes.oneOf(['border', 'colorway', 'underline']),
+  variant: PropTypes.oneOf(['background', 'border', 'colorway', 'underline']),
   layout: PropTypes.oneOf(['horizontal', 'vertical']),
   currentColor: PropTypes.oneOf([null, ...colors]),
   currentWidth: PropTypes.oneOf([null, ...sizes]),
