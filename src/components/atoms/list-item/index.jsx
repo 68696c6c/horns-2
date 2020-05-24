@@ -31,7 +31,7 @@ ListItem.propTypes = {
   ...margined.propTypes(),
   ...typographic.propTypes(),
   icon: childrenPropTypes(),
-  type: PropTypes.oneOf([null, listTypes.unordered, ...listTypes.ordered]),
+  type: PropTypes.oneOf([null, ...listTypes.ordered, ...listTypes.unordered]),
   markerColor: PropTypes.oneOf([null, ...colors]),
 }
 
