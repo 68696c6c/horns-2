@@ -1,10 +1,5 @@
 /* eslint-disable react/forbid-foreign-prop-types */
-import {
-  chromatic,
-  margined,
-  padded,
-  responsive,
-} from '../../../traits'
+import { chromatic, margined, padded, responsive } from '../../../traits'
 
 // eslint-disable-next-line import/prefer-default-export
 export const flex = {
