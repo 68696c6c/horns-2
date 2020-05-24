@@ -21,7 +21,7 @@ export const Toggle = styled.input(({ theme, tone }) => {
 })
 
 export const ToggleControl = styled.label(
-  ...control.styles(false),
+  ...control.styles(),
   ({ type }) =>
     css`
       content: ' ';

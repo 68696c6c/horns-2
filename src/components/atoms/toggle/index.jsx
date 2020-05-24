@@ -23,6 +23,7 @@ Toggle.propTypes = {
 Toggle.defaultProps = {
   ...control.defaultProps('pointer'),
   cursor: 'pointer',
+  multiline: true,
 }
 
 export default Toggle

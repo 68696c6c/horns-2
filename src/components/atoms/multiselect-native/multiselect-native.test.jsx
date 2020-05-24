@@ -3,11 +3,11 @@ import React from 'react'
 
 import { render } from 'setup-test'
 
-import SelectNative from '.'
+import MultiselectNative from '.'
 
-describe('SelectNative', () => {
+describe('MultiselectNative', () => {
   it('should render as default', () => {
-    const { container } = render(<SelectNative id="example" name="example" />)
+    const { container } = render(<MultiselectNative id="example" name="example" />)
     expect(container).toMatchSnapshot()
   })
 })

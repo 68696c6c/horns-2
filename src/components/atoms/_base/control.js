@@ -20,9 +20,8 @@ const controllableDefaultProps = {
   padding: 'xSmall',
 }
 
-// eslint-disable-next-line import/prefer-default-export
 export const control = {
-  styles: (inline = true) => [
+  styles: () => [
     bordered.styles,
     chromaticSurface.styles,
     interactive.styles,
@@ -30,23 +29,22 @@ export const control = {
     padded.styles,
     rounded.styles,
     typographic.styles,
-    ({ theme, font }) => {
-      let heightCSS
-      if (inline) {
-        // Force the element height to match the line-height to ensure that inputs that have controls
-        // inside them (e.g. type="datetime-local") don't end up a different size than standard inputs.
-        const f = theme.typography.getStyle(font)
-        heightCSS = css`
-          height: ${f.lineHeight};
-          min-width: ${f.lineHeight};
-        `
-      }
-      return css`
-        display: inline-flex;
-        box-sizing: content-box;
-        vertical-align: middle;
-        ${heightCSS}
-      `
+    () => css`
+      display: inline-flex;
+      box-sizing: content-box;
+      vertical-align: middle;
+    `,
+    // @TODO make this a trait?
+    ({ theme, multiline, multiple, font }) => {
+      // Force the element height to match the line-height to ensure that inputs that have controls
+      // inside them (e.g. type="datetime-local") don't end up a different size than standard inputs.
+      const f = theme.typography.getStyle(font)
+      return multiline || multiple
+        ? null
+        : css`
+            height: ${f.lineHeight};
+            min-width: ${f.lineHeight};
+          `
     },
   ],
   propTypes: () => ({
@@ -61,6 +59,7 @@ export const control = {
     required: PropTypes.bool,
     name: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
+    multiline: PropTypes.bool,
   }),
   defaultProps: (dp = {}) => {
     const defaultProps = merge({ ...controllableDefaultProps }, dp)
@@ -75,6 +74,36 @@ export const control = {
       ...typographic.defaultProps(font),
       placeholder: '',
       required: false,
+      multiline: false,
     }
   },
+}
+
+export const select = {
+  styles: () => [
+    ...control.styles(),
+    () => css`
+      appearance: none;
+      cursor: pointer;
+      &::-ms-expand {
+        display: none;
+      }
+    `,
+  ],
+  propTypes: () => ({
+    ...control.propTypes(),
+    multiple: PropTypes.bool,
+    options: PropTypes.arrayOf(
+      PropTypes.shape({
+        key: PropTypes.string,
+        value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      })
+    ),
+  }),
+  defaultProps: () => ({
+    ...control.defaultProps(),
+    multiline: false,
+    multiple: false,
+    options: [],
+  }),
 }

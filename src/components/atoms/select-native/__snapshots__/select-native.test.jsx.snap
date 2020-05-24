@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Select should render as default 1`] = `
+exports[`SelectNative should render as default 1`] = `
 .emotion-0 {
   border-top-width: 2px;
   border-top-style: solid;
@@ -77,9 +77,10 @@ exports[`Select should render as default 1`] = `
 
 <div>
   <select
-    class="control emotion-0"
+    class="emotion-0"
     color="background"
     cursor="text"
+    id="example"
     name="example"
     placeholder=""
   />

@@ -67,7 +67,7 @@ exports[`Textarea should render as default 1`] = `
 
 <div>
   <textarea
-    class="control emotion-0"
+    class="emotion-0"
     color="background"
     cursor="text"
     id="example"
