@@ -22,8 +22,8 @@ const Demo = () => (
         })
       }
       return (
-        <>
-          <Story.Box key={count}>
+        <React.Fragment key={count}>
+          <Story.Box>
             <h4>{count} Radio Toggles</h4>
             <ToggleGroup
               type="radio"
@@ -45,7 +45,7 @@ const Demo = () => (
               options={options}
             />
           </Story.Box>
-        </>
+        </React.Fragment>
       )
     })}
   </>

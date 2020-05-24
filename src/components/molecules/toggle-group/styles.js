@@ -18,7 +18,7 @@ export const ToggleGroupOption = styled.div(
     clear: left;
     padding-top: 0.25em;
     padding-bottom: 0.25em;
-    .label {
+    .toggle-group-label {
       margin-inline-start: 0.333em;
       margin-inline-end: 0.6666em;
     }

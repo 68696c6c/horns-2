@@ -43,7 +43,11 @@ const ToggleGroup = ({
               className={className}
               {...others}
             />
-            <Label htmlFor={toggleID} required={required} className={className}>
+            <Label
+              htmlFor={toggleID}
+              required={required}
+              className={[className, 'toggle-group-label'].join(' ').trim()}
+            >
               {key}
             </Label>
           </Styled.ToggleGroupOption>
