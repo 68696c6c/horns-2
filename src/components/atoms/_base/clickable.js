@@ -118,7 +118,6 @@ export const navItem = {
 
 export const Link = styled.a(...link.styles())
 
-export const Button = styled.button(...button.styles())
 export const LinkButton = styled.a(...button.styles())
 
 export const getLinkVariantProps = variant => {
