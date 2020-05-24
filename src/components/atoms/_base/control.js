@@ -21,7 +21,7 @@ const controllableDefaultProps = {
   padding: 'xSmall',
 }
 
-export const control = {
+export const baseControl = {
   styles: () => [
     bordered.styles,
     chromaticSurface.styles,
@@ -46,10 +46,6 @@ export const control = {
     ...padded.propTypes({ paddingConfig: 'controls' }),
     ...rounded.propTypes(),
     ...typographic.propTypes(),
-    placeholder: PropTypes.string,
-    required: PropTypes.bool,
-    name: PropTypes.string.isRequired,
-    id: PropTypes.string.isRequired,
   }),
   defaultProps: (dp = {}) => {
     const defaultProps = merge({ ...controllableDefaultProps }, dp)
@@ -63,10 +59,24 @@ export const control = {
       ...padded.defaultProps({ padding }),
       ...rounded.defaultProps(),
       ...typographic.defaultProps(font),
-      placeholder: '',
-      required: false,
     }
   },
+}
+
+export const control = {
+  styles: () => [...baseControl.styles()],
+  propTypes: () => ({
+    ...baseControl.propTypes(),
+    placeholder: PropTypes.string,
+    required: PropTypes.bool,
+    name: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
+  }),
+  defaultProps: dp => ({
+    ...baseControl.defaultProps(dp),
+    placeholder: '',
+    required: false,
+  }),
 }
 
 export const select = {

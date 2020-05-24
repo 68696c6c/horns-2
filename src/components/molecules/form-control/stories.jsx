@@ -23,6 +23,7 @@ const Demo = () => (
       <Story.Box>
         {controlTypes.map(type => (
           <FormControl
+            key={type}
             type={type}
             id={`example-${type}-1`}
             name={`example_${type}_1`}
@@ -35,6 +36,7 @@ const Demo = () => (
       <Story.Box>
         {controlTypes.map(type => (
           <FormControl
+            key={type}
             type={type}
             id={`example-${type}-2`}
             name={`example_${type}_2`}
@@ -49,6 +51,7 @@ const Demo = () => (
       <Story.Box>
         {controlTypes.map(type => (
           <FormControl
+            key={type}
             type={type}
             id={`example-${type}-3`}
             name={`example_${type}_3`}
@@ -62,6 +65,7 @@ const Demo = () => (
       <Story.Box>
         {controlTypes.map(type => (
           <FormControl
+            key={type}
             type={type}
             id={`example-${type}-4`}
             name={`example_${type}_4`}

@@ -1,6 +1,6 @@
 export { block } from './block'
 export { button, link, navItem, getLinkVariantProps } from './clickable'
-export { control, select } from './control'
+export { baseControl, control, select } from './control'
 export { flex } from './flex'
 export { grid } from './grid'
 export { list, listTypes, listDefaults, getItemColors } from './list'

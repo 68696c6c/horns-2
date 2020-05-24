@@ -12,7 +12,7 @@ import {
 } from '../../../traits'
 import { Input } from '../../atoms'
 
-import { control } from '../../atoms/_base'
+import { baseControl } from '../../atoms/_base'
 
 export const SelectContainer = styled.div(
   () =>
@@ -62,11 +62,11 @@ export const Dropdown = styled.ul(
 )
 
 Dropdown.propTypes = {
-  ...control.propTypes(),
+  ...baseControl.propTypes(),
 }
 
 Dropdown.defaultProps = {
-  ...control.defaultProps({ cursor: 'pointer' }),
+  ...baseControl.defaultProps({ cursor: 'pointer' }),
 }
 
 export const Option = styled.li(
@@ -108,7 +108,7 @@ OptionFilter.defaultProps = {
   ...padded.defaultProps({ padding: 'xSmall' }),
 }
 
-export const Select = styled.div(...control.styles(), ({ open }) => {
+export const Select = styled.div(...baseControl.styles(), ({ open }) => {
   return (
     open &&
     css`
