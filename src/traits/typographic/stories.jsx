@@ -81,19 +81,19 @@ const Demo = () => (
       switch (styleName) {
         case 'button':
           return (
-            <div>
+            <div key={styleName}>
               <Button>This text uses the {styleName} font style.</Button>
             </div>
           )
         case 'link':
           return (
-            <div>
+            <div key={styleName}>
               <Link>This text uses the {styleName} font style.</Link>
             </div>
           )
         default:
           return (
-            <div>
+            <div key={styleName}>
               <Styled.Text font={styleName}>
                 This text uses the {styleName} font style.
               </Styled.Text>
