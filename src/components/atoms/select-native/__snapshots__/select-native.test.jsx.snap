@@ -13,6 +13,8 @@ exports[`SelectNative should render as default 1`] = `
   background: rgb(255,255,255);
   color: rgb(1,1,1);
   border-color: rgb(216,216,216);
+  height: 1em;
+  min-width: 1em;
   cursor: text;
   margin-top: 0px;
   margin-bottom: 0px;
@@ -37,8 +39,6 @@ exports[`SelectNative should render as default 1`] = `
   display: inline-flex;
   box-sizing: content-box;
   vertical-align: middle;
-  height: 1em;
-  min-width: 1em;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;

@@ -5,6 +5,7 @@ import { css } from '@emotion/core'
 import {
   bordered,
   chromaticSurface,
+  inline,
   interactive,
   margined,
   padded,
@@ -24,6 +25,7 @@ export const control = {
   styles: () => [
     bordered.styles,
     chromaticSurface.styles,
+    inline.styles,
     interactive.styles,
     margined.styles,
     padded.styles,
@@ -34,22 +36,11 @@ export const control = {
       box-sizing: content-box;
       vertical-align: middle;
     `,
-    // @TODO make this a trait?
-    ({ theme, multiline, multiple, font }) => {
-      // Force the element height to match the line-height to ensure that inputs that have controls
-      // inside them (e.g. type="datetime-local") don't end up a different size than standard inputs.
-      const f = theme.typography.getStyle(font)
-      return multiline || multiple
-        ? null
-        : css`
-            height: ${f.lineHeight};
-            min-width: ${f.lineHeight};
-          `
-    },
   ],
   propTypes: () => ({
     ...bordered.propTypes(),
     ...chromaticSurface.propTypes(),
+    ...inline.propTypes(),
     ...interactive.propTypes(),
     ...margined.propTypes(),
     ...padded.propTypes({ paddingConfig: 'controls' }),
@@ -59,7 +50,6 @@ export const control = {
     required: PropTypes.bool,
     name: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
-    multiline: PropTypes.bool,
   }),
   defaultProps: (dp = {}) => {
     const defaultProps = merge({ ...controllableDefaultProps }, dp)
@@ -67,6 +57,7 @@ export const control = {
     return {
       ...bordered.defaultProps(),
       ...chromaticSurface.defaultProps(),
+      ...inline.defaultProps(),
       ...interactive.defaultProps(false, false, cursor),
       ...margined.defaultProps({ margin: 'min' }),
       ...padded.defaultProps({ padding }),
@@ -74,7 +65,6 @@ export const control = {
       ...typographic.defaultProps(font),
       placeholder: '',
       required: false,
-      multiline: false,
     }
   },
 }
