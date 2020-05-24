@@ -3,7 +3,8 @@ import React from 'react'
 
 import * as Story from '_story'
 
-import Alert, { messageVariants } from '.'
+import { messageVariants } from '../_base'
+import Alert from '.'
 
 const Demo = () => (
   <>
@@ -15,15 +16,14 @@ const Demo = () => (
       <Story.Grid>
         <Story.Box>
           <Alert variant={variant}>{variant} message</Alert>
-        </Story.Box>
-        <Story.Box>
           <Alert variant={variant} withIcon>
             {variant} message with icon
           </Alert>
-        </Story.Box>
-        <Story.Box>
           <Alert variant={variant} block>
             {variant} block message
+          </Alert>
+          <Alert variant={variant} block withIcon>
+            {variant} block message with icon
           </Alert>
         </Story.Box>
       </Story.Grid>
