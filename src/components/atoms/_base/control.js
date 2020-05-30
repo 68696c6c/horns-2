@@ -84,7 +84,6 @@ export const select = {
     ...control.styles(),
     () => css`
       appearance: none;
-      cursor: pointer;
       &::-ms-expand {
         display: none;
       }
@@ -102,6 +101,7 @@ export const select = {
   }),
   defaultProps: () => ({
     ...control.defaultProps(),
+    cursor: 'pointer',
     multiline: false,
     multiple: false,
     options: [],
