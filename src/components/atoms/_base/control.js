@@ -13,11 +13,10 @@ import {
   typographic,
 } from '../../../traits'
 
-const merge = require('deepmerge')
-
-const controllableDefaultProps = {
+export const controllableDefaultProps = {
   cursor: 'text',
   font: 'control',
+  margin: 'min',
   padding: 'xSmall',
 }
 
@@ -25,38 +24,23 @@ export const baseControl = {
   styles: () => [
     bordered.styles,
     chromaticSurface.styles,
-    inline.styles,
-    interactive.styles,
     margined.styles,
-    padded.styles,
     rounded.styles,
     typographic.styles,
-    () => css`
-      display: inline-flex;
-      box-sizing: content-box;
-      vertical-align: middle;
-    `,
   ],
   propTypes: () => ({
     ...bordered.propTypes(),
     ...chromaticSurface.propTypes(),
-    ...inline.propTypes(),
-    ...interactive.propTypes(),
     ...margined.propTypes(),
-    ...padded.propTypes({ paddingConfig: 'controls' }),
     ...rounded.propTypes(),
     ...typographic.propTypes(),
   }),
-  defaultProps: (dp = {}) => {
-    const defaultProps = merge({ ...controllableDefaultProps }, dp)
-    const { cursor, font, padding } = defaultProps
+  defaultProps: () => {
+    const { font, margin } = controllableDefaultProps
     return {
       ...bordered.defaultProps(),
       ...chromaticSurface.defaultProps(),
-      ...inline.defaultProps(),
-      ...interactive.defaultProps(false, false, cursor),
-      ...margined.defaultProps({ margin: 'min' }),
-      ...padded.defaultProps({ padding }),
+      ...margined.defaultProps({ margin }),
       ...rounded.defaultProps(),
       ...typographic.defaultProps(font),
     }
@@ -64,19 +48,38 @@ export const baseControl = {
 }
 
 export const control = {
-  styles: () => [...baseControl.styles()],
+  styles: () => [
+    ...baseControl.styles(),
+    inline.styles,
+    interactive.styles,
+    padded.styles,
+    () => css`
+      display: inline-flex;
+      box-sizing: content-box;
+      vertical-align: middle;
+    `,
+  ],
   propTypes: () => ({
     ...baseControl.propTypes(),
+    ...inline.propTypes(),
+    ...interactive.propTypes(),
+    ...padded.propTypes({ paddingConfig: 'controls' }),
     placeholder: PropTypes.string,
     required: PropTypes.bool,
     name: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
   }),
-  defaultProps: dp => ({
-    ...baseControl.defaultProps(dp),
-    placeholder: '',
-    required: false,
-  }),
+  defaultProps: () => {
+    const { padding, cursor } = controllableDefaultProps
+    return {
+      ...baseControl.defaultProps(),
+      ...inline.defaultProps(),
+      ...interactive.defaultProps(false, false, cursor),
+      ...padded.defaultProps({ padding }),
+      placeholder: '',
+      required: false,
+    }
+  },
 }
 
 export const select = {
