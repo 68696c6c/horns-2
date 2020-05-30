@@ -11,6 +11,7 @@ MultiselectNative.propTypes = {
 MultiselectNative.defaultProps = {
   ...select.defaultProps(),
   multiple: true,
+  multiline: true,
 }
 
 export default MultiselectNative
