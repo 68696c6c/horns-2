@@ -1,7 +1,7 @@
 import { css } from '@emotion/core'
 import styled from '@emotion/styled'
 
-import { Columns, Stack } from '../../atoms'
+import { Columns, Stack, Label, Message } from '../../atoms'
 
 const baseStyles = [
   ({ theme }) => {
@@ -28,10 +28,10 @@ export const FormControlHorizontal = styled(Columns)(
   () =>
     css`
       align-items: center;
-      .label {
+      ${Label} {
         justify-self: end;
       }
-      .message {
+      ${Message} {
         justify-self: center;
         grid-column-end: span 2;
       }
