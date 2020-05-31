@@ -3,13 +3,13 @@ import React from 'react'
 
 import * as Story from '_story'
 
-import Menu from '.'
+import NavMenu from '.'
 
-const options = [
-  { key: 'One', value: '/one' },
-  { key: 'Two', value: '/two' },
-  { key: 'Three', value: '/three' },
-  { key: 'Four', value: '/four' },
+const links = [
+  { href: '/one', text: 'One' },
+  { href: '/two', text: 'Two' },
+  { href: '/three', text: 'Three' },
+  { href: '/four', text: 'Four' },
 ]
 
 const Demo = () => (
@@ -19,7 +19,7 @@ const Demo = () => (
       The <em>Menu</em> component is.
     </p>
     <Story.Grid>
-      <Menu options={options}>Nav item text</Menu>
+      <NavMenu links={links}>Nav item text</NavMenu>
     </Story.Grid>
   </>
 )

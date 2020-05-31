@@ -2,10 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { Nav, NavItem } from '../../atoms'
+import { childrenPropTypes } from '../../utils'
 
 import Menu from '../menu'
 
-const NavMenu = ({ children, options, ...others }) => {
+const NavMenu = ({ children, links }) => {
   return (
     <Menu
       renderControl={(open, ref, toggleOpen) => (
@@ -22,10 +23,10 @@ const NavMenu = ({ children, options, ...others }) => {
       )}
       renderMenu={(open, ref) => (
         <Nav open={open} ref={ref}>
-          {options.map(({ key, value }) => (
-            <a href={value} key={value}>
-              {key}
-            </a>
+          {links.map(({ href, text }) => (
+            <NavItem href={href} key={href}>
+              {text}
+            </NavItem>
           ))}
         </Nav>
       )}
@@ -34,16 +35,18 @@ const NavMenu = ({ children, options, ...others }) => {
 }
 
 NavMenu.propTypes = {
-  options: PropTypes.arrayOf(
+  children: childrenPropTypes(),
+  links: PropTypes.arrayOf(
     PropTypes.shape({
-      key: PropTypes.string,
-      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      href: PropTypes.string,
+      text: PropTypes.string,
     })
   ),
 }
 
 NavMenu.defaultProps = {
-  options: [],
+  children: '',
+  links: [],
 }
 
 export default NavMenu
