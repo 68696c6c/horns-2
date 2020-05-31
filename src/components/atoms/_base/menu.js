@@ -9,8 +9,7 @@ export const menu = {
       !open &&
       css`
         display: none;
-      `
-    ,
+      `,
     () => css`
       position: absolute;
       box-sizing: border-box;
