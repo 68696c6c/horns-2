@@ -1,6 +1,3 @@
-// behavior for opening and closing components like nav menus and custom selects
-// should emit events
-
 import { useCallback, useEffect, useState } from 'react'
 
 const useOpen = (initialOpen, isTarget) => {
@@ -13,8 +10,10 @@ const useOpen = (initialOpen, isTarget) => {
   }, [])
 
   useEffect(() => {
+    // eslint-disable-next-line no-undef
     window.addEventListener('click', handleClick)
     return () => {
+      // eslint-disable-next-line no-undef
       window.removeEventListener('click', handleClick)
     }
   })

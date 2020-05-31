@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 
-import useOpen from '../../hooks/use-open'
+import { useOpen } from '../../../hooks'
 
 import * as Styled from './styles'
 
