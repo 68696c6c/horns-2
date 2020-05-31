@@ -1,6 +1,8 @@
 import { css } from '@emotion/core'
 import styled from '@emotion/styled'
 
+import { Label as LabelAtom } from '../../atoms'
+
 export const ToggleGroup = styled.div(
   ({ theme, length }) => css`
     column-width: ${theme.grid.getColumnMin()};
@@ -18,9 +20,13 @@ export const ToggleGroupOption = styled.div(
     clear: left;
     padding-top: 0.25em;
     padding-bottom: 0.25em;
-    .toggle-group-label {
-      margin-inline-start: 0.333em;
-      margin-inline-end: 0.6666em;
-    }
+  `
+)
+
+export const Label = styled(LabelAtom)(
+  () => css`
+    cursor: pointer;
+    margin-inline-start: 0.333em;
+    margin-inline-end: 0.6666em;
   `
 )
