@@ -31,12 +31,8 @@ const Demo = () => (
 
     <h2>Multiple Prop</h2>
     <p>
-      When the <em>multiple</em> prop is set to true, the <em>SelectNative</em>{' '}
-      component is the same as the{' '}
-      <Story.A path="atoms/multiselect-native">
-        <em>MultiselectNative</em>
-      </Story.A>{' '}
-      component.
+      When the <em>multiple</em> works exactly like the native HTML attribute,
+      turning the <em>SelectNative</em> component into a multiselect.
     </p>
     <div>
       <Story.Label htmlFor="multiselect-example-2">Multiselect: </Story.Label>
