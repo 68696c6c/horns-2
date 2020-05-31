@@ -7,7 +7,6 @@ export {
   Input,
   Label,
   SelectNative,
-  MultiselectNative,
   Textarea,
   Toggle,
   Checkbox,
