@@ -14,12 +14,12 @@ export const Filter = styled(Input)(
   `
 )
 
-export const Select = styled.div(...control.styles(), ({ open }) => {
-  return (
+export const Select = styled.div(
+  ...control.styles(),
+  ({ open }) =>
     open &&
     css`
       border-bottom-right-radius: 0;
       border-bottom-left-radius: 0;
     `
-  )
-})
+)
