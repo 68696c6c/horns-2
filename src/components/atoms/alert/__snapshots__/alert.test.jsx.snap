@@ -2,8 +2,9 @@
 
 exports[`Alert should render as block 1`] = `
 .emotion-0 {
-  color: rgb(23,162,184);
-  border-color: rgb(23,162,184);
+  background: rgb(23,162,184);
+  color: rgb(255,255,255);
+  border-color: rgb(18,130,147);
   font-family: Helvetica,sans-serif;
   font-size: medium;
   font-style: normal;
@@ -47,8 +48,9 @@ exports[`Alert should render as block 1`] = `
 
 exports[`Alert should render as default 1`] = `
 .emotion-0 {
-  color: rgb(23,162,184);
-  border-color: rgb(23,162,184);
+  background: rgb(23,162,184);
+  color: rgb(255,255,255);
+  border-color: rgb(18,130,147);
   font-family: Helvetica,sans-serif;
   font-size: medium;
   font-style: normal;
@@ -95,8 +97,9 @@ exports[`Alert should render as default 1`] = `
 
 exports[`Alert should render as inline 1`] = `
 .emotion-0 {
-  color: rgb(23,162,184);
-  border-color: rgb(23,162,184);
+  background: rgb(23,162,184);
+  color: rgb(255,255,255);
+  border-color: rgb(18,130,147);
   font-family: Helvetica,sans-serif;
   font-size: medium;
   font-style: normal;
