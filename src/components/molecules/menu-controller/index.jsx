@@ -5,7 +5,7 @@ import { useOpen } from '../../../hooks'
 
 import * as Styled from './styles'
 
-const Menu = ({
+const MenuController = ({
   renderControl,
   renderMenu,
   initialOpen,
@@ -57,7 +57,7 @@ const Menu = ({
   )
 }
 
-Menu.propTypes = {
+MenuController.propTypes = {
   renderControl: PropTypes.func.isRequired,
   renderMenu: PropTypes.func.isRequired,
   onOpen: PropTypes.func,
@@ -76,7 +76,7 @@ Menu.propTypes = {
   ]),
 }
 
-Menu.defaultProps = {
+MenuController.defaultProps = {
   onOpen: () => {},
   onClose: () => {},
   initialOpen: false,
@@ -84,4 +84,4 @@ Menu.defaultProps = {
   menuPosition: 'bottom',
 }
 
-export default Menu
+export default MenuController
