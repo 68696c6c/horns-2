@@ -7,7 +7,6 @@ const Dropdown = styled.ul(
   ...baseControl.styles(),
   ...menu.styles(),
   ({ theme }) => css`
-    border-top: none;
     top: -${theme.borders.getWidthPX()};
     list-style-type: none;
     padding: 0;
@@ -23,6 +22,10 @@ Dropdown.defaultProps = {
   ...baseControl.defaultProps(),
   ...menu.defaultProps(),
   cursor: 'pointer',
+  borderTop: {
+    width: 'min',
+    style: 'none',
+  },
   radiusTop: 'min',
 }
 

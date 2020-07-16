@@ -12,26 +12,9 @@ const borderPropTypes = () => ({
 
 // eslint-disable-next-line import/prefer-default-export
 export const bordered = {
-  styles: ({
-    theme,
-    borderAll,
-    borderX,
-    borderY,
-    borderTop,
-    borderBottom,
-    borderLeft,
-    borderRight,
-  }) => {
-    const b = theme.borders.getBorders({
-      all: borderAll,
-      x: borderX,
-      y: borderY,
-      top: borderTop,
-      bottom: borderBottom,
-      left: borderLeft,
-      right: borderRight,
-    })
-    const { top, bottom, left, right } = b
+  styles: ({ theme, ...borderProps }) => {
+    const result = theme.borders.getBorders(borderProps)
+    const { top, bottom, left, right } = result
     return css`
       border-top-width: ${top.width};
       border-top-style: ${top.style};
