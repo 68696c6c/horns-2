@@ -5,7 +5,7 @@ import { useOpen } from '../../../hooks'
 
 import * as Styled from './styles'
 
-const Menu = ({
+const MenuController = ({
   renderControl,
   renderMenu,
   initialOpen,
@@ -36,19 +36,19 @@ const Menu = ({
 
   useEffect(() => {
     if (forceWidth) {
-      const selectWidth = controlRef.current.offsetWidth
-      const dropdownWidth = menuRef.current.offsetWidth
-      if (selectWidth < dropdownWidth) {
-        setMinWidth(dropdownWidth)
-      } else if (selectWidth > dropdownWidth) {
-        setMinWidth(selectWidth)
+      const controlWidth = controlRef.current.offsetWidth
+      const menuWidth = menuRef.current.offsetWidth
+      if (controlWidth < menuWidth) {
+        setMinWidth(menuWidth)
+      } else if (controlWidth > menuWidth) {
+        setMinWidth(controlWidth)
       }
       setOpen(false)
     }
   }, [])
 
   return (
-    <Styled.Container open={open} style={{ minWidth: `${minWidth}px` }}>
+    <Styled.Container open={open} minWidth={minWidth}>
       {renderControl(open, controlRef, toggleOpen)}
       <Styled.MenuContainer open={open}>
         {renderMenu(open, menuRef)}
@@ -57,20 +57,31 @@ const Menu = ({
   )
 }
 
-Menu.propTypes = {
+MenuController.propTypes = {
   renderControl: PropTypes.func.isRequired,
   renderMenu: PropTypes.func.isRequired,
   onOpen: PropTypes.func,
   onClose: PropTypes.func,
   initialOpen: PropTypes.bool,
   forceWidth: PropTypes.bool,
+  menuPosition: PropTypes.oneOf([
+    'top',
+    'bottom',
+    'left',
+    'right',
+    'top-left',
+    'top-right',
+    'bottom-left',
+    'bottom-right',
+  ]),
 }
 
-Menu.defaultProps = {
+MenuController.defaultProps = {
   onOpen: () => {},
   onClose: () => {},
   initialOpen: false,
   forceWidth: false,
+  menuPosition: 'bottom',
 }
 
-export default Menu
+export default MenuController

@@ -4,11 +4,11 @@ import PropTypes from 'prop-types'
 import { Nav, NavItem } from '../../atoms'
 import { childrenPropTypes } from '../../utils'
 
-import Menu from '../menu'
+import MenuController from '../menu-controller'
 
 const NavMenu = ({ children, links }) => {
   return (
-    <Menu
+    <MenuController
       renderControl={(open, ref, toggleOpen) => (
         <NavItem
           onClick={event => {

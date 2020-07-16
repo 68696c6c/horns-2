@@ -9,7 +9,7 @@ import Menu from '.'
 
 const Demo = () => (
   <>
-    <h1>Menu</h1>
+    <h1>MenuController</h1>
     <Story.Grid>
       <Story.Box>
         <Menu
@@ -39,7 +39,7 @@ const Demo = () => (
 )
 
 Demo.story = {
-  name: 'Menu',
+  name: 'MenuController',
 }
 
 export default Demo

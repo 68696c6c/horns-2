@@ -6,7 +6,7 @@ import { handleProps } from '../../utils'
 import { control } from '../../atoms/_base'
 import { Dropdown, DropdownOption, Input } from '../../atoms'
 
-import Menu from '../menu'
+import MenuController from '../menu-controller'
 import * as Styled from './styles'
 
 export const defaultFilterOptions = (value, options, callback) =>
@@ -73,7 +73,7 @@ const Select = ({
         name={`select_value_${id}`}
         value={values.join(',')}
       />
-      <Menu
+      <MenuController
         forceWidth
         onOpen={() => {
           if (filterRef.current) {

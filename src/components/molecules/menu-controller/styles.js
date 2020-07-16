@@ -5,10 +5,11 @@ import { shadowed } from '../../../traits'
 
 export const Container = styled.div(
   ({ theme, open }) => open && shadowed.styles({ theme }),
-  () =>
+  ({ minWidth }) =>
     css`
       display: inline-flex;
       flex-direction: column;
+      min-width: ${minWidth && `${minWidth}px`};
     `
 )
 

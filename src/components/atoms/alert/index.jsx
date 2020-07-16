@@ -56,6 +56,7 @@ Alert.defaultProps = {
   ...padded.defaultProps({ padding: 'small', paddingX: 'medium' }),
   block: false,
   withIcon: false,
+  typographic: false,
 }
 
 export default Alert
