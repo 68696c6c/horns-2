@@ -1,11 +1,12 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react'
+import React, { useState, useRef } from 'react'
 import PropTypes from 'prop-types'
 import _debounce from 'lodash.debounce'
 
 import { handleProps } from '../../utils'
 import { control } from '../../atoms/_base'
-import { Input } from '../../atoms'
+import { Dropdown, DropdownOption, Input } from '../../atoms'
 
+import MenuController from '../menu-controller'
 import * as Styled from './styles'
 
 export const defaultFilterOptions = (value, options, callback) =>
@@ -26,14 +27,10 @@ const Select = ({
   ...others
 }) => {
   const [displayValues, setDisplayValues] = useState([])
-  const [minWidth, setMinWidth] = useState('0')
-  const [open, setOpen] = useState(true)
   const [values, setValues] = useState([])
   const [options, setOptions] = useState(propsOptions)
 
-  const selectRef = useRef(null)
   const filterRef = useRef(null)
-  const dropDownRef = useRef(null)
 
   const filterOptionsD = _debounce(filterOptions, 100, { leading: true })
 
@@ -68,45 +65,6 @@ const Select = ({
     }
   }
 
-  const toggleOpen = () => {
-    setOpen(!open)
-  }
-
-  useEffect(() => {
-    if (filterRef.current) {
-      filterRef.current.focus()
-    }
-  }, [open])
-
-  useEffect(() => {
-    const selectWidth = selectRef.current.offsetWidth
-    const dropdownWidth = dropDownRef.current.offsetWidth
-    if (selectWidth < dropdownWidth) {
-      setMinWidth(dropdownWidth)
-    } else if (selectWidth > dropdownWidth) {
-      setMinWidth(selectWidth)
-    }
-    setOpen(false)
-  }, [])
-
-  const handleClick = useCallback(event => {
-    console.log('event', event)
-    if (
-      event.target !== selectRef.current &&
-      event.target !== filterRef.current
-    ) {
-      setOpen(false)
-    }
-  }, [])
-
-  useEffect(() => {
-    window.addEventListener('click', handleClick)
-
-    return () => {
-      window.removeEventListener('click', handleClick)
-    }
-  }, [handleClick])
-
   return (
     <>
       <Input
@@ -115,19 +73,27 @@ const Select = ({
         name={`select_value_${id}`}
         value={values.join(',')}
       />
-      <Styled.SelectContainer style={{ minWidth: `${minWidth}px` }} open={open}>
-        <Styled.Select
-          {...handleProps(others, 'control')}
-          multiple={multiple}
-          onClick={toggleOpen}
-          ref={selectRef}
-          open={open}
-        >
-          {displayValues.join(', ')}
-        </Styled.Select>
-        <Styled.DropdownContainer>
-          <Styled.Dropdown open={open} ref={dropDownRef}>
-            <Styled.OptionFilter key={`select-option-${id}-filter`}>
+      <MenuController
+        forceWidth
+        onOpen={() => {
+          if (filterRef.current) {
+            filterRef.current.focus()
+          }
+        }}
+        renderControl={(open, ref, toggleOpen) => (
+          <Styled.Select
+            {...handleProps(others, 'control')}
+            multiple={multiple}
+            onClick={toggleOpen}
+            ref={ref}
+            open={open}
+          >
+            {displayValues.join(', ')}
+          </Styled.Select>
+        )}
+        renderMenu={(open, ref) => (
+          <Dropdown open={open} ref={ref}>
+            <DropdownOption key={`select-option-${id}-filter`}>
               <Styled.Filter
                 type="search"
                 id={`select-filter-${id}`}
@@ -135,20 +101,20 @@ const Select = ({
                 onKeyUp={handleFilter}
                 ref={filterRef}
               />
-            </Styled.OptionFilter>
+            </DropdownOption>
             {options.map(({ key, value }) => (
-              <Styled.Option
+              <DropdownOption
                 value={value}
                 key={`select-option-${id}-${key}`}
                 onClick={handleChange}
                 label={key}
               >
                 {key}
-              </Styled.Option>
+              </DropdownOption>
             ))}
-          </Styled.Dropdown>
-        </Styled.DropdownContainer>
-      </Styled.SelectContainer>
+          </Dropdown>
+        )}
+      />
     </>
   )
 }
@@ -166,7 +132,8 @@ Select.propTypes = {
 }
 
 Select.defaultProps = {
-  ...control.defaultProps({ cursor: 'pointer' }),
+  ...control.defaultProps(),
+  cursor: 'pointer',
   multiple: false,
   options: [],
   filterOptions: defaultFilterOptions,

@@ -8,18 +8,11 @@ import {
   FaSkull,
 } from 'react-icons/fa'
 
-import {
-  bordered,
-  chromatic,
-  margined,
-  padded,
-  typographic,
-} from '../../../traits'
+import { bordered, margined, padded } from '../../../traits'
 import { handleProps } from '../../utils'
 
+import { message } from '../_base'
 import * as Styled from './styles'
-
-export const messageVariants = ['success', 'info', 'warning', 'danger']
 
 const Alert = ({ children, block, variant, withIcon, ...others }) => {
   const Tag = block ? Styled.AlertBlock : Styled.AlertInline
@@ -48,25 +41,22 @@ const Alert = ({ children, block, variant, withIcon, ...others }) => {
 }
 
 Alert.propTypes = {
+  ...message.propTypes(),
   ...bordered.propTypes(),
-  ...chromatic.propTypes(),
   ...margined.propTypes(),
   ...padded.propTypes(),
-  ...typographic.propTypes(),
-  variant: PropTypes.oneOf(messageVariants),
   block: PropTypes.bool,
   withIcon: PropTypes.bool,
 }
 
 Alert.defaultProps = {
+  ...message.defaultProps(),
   ...bordered.defaultProps(),
-  ...chromatic.defaultProps(),
   ...margined.defaultProps(),
   ...padded.defaultProps({ padding: 'small', paddingX: 'medium' }),
-  ...typographic.defaultProps(),
-  variant: 'info',
   block: false,
   withIcon: false,
+  typographic: false,
 }
 
 export default Alert

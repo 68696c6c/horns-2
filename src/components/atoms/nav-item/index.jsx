@@ -7,7 +7,7 @@ import { handleProps } from '../../utils'
 import { navItem } from '../_base/clickable'
 import * as Styled from './styles'
 
-const NavItem = ({ children, variant, ...others }) => {
+const NavItem = ({ children, variant, forwardedRef, ...others }) => {
   let Tag
   switch (variant) {
     case 'colorway':
@@ -16,18 +16,25 @@ const NavItem = ({ children, variant, ...others }) => {
     case 'underline':
       Tag = Styled.NavItemUnderline
       break
+    case 'background':
+      Tag = Styled.NavItemBackground
+      break
     case 'border':
     default:
       Tag = Styled.NavItemBordered
   }
-  return <Tag {...handleProps(others, 'nav-item')}>{children}</Tag>
+  return (
+    <Tag {...handleProps(others, 'nav-item')} ref={forwardedRef}>
+      {children}
+    </Tag>
+  )
 }
 
 NavItem.propTypes = {
   ...navItem.propTypes(),
   href: PropTypes.string,
   current: PropTypes.bool,
-  variant: PropTypes.oneOf(['border', 'colorway', 'underline']),
+  variant: PropTypes.oneOf(['background', 'border', 'colorway', 'underline']),
   layout: PropTypes.oneOf(['horizontal', 'vertical']),
   currentColor: PropTypes.oneOf([null, ...colors]),
   currentWidth: PropTypes.oneOf([null, ...sizes]),
@@ -45,4 +52,6 @@ NavItem.defaultProps = {
   currentStyle: 'solid',
 }
 
-export default NavItem
+export default React.forwardRef((props, ref) => (
+  <NavItem {...props} forwardedRef={ref} />
+))

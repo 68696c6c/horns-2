@@ -23,6 +23,12 @@ export const Sub = styled.sub(...baseStyles)
 export const Sup = styled.sup(...baseStyles)
 export const Del = styled.del(...baseStyles)
 export const Strikethrough = styled.s(...baseStyles)
+export const Mistake = styled.u(...baseStyles, ({ theme }) => {
+  const c = theme.color.getColorway('danger')
+  return css`
+    text-decoration-color: ${c.base.base};
+  `
+})
 
 // Quote components.
 export const Quote = styled.q(...baseStyles)

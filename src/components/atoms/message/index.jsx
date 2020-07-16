@@ -1,29 +1,19 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
-import { chromatic, typographic } from '../../../traits'
-import { handleProps } from '../../utils'
-
+import { message } from '../_base'
 import * as Styled from './styles'
 
-export const messageVariants = ['success', 'info', 'warning', 'danger']
-
-const Message = ({ children, variant, ...others }) => (
-  <Styled.Message {...handleProps(others, 'message')} color={variant}>
-    {children}
-  </Styled.Message>
+const Message = ({ variant, ...others }) => (
+  <Styled.Message {...others} color={variant} />
 )
 
 Message.propTypes = {
-  ...chromatic.propTypes(),
-  ...typographic.propTypes(),
-  variant: PropTypes.oneOf(messageVariants),
+  ...message.propTypes(),
 }
 
 Message.defaultProps = {
-  ...chromatic.defaultProps(null, true),
-  ...typographic.defaultProps('message'),
-  variant: 'info',
+  ...message.defaultProps(),
+  font: 'message',
 }
 
 export default Message

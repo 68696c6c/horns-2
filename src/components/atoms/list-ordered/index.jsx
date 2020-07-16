@@ -1,14 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-
-import { handleProps } from '../../utils'
+import styled from '@emotion/styled'
 
 import { list, listTypes } from '../_base'
-import * as Styled from './styles'
 
-const ListOrdered = props => (
-  <Styled.ListOrdered {...handleProps(props, 'list-ordered')} />
-)
+const ListOrdered = styled.ol(...list.styles())
 
 ListOrdered.propTypes = {
   ...list.propTypes(),

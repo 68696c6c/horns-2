@@ -13,7 +13,10 @@ exports[`Input should render as default 1`] = `
   background: rgb(255,255,255);
   color: rgb(1,1,1);
   border-color: rgb(216,216,216);
-  cursor: text;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
   border-bottom-left-radius: 4px;
@@ -23,6 +26,9 @@ exports[`Input should render as default 1`] = `
   font-style: normal;
   font-weight: 400;
   line-height: 1em;
+  height: 1em;
+  min-width: 1em;
+  cursor: text;
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 8px;
@@ -33,23 +39,30 @@ exports[`Input should render as default 1`] = `
   display: inline-flex;
   box-sizing: content-box;
   vertical-align: middle;
-  height: 1em;
-  min-width: 1em;
 }
 
 .emotion-0:disabled,
 .emotion-0.inactive {
   cursor: text;
+  background: rgb(191,191,191);
+  color: rgb(1,1,1);
+  border-color: rgb(165,165,165);
   -webkit-text-decoration-line: none;
   text-decoration-line: none;
 }
 
 .emotion-0:not(:disabled):not(.inactive):hover {
+  background: rgb(235,235,235);
+  color: rgb(1,1,1);
+  border-color: rgb(216,216,216);
   -webkit-text-decoration-line: none;
   text-decoration-line: none;
 }
 
 .emotion-0:not(:disabled):not(.inactive):active {
+  background: rgb(216,216,216);
+  color: rgb(1,1,1);
+  border-color: rgb(235,235,235);
   -webkit-text-decoration-line: none;
   text-decoration-line: none;
 }
@@ -57,6 +70,7 @@ exports[`Input should render as default 1`] = `
 <div>
   <input
     class="control emotion-0"
+    color="background"
     cursor="text"
     id="example"
     name="example"

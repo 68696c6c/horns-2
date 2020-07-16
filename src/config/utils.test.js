@@ -1,11 +1,192 @@
 /* global describe, it, expect */
 import {
+  mergeProps,
+  evalCorners,
   mergeConfigs,
   valueToNumber,
   isNumber,
   isString,
   getSideValues,
 } from './utils'
+
+describe('mergeProps', () => {
+  it('should prefer prop over config', () => {
+    const props = {
+      all: 'prop-all',
+      left: 'prop-left',
+      topLeft: 'prop-topLeft',
+      bottomLeft: 'prop-bottomLeft',
+    }
+    const config = {
+      all: 'config-all',
+      left: 'config-left',
+      topLeft: 'config-topLeft',
+      bottomLeft: 'config-bottomLeft',
+    }
+    const result = mergeProps(props, config)
+    expect(result.all).toEqual(props.all)
+    expect(result.left).toEqual(props.left)
+    expect(result.topLeft).toEqual(props.topLeft)
+    expect(result.bottomLeft).toEqual(props.bottomLeft)
+  })
+  it('should use config if a prop is not provided', () => {
+    const props = {
+      a: 'prop-all',
+      b: null,
+    }
+    const config = {
+      a: 'config-a',
+      b: 'config-b',
+    }
+    const result = mergeProps(props, config)
+    expect(result.a).toEqual(props.a)
+    expect(result.b).toEqual(config.b)
+  })
+  it('should filter out props that are not in the config', () => {
+    const props = {
+      a: 'prop-all',
+      c: 'prop-c',
+    }
+    const config = {
+      a: 'config-a',
+      b: 'config-b',
+    }
+    const result = mergeProps(props, config)
+    expect(result.a).toEqual(props.a)
+    expect(result.b).toEqual(config.b)
+    expect(typeof result.c === 'undefined').toBe(true)
+  })
+})
+
+describe('evalCorners', () => {
+  it('should default to the all value', () => {
+    const props = {
+      all: 'all',
+      top: null,
+      bottom: null,
+      left: null,
+      right: null,
+      topLeft: null,
+      topRight: null,
+      bottomLeft: null,
+      bottomRight: null,
+    }
+    const result = evalCorners(props)
+    expect(result.topLeft).toEqual(props.all)
+    expect(result.topRight).toEqual(props.all)
+    expect(result.bottomLeft).toEqual(props.all)
+    expect(result.bottomRight).toEqual(props.all)
+  })
+  it('should set left corners to "left"', () => {
+    const props = {
+      all: 'all',
+      top: null,
+      bottom: null,
+      left: 'left',
+      right: null,
+      topLeft: null,
+      topRight: null,
+      bottomLeft: null,
+      bottomRight: null,
+    }
+    const result = evalCorners(props)
+    expect(result.topLeft).toEqual(props.left)
+    expect(result.topRight).toEqual(props.all)
+    expect(result.bottomLeft).toEqual(props.left)
+    expect(result.bottomRight).toEqual(props.all)
+  })
+  it('should set right corners to "right"', () => {
+    const props = {
+      all: 'all',
+      top: null,
+      bottom: null,
+      left: null,
+      right: 'right',
+      topLeft: null,
+      topRight: null,
+      bottomLeft: null,
+      bottomRight: null,
+    }
+    const result = evalCorners(props)
+    expect(result.topLeft).toEqual(props.all)
+    expect(result.topRight).toEqual(props.right)
+    expect(result.bottomLeft).toEqual(props.all)
+    expect(result.bottomRight).toEqual(props.right)
+  })
+  it('should top corners to "top"', () => {
+    const props = {
+      all: 'all',
+      top: 'top',
+      bottom: null,
+      left: null,
+      right: null,
+      topLeft: null,
+      topRight: null,
+      bottomLeft: null,
+      bottomRight: null,
+    }
+    const result = evalCorners(props)
+    expect(result.topLeft).toEqual(props.top)
+    expect(result.topRight).toEqual(props.top)
+    expect(result.bottomLeft).toEqual(props.all)
+    expect(result.bottomRight).toEqual(props.all)
+  })
+  it('should bottom corners to "bottom"', () => {
+    const props = {
+      all: 'all',
+      top: null,
+      bottom: 'bottom',
+      left: null,
+      right: null,
+      topLeft: null,
+      topRight: null,
+      bottomLeft: null,
+      bottomRight: null,
+    }
+    const result = evalCorners(props)
+    expect(result.topLeft).toEqual(props.all)
+    expect(result.topRight).toEqual(props.all)
+    expect(result.bottomLeft).toEqual(props.bottom)
+    expect(result.bottomRight).toEqual(props.bottom)
+  })
+  // arbitrary, but we have to prefer one over the other
+  it('should treat y values as more specific than x values', () => {
+    const props = {
+      all: 'all',
+      top: 'top',
+      bottom: null,
+      left: 'left',
+      right: null,
+      topLeft: null,
+      topRight: null,
+      bottomLeft: null,
+      bottomRight: null,
+    }
+    const result = evalCorners(props)
+    expect(result.topLeft).toEqual(props.top)
+    expect(result.topRight).toEqual(props.top)
+    expect(result.bottomLeft).toEqual(props.left)
+    expect(result.bottomRight).toEqual(props.all)
+  })
+  it('should treat corner values as the most specific rule', () => {
+    const props = {
+      all: 'all',
+      top: null,
+      bottom: 'bottom',
+      left: null,
+      right: 'right',
+      topLeft: null,
+      topRight: null,
+      bottomLeft: null,
+      bottomRight: 'bottomRight',
+    }
+    const result = evalCorners(props)
+    expect(result.topLeft).toEqual(props.all)
+    expect(result.topRight).toEqual(props.right)
+    expect(result.bottomLeft).toEqual(props.bottom)
+    expect(result.bottomRight).toEqual(props.bottomRight)
+  })
+})
 
 describe('mergeConfigs', () => {
   it('should return the passed value', () => {

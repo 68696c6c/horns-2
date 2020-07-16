@@ -96,14 +96,14 @@ const getFlexCSS = ({
   justify,
   items,
   content,
-  wrap,
+  flexWrap,
   reversed,
 }) => css`
   flex-direction: ${reversed ? `${direction}-reversed` : direction};
   justify-content: ${getJustifyContent(justify, direction)};
   align-items: ${getAlignItems(items, direction)};
   align-content: ${getAlignContent(content)};
-  flex-wrap: ${wrap && 'wrap'};
+  flex-wrap: ${flexWrap && 'wrap'};
   ${getDisplayCSS(theme, breakpoint)}
 
   > * {
@@ -121,20 +121,20 @@ export const flexibleRow = {
     x: PropTypes.oneOf(flexProperties.row.x),
     y: PropTypes.oneOf(flexProperties.row.y),
     reversed: PropTypes.bool,
-    wrap: PropTypes.bool,
+    flexWrap: PropTypes.bool,
   }),
   defaultProps: (
     x = null,
     y = null,
     content = null,
     reversed = false,
-    wrap = false
+    flexWrap = false
   ) => ({
     x,
     y,
     content,
     reversed,
-    wrap,
+    flexWrap,
   }),
 }
 
@@ -147,19 +147,19 @@ export const flexibleColumn = {
     y: PropTypes.oneOf(flexProperties.column.y),
     content: PropTypes.oneOf(flexProperties.content),
     reversed: PropTypes.bool,
-    wrap: PropTypes.bool,
+    flexWrap: PropTypes.bool,
   }),
   defaultProps: (
     x = null,
     y = null,
     content = null,
     reversed = false,
-    wrap = false
+    flexWrap = false
   ) => ({
     x,
     y,
     content,
     reversed,
-    wrap,
+    flexWrap,
   }),
 }

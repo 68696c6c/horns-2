@@ -5,6 +5,7 @@ import { css } from '@emotion/core'
 import {
   bordered,
   chromaticSurface,
+  inline,
   interactive,
   margined,
   padded,
@@ -12,69 +13,100 @@ import {
   typographic,
 } from '../../../traits'
 
-const merge = require('deepmerge')
-
-const controllableDefaultProps = {
+export const controllableDefaultProps = {
   cursor: 'text',
   font: 'control',
+  margin: 'min',
   padding: 'xSmall',
 }
 
-// eslint-disable-next-line import/prefer-default-export
-export const control = {
-  styles: (inline = true) => [
+export const baseControl = {
+  styles: () => [
     bordered.styles,
     chromaticSurface.styles,
-    interactive.styles,
     margined.styles,
-    padded.styles,
     rounded.styles,
     typographic.styles,
-    ({ theme, font }) => {
-      let heightCSS
-      if (inline) {
-        // Force the element height to match the line-height to ensure that inputs that have controls
-        // inside them (e.g. type="datetime-local") don't end up a different size than standard inputs.
-        const f = theme.typography.getStyle(font)
-        heightCSS = css`
-          height: ${f.lineHeight};
-          min-width: ${f.lineHeight};
-        `
-      }
-      return css`
-        display: inline-flex;
-        box-sizing: content-box;
-        vertical-align: middle;
-        ${heightCSS}
-      `
-    },
   ],
   propTypes: () => ({
     ...bordered.propTypes(),
     ...chromaticSurface.propTypes(),
-    ...interactive.propTypes(),
     ...margined.propTypes(),
-    ...padded.propTypes({ paddingConfig: 'controls' }),
     ...rounded.propTypes(),
     ...typographic.propTypes(),
+  }),
+  defaultProps: () => {
+    const { font, margin } = controllableDefaultProps
+    return {
+      ...bordered.defaultProps(),
+      ...chromaticSurface.defaultProps(),
+      ...margined.defaultProps({ margin }),
+      ...rounded.defaultProps(),
+      ...typographic.defaultProps(font),
+    }
+  },
+}
+
+export const control = {
+  styles: () => [
+    ...baseControl.styles(),
+    inline.styles,
+    interactive.styles,
+    padded.styles,
+    () => css`
+      display: inline-flex;
+      box-sizing: content-box;
+      vertical-align: middle;
+    `,
+  ],
+  propTypes: () => ({
+    ...baseControl.propTypes(),
+    ...inline.propTypes(),
+    ...interactive.propTypes(),
+    ...padded.propTypes({ paddingConfig: 'controls' }),
     placeholder: PropTypes.string,
     required: PropTypes.bool,
     name: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
   }),
-  defaultProps: (dp = {}) => {
-    const defaultProps = merge({ ...controllableDefaultProps }, dp)
-    const { cursor, font, padding } = defaultProps
+  defaultProps: () => {
+    const { padding, cursor } = controllableDefaultProps
     return {
-      ...bordered.defaultProps(),
-      ...chromaticSurface.defaultProps(),
+      ...baseControl.defaultProps(),
+      ...inline.defaultProps(),
       ...interactive.defaultProps(false, false, cursor),
-      ...margined.defaultProps({ margin: 'min' }),
       ...padded.defaultProps({ padding }),
-      ...rounded.defaultProps(),
-      ...typographic.defaultProps(font),
       placeholder: '',
       required: false,
     }
   },
+}
+
+export const select = {
+  styles: () => [
+    ...control.styles(),
+    () => css`
+      appearance: none;
+      &::-ms-expand {
+        display: none;
+      }
+    `,
+  ],
+  propTypes: () => ({
+    ...control.propTypes(),
+    multiple: PropTypes.bool,
+    options: PropTypes.arrayOf(
+      PropTypes.shape({
+        key: PropTypes.string,
+        value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      })
+    ),
+  }),
+  defaultProps: () => ({
+    ...control.defaultProps(),
+    cursor: 'pointer',
+    multiline: false,
+    multiple: false,
+    options: [],
+  }),
 }

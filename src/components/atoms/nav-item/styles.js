@@ -29,6 +29,13 @@ export const NavItemUnderline = styled.a(...navItem.styles(), ({ current }) => {
   )
 })
 
+// Indicates the current item using a background color.
+export const NavItemBackground = styled.a(
+  ...navItem.styles(),
+  ({ theme, current, currentColor, typographic }) =>
+    current && chromatic.styles({ theme, typographic, color: currentColor })
+)
+
 // Indicates the current item using a colored border.
 export const NavItemBordered = styled.a(...navItem.styles(), props => {
   const {

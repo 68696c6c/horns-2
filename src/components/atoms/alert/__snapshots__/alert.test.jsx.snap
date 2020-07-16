@@ -1,0 +1,145 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Alert should render as block 1`] = `
+.emotion-0 {
+  background: rgb(23,162,184);
+  color: rgb(255,255,255);
+  border-color: rgb(18,130,147);
+  font-family: Helvetica,sans-serif;
+  font-size: medium;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.6em;
+  border-top-width: 2px;
+  border-top-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  border-left-width: 2px;
+  border-left-style: solid;
+  border-right-width: 2px;
+  border-right-style: solid;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.emotion-0 .icon {
+  margin-right: 1em;
+}
+
+<div>
+  <div
+    class="alert emotion-0"
+    color="info"
+  >
+    example
+  </div>
+</div>
+`;
+
+exports[`Alert should render as default 1`] = `
+.emotion-0 {
+  background: rgb(23,162,184);
+  color: rgb(255,255,255);
+  border-color: rgb(18,130,147);
+  font-family: Helvetica,sans-serif;
+  font-size: medium;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.6em;
+  border-top-width: 2px;
+  border-top-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  border-left-width: 2px;
+  border-left-style: solid;
+  border-right-width: 2px;
+  border-right-style: solid;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 1.6em;
+  min-width: 1.6em;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+.emotion-0 .icon {
+  margin-right: 1em;
+}
+
+<div>
+  <span
+    class="alert emotion-0"
+    color="info"
+  >
+    example
+  </span>
+</div>
+`;
+
+exports[`Alert should render as inline 1`] = `
+.emotion-0 {
+  background: rgb(23,162,184);
+  color: rgb(255,255,255);
+  border-color: rgb(18,130,147);
+  font-family: Helvetica,sans-serif;
+  font-size: medium;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.6em;
+  border-top-width: 2px;
+  border-top-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  border-left-width: 2px;
+  border-left-style: solid;
+  border-right-width: 2px;
+  border-right-style: solid;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 1.6em;
+  min-width: 1.6em;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+.emotion-0 .icon {
+  margin-right: 1em;
+}
+
+<div>
+  <span
+    class="alert emotion-0"
+    color="info"
+  >
+    example
+  </span>
+</div>
+`;

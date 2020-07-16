@@ -2,7 +2,6 @@
 
 exports[`Grid should render as default 1`] = `
 .emotion-0 {
-  grid-gap: 16px;
   display: block;
   grid-template-areas: 'one two three four five six seven eight nine ten eleven twelve';
 }
@@ -22,7 +21,7 @@ exports[`Grid should render as default 1`] = `
 
 <div>
   <div
-    class="grid emotion-0"
+    class="emotion-0"
   >
     <div>
       a

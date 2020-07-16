@@ -8,10 +8,14 @@ import * as Styled from './styles'
 
 export const toggleTypes = ['checkbox', 'radio']
 
-const Toggle = ({ id, ...others }) => (
+const Toggle = ({ id, multiline, ...others }) => (
   <>
     <Styled.Toggle id={id} {...handleProps(others, 'toggle')} />
-    <Styled.ToggleControl htmlFor={id} {...handleProps(others, 'control')} />
+    <Styled.ToggleControl
+      htmlFor={id}
+      {...handleProps(others, 'control')}
+      multiline={multiline}
+    />
   </>
 )
 
@@ -21,8 +25,9 @@ Toggle.propTypes = {
 }
 
 Toggle.defaultProps = {
-  ...control.defaultProps('pointer'),
+  ...control.defaultProps(),
   cursor: 'pointer',
+  multiline: true,
 }
 
 export default Toggle

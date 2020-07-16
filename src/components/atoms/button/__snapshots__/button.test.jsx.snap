@@ -61,7 +61,7 @@ exports[`Button should render as default 1`] = `
 
 <div>
   <button
-    class="button emotion-0"
+    class="emotion-0"
     color="background"
     cursor="pointer"
   >

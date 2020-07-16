@@ -37,6 +37,10 @@ export default {
       line: 'underline',
       style: null,
     },
+    underlineDotted: {
+      line: 'underline',
+      style: 'dotted',
+    },
     underlineDouble: {
       line: 'underline',
       style: 'double',
@@ -453,6 +457,30 @@ export default {
       },
       active: {
         decoration: 'none',
+      },
+    },
+    mistake: {
+      family: 'primary',
+      style: 'normal',
+      weight: 'base',
+      size: 'base',
+      align: null,
+      justify: null,
+      transform: null,
+      decoration: 'underlineDotted',
+      kerning: 'base',
+      tracking: 'base',
+      letting: 'base',
+      spacing: 'base',
+      indent: 'base',
+      inactive: {
+        decoration: 'underlineDotted',
+      },
+      hover: {
+        decoration: 'underlineDotted',
+      },
+      active: {
+        decoration: 'underlineDotted',
       },
     },
   },

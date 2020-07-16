@@ -11,7 +11,7 @@ exports[`Label should render as default 1`] = `
 
 <div>
   <label
-    class="label emotion-0"
+    class="emotion-0"
   >
     example
   </label>

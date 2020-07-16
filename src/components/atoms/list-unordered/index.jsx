@@ -1,14 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-
-import { handleProps } from '../../utils'
+import styled from '@emotion/styled'
 
 import { list, listTypes } from '../_base'
-import * as Styled from './styles'
 
-const ListUnordered = props => (
-  <Styled.ListOrdered {...handleProps(props, 'list-unordered')} />
-)
+const ListUnordered = styled.ul(...list.styles())
 
 ListUnordered.propTypes = {
   ...list.propTypes(),

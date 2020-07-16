@@ -3,7 +3,7 @@ import React from 'react'
 
 import * as Story from '_story'
 
-import SelectNative, { MultiselectNative } from '.'
+import SelectNative from '.'
 
 const Demo = () => (
   <>
@@ -16,32 +16,37 @@ const Demo = () => (
       molecule provides styled options and additional behavior and should be
       preferred over this atom in most cases.
     </p>
-    <Story.Grid>
-      <div>
-        <Story.Label htmlFor="select-example-2">Select: </Story.Label>
-        <SelectNative
-          id="select-example-2"
-          name="select_example"
-          placeholder="Placeholder"
-        >
-          {Story.makeIntArray(10).map(i => (
-            <option value={i}>Option {i}</option>
-          ))}
-        </SelectNative>
-      </div>
-      <div>
-        <Story.Label htmlFor="multiselect-example-2">Multiselect: </Story.Label>
-        <MultiselectNative
-          id="multiselect-example-2"
-          name="multiselect_example"
-          placeholder="Placeholder"
-        >
-          {Story.makeIntArray(10).map(i => (
-            <option value={i}>Option {i}</option>
-          ))}
-        </MultiselectNative>
-      </div>
-    </Story.Grid>
+    <div>
+      <Story.Label htmlFor="select-example-2">Select: </Story.Label>
+      <SelectNative
+        id="select-example-1"
+        name="select_example_1"
+        placeholder="Placeholder"
+      >
+        {Story.makeIntArray(10).map(i => (
+          <option value={i}>Option {i}</option>
+        ))}
+      </SelectNative>
+    </div>
+
+    <h2>Multiple Prop</h2>
+    <p>
+      When the <em>multiple</em> works exactly like the native HTML attribute,
+      turning the <em>SelectNative</em> component into a multiselect.
+    </p>
+    <div>
+      <Story.Label htmlFor="multiselect-example-2">Multiselect: </Story.Label>
+      <SelectNative
+        id="select-example-2"
+        name="select_example_2"
+        placeholder="Placeholder"
+        multiple
+      >
+        {Story.makeIntArray(10).map(i => (
+          <option value={i}>Option {i}</option>
+        ))}
+      </SelectNative>
+    </div>
   </>
 )
 

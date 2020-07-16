@@ -4,6 +4,8 @@ import React from 'react'
 import { A } from '_story'
 
 export { default as FormControl } from './form-control/stories'
+export { default as MenuController } from './menu-controller/stories'
+export { default as NavMenu } from './nav-menu/stories'
 export { default as Select } from './select/stories'
 export { default as ToggleGroup } from './toggle-group/stories'
 

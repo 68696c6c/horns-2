@@ -18,11 +18,11 @@ export const typographicFonts = [
   'sup',
   'del',
   's',
+  'u',
 ]
 
 const Typography = ({ children, font: passedFont, ...others }) => {
   const props = { ...others }
-  let className = passedFont
   let Tag
   let font = passedFont
   switch (passedFont) {
@@ -111,13 +111,16 @@ const Typography = ({ children, font: passedFont, ...others }) => {
       Tag = Styled.Strikethrough
       font = 'text'
       break
+    case 'u':
+      Tag = Styled.Mistake
+      font = 'mistake'
+      break
     default:
       Tag = Styled.Span
       font = 'text'
-      className = 'text'
   }
   return (
-    <Tag {...handleProps(props, className)} font={font}>
+    <Tag {...handleProps(props, 'typography')} font={font}>
       {children}
     </Tag>
   )

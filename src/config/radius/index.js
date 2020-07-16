@@ -1,11 +1,34 @@
-import { mergeConfigs } from '../utils'
+import { evalCorners, mergeConfigs, mergeProps } from '../utils'
 import SizingConfig from '../sizing'
 
 import defaultConfig from './config'
 
 export { default as radius } from './config'
 
-export const corners = ['topRight', 'topLeft', 'bottomRight', 'bottomLeft']
+export const unprefixRadius = (props = {}) => {
+  const {
+    radiusAll,
+    radiusTop,
+    radiusBottom,
+    radiusLeft,
+    radiusRight,
+    radiusTopLeft,
+    radiusTopRight,
+    radiusBottomLeft,
+    radiusBottomRight,
+  } = props
+  return {
+    all: radiusAll,
+    top: radiusTop,
+    bottom: radiusBottom,
+    left: radiusLeft,
+    right: radiusRight,
+    topLeft: radiusTopLeft,
+    topRight: radiusTopRight,
+    bottomLeft: radiusBottomLeft,
+    bottomRight: radiusBottomRight,
+  }
+}
 
 class RadiusConfig {
   constructor(sizingConfig, config = {}) {
@@ -13,26 +36,14 @@ class RadiusConfig {
       throw new Error('RadiusConfig: invalid SizingConfig')
     }
     this.config = mergeConfigs(config, defaultConfig)
-
-    const cornerRadii = {}
-    corners.forEach(c => {
-      const size = this.config.corners[c]
-        ? this.config.corners[c]
-        : this.config.size
-      if (size === 'max') {
-        cornerRadii[c] = '50%'
-      } else if (!sizingConfig.getValue(size)) {
-        // if the size comes out to 0 or null, use null for the value to avoid setting an unnecessary CSS property.
-        cornerRadii[c] = null
-      } else {
-        cornerRadii[c] = sizingConfig.getPX(size)
-      }
-    })
-    this.corners = cornerRadii
+    this.sizing = sizingConfig
   }
 
-  getRadius() {
-    return this.corners
+  getCorners(radiusProps = {}) {
+    const propValues = unprefixRadius(radiusProps)
+    const merged = mergeProps(propValues, this.config)
+    const evaled = evalCorners(merged)
+    return this.sizing.getCornersPX(evaled)
   }
 }
 
