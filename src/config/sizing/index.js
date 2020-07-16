@@ -52,6 +52,14 @@ class SizingConfig {
       right: this.getPX(result.right),
     }
   }
+
+  getCornersPX(c) {
+    const result = {}
+    ;['topRight', 'topLeft', 'bottomRight', 'bottomLeft'].forEach(corner => {
+      result[corner] = c[corner] === 'max' ? '50%' : this.getPX(c[corner])
+    })
+    return result
+  }
 }
 
 export default SizingConfig

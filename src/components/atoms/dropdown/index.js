@@ -6,16 +6,12 @@ import { baseControl, menu } from '../_base'
 const Dropdown = styled.ul(
   ...baseControl.styles(),
   ...menu.styles(),
-  ({ theme }) => {
-    return css`
-      border-top: none;
-      border-top-right-radius: 0;
-      border-top-left-radius: 0;
-      top: -${theme.borders.getWidthPX()};
-      list-style-type: none;
-      padding: 0;
-    `
-  }
+  ({ theme }) => css`
+    border-top: none;
+    top: -${theme.borders.getWidthPX()};
+    list-style-type: none;
+    padding: 0;
+  `
 )
 
 Dropdown.propTypes = {
@@ -27,6 +23,7 @@ Dropdown.defaultProps = {
   ...baseControl.defaultProps(),
   ...menu.defaultProps(),
   cursor: 'pointer',
+  radiusTop: 'min',
 }
 
 export default Dropdown

@@ -63,3 +63,30 @@ export const getSideValues = (sides = {}) => {
   }
   return result
 }
+
+export const mergeProps = (props, config) => {
+  const result = {}
+  Object.keys(config).forEach(c => {
+    result[c] = props[c] || config[c]
+  })
+  return result
+}
+
+export const evalCorners = ({
+  all,
+  top,
+  bottom,
+  left,
+  right,
+  topLeft,
+  topRight,
+  bottomLeft,
+  bottomRight,
+}) => {
+  return {
+    topLeft: topLeft || top || left || all,
+    topRight: topRight || top || right || all,
+    bottomLeft: bottomLeft || bottom || left || all,
+    bottomRight: bottomRight || bottom || right || all,
+  }
+}
