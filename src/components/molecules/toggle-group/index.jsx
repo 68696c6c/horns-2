@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import uuid from 'uuid/v4'
 
 import { handleProps } from '../../utils'
-import { toggleTypes, Label, Toggle } from '../../atoms'
+import { toggleTypes, Toggle } from '../../atoms'
 
 import * as Styled from './styles'
 
