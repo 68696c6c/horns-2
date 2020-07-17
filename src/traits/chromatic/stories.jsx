@@ -1,8 +1,6 @@
 /* eslint-disable react/jsx-one-expression-per-line */
-/** @jsx jsx */
 import React from 'react'
 import PropTypes from 'prop-types'
-import { jsx } from '@emotion/core'
 import { useTheme } from 'emotion-theming'
 
 import { chromatic, chromaticSurface } from '.'

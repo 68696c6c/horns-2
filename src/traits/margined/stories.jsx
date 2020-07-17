@@ -1,7 +1,5 @@
 /* eslint-disable react/jsx-one-expression-per-line */
-/** @jsx jsx */
 import React from 'react'
-import { jsx } from '@emotion/core'
 
 import { sizes } from '../../config/sizing'
 

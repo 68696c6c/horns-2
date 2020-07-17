@@ -6,6 +6,9 @@
   "author": "Aaron Hill",
   "license": "ISC",
   "main": "dist/index.js",
+  "engines": {
+    "node": "12.x"
+  },
   "scripts": {
     "develop": "start-storybook -p 8000",
     "develop:docker": "start-storybook -h 0.0.0.0 -p 8000",
