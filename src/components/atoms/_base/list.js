@@ -67,8 +67,9 @@ export const list = {
   defaultProps: () => ({
     ...chromatic.defaultProps(null, true),
     ...gridded.defaultProps(true, 'xxSmall'),
-    ...margined.defaultProps({ margin: 'min' }),
+    ...margined.defaultProps(),
     ...typographic.defaultProps(),
+    marginAll: 'min',
     markerColor: null,
   }),
 }

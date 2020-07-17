@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 // @TODO don't spread non-html attributes to prevent console warnings.
 export const handleProps = (
-  { className: propsClassName, paddingConfig, ...others },
+  { className: propsClassName, ...others },
   className = ''
 ) => ({
   className: [className, propsClassName].join(' ').trim(),

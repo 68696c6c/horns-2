@@ -49,8 +49,10 @@ const base = {
       ...aligned.defaultProps(alignment),
       ...chromatic.defaultProps(color, isTypographic),
       ...interactive.defaultProps(false, isTypographic, cursor),
-      ...padded.defaultProps({ paddingX, paddingY }),
+      ...padded.defaultProps(),
       ...typographic.defaultProps(font),
+      paddingX,
+      paddingY,
     }
   },
 }

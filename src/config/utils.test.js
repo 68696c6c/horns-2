@@ -6,7 +6,6 @@ import {
   valueToNumber,
   isNumber,
   isString,
-  getSideValues,
 } from './utils'
 
 describe('mergeProps', () => {
@@ -345,74 +344,5 @@ describe('valueToNumber', () => {
   it('should strip "%" units', () => {
     const result = valueToNumber('350%')
     expect(result).not.toContain('%')
-  })
-})
-
-describe('getSideValues', () => {
-  const sortedSides = ['top', 'bottom', 'left', 'right'].sort()
-
-  it('should return values for top, bottom, left, and right', () => {
-    const result = getSideValues({ all: 'medium' })
-    expect(Object.keys(result).sort()).toEqual(sortedSides)
-  })
-
-  it('should return values for top, bottom, left, and right even if no args ar provided', () => {
-    const result = getSideValues()
-    expect(Object.keys(result).sort()).toEqual(sortedSides)
-  })
-
-  it('should set all sides to the "all" value if no other sides are specified', () => {
-    const result = getSideValues({ all: 'medium' })
-    Object.keys(result).forEach(side => {
-      expect(result[side]).toEqual('medium')
-    })
-  })
-
-  it('should set the top and bottom values to the "y" value if top and bottom are not specified', () => {
-    const result = getSideValues({ all: 'medium', y: 'small' })
-    expect(result.top).toEqual('small')
-    expect(result.bottom).toEqual('small')
-    expect(result.left).toEqual('medium')
-    expect(result.right).toEqual('medium')
-  })
-
-  it('should set the left and right values to the "x" value if left and right are not specified', () => {
-    const result = getSideValues({ all: 'large', x: 'xSmall' })
-    expect(result.top).toEqual('large')
-    expect(result.bottom).toEqual('large')
-    expect(result.left).toEqual('xSmall')
-    expect(result.right).toEqual('xSmall')
-  })
-
-  it('should set prioritize the "top" value over the "all" and "y" values', () => {
-    const result = getSideValues({ all: 'tiny', y: 'xSmall', top: 'small' })
-    expect(result.top).toEqual('small')
-    expect(result.bottom).toEqual('xSmall')
-    expect(result.left).toEqual('tiny')
-    expect(result.right).toEqual('tiny')
-  })
-
-  it('should set prioritize the "bottom" value over the "all" and "y" values', () => {
-    const result = getSideValues({ all: 'giant', y: 'max', bottom: 'min' })
-    expect(result.top).toEqual('max')
-    expect(result.bottom).toEqual('min')
-    expect(result.left).toEqual('giant')
-    expect(result.right).toEqual('giant')
-  })
-
-  it('should set prioritize the "left" value over the "all" and "x" values', () => {
-    const result = getSideValues({ all: 'small', x: 'medium', left: 'tiny' })
-    expect(result.top).toEqual('small')
-    expect(result.bottom).toEqual('small')
-    expect(result.left).toEqual('tiny')
-    expect(result.right).toEqual('medium')
-  })
-
-  it('should set prioritize the "right" value over the "all" and "x" values', () => {
-    const result = getSideValues({ all: 'medium', x: 'tiny', right: 'xLarge' })
-    expect(result.top).toEqual('medium')
-    expect(result.bottom).toEqual('medium')
-    expect(result.left).toEqual('tiny')
-    expect(result.right).toEqual('xLarge')
   })
 })

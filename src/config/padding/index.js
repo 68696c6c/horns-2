@@ -1,7 +1,30 @@
-import { mergeConfigs } from '../utils'
+import { evalSides, mergeConfigs, mergeProps } from '../utils'
 import SizingConfig from '../sizing'
 
 import defaultConfig from './config'
+
+export const unprefixPadding = (props = {}) => {
+  const {
+    paddingConfig,
+    paddingAll,
+    paddingX,
+    paddingY,
+    paddingTop,
+    paddingBottom,
+    paddingLeft,
+    paddingRight,
+  } = props
+  return {
+    config: paddingConfig,
+    all: paddingAll,
+    x: paddingX,
+    y: paddingY,
+    top: paddingTop,
+    bottom: paddingBottom,
+    left: paddingLeft,
+    right: paddingRight,
+  }
+}
 
 class PaddingConfig {
   constructor(sizingConfig, config = {}) {
@@ -12,26 +35,28 @@ class PaddingConfig {
     this.config = mergeConfigs(config, defaultConfig)
     this.targets = {}
     Object.keys(this.config).forEach(target => {
-      const t = this.config[target]
-      this.targets[target] = {
-        x: this.sizing.getPX(t.x),
-        y: this.sizing.getPX(t.y),
-      }
+      const merged = mergeProps(this.config[target], {
+        config: null,
+        all: null,
+        x: null,
+        y: null,
+        top: null,
+        bottom: null,
+        left: null,
+        right: null,
+      })
+      const t = evalSides(merged)
+      this.targets[target] = this.sizing.getSidesPX(t)
     })
   }
 
-  getSizes(target) {
-    if (this.config[target]) {
-      return this.config[target]
+  getPadding(paddingProps = {}) {
+    const propValues = unprefixPadding(paddingProps)
+    if (propValues.config && this.targets[propValues.config]) {
+      return this.targets[propValues.config]
     }
-    return { x: null, y: null }
-  }
-
-  getValues(target) {
-    if (this.targets[target]) {
-      return this.targets[target]
-    }
-    return { x: null, y: null }
+    const p = evalSides(propValues)
+    return this.sizing.getSidesPX(p)
   }
 }
 

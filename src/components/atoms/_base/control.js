@@ -16,8 +16,8 @@ import {
 export const controllableDefaultProps = {
   cursor: 'text',
   font: 'control',
-  margin: 'min',
-  padding: 'xSmall',
+  marginAll: 'min',
+  paddingConfig: 'controls',
 }
 
 export const baseControl = {
@@ -36,13 +36,14 @@ export const baseControl = {
     ...typographic.propTypes(),
   }),
   defaultProps: () => {
-    const { font, margin } = controllableDefaultProps
+    const { font, marginAll } = controllableDefaultProps
     return {
       ...bordered.defaultProps(),
       ...chromaticSurface.defaultProps(),
-      ...margined.defaultProps({ margin }),
+      ...margined.defaultProps(),
       ...rounded.defaultProps(),
       ...typographic.defaultProps(font),
+      marginAll,
     }
   },
 }
@@ -63,19 +64,20 @@ export const control = {
     ...baseControl.propTypes(),
     ...inline.propTypes(),
     ...interactive.propTypes(),
-    ...padded.propTypes({ paddingConfig: 'controls' }),
+    ...padded.propTypes(),
     placeholder: PropTypes.string,
     required: PropTypes.bool,
     name: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
   }),
   defaultProps: () => {
-    const { padding, cursor } = controllableDefaultProps
+    const { paddingConfig, cursor } = controllableDefaultProps
     return {
       ...baseControl.defaultProps(),
       ...inline.defaultProps(),
       ...interactive.defaultProps(false, false, cursor),
-      ...padded.defaultProps({ padding }),
+      ...padded.defaultProps(),
+      paddingConfig,
       placeholder: '',
       required: false,
     }

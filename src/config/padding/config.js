@@ -1,6 +1,8 @@
 export default {
   controls: {
-    x: 'xSmall',
-    y: 'xSmall',
+    all: 'xSmall',
+  },
+  tables: {
+    all: 'xSmall',
   },
 }

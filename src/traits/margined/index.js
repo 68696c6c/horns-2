@@ -2,31 +2,14 @@ import PropTypes from 'prop-types'
 import { css } from '@emotion/core'
 
 import { sizes } from '../../config'
-
-const merge = require('deepmerge')
+import { evalSides, unprefixMargin } from '../../config/utils'
 
 // eslint-disable-next-line import/prefer-default-export
 export const margined = {
-  styles: ({
-    theme,
-    margin,
-    marginX,
-    marginY,
-    marginTop,
-    marginBottom,
-    marginLeft,
-    marginRight,
-    fluid,
-  }) => {
-    const spacing = theme.sizing.getSidesPX({
-      all: margin,
-      x: marginX,
-      y: marginY,
-      top: marginTop,
-      bottom: marginBottom,
-      left: marginLeft,
-      right: marginRight,
-    })
+  styles: ({ theme, fluid, ...marginProps }) => {
+    const propValues = unprefixMargin(marginProps)
+    const m = evalSides(propValues)
+    const spacing = theme.sizing.getSidesPX(m)
     if (typeof fluid !== 'undefined' && !fluid) {
       spacing.left = null
       spacing.right = null
@@ -39,7 +22,7 @@ export const margined = {
     `
   },
   propTypes: () => ({
-    margin: PropTypes.oneOf([null, ...sizes]),
+    marginAll: PropTypes.oneOf([null, ...sizes]),
     marginX: PropTypes.oneOf([null, ...sizes]),
     marginY: PropTypes.oneOf([null, ...sizes]),
     marginTop: PropTypes.oneOf([null, ...sizes]),
@@ -47,17 +30,13 @@ export const margined = {
     marginLeft: PropTypes.oneOf([null, ...sizes]),
     marginRight: PropTypes.oneOf([null, ...sizes]),
   }),
-  defaultProps: (provided = {}) =>
-    merge(
-      {
-        margin: null,
-        marginX: null,
-        marginY: null,
-        marginTop: null,
-        marginBottom: null,
-        marginLeft: null,
-        marginRight: null,
-      },
-      provided
-    ),
+  defaultProps: () => ({
+    marginAll: null,
+    marginX: null,
+    marginY: null,
+    marginTop: null,
+    marginBottom: null,
+    marginLeft: null,
+    marginRight: null,
+  }),
 }

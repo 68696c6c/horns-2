@@ -37,8 +37,9 @@ ListItem.propTypes = {
 
 ListItem.defaultProps = {
   ...chromatic.defaultProps(null, true),
-  ...margined.defaultProps({ marginY: 'min' }),
+  ...margined.defaultProps(),
   ...typographic.defaultProps(),
+  marginY: 'min',
   icon: <></>,
   type: null,
   markerColor: null,
