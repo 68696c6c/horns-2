@@ -13,7 +13,9 @@ FlexColumn.propTypes = {
 
 FlexColumn.defaultProps = {
   ...flex.defaultProps(),
-  ...flexibleColumn.defaultProps('center', 'evenly'),
+  ...flexibleColumn.defaultProps(),
+  x: 'center',
+  y: 'evenly',
 }
 
 export default FlexColumn

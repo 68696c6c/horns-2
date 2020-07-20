@@ -13,7 +13,9 @@ FlexRow.propTypes = {
 
 FlexRow.defaultProps = {
   ...flex.defaultProps(),
-  ...flexibleRow.defaultProps('evenly', 'center'),
+  ...flexibleRow.defaultProps(),
+  x: 'evenly',
+  y: 'center',
 }
 
 export default FlexRow

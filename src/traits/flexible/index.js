@@ -123,18 +123,12 @@ export const flexibleRow = {
     reversed: PropTypes.bool,
     flexWrap: PropTypes.bool,
   }),
-  defaultProps: (
-    x = null,
-    y = null,
-    content = null,
-    reversed = false,
-    flexWrap = false
-  ) => ({
-    x,
-    y,
-    content,
-    reversed,
-    flexWrap,
+  defaultProps: () => ({
+    x: null,
+    y: null,
+    content: null,
+    reversed: false,
+    flexWrap: false,
   }),
 }
 
@@ -149,17 +143,74 @@ export const flexibleColumn = {
     reversed: PropTypes.bool,
     flexWrap: PropTypes.bool,
   }),
-  defaultProps: (
-    x = null,
-    y = null,
-    content = null,
-    reversed = false,
-    flexWrap = false
-  ) => ({
-    x,
-    y,
-    content,
-    reversed,
-    flexWrap,
+  defaultProps: () => ({
+    x: null,
+    y: null,
+    content: null,
+    reversed: false,
+    flexWrap: false,
   }),
 }
+
+// const alignContentMap = {
+//   start: 'flex-start',
+//   center: 'center',
+//   end: 'flex-end',
+//   stretch: 'stretch',
+//   around: 'space-around',
+//   between: 'space-between',
+//   evenly: 'space-evenly',
+// }
+//
+// const displayCSS = ({ theme, breakpoint }) =>
+//   breakpoint
+//     ? css`
+//         display: block;
+//         ${theme.grid.break(breakpoint)} {
+//           display: flex;
+//         }
+//       `
+//     : css`
+//         display: flex;
+//       `
+//
+// const flexCSS = ({ content, flexWrap }) => css`
+//   align-content: ${alignContentMap[content]};
+//   flex-wrap: ${flexWrap && 'wrap'};
+//
+//   > * {
+//     flex-shrink: 1;
+//     flex-grow: 0;
+//     flex-basis: auto;
+//   }
+// `
+//
+// export const flexibleBlock = {
+//   styles: () => [displayCSS, flexCSS],
+//   propTypes: () => ({
+//     // breakpoint is granted by the responsive trait.
+//     content: PropTypes.oneOf(flexProperties.content),
+//     reversed: PropTypes.bool,
+//     flexWrap: PropTypes.bool,
+//   }),
+//   defaultProps: () => ({
+//     content: null,
+//     reversed: false,
+//     flexWrap: false,
+//   }),
+// }
+//
+// export const flexibleInline = {
+//   styles: () => [displayCSS, flexCSS],
+//   propTypes: () => ({
+//     // breakpoint is granted by the responsive trait.
+//     content: PropTypes.oneOf(flexProperties.content),
+//     reversed: PropTypes.bool,
+//     flexWrap: PropTypes.bool,
+//   }),
+//   defaultProps: () => ({
+//     content: null,
+//     reversed: false,
+//     flexWrap: false,
+//   }),
+// }
