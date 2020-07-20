@@ -18,7 +18,7 @@ export const TableResponsive = styled.table(
         tone: 'secondary',
       })};
     }
-    @media (min-width: ${theme.grid.getBreakpoint(breakpoint)}) {
+    ${theme.grid.break(breakpoint)} {
       min-width: ${minWidth && minWidth};
       thead {
         display: table-header-group;
