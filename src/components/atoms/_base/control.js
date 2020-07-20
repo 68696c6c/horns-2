@@ -16,7 +16,7 @@ import {
 export const controllableDefaultProps = {
   cursor: 'text',
   font: 'control',
-  marginAll: 'min',
+  margin: 'min',
   paddingConfig: 'controls',
 }
 
@@ -36,14 +36,14 @@ export const baseControl = {
     ...typographic.propTypes(),
   }),
   defaultProps: () => {
-    const { font, marginAll } = controllableDefaultProps
+    const { font, margin } = controllableDefaultProps
     return {
       ...bordered.defaultProps(),
       ...chromaticSurface.defaultProps(),
       ...margined.defaultProps(),
       ...rounded.defaultProps(),
       ...typographic.defaultProps(font),
-      marginAll,
+      margin,
     }
   },
 }

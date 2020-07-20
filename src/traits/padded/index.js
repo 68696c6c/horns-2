@@ -22,7 +22,7 @@ export const padded = {
   },
   propTypes: () => ({
     paddingConfig: PropTypes.oneOf([null, ...paddingConfigTargets]),
-    paddingAll: PropTypes.oneOf([null, ...sizes]),
+    padding: PropTypes.oneOf([null, ...sizes]),
     paddingX: PropTypes.oneOf([null, ...sizes]),
     paddingY: PropTypes.oneOf([null, ...sizes]),
     paddingTop: PropTypes.oneOf([null, ...sizes]),
@@ -32,7 +32,7 @@ export const padded = {
   }),
   defaultProps: () => ({
     paddingConfig: null,
-    paddingAll: null,
+    padding: null,
     paddingX: null,
     paddingY: null,
     paddingTop: null,

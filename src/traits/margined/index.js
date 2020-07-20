@@ -22,7 +22,7 @@ export const margined = {
     `
   },
   propTypes: () => ({
-    marginAll: PropTypes.oneOf([null, ...sizes]),
+    margin: PropTypes.oneOf([null, ...sizes]),
     marginX: PropTypes.oneOf([null, ...sizes]),
     marginY: PropTypes.oneOf([null, ...sizes]),
     marginTop: PropTypes.oneOf([null, ...sizes]),
@@ -31,7 +31,7 @@ export const margined = {
     marginRight: PropTypes.oneOf([null, ...sizes]),
   }),
   defaultProps: () => ({
-    marginAll: null,
+    margin: null,
     marginX: null,
     marginY: null,
     marginTop: null,

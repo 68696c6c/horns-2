@@ -6,7 +6,7 @@ import defaultConfig from './config'
 export const unprefixPadding = (props = {}) => {
   const {
     paddingConfig,
-    paddingAll,
+    padding,
     paddingX,
     paddingY,
     paddingTop,
@@ -16,7 +16,7 @@ export const unprefixPadding = (props = {}) => {
   } = props
   return {
     config: paddingConfig,
-    all: paddingAll,
+    all: padding,
     x: paddingX,
     y: paddingY,
     top: paddingTop,

@@ -69,7 +69,7 @@ export const list = {
     ...gridded.defaultProps(true, 'xxSmall'),
     ...margined.defaultProps(),
     ...typographic.defaultProps(),
-    marginAll: 'min',
+    margin: 'min',
     markerColor: null,
   }),
 }

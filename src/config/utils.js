@@ -79,7 +79,7 @@ export const mergeBorderProps = (props = {}, config = {}) => {
 // @TODO remove this if we can get rid of margin in favor of spacing containers like stacks etc.
 export const unprefixMargin = (props = {}) => {
   const {
-    marginAll,
+    margin,
     marginX,
     marginY,
     marginTop,
@@ -88,7 +88,7 @@ export const unprefixMargin = (props = {}) => {
     marginRight,
   } = props
   return {
-    all: marginAll,
+    all: margin,
     x: marginX,
     y: marginY,
     top: marginTop,

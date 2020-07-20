@@ -54,7 +54,7 @@ Alert.defaultProps = {
   ...bordered.defaultProps(),
   ...margined.defaultProps(),
   ...padded.defaultProps(),
-  paddingAll: 'small',
+  padding: 'small',
   paddingX: 'medium',
   block: false,
   withIcon: false,
