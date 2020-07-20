@@ -19,7 +19,8 @@ DropdownOption.propTypes = {
 DropdownOption.defaultProps = {
   ...chromaticSurface.defaultProps(),
   ...interactive.defaultProps(false, false, 'pointer'),
-  ...padded.defaultProps({ padding: controllableDefaultProps.padding }),
+  ...padded.defaultProps(),
+  paddingConfig: controllableDefaultProps.paddingConfig,
 }
 
 export default DropdownOption
