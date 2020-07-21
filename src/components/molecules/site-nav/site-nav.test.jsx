@@ -1,9 +1,9 @@
-/* eslint-disable react/jsx-one-expression-per-line */
+/* global describe, it, expect */
 import React from 'react'
 
-import * as Story from '_story'
+import { render } from 'setup-test'
 
-import NavMenu from '.'
+import SiteNav from '.'
 
 const links = [
   { href: '/one', text: 'One' },
@@ -29,21 +29,13 @@ const links = [
   },
 ]
 
-const Demo = () => (
-  <>
-    <h1>NavMenu</h1>
-    <p>
-      The <em>NavMenu</em> component renders a list of links in an open and
-      closable menu.
-    </p>
-    <Story.Grid>
-      <NavMenu links={links}>Nav item text</NavMenu>
-    </Story.Grid>
-  </>
-)
-
-Demo.story = {
-  name: 'NavMenu',
-}
-
-export default Demo
+describe('SiteNav', () => {
+  it('should render as default', () => {
+    const { container } = render(<SiteNav links={links} />)
+    expect(container).toMatchSnapshot()
+  })
+  it('should highlight the current item', () => {
+    const { container } = render(<SiteNav currentPath="/one" links={links} />)
+    expect(container).toMatchSnapshot()
+  })
+})

@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Nav should render as default 1`] = `
+@media (min-width:1200px) {
+  .emotion-0 {
+    padding-left: calc(((100vw - 1200px) / 2));
+    padding-right: calc(((100vw - 1200px) / 2));
+  }
+}
+
+<div>
+  <nav
+    class="emotion-0"
+  >
+    <a
+      href="/one"
+    >
+      One
+    </a>
+    <a
+      href="/two"
+    >
+      Two
+    </a>
+    <a
+      href="/three"
+    >
+      Three
+    </a>
+  </nav>
+</div>
+`;

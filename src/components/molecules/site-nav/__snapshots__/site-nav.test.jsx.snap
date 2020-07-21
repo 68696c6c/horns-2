@@ -1,0 +1,391 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SiteNav should highlight the current item 1`] = `
+@media (min-width:1200px) {
+  .emotion-17 {
+    padding-left: calc(((100vw - 1200px) / 2));
+    padding-right: calc(((100vw - 1200px) / 2));
+  }
+}
+
+.emotion-0 {
+  background: rgb(255,255,255);
+  color: rgb(1,1,1);
+  border-color: rgb(216,216,216);
+  cursor: pointer;
+  font-family: Helvetica,sans-serif;
+  font-size: medium;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.6em;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+  display: inline-block;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
+.emotion-0:disabled,
+.emotion-0.inactive {
+  cursor: pointer;
+  background: rgb(191,191,191);
+  color: rgb(1,1,1);
+  border-color: rgb(165,165,165);
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+}
+
+.emotion-0:not(:disabled):not(.inactive):hover {
+  background: rgb(235,235,235);
+  color: rgb(1,1,1);
+  border-color: rgb(216,216,216);
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+}
+
+.emotion-0:not(:disabled):not(.inactive):active {
+  background: rgb(216,216,216);
+  color: rgb(1,1,1);
+  border-color: rgb(235,235,235);
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+}
+
+.emotion-13 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0px;
+}
+
+.emotion-12 {
+  position: relative;
+}
+
+.emotion-11 {
+  display: none;
+  position: absolute;
+  box-sizing: border-box;
+  min-width: 100%;
+}
+
+<div>
+  <nav
+    class="site-nav emotion-17"
+  >
+    <a
+      class="nav-item emotion-0"
+      color="background"
+      cursor="pointer"
+      href="/one"
+    >
+      One
+    </a>
+    <a
+      class="nav-item emotion-0"
+      color="background"
+      cursor="pointer"
+      href="/two"
+    >
+      Two
+    </a>
+    <a
+      class="nav-item emotion-0"
+      color="background"
+      cursor="pointer"
+      href="/three"
+    >
+      Three
+    </a>
+    <div
+      class="emotion-13"
+    >
+      <a
+        class="nav-item emotion-0"
+        color="background"
+        cursor="pointer"
+        href="#"
+      >
+        More
+      </a>
+      <div
+        class="emotion-12"
+      >
+        <nav
+          class="emotion-11"
+        >
+          <a
+            class="nav-item emotion-0"
+            color="background"
+            cursor="pointer"
+            href="/four/one"
+          >
+            Four One
+          </a>
+          <a
+            class="nav-item emotion-0"
+            color="background"
+            cursor="pointer"
+            href="/four/two"
+          >
+            Four Two
+          </a>
+          <a
+            class="nav-item emotion-0"
+            color="background"
+            cursor="pointer"
+            href="/four/three"
+          >
+            Four Three
+          </a>
+          <div
+            class="emotion-13"
+          >
+            <a
+              class="nav-item emotion-0"
+              color="background"
+              cursor="pointer"
+              href="#"
+            >
+              More
+            </a>
+            <div
+              class="emotion-12"
+            >
+              <nav
+                class="emotion-11"
+              >
+                <a
+                  class="nav-item emotion-0"
+                  color="background"
+                  cursor="pointer"
+                  href="/four/four/one"
+                >
+                  Four Four One
+                </a>
+                <a
+                  class="nav-item emotion-0"
+                  color="background"
+                  cursor="pointer"
+                  href="/four/four/two"
+                >
+                  Four Four Two
+                </a>
+                <a
+                  class="nav-item emotion-0"
+                  color="background"
+                  cursor="pointer"
+                  href="/four/four/three"
+                >
+                  Four Four Three
+                </a>
+              </nav>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </nav>
+</div>
+`;
+
+exports[`SiteNav should render as default 1`] = `
+@media (min-width:1200px) {
+  .emotion-17 {
+    padding-left: calc(((100vw - 1200px) / 2));
+    padding-right: calc(((100vw - 1200px) / 2));
+  }
+}
+
+.emotion-0 {
+  background: rgb(255,255,255);
+  color: rgb(1,1,1);
+  border-color: rgb(216,216,216);
+  cursor: pointer;
+  font-family: Helvetica,sans-serif;
+  font-size: medium;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.6em;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+  display: inline-block;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
+.emotion-0:disabled,
+.emotion-0.inactive {
+  cursor: pointer;
+  background: rgb(191,191,191);
+  color: rgb(1,1,1);
+  border-color: rgb(165,165,165);
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+}
+
+.emotion-0:not(:disabled):not(.inactive):hover {
+  background: rgb(235,235,235);
+  color: rgb(1,1,1);
+  border-color: rgb(216,216,216);
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+}
+
+.emotion-0:not(:disabled):not(.inactive):active {
+  background: rgb(216,216,216);
+  color: rgb(1,1,1);
+  border-color: rgb(235,235,235);
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+}
+
+.emotion-13 {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0px;
+}
+
+.emotion-12 {
+  position: relative;
+}
+
+.emotion-11 {
+  display: none;
+  position: absolute;
+  box-sizing: border-box;
+  min-width: 100%;
+}
+
+<div>
+  <nav
+    class="site-nav emotion-17"
+  >
+    <a
+      class="nav-item emotion-0"
+      color="background"
+      cursor="pointer"
+      href="/one"
+    >
+      One
+    </a>
+    <a
+      class="nav-item emotion-0"
+      color="background"
+      cursor="pointer"
+      href="/two"
+    >
+      Two
+    </a>
+    <a
+      class="nav-item emotion-0"
+      color="background"
+      cursor="pointer"
+      href="/three"
+    >
+      Three
+    </a>
+    <div
+      class="emotion-13"
+    >
+      <a
+        class="nav-item emotion-0"
+        color="background"
+        cursor="pointer"
+        href="#"
+      >
+        More
+      </a>
+      <div
+        class="emotion-12"
+      >
+        <nav
+          class="emotion-11"
+        >
+          <a
+            class="nav-item emotion-0"
+            color="background"
+            cursor="pointer"
+            href="/four/one"
+          >
+            Four One
+          </a>
+          <a
+            class="nav-item emotion-0"
+            color="background"
+            cursor="pointer"
+            href="/four/two"
+          >
+            Four Two
+          </a>
+          <a
+            class="nav-item emotion-0"
+            color="background"
+            cursor="pointer"
+            href="/four/three"
+          >
+            Four Three
+          </a>
+          <div
+            class="emotion-13"
+          >
+            <a
+              class="nav-item emotion-0"
+              color="background"
+              cursor="pointer"
+              href="#"
+            >
+              More
+            </a>
+            <div
+              class="emotion-12"
+            >
+              <nav
+                class="emotion-11"
+              >
+                <a
+                  class="nav-item emotion-0"
+                  color="background"
+                  cursor="pointer"
+                  href="/four/four/one"
+                >
+                  Four Four One
+                </a>
+                <a
+                  class="nav-item emotion-0"
+                  color="background"
+                  cursor="pointer"
+                  href="/four/four/two"
+                >
+                  Four Four Two
+                </a>
+                <a
+                  class="nav-item emotion-0"
+                  color="background"
+                  cursor="pointer"
+                  href="/four/four/three"
+                >
+                  Four Four Three
+                </a>
+              </nav>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </nav>
+</div>
+`;

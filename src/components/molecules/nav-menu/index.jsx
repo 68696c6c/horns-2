@@ -1,52 +1,39 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
-import { Nav, NavItem } from '../../atoms'
+import { Menu } from '../../atoms'
 import { childrenPropTypes } from '../../utils'
 
+import { nav, renderNavControl, renderNavLinks } from '../_base'
 import MenuController from '../menu-controller'
 
 const NavMenu = ({ children, links }) => {
   return (
     <MenuController
-      renderControl={(open, ref, toggleOpen) => (
-        <NavItem
-          onClick={event => {
-            event.preventDefault()
-            toggleOpen()
-          }}
-          ref={ref}
-          open={open}
-        >
-          {children}
-        </NavItem>
-      )}
+      renderControl={(open, ref, toggleOpen) => {
+        return renderNavControl({
+          open,
+          ref,
+          toggleOpen,
+          text: children,
+        })
+      }}
       renderMenu={(open, ref) => (
-        <Nav open={open} ref={ref}>
-          {links.map(({ href, text }) => (
-            <NavItem href={href} key={href}>
-              {text}
-            </NavItem>
-          ))}
-        </Nav>
+        <Menu open={open} ref={ref}>
+          {renderNavLinks(links)}
+        </Menu>
       )}
     />
   )
 }
 
 NavMenu.propTypes = {
+  ...nav.propTypes(),
   children: childrenPropTypes(),
-  links: PropTypes.arrayOf(
-    PropTypes.shape({
-      href: PropTypes.string,
-      text: PropTypes.string,
-    })
-  ),
 }
 
 NavMenu.defaultProps = {
+  ...nav.defaultProps(),
   children: '',
-  links: [],
 }
 
 export default NavMenu

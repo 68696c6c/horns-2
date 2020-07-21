@@ -1,0 +1,276 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PaginationNav should highlight the current item 1`] = `
+@media (min-width:1200px) {
+  .emotion-10 {
+    padding-left: calc(((100vw - 1200px) / 2));
+    padding-right: calc(((100vw - 1200px) / 2));
+  }
+}
+
+.emotion-2 {
+  background: rgb(255,255,255);
+  color: rgb(1,1,1);
+  border-color: rgb(216,216,216);
+  cursor: pointer;
+  font-family: Helvetica,sans-serif;
+  font-size: medium;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.6em;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+  display: inline-block;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  padding-bottom: 0px;
+  border-bottom-color: rgb(255,170,0) !important;
+  border-top-width: 0px;
+  border-top-style: solid;
+  border-bottom-width: 8px;
+  border-bottom-style: solid;
+  border-left-width: 0px;
+  border-left-style: solid;
+  border-right-width: 0px;
+  border-right-style: solid;
+}
+
+.emotion-2:disabled,
+.emotion-2.inactive {
+  cursor: pointer;
+  background: rgb(191,191,191);
+  color: rgb(1,1,1);
+  border-color: rgb(165,165,165);
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+}
+
+.emotion-2:not(:disabled):not(.inactive):hover {
+  background: rgb(235,235,235);
+  color: rgb(1,1,1);
+  border-color: rgb(216,216,216);
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+}
+
+.emotion-2:not(:disabled):not(.inactive):active {
+  background: rgb(216,216,216);
+  color: rgb(1,1,1);
+  border-color: rgb(235,235,235);
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+}
+
+.emotion-0 {
+  background: rgb(255,255,255);
+  color: rgb(1,1,1);
+  border-color: rgb(216,216,216);
+  cursor: pointer;
+  font-family: Helvetica,sans-serif;
+  font-size: medium;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.6em;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+  display: inline-block;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
+.emotion-0:disabled,
+.emotion-0.inactive {
+  cursor: pointer;
+  background: rgb(191,191,191);
+  color: rgb(1,1,1);
+  border-color: rgb(165,165,165);
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+}
+
+.emotion-0:not(:disabled):not(.inactive):hover {
+  background: rgb(235,235,235);
+  color: rgb(1,1,1);
+  border-color: rgb(216,216,216);
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+}
+
+.emotion-0:not(:disabled):not(.inactive):active {
+  background: rgb(216,216,216);
+  color: rgb(1,1,1);
+  border-color: rgb(235,235,235);
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+}
+
+<div>
+  <nav
+    class="pagination-nav emotion-10"
+  >
+    <a
+      class="nav-item emotion-0"
+      color="background"
+      cursor="pointer"
+      href="#"
+    >
+      1
+    </a>
+    <a
+      class="nav-item emotion-0"
+      color="background"
+      cursor="pointer"
+      href="#"
+    >
+      2
+    </a>
+    <a
+      class="nav-item emotion-2"
+      color="background"
+      cursor="pointer"
+      href="#"
+    >
+      3
+    </a>
+    <a
+      class="nav-item emotion-0"
+      color="background"
+      cursor="pointer"
+      href="#"
+    >
+      4
+    </a>
+    <a
+      class="nav-item emotion-0"
+      color="background"
+      cursor="pointer"
+      href="#"
+    >
+      5
+    </a>
+    <a
+      class="nav-item emotion-0"
+      color="background"
+      cursor="pointer"
+      href="#"
+    >
+      6
+    </a>
+    <a
+      class="nav-item emotion-0"
+      color="background"
+      cursor="pointer"
+      href="#"
+    >
+      7
+    </a>
+    <a
+      class="nav-item emotion-0"
+      color="background"
+      cursor="pointer"
+      href="#"
+    >
+      8
+    </a>
+    <a
+      class="nav-item emotion-0"
+      color="background"
+      cursor="pointer"
+      href="#"
+    >
+      9
+    </a>
+    <a
+      class="nav-item emotion-0"
+      color="background"
+      cursor="pointer"
+      href="#"
+    >
+      10
+    </a>
+  </nav>
+</div>
+`;
+
+exports[`PaginationNav should render as default 1`] = `
+@media (min-width:1200px) {
+  .emotion-1 {
+    padding-left: calc(((100vw - 1200px) / 2));
+    padding-right: calc(((100vw - 1200px) / 2));
+  }
+}
+
+.emotion-0 {
+  background: rgb(255,255,255);
+  color: rgb(1,1,1);
+  border-color: rgb(216,216,216);
+  cursor: pointer;
+  font-family: Helvetica,sans-serif;
+  font-size: medium;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.6em;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 16px;
+  padding-right: 16px;
+  display: inline-block;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  padding-bottom: 0px;
+  border-bottom-color: rgb(255,170,0) !important;
+  border-top-width: 0px;
+  border-top-style: solid;
+  border-bottom-width: 8px;
+  border-bottom-style: solid;
+  border-left-width: 0px;
+  border-left-style: solid;
+  border-right-width: 0px;
+  border-right-style: solid;
+}
+
+.emotion-0:disabled,
+.emotion-0.inactive {
+  cursor: pointer;
+  background: rgb(191,191,191);
+  color: rgb(1,1,1);
+  border-color: rgb(165,165,165);
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+}
+
+.emotion-0:not(:disabled):not(.inactive):hover {
+  background: rgb(235,235,235);
+  color: rgb(1,1,1);
+  border-color: rgb(216,216,216);
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+}
+
+.emotion-0:not(:disabled):not(.inactive):active {
+  background: rgb(216,216,216);
+  color: rgb(1,1,1);
+  border-color: rgb(235,235,235);
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+}
+
+<div>
+  <nav
+    class="pagination-nav emotion-1"
+  >
+    <a
+      class="nav-item emotion-0"
+      color="background"
+      cursor="pointer"
+      href="#"
+    >
+      1
+    </a>
+  </nav>
+</div>
+`;

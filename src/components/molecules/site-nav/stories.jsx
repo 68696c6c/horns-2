@@ -3,7 +3,7 @@ import React from 'react'
 
 import * as Story from '_story'
 
-import NavMenu from '.'
+import SiteNav from '.'
 
 const links = [
   { href: '/one', text: 'One' },
@@ -31,19 +31,17 @@ const links = [
 
 const Demo = () => (
   <>
-    <h1>NavMenu</h1>
+    <h1>SiteNav</h1>
     <p>
-      The <em>NavMenu</em> component renders a list of links in an open and
-      closable menu.
+      The <em>SiteNav</em> component provides a fully themed and functional
+      site-wide navigation bar.
     </p>
-    <Story.Grid>
-      <NavMenu links={links}>Nav item text</NavMenu>
-    </Story.Grid>
+    <SiteNav color="primary" currentPath="/example/hello" links={links} />
   </>
 )
 
 Demo.story = {
-  name: 'NavMenu',
+  name: 'SiteNav',
 }
 
 export default Demo
