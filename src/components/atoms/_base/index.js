@@ -1,5 +1,11 @@
 export { block } from './block'
-export { button, link, navItem, getLinkVariantProps } from './clickable'
+export {
+  button,
+  link,
+  navItem,
+  navItemVariantProps,
+  getLinkVariantProps,
+} from './clickable'
 export {
   controllableDefaultProps,
   baseControl,

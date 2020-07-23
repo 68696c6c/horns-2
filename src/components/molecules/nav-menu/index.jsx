@@ -6,7 +6,17 @@ import { childrenPropTypes } from '../../utils'
 import { nav, renderNavControl, renderNavLinks } from '../_base'
 import MenuController from '../menu-controller'
 
-const NavMenu = ({ children, links }) => {
+const NavMenu = ({
+  children,
+  currentPath,
+  links,
+  variant,
+  layout,
+  color,
+  currentColor,
+  currentWidth,
+  currentStyle,
+}) => {
   return (
     <MenuController
       renderControl={(open, ref, toggleOpen) => {
@@ -15,11 +25,26 @@ const NavMenu = ({ children, links }) => {
           ref,
           toggleOpen,
           text: children,
+          variant,
+          layout,
+          color,
+          currentColor,
+          currentWidth,
+          currentStyle,
         })
       }}
       renderMenu={(open, ref) => (
         <Menu open={open} ref={ref}>
-          {renderNavLinks(links)}
+          {renderNavLinks({
+            currentPath,
+            links,
+            variant,
+            layout,
+            color,
+            currentColor,
+            currentWidth,
+            currentStyle,
+          })}
         </Menu>
       )}
     />

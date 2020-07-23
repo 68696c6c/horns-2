@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`NavItem should render as default 1`] = `
+exports[`NavItemUnderline should render as default 1`] = `
 .emotion-0 {
   background: rgb(255,255,255);
   color: rgb(1,1,1);
@@ -10,14 +10,16 @@ exports[`NavItem should render as default 1`] = `
   font-size: medium;
   font-style: normal;
   font-weight: 400;
-  line-height: 1.6em;
-  padding-top: 8px;
-  padding-bottom: 8px;
+  line-height: 1em;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  -webkit-text-decoration-style: none;
+  text-decoration-style: none;
+  padding-top: 16px;
+  padding-bottom: 16px;
   padding-left: 16px;
   padding-right: 16px;
   display: inline-block;
-  -webkit-text-decoration: none;
-  text-decoration: none;
 }
 
 .emotion-0:disabled,
@@ -28,6 +30,8 @@ exports[`NavItem should render as default 1`] = `
   border-color: rgb(165,165,165);
   -webkit-text-decoration-line: none;
   text-decoration-line: none;
+  -webkit-text-decoration-style: none;
+  text-decoration-style: none;
 }
 
 .emotion-0:not(:disabled):not(.inactive):hover {
@@ -36,6 +40,8 @@ exports[`NavItem should render as default 1`] = `
   border-color: rgb(216,216,216);
   -webkit-text-decoration-line: none;
   text-decoration-line: none;
+  -webkit-text-decoration-style: none;
+  text-decoration-style: none;
 }
 
 .emotion-0:not(:disabled):not(.inactive):active {
@@ -44,11 +50,13 @@ exports[`NavItem should render as default 1`] = `
   border-color: rgb(235,235,235);
   -webkit-text-decoration-line: none;
   text-decoration-line: none;
+  -webkit-text-decoration-style: none;
+  text-decoration-style: none;
 }
 
 <div>
   <a
-    class="nav-item emotion-0"
+    class="emotion-0"
     color="background"
     cursor="pointer"
     href="#"

@@ -3,7 +3,7 @@ import { css } from '@emotion/core'
 
 import { sizes } from '../../config'
 
-export const paddingConfigTargets = ['controls', 'tables']
+export const paddingConfigTargets = ['controls', 'clickables', 'tables', 'navs']
 
 // eslint-disable-next-line import/prefer-default-export
 export const padded = {

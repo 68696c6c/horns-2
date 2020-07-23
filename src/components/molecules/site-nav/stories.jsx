@@ -37,6 +37,47 @@ const Demo = () => (
       site-wide navigation bar.
     </p>
     <SiteNav color="primary" currentPath="/example/hello" links={links} />
+    <h2>Item Props</h2>
+    <p>
+      The <em>SiteNav</em> component accepts <em>variant</em>, <em>layout</em>,{' '}
+      <em>currentColor</em>, <em>currentWidth</em>, and <em>currentStyle</em>{' '}
+      props for styling its items.
+    </p>
+    <Story.Grid>
+      <SiteNav
+        variant="background"
+        color="primary"
+        currentColor="dark"
+        currentPath="/one"
+        links={links}
+      />
+    </Story.Grid>
+    <Story.Grid>
+      <SiteNav
+        variant="border"
+        color="secondary"
+        currentColor="neutral"
+        currentPath="/one"
+        links={links}
+      />
+    </Story.Grid>
+    <Story.Grid>
+      <SiteNav
+        variant="colorway"
+        color="tertiary"
+        currentColor="light"
+        currentPath="/one"
+        links={links}
+      />
+    </Story.Grid>
+    <Story.Grid>
+      <SiteNav
+        variant="underline"
+        color="success"
+        currentPath="/one"
+        links={links}
+      />
+    </Story.Grid>
   </>
 )
 

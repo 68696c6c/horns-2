@@ -1,10 +1,9 @@
-/* eslint-disable react/jsx-one-expression-per-line */
+/* eslint-disable react/jsx-one-expression-per-line,jsx-a11y/anchor-is-valid */
 import React from 'react'
 
 import * as Story from '_story'
 
 import Nav from '.'
-import NavItem from '../nav-item'
 
 const Demo = () => (
   <>
@@ -15,8 +14,8 @@ const Demo = () => (
       <Story.A path="molecules/site-nav">SiteNav</Story.A> component for that.
     </p>
     <Nav color="primary">
-      <NavItem href="#">One</NavItem>
-      <NavItem href="/example/hello">Two</NavItem>
+      <a href="#">One</a>
+      <a href="#">Two</a>
     </Nav>
   </>
 )

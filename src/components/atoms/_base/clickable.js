@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import { css } from '@emotion/core'
 
+import { borderStyles, colors, sizes } from '../../../config'
 import {
   aligned,
   bordered,
@@ -13,71 +14,76 @@ import {
   typographic,
 } from '../../../traits'
 
-const merge = require('deepmerge')
-
 const clickableDefaultProps = {
-  alignment: 'center',
+  textAlign: 'center',
   color: 'background',
   cursor: 'pointer',
   font: 'link',
   isTypographic: true,
-  paddingX: 'medium',
-  paddingY: 'xSmall',
+  paddingConfig: 'clickables',
 }
 
 const base = {
   styles: () => [chromatic.styles, interactive.styles, typographic.styles],
   propTypes: () => ({
     ...aligned.propTypes(),
+    ...bordered.propTypes(),
     ...chromatic.propTypes(),
     ...interactive.propTypes(),
     ...padded.propTypes(),
+    ...rounded.propTypes(),
     ...typographic.propTypes(),
   }),
-  defaultProps: (dp = {}) => {
-    const defaultProps = merge({ ...clickableDefaultProps }, dp)
+  defaultProps: () => {
     const {
-      alignment,
+      textAlign,
       color,
       cursor,
       font,
       isTypographic,
-      paddingX,
-      paddingY,
-    } = defaultProps
+      paddingConfig,
+    } = clickableDefaultProps
     return {
-      ...aligned.defaultProps(alignment),
-      ...chromatic.defaultProps(color, isTypographic),
-      ...interactive.defaultProps(false, isTypographic, cursor),
+      ...aligned.defaultProps(),
+      ...bordered.defaultProps(),
+      ...chromatic.defaultProps(),
+      ...interactive.defaultProps(),
       ...padded.defaultProps(),
-      ...typographic.defaultProps(font),
-      paddingX,
-      paddingY,
+      ...rounded.defaultProps(),
+      ...typographic.defaultProps(),
+      textAlign,
+      color,
+      typographic: isTypographic,
+      cursor,
+      font,
+      paddingConfig,
     }
   },
 }
 
 export const button = {
   styles: () => [
+    // By default, webkit makes buttons have a gray background. We support outlined buttons by
+    // setting typographic=true, causing the chromatic trait to set a color and border-color,
+    // but no background.  This results in the button having an unexpected gray background.
+    // We default the background to 'inherit' _before setting any other styles_ so that no matter
+    // what happens, a button will not end up with the browser default background color.
+    () =>
+      css`
+        background: inherit;
+        display: inline-block;
+      `,
     ...base.styles(),
     aligned.styles,
     bordered.styles,
     padded.styles,
     rounded.styles,
-    () =>
-      css`
-        display: inline-block;
-      `,
   ],
   propTypes: () => ({
     ...base.propTypes(),
-    ...bordered.propTypes(),
-    ...rounded.propTypes(),
   }),
-  defaultProps: dp => ({
-    ...base.defaultProps(dp),
-    ...bordered.defaultProps(),
-    ...rounded.defaultProps(),
+  defaultProps: () => ({
+    ...base.defaultProps(),
     font: 'button',
     typographic: false,
   }),
@@ -87,15 +93,28 @@ export const link = {
   styles: () => [...base.styles()],
   propTypes: () => ({
     ...base.propTypes(),
-    ...bordered.propTypes(),
-    ...rounded.propTypes(),
     variant: PropTypes.oneOf(['button', 'link']),
   }),
-  defaultProps: dp => ({
-    ...base.defaultProps(dp),
-    ...bordered.defaultProps(),
-    ...rounded.defaultProps(),
+  defaultProps: () => ({
+    ...base.defaultProps(),
     variant: 'link',
+  }),
+}
+
+export const navItemVariantProps = {
+  propTypes: () => ({
+    variant: PropTypes.oneOf(['background', 'border', 'colorway', 'underline']),
+    layout: PropTypes.oneOf(['horizontal', 'vertical']),
+    currentColor: PropTypes.oneOf([null, ...colors]),
+    currentWidth: PropTypes.oneOf([null, ...sizes]),
+    currentStyle: PropTypes.oneOf([null, ...borderStyles]),
+  }),
+  defaultProps: () => ({
+    variant: 'border',
+    layout: 'horizontal',
+    currentColor: 'prominent',
+    currentWidth: 'xSmall',
+    currentStyle: 'solid',
   }),
 }
 
@@ -110,10 +129,17 @@ export const navItem = {
   ],
   propTypes: () => ({
     ...base.propTypes(),
+    ...navItemVariantProps.propTypes(),
+    href: PropTypes.string,
+    current: PropTypes.bool,
   }),
-  defaultProps: dp => ({
-    ...base.defaultProps(dp),
-    font: 'text',
+  defaultProps: () => ({
+    ...base.defaultProps(),
+    ...navItemVariantProps.defaultProps(),
+    paddingConfig: 'navs',
+    href: '#',
+    current: false,
+    font: 'nav',
     typographic: false,
   }),
 }

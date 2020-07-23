@@ -219,6 +219,30 @@ export default {
         decoration: 'none',
       },
     },
+    nav: {
+      family: 'primary',
+      style: 'normal',
+      weight: 'base',
+      size: 'base',
+      align: null,
+      justify: null,
+      transform: null,
+      decoration: 'none',
+      kerning: 'base',
+      tracking: 'base',
+      letting: 'min',
+      spacing: 'base',
+      indent: 'base',
+      inactive: {
+        decoration: 'none',
+      },
+      hover: {
+        decoration: 'none',
+      },
+      active: {
+        decoration: 'none',
+      },
+    },
     control: {
       family: 'primary',
       style: 'normal',

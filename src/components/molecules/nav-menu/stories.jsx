@@ -39,6 +39,32 @@ const Demo = () => (
     <Story.Grid>
       <NavMenu links={links}>Nav item text</NavMenu>
     </Story.Grid>
+    <h2>Item Props</h2>
+    <p>
+      The <em>NavMenu</em> component accepts <em>variant</em>, <em>layout</em>,{' '}
+      <em>currentColor</em>, <em>currentWidth</em>, and <em>currentStyle</em>{' '}
+      props for styling its items.
+    </p>
+    <Story.Grid>
+      <NavMenu links={links} variant="background" currentPath="/four/four/one">
+        NavItemBackground text
+      </NavMenu>
+    </Story.Grid>
+    <Story.Grid>
+      <NavMenu links={links} variant="border" currentPath="/four/four/one">
+        NavItemBorder text
+      </NavMenu>
+    </Story.Grid>
+    <Story.Grid>
+      <NavMenu links={links} variant="colorway" currentPath="/four/four/one">
+        NavItemColorway text
+      </NavMenu>
+    </Story.Grid>
+    <Story.Grid>
+      <NavMenu links={links} variant="underline" currentPath="/four/four/one">
+        NavItemUnderline text
+      </NavMenu>
+    </Story.Grid>
   </>
 )
 

@@ -1,1 +1,1 @@
-export { nav, renderNavControl, renderNavLinks } from './nav'
+export { nav, getNavItemTag, renderNavControl, renderNavLinks } from './nav'

@@ -25,6 +25,7 @@ export const fontStyles = [
   'quote',
   'text',
   'table',
+  'nav',
   'control',
   'label',
   'message',

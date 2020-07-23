@@ -3,11 +3,11 @@ import React from 'react'
 
 import { render } from 'setup-test'
 
-import NavItem from '.'
+import NavItemBackground from '.'
 
-describe('NavItem', () => {
+describe('NavItemBackground', () => {
   it('should render as default', () => {
-    const { container } = render(<NavItem>example</NavItem>)
+    const { container } = render(<NavItemBackground>example</NavItemBackground>)
     expect(container).toMatchSnapshot()
   })
 })

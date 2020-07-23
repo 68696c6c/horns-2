@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavItemBorder should render as default 1`] = `
+.emotion-0 {
+  background: rgb(255,255,255);
+  color: rgb(1,1,1);
+  border-color: rgb(216,216,216);
+  cursor: pointer;
+  font-family: Helvetica,sans-serif;
+  font-size: medium;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1em;
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  -webkit-text-decoration-style: none;
+  text-decoration-style: none;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  padding-left: 16px;
+  padding-right: 16px;
+  display: inline-block;
+}
+
+.emotion-0:disabled,
+.emotion-0.inactive {
+  cursor: pointer;
+  background: rgb(191,191,191);
+  color: rgb(1,1,1);
+  border-color: rgb(165,165,165);
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  -webkit-text-decoration-style: none;
+  text-decoration-style: none;
+}
+
+.emotion-0:not(:disabled):not(.inactive):hover {
+  background: rgb(235,235,235);
+  color: rgb(1,1,1);
+  border-color: rgb(216,216,216);
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  -webkit-text-decoration-style: none;
+  text-decoration-style: none;
+}
+
+.emotion-0:not(:disabled):not(.inactive):active {
+  background: rgb(216,216,216);
+  color: rgb(1,1,1);
+  border-color: rgb(235,235,235);
+  -webkit-text-decoration-line: none;
+  text-decoration-line: none;
+  -webkit-text-decoration-style: none;
+  text-decoration-style: none;
+}
+
+<div>
+  <a
+    class="emotion-0"
+    color="background"
+    cursor="pointer"
+    href="#"
+  >
+    example
+  </a>
+</div>
+`;
