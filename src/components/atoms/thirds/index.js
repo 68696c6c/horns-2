@@ -3,8 +3,7 @@ import { css } from '@emotion/core'
 import styled from '@emotion/styled'
 
 import { containedSplit } from '../../../traits'
-
-import { grid } from '../_base'
+import { grid } from '../../../macros'
 
 const Thirds = styled.div(
   ...grid.styles(),

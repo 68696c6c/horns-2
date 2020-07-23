@@ -1,8 +1,7 @@
 import styled from '@emotion/styled'
 
 import { chromatic, interactive } from '../../../traits'
-
-import { navItem } from '../_base'
+import { navItem } from '../../../macros'
 
 const NavItemColorway = styled.a(
   ...navItem.styles(),

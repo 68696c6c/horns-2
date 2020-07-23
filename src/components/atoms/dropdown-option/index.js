@@ -1,8 +1,7 @@
 import styled from '@emotion/styled'
 
 import { chromaticSurface, interactive, padded } from '../../../traits'
-
-import { controllableDefaultProps } from '../_base'
+import { controllableDefaultProps } from '../../../macros'
 
 const DropdownOption = styled.li(
   chromaticSurface.styles,

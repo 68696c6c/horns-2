@@ -2,9 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { responsive } from '../../../traits'
+import { table } from '../../../macros'
 import { useID, useRowIDs } from '../../../hooks'
 
-import { table } from '../_base'
 import Overflow from '../overflow'
 import * as Styled from './styles'
 

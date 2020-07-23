@@ -2,7 +2,7 @@
 import PropTypes from 'prop-types'
 import { css } from '@emotion/core'
 
-import { chromatic, padded, typographic } from '../../../traits'
+import { chromatic, padded, typographic } from '../traits'
 
 // eslint-disable-next-line import/prefer-default-export
 export const table = {

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 
-import { chromatic, typographic } from '../../../traits'
+import { chromatic, typographic } from '../traits'
 
 export const messageVariants = ['success', 'info', 'warning', 'danger']
 

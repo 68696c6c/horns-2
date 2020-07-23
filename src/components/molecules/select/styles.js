@@ -1,9 +1,8 @@
 import { css } from '@emotion/core'
 import styled from '@emotion/styled'
 
+import { control } from '../../../macros'
 import { Input } from '../../atoms'
-
-import { control } from '../../atoms/_base'
 
 export const Filter = styled(Input)(
   () => css`

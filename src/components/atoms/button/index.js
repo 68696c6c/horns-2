@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import { button } from '../_base'
+import { button } from '../../../macros'
 
 const Button = styled.button(...button.styles())
 

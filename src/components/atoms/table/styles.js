@@ -2,8 +2,7 @@ import styled from '@emotion/styled'
 import { css } from '@emotion/core'
 
 import { chromaticSurface } from '../../../traits'
-
-import { table } from '../_base'
+import { table } from '../../../macros'
 
 // eslint-disable-next-line import/prefer-default-export
 export const Table = styled.table(

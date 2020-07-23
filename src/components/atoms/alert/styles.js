@@ -2,8 +2,7 @@ import { css } from '@emotion/core'
 import styled from '@emotion/styled'
 
 import { bordered, inline, margined, padded } from '../../../traits'
-
-import { message } from '../_base'
+import { message } from '../../../macros'
 
 const baseStyles = [
   ...message.styles(),

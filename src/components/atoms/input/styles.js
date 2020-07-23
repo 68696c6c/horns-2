@@ -1,7 +1,7 @@
 import styled from '@emotion/styled'
 import MaskedInput from 'react-text-mask'
 
-import { control } from '../_base'
+import { control } from '../../../macros'
 
 export const Input = styled.input(...control.styles())
 export const InputHidden = styled.input()

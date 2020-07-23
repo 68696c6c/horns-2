@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import { block } from '../_base'
+import { block } from '../../../macros'
 
 const Nav = styled.nav(...block.styles())
 

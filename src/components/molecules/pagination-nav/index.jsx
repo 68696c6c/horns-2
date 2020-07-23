@@ -1,10 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { navItemVariantProps } from '../../atoms/_base'
+import { getNavItemTag, navItemVariantProps } from '../../../macros'
 import { handleProps, makeIntArray } from '../../utils'
 
-import { getNavItemTag } from '../_base'
 import * as Styled from './styles'
 
 const PaginationNav = ({
