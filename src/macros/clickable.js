@@ -122,9 +122,9 @@ export const navItem = {
   styles: () => [
     ...base.styles(),
     padded.styles,
-    () =>
+    ({ layout }) =>
       css`
-        display: inline-block;
+        display: ${layout === 'horizontal' ? 'inline-block' : 'block'};
       `,
   ],
   propTypes: () => ({

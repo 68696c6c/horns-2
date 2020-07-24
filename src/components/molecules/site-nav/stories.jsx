@@ -65,8 +65,8 @@ const Demo = () => (
       <SiteNav
         variant="colorway"
         color="tertiary"
-        currentColor="light"
-        currentPath="/one"
+        currentColor="warning"
+        currentPath="/two"
         links={links}
       />
     </Story.Grid>
@@ -74,7 +74,7 @@ const Demo = () => (
       <SiteNav
         variant="underline"
         color="success"
-        currentPath="/one"
+        currentPath="/three"
         links={links}
       />
     </Story.Grid>

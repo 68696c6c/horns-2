@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import { colors } from '../../../config'
 import { Menu } from '../../atoms'
 import { nav } from '../../../macros'
 import { handleProps } from '../../utils'
@@ -20,13 +21,13 @@ const SiteNav = ({
   currentColor,
   currentWidth,
   currentStyle,
+  menuColor,
   renderControl,
   renderItems,
   ...others
 }) => {
   const NavItemTag = getNavItemTag(variant)
   const navItemProps = {
-    layout,
     color,
     currentColor,
     currentWidth,
@@ -47,6 +48,7 @@ const SiteNav = ({
                 renderControl(
                   {
                     ...navItemProps,
+                    layout: 'vertical',
                     open,
                     ref,
                     toggleOpen,
@@ -55,16 +57,13 @@ const SiteNav = ({
                   NavItemTag
                 )}
               renderMenu={(open, ref) => (
-                <Menu open={open} ref={ref}>
+                <Menu open={open} ref={ref} color={menuColor}>
                   {renderItems(
                     {
+                      ...navItemProps,
+                      layout: 'vertical',
                       links: itemLinks,
-                      variant,
-                      layout,
-                      color,
-                      currentColor,
-                      currentWidth,
-                      currentStyle,
+                      color: menuColor,
                       renderControl,
                     },
                     NavItemTag
@@ -77,6 +76,7 @@ const SiteNav = ({
         return (
           <NavItemTag
             {...navItemProps}
+            layout={layout}
             href={href}
             key={href}
             current={href === currentPath}
@@ -91,12 +91,14 @@ const SiteNav = ({
 
 SiteNav.propTypes = {
   ...nav.propTypes(),
+  menuColor: PropTypes.oneOf([null, ...colors]),
   renderControl: PropTypes.func,
   renderItems: PropTypes.func,
 }
 
 SiteNav.defaultProps = {
   ...nav.defaultProps(),
+  menuColor: 'background',
   renderControl: renderNavControl,
   renderItems: renderNavItems,
 }
