@@ -5,14 +5,14 @@ import * as Story from '_story'
 
 import { Dropdown, DropdownOption } from '../../atoms'
 
-import Menu from '.'
+import MenuController from '.'
 
 const Demo = () => (
   <>
     <h1>MenuController</h1>
     <Story.Grid>
       <Story.Box>
-        <Menu
+        <MenuController
           forceWidth
           renderControl={(open, ref, toggleOpen) => (
             <div
