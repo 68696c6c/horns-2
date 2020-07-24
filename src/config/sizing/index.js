@@ -1,4 +1,4 @@
-import { mergeConfigs, getSideValues } from '../utils'
+import { mergeConfigs } from '../utils'
 
 import defaultConfig from './config'
 
@@ -44,12 +44,11 @@ class SizingConfig {
   }
 
   getSidesPX(sides) {
-    const result = getSideValues(sides)
     return {
-      top: this.getPX(result.top),
-      bottom: this.getPX(result.bottom),
-      left: this.getPX(result.left),
-      right: this.getPX(result.right),
+      top: this.getPX(sides.top),
+      bottom: this.getPX(sides.bottom),
+      left: this.getPX(sides.left),
+      right: this.getPX(sides.right),
     }
   }
 

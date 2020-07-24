@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 
 import { colors } from '../../../config'
 import { chromatic, margined, typographic } from '../../../traits'
+import { listTypes } from '../../../macros'
 import { childrenPropTypes, handleProps, isFragment } from '../../utils'
 
-import { listTypes } from '../_base'
 import * as Styled from './styles'
 
 const ListItem = ({ icon, font, children, ...others }) => {
@@ -37,8 +37,9 @@ ListItem.propTypes = {
 
 ListItem.defaultProps = {
   ...chromatic.defaultProps(null, true),
-  ...margined.defaultProps({ marginY: 'min' }),
+  ...margined.defaultProps(),
   ...typographic.defaultProps(),
+  marginY: 'min',
   icon: <></>,
   type: null,
   markerColor: null,

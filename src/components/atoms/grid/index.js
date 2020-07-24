@@ -3,8 +3,7 @@ import { css } from '@emotion/core'
 import styled from '@emotion/styled'
 
 import { contained } from '../../../traits'
-
-import { grid } from '../_base'
+import { grid } from '../../../macros'
 
 const Grid = styled.div(
   ...grid.styles(),

@@ -2,7 +2,7 @@ import { css } from '@emotion/core'
 import styled from '@emotion/styled'
 
 import { chromatic, margined, typographic } from '../../../traits'
-import { getItemColors, listDefaults } from '../_base'
+import { getItemColors, listDefaults } from '../../../macros'
 
 export const ListItem = styled.li(
   chromatic.styles,

@@ -1,19 +1,11 @@
 import styled from '@emotion/styled'
 
-import { chromatic } from '../../../traits'
+import { block } from '../../../macros'
 
-import { menu } from '../_base'
+const Nav = styled.nav(...block.styles())
 
-const Nav = styled.nav(chromatic.styles, ...menu.styles())
+Nav.propTypes = { ...block.propTypes() }
 
-Nav.propTypes = {
-  ...chromatic.propTypes(),
-  ...menu.propTypes(),
-}
-
-Nav.defaultProps = {
-  ...chromatic.defaultProps(),
-  ...menu.defaultProps(),
-}
+Nav.defaultProps = { ...block.defaultProps() }
 
 export default Nav

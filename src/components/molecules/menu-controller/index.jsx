@@ -64,16 +64,17 @@ MenuController.propTypes = {
   onClose: PropTypes.func,
   initialOpen: PropTypes.bool,
   forceWidth: PropTypes.bool,
-  menuPosition: PropTypes.oneOf([
-    'top',
-    'bottom',
-    'left',
-    'right',
-    'top-left',
-    'top-right',
-    'bottom-left',
-    'bottom-right',
-  ]),
+  // @TODO implement this
+  // menuPosition: PropTypes.oneOf([
+  //   'top',
+  //   'bottom',
+  //   'left',
+  //   'right',
+  //   'top-left',
+  //   'top-right',
+  //   'bottom-left',
+  //   'bottom-right',
+  // ]),
 }
 
 MenuController.defaultProps = {
@@ -81,7 +82,7 @@ MenuController.defaultProps = {
   onClose: () => {},
   initialOpen: false,
   forceWidth: false,
-  menuPosition: 'bottom',
+  // menuPosition: 'bottom',
 }
 
 export default MenuController

@@ -123,18 +123,12 @@ export const flexibleRow = {
     reversed: PropTypes.bool,
     flexWrap: PropTypes.bool,
   }),
-  defaultProps: (
-    x = null,
-    y = null,
-    content = null,
-    reversed = false,
-    flexWrap = false
-  ) => ({
-    x,
-    y,
-    content,
-    reversed,
-    flexWrap,
+  defaultProps: () => ({
+    x: null,
+    y: null,
+    content: null,
+    reversed: false,
+    flexWrap: false,
   }),
 }
 
@@ -149,17 +143,11 @@ export const flexibleColumn = {
     reversed: PropTypes.bool,
     flexWrap: PropTypes.bool,
   }),
-  defaultProps: (
-    x = null,
-    y = null,
-    content = null,
-    reversed = false,
-    flexWrap = false
-  ) => ({
-    x,
-    y,
-    content,
-    reversed,
-    flexWrap,
+  defaultProps: () => ({
+    x: null,
+    y: null,
+    content: null,
+    reversed: false,
+    flexWrap: false,
   }),
 }

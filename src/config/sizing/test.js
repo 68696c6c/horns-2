@@ -65,10 +65,16 @@ describe('SizingConfig', () => {
     })
 
     it('should return values in pixels', () => {
-      const result = c.getSidesPX({ all: 'min' })
-      Object.keys(result).forEach(side => {
-        expect(result[side]).toContain('px')
+      const result = c.getSidesPX({
+        top: 'min',
+        bottom: 'max',
+        left: 'small',
+        right: 'medium',
       })
+      expect(result.top).toContain('px')
+      expect(result.bottom).toContain('px')
+      expect(result.left).toContain('px')
+      expect(result.right).toContain('px')
     })
 
     it('should return null for null values', () => {

@@ -2,9 +2,9 @@ import React, { useState, useRef } from 'react'
 import PropTypes from 'prop-types'
 import _debounce from 'lodash.debounce'
 
-import { handleProps } from '../../utils'
-import { control } from '../../atoms/_base'
+import { control } from '../../../macros'
 import { Dropdown, DropdownOption, Input } from '../../atoms'
+import { handleProps } from '../../utils'
 
 import MenuController from '../menu-controller'
 import * as Styled from './styles'

@@ -10,5 +10,5 @@ export const responsive = {
   propTypes: () => ({
     breakpoint: PropTypes.oneOf(breakpoints),
   }),
-  defaultProps: (breakpoint = 'small') => ({ breakpoint }),
+  defaultProps: () => ({ breakpoint: 'small' }),
 }

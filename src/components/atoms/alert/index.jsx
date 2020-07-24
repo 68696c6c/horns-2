@@ -9,9 +9,9 @@ import {
 } from 'react-icons/fa'
 
 import { bordered, margined, padded } from '../../../traits'
+import { message } from '../../../macros'
 import { handleProps } from '../../utils'
 
-import { message } from '../_base'
 import * as Styled from './styles'
 
 const Alert = ({ children, block, variant, withIcon, ...others }) => {
@@ -53,7 +53,9 @@ Alert.defaultProps = {
   ...message.defaultProps(),
   ...bordered.defaultProps(),
   ...margined.defaultProps(),
-  ...padded.defaultProps({ padding: 'small', paddingX: 'medium' }),
+  ...padded.defaultProps(),
+  padding: 'small',
+  paddingX: 'medium',
   block: false,
   withIcon: false,
   typographic: false,

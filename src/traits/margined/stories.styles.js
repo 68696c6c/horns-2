@@ -4,11 +4,18 @@ import { css } from '@emotion/core'
 import { margined } from '.'
 import { padded } from '../padded'
 
+const colors = {
+  margin: 'rgb(172, 122, 79)',
+  border: '#ffc107', // rgb(227, 194, 133)
+  padding: 'rgb(177, 189, 121)',
+  content: 'rgb(126, 168, 181)',
+}
+
 export const BoxContainer = styled.div(
   () =>
     css`
       overflow: auto;
-      background-color: rgb(172, 122, 79);
+      background-color: ${colors.margin};
       color: white;
       margin: 1em 0;
     `
@@ -19,16 +26,16 @@ export const Box = styled.div(
   margined.styles,
   () =>
     css`
-      background-color: rgb(177, 189, 121);
+      background-color: ${colors.padding};
       color: white;
-      border: 1px solid rgb(227, 194, 133);
+      border: 2px solid ${colors.border};
     `
 )
 
 export const BoxContent = styled.div(
   () =>
     css`
-      background-color: rgb(126, 168, 181);
+      background-color: ${colors.content};
       color: white;
       text-align: center;
       padding: 0.3em;
