@@ -1,10 +1,10 @@
 import React from 'react'
 
+import { nav } from '../../../macros'
 import { Menu } from '../../atoms'
 import { childrenPropTypes } from '../../utils'
 
-import { nav, renderNavControl, renderNavLinks } from '../_base'
-import MenuController from '../menu-controller'
+import MenuController, { renderNavControl, renderNavLinks } from '../menu-controller'
 
 const NavMenu = ({
   children,

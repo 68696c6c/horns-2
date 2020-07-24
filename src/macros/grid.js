@@ -2,16 +2,17 @@
 import {
   chromatic,
   contained,
+  gridded,
   margined,
   padded,
   responsive,
-} from '../../../traits'
+} from '../traits'
 
 // eslint-disable-next-line import/prefer-default-export
-export const block = {
+export const grid = {
   styles: () => [
     chromatic.styles,
-    contained.styles,
+    gridded.styles,
     margined.styles,
     padded.styles,
     responsive.styles,
@@ -19,6 +20,7 @@ export const block = {
   propTypes: () => ({
     ...chromatic.propTypes(),
     ...contained.propTypes(),
+    ...gridded.propTypes(),
     ...margined.propTypes(),
     ...padded.propTypes(),
     ...responsive.propTypes(),
@@ -26,6 +28,7 @@ export const block = {
   defaultProps: () => ({
     ...chromatic.defaultProps(),
     ...contained.defaultProps(),
+    ...gridded.defaultProps(),
     ...margined.defaultProps(),
     ...padded.defaultProps(),
     ...responsive.defaultProps(),

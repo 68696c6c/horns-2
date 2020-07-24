@@ -13,8 +13,6 @@ exports[`NavItemUnderline should render as default 1`] = `
   line-height: 1em;
   -webkit-text-decoration-line: none;
   text-decoration-line: none;
-  -webkit-text-decoration-style: none;
-  text-decoration-style: none;
   padding-top: 16px;
   padding-bottom: 16px;
   padding-left: 16px;
@@ -30,8 +28,6 @@ exports[`NavItemUnderline should render as default 1`] = `
   border-color: rgb(165,165,165);
   -webkit-text-decoration-line: none;
   text-decoration-line: none;
-  -webkit-text-decoration-style: none;
-  text-decoration-style: none;
 }
 
 .emotion-0:not(:disabled):not(.inactive):hover {
@@ -40,8 +36,6 @@ exports[`NavItemUnderline should render as default 1`] = `
   border-color: rgb(216,216,216);
   -webkit-text-decoration-line: none;
   text-decoration-line: none;
-  -webkit-text-decoration-style: none;
-  text-decoration-style: none;
 }
 
 .emotion-0:not(:disabled):not(.inactive):active {
@@ -50,8 +44,6 @@ exports[`NavItemUnderline should render as default 1`] = `
   border-color: rgb(235,235,235);
   -webkit-text-decoration-line: none;
   text-decoration-line: none;
-  -webkit-text-decoration-style: none;
-  text-decoration-style: none;
 }
 
 <div>

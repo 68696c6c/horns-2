@@ -2,7 +2,7 @@
 import PropTypes from 'prop-types'
 import { css } from '@emotion/core'
 
-import { chromatic, padded, typographic } from '../../../traits'
+import { chromatic, padded, typographic } from '../traits'
 
 // eslint-disable-next-line import/prefer-default-export
 export const table = {
@@ -42,7 +42,7 @@ export const table = {
   defaultProps: () => ({
     ...chromatic.defaultProps(),
     ...padded.defaultProps(),
-    minWidth: '',
     height: 'auto',
+    minWidth: '',
   }),
 }

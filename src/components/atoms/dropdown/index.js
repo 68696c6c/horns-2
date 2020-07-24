@@ -1,7 +1,7 @@
 import { css } from '@emotion/core'
 import styled from '@emotion/styled'
 
-import { baseControl, menu } from '../_base'
+import { baseControl, menu } from '../../../macros'
 
 const Dropdown = styled.ul(
   ...baseControl.styles(),

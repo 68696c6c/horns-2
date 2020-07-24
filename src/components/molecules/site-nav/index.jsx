@@ -1,8 +1,9 @@
 import React from 'react'
 
 import { handleProps } from '../../utils'
+import { nav } from '../../../macros'
 
-import { nav, renderNavLinks } from '../_base'
+import { renderNavLinks } from '../menu-controller'
 import * as Styled from './styles'
 
 const SiteNav = ({

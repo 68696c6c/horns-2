@@ -1,8 +1,7 @@
 import styled from '@emotion/styled'
 
 import { flexibleRow } from '../../../traits'
-
-import { flex } from '../_base'
+import { flex } from '../../../macros'
 
 const FlexRow = styled.div(...flex.styles(), flexibleRow.styles)
 

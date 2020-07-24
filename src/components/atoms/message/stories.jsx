@@ -3,7 +3,7 @@ import React from 'react'
 
 import * as Story from '_story'
 
-import { messageVariants } from '../_base'
+import { messageVariants } from '../../../macros'
 import Message from '.'
 
 const Demo = () => (

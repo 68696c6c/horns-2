@@ -1,8 +1,7 @@
 import styled from '@emotion/styled'
 
 import { chromatic } from '../../../traits'
-
-import { menu } from '../_base'
+import { menu } from '../../../macros'
 
 const Menu = styled.nav(chromatic.styles, ...menu.styles())
 

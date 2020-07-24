@@ -1,6 +1,7 @@
 import React from 'react'
 
-import { message } from '../_base'
+import { message } from '../../../macros'
+
 import * as Styled from './styles'
 
 const Message = ({ variant, ...others }) => (

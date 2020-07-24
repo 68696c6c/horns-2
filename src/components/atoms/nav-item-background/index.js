@@ -1,8 +1,7 @@
 import styled from '@emotion/styled'
 
 import { chromatic } from '../../../traits'
-
-import { navItem } from '../_base'
+import { navItem } from '../../../macros'
 
 const NavItemBackground = styled.a(
   ...navItem.styles(),

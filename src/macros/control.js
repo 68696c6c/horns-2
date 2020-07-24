@@ -11,7 +11,7 @@ import {
   padded,
   rounded,
   typographic,
-} from '../../../traits'
+} from '../traits'
 
 export const controllableDefaultProps = {
   cursor: 'text',

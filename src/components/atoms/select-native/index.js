@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import { select } from '../_base'
+import { select } from '../../../macros'
 
 const SelectNative = styled.select(...select.styles())
 

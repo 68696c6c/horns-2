@@ -1,7 +1,7 @@
 import { css } from '@emotion/core'
 import styled from '@emotion/styled'
 
-import { navItem } from '../_base'
+import { navItem } from '../../../macros'
 
 const NavItemUnderline = styled.a(...navItem.styles(), ({ current }) => {
   return (

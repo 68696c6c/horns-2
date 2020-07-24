@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import { css } from '@emotion/core'
 
-import { borderStyles, colors, sizes } from '../../../config'
+import { borderStyles, colors, sizes } from '../config'
 import {
   aligned,
   bordered,
@@ -12,7 +12,7 @@ import {
   padded,
   rounded,
   typographic,
-} from '../../../traits'
+} from '../traits'
 
 const clickableDefaultProps = {
   textAlign: 'center',

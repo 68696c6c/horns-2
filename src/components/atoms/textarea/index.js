@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import { control } from '../_base'
+import { control } from '../../../macros'
 
 const Textarea = styled.textarea(...control.styles())
 

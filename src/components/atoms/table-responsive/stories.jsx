@@ -4,7 +4,6 @@ import React from 'react'
 import { makeIntArray } from '_story'
 
 import TableResponsive from '.'
-import Table from '../table'
 
 const makeRow = i => ({
   id: `${i.repeat(8)}-${i.repeat(4)}-${i.repeat(4)}-${i.repeat(4)}-${i.repeat(

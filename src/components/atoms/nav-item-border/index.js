@@ -3,8 +3,7 @@ import styled from '@emotion/styled'
 
 import { valueToNumber } from '../../../config/utils'
 import { bordered } from '../../../traits'
-
-import { navItem } from '../_base'
+import { navItem } from '../../../macros'
 
 const NavItemBorder = styled.a(...navItem.styles(), props => {
   const {
