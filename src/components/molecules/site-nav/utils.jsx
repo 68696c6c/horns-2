@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Menu } from '../../atoms'
 
-import MenuController from '../menu-controller'
+import AccordionController from '../accordion-controller'
 
 export const renderNavControl = (args, Component) => {
   const { open, ref, toggleOpen, text, color, ...navItemProps } = args
@@ -28,26 +28,48 @@ export const renderNavItems = (args, Component) => {
   const { currentPath, links, color, renderControl, ...others } = args
   return links.map(({ href, text, links: itemLinks }) => {
     if (itemLinks && itemLinks.length) {
+      console.log(itemLinks)
+      const items = itemLinks.map(
+        (item) => {
+          console.log(item)
+          return renderNavItems(
+            {
+              ...others,
+              links: item.links || [],
+              href: item.href,
+              text: item.text,
+            },
+            Component
+          )
+    }
+      )
+      console.log(items)
       return (
-        <MenuController
+        <AccordionController
           key={href}
-          renderControl={(open, ref, toggleOpen) =>
-            renderControl(
-              {
-                ...others,
-                open,
-                ref,
-                toggleOpen,
-                text,
-                color,
-              },
-              Component
-            )}
-          renderMenu={(open, ref) => (
-            <Menu open={open} ref={ref} color={color}>
-              {renderNavItems({ ...others, links: itemLinks }, Component)}
-            </Menu>
+          renderControl={({ handleClick }) => (
+            <Component onClick={handleClick} {...others} color={color}>
+              {text}
+            </Component>
           )}
+          items={items}
+          // renderControl={(open, ref, toggleOpen) =>
+          //   renderControl(
+          //     {
+          //       ...others,
+          //       open,
+          //       ref,
+          //       toggleOpen,
+          //       text,
+          //       color,
+          //     },
+          //     Component
+          //   )}
+          // renderMenu={(open, ref) => (
+          //   <Menu open={open} ref={ref} color={color}>
+          //     {renderNavItems({ ...others, links: itemLinks }, Component)}
+          //   </Menu>
+          // )}
         />
       )
     }
