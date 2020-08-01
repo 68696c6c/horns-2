@@ -16,7 +16,6 @@ const NavItemBorder = styled.a(...navItem.styles(), props => {
     ...others
   } = props
 
-  let currentCSS
   if (current) {
     const c = theme.color.getColorway(currentColor)
     const bColor = currentColor === 'background' ? c.base.readable : c.base.base
@@ -36,7 +35,7 @@ const NavItemBorder = styled.a(...navItem.styles(), props => {
     const bv = theme.sizing.getValue(currentWidth)
     const paddingValue = pv - bv
 
-    currentCSS = css`
+    return css`
       padding-${side}: ${paddingValue >= 0 && `${paddingValue}px !important`};
       border-${side}-color: ${bColor} !important;
       ${bordered.styles({
@@ -46,9 +45,7 @@ const NavItemBorder = styled.a(...navItem.styles(), props => {
       })}
     `
   }
-  return css`
-    ${currentCSS}
-  `
+  return null
 })
 
 NavItemBorder.propTypes = {

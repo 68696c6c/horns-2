@@ -12,14 +12,18 @@ export const menu = {
       `,
     () => css`
       position: absolute;
+      top: 0;
+      z-index: 99999999999;
       box-sizing: border-box;
       min-width: 100%;
     `,
   ],
   propTypes: () => ({
     open: PropTypes.bool,
+    direction: PropTypes.oneOf(['top', 'bottom', 'left', 'right'])
   }),
   defaultProps: () => ({
     open: false,
+    direction: 'bottom',
   }),
 }

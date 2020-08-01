@@ -15,6 +15,8 @@ const hornsProps = [
   'borderBottom',
   'borderLeft',
   'borderRight',
+  'color',
+  'cursor',
   'margin',
   'marginX',
   'marginY',

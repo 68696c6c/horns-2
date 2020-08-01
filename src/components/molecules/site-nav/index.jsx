@@ -1,16 +1,34 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
+import uuid from 'uuid/v4'
+import _union from 'lodash.union'
+import _without from 'lodash.without'
 
 import { colors } from '../../../config'
 import { Menu } from '../../atoms'
 import { nav } from '../../../macros'
 import { handleProps } from '../../utils'
 
-import MenuController from '../menu-controller'
 import { getNavItemTag } from '../utils'
 
-import { renderNavControl, renderNavItems } from './utils'
+import { renderLinks, cloneWithIDs, makeLinkMap } from './utils'
 import * as Styled from './styles'
+
+const handleClick = (event, linkMap, openItems, setOpenItems) => {
+  event.preventDefault()
+  const id = event.target.getAttribute('data-id')
+  const linkPath = linkMap[id]
+  if (!linkPath) {
+    return
+  }
+  if (openItems.includes(id)) {
+    const merged = _without(openItems, id)
+    setOpenItems(merged)
+  } else {
+    const merged = _union(openItems, linkPath)
+    setOpenItems(merged)
+  }
+}
 
 const SiteNav = ({
   links,
@@ -27,64 +45,88 @@ const SiteNav = ({
   ...others
 }) => {
   const NavItemTag = getNavItemTag(variant)
+
+  const [openItems, setOpenItems] = useState([])
+  const [currentID, setCurrentID] = useState([])
+
+  const [clonedLinks, setClonedLinks] = useState([])
+  useEffect(() => {
+    const [clones, cID] = cloneWithIDs(links, currentPath, uuid)
+    setClonedLinks(clones)
+    setCurrentID(cID)
+  }, [links])
+
+  const [linkMap, setLinkMap] = useState({})
+  useEffect(() => {
+    setLinkMap(makeLinkMap(clonedLinks))
+  }, [clonedLinks])
+
+  const [currentItems, setCurrentItems] = useState([])
+  useEffect(() => {
+    if (linkMap[currentID]) {
+      const ids = linkMap[currentID]
+      setCurrentItems(ids)
+    }
+  }, [linkMap, currentID])
+
   const navItemProps = {
-    color,
     currentColor,
     currentWidth,
     currentStyle,
   }
+  const [linkItems, setLinkItems] = useState([])
+  useEffect(() => {
+    const items = renderLinks(
+      clonedLinks,
+      color,
+      'horizontal',
+      (link, index, itemColor, itemLayout) => (
+        <NavItemTag
+          {...navItemProps}
+          color={itemColor}
+          layout={itemLayout}
+          key={link.id}
+          data-id={link.id}
+          href={link.href}
+          onClick={event => {
+            return handleClick(
+              event,
+              linkMap,
+              openItems,
+              setOpenItems,
+              setCurrentItems
+            )
+          }}
+          current={currentItems.includes(link.id)}
+        >
+          {link.text}
+        </NavItemTag>
+      ),
+      (link, index, itemColor, itemLayout, itemCallback, menuCallback) => (
+        <Styled.NavItemMenuContainer
+          key={link.id}
+          open={openItems.includes(link.id)}
+        >
+          {itemCallback(link, index, itemColor, itemLayout)}
+          <Styled.MenuContainer open={openItems.includes(link.id)}>
+            <Menu open={openItems.includes(link.id)}>
+              {renderLinks(link.links, menuColor, 'vertical', itemCallback, menuCallback)}
+            </Menu>
+          </Styled.MenuContainer>
+        </Styled.NavItemMenuContainer>
+      )
+    )
+    setLinkItems(items)
+  }, [linkMap, currentItems, openItems])
+
   return (
     <Styled.SiteNav
       color={color}
+      menuColor={menuColor}
       currentPath={currentPath}
       {...handleProps(others, 'site-nav')}
     >
-      {links.map(({ href, text, links: itemLinks }) => {
-        if (itemLinks && itemLinks.length) {
-          return (
-            <MenuController
-              key={href}
-              renderControl={(open, ref, toggleOpen) =>
-                renderControl(
-                  {
-                    ...navItemProps,
-                    layout: 'vertical',
-                    open,
-                    ref,
-                    toggleOpen,
-                    text,
-                  },
-                  NavItemTag
-                )}
-              renderMenu={(open, ref) => (
-                <Menu open={open} ref={ref} color={menuColor}>
-                  {renderItems(
-                    {
-                      ...navItemProps,
-                      layout: 'vertical',
-                      links: itemLinks,
-                      color: menuColor,
-                      renderControl,
-                    },
-                    NavItemTag
-                  )}
-                </Menu>
-              )}
-            />
-          )
-        }
-        return (
-          <NavItemTag
-            {...navItemProps}
-            layout={layout}
-            href={href}
-            key={href}
-            current={href === currentPath}
-          >
-            {text}
-          </NavItemTag>
-        )
-      })}
+      {linkItems}
     </Styled.SiteNav>
   )
 }
@@ -92,15 +134,13 @@ const SiteNav = ({
 SiteNav.propTypes = {
   ...nav.propTypes(),
   menuColor: PropTypes.oneOf([null, ...colors]),
-  renderControl: PropTypes.func,
-  renderItems: PropTypes.func,
 }
 
 SiteNav.defaultProps = {
   ...nav.defaultProps(),
-  menuColor: 'background',
-  renderControl: renderNavControl,
-  renderItems: renderNavItems,
+  color: 'background',
+  menuColor: 'neutral',
+  currentColor: 'primary',
 }
 
 export default SiteNav

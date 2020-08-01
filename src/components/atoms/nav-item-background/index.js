@@ -5,8 +5,10 @@ import { navItem } from '../../../macros'
 
 const NavItemBackground = styled.a(
   ...navItem.styles(),
-  ({ theme, current, currentColor, typographic }) =>
-    current && chromatic.styles({ theme, typographic, color: currentColor })
+  ({ theme, current, color, currentColor }) => {
+    const cc = current ? currentColor : color
+    return chromatic.styles({ theme, color: cc, typographic: false })
+  }
 )
 
 NavItemBackground.propTypes = { ...navItem.propTypes() }
