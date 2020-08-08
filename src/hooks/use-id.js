@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import uuid from 'uuid/v4'
 
-const useRowIDs = () => {
+const useID = () => {
   const [id, setID] = useState('')
   useEffect(() => {
     setID(uuid())
@@ -9,4 +9,4 @@ const useRowIDs = () => {
   return [id, setID]
 }
 
-export default useRowIDs
+export default useID
