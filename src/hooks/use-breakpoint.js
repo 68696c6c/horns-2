@@ -30,14 +30,10 @@ const useBreakpoint = (breakpoint) => {
   }, [])
 
   useEffect(() => {
-    console.log({ breakpoint })
     const breakInt = theme.grid.getBreakpointInt(breakpoint)
-    console.log({ breakInt })
     if (windowSize.width <= breakInt && !isMobile) {
-      console.log('true')
       setIsMobile(true)
     } else if (windowSize.width > breakInt && isMobile) {
-      console.log('true')
       setIsMobile(false)
     }
   }, [windowSize])

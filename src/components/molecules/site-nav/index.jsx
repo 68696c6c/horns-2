@@ -11,7 +11,6 @@ import { Menu } from '../../atoms'
 import { nav } from '../../../macros'
 import { handleProps } from '../../utils'
 
-import MenuController from '../menu-controller'
 import { getNavItemTag } from '../utils'
 
 import { renderLinks, cloneWithIDs, makeLinkMap } from './utils'
@@ -48,23 +47,28 @@ const SiteNav = ({
   breakpoint,
   ...others
 }) => {
-  const [id] = useID()
+  const [navID] = useID()
   const isMobile = useBreakpoint(breakpoint)
   const NavItemTag = getNavItemTag(variant)
 
   const [openItems, setOpenItems] = useState([])
   const [currentID, setCurrentID] = useState([])
-  const [clonedLinks, setClonedLinks] = useState([])
+  const [mobileLinks, setMobileLinks] = useState([])
   useEffect(() => {
     const [clones, cID] = cloneWithIDs(links, currentPath, uuid)
-    setClonedLinks(clones)
+    const topLinks = [{ href: '#', text: 'H', links: clones, id: navID }]
     setCurrentID(cID)
-  }, [links])
+    setMobileLinks(topLinks)
+  }, [navID, links])
 
   const [linkMap, setLinkMap] = useState({})
   useEffect(() => {
-    setLinkMap(makeLinkMap(clonedLinks))
-  }, [clonedLinks])
+    setLinkMap(makeLinkMap(mobileLinks))
+  }, [mobileLinks])
+
+  useEffect(() => {
+    setOpenItems([])
+  }, [isMobile])
 
   const [currentItems, setCurrentItems] = useState([])
   useEffect(() => {
@@ -81,10 +85,14 @@ const SiteNav = ({
   }
   const [linkItems, setLinkItems] = useState([])
   useEffect(() => {
+    let linksToRender = mobileLinks
+    if (!isMobile) {
+      linksToRender = mobileLinks[0] ? mobileLinks[0].links : []
+    }
     const items = renderLinks(
-      clonedLinks,
+      linksToRender,
       color,
-      isMobile ? 'vertical' : 'horizontal',
+      'horizontal',
       (link, index, itemColor, itemLayout) => (
         <NavItemTag
           {...navItemProps}
@@ -128,31 +136,7 @@ const SiteNav = ({
       )
     )
     setLinkItems(items)
-  }, [linkMap, currentItems, openItems])
-
-  if (isMobile) {
-    return (
-      <MenuController
-        renderControl={(open, ref, toggleOpen) => (
-          <NavItemTag
-            key={id}
-            ref={ref}
-            onClick={event => {
-              event.preventDefault()
-              toggleOpen()
-            }}
-          >
-            H
-          </NavItemTag>
-        )}
-        renderMenu={(open, ref) => (
-          <Styled.MobileMenu open={open} ref={ref}>
-            {linkItems}
-          </Styled.MobileMenu>
-        )}
-      />
-    )
-  }
+  }, [isMobile, linkMap, currentItems, openItems])
 
   return (
     <Styled.SiteNav
