@@ -42,6 +42,12 @@ class GridConfig {
     return this.breakpoints.mobile
   }
 
+  // @TODO compute these ahead of time
+  getBreakpointInt(breakpoint) {
+    const bp = this.breakpoints[breakpoint] ? this.breakpoints[breakpoint] : this.breakpoints.mobile
+    return valueToNumber(bp)
+  }
+
   break(breakpoint) {
     return `@media (min-width: ${this.getBreakpoint(breakpoint)})`
   }

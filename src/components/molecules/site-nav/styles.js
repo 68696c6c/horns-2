@@ -28,6 +28,22 @@ export const MenuContainer = styled.span(
     `
 )
 
+export const MobileMenu = styled(Menu)(
+  () => css`
+    min-width: 20em;
+    ${MenuContainer} {
+      display: block;
+      text-indent: 1em;
+      ${MenuContainer} {
+        text-indent: 2em;
+        ${MenuContainer} {
+          text-indent: 3em;
+        }
+      }
+    }
+  `
+)
+
 export const SiteNav = styled(Nav)(
   () => css`
     > ${NavItemMenuContainer} {

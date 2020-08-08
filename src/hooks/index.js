@@ -2,3 +2,4 @@
 export { default as useID } from './use-id'
 export { default as useOpen } from './use-open'
 export { default as useRowIDs } from './use-row-ids'
+export { default as useBreakpoint } from './use-breakpoint'

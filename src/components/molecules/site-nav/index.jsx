@@ -5,10 +5,13 @@ import _union from 'lodash.union'
 import _without from 'lodash.without'
 
 import { colors } from '../../../config'
+import { useBreakpoint, useID } from '../../../hooks'
+import { responsive } from '../../../traits/responsive'
 import { Menu } from '../../atoms'
 import { nav } from '../../../macros'
 import { handleProps } from '../../utils'
 
+import MenuController from '../menu-controller'
 import { getNavItemTag } from '../utils'
 
 import { renderLinks, cloneWithIDs, makeLinkMap } from './utils'
@@ -42,13 +45,15 @@ const SiteNav = ({
   menuColor,
   renderControl,
   renderItems,
+  breakpoint,
   ...others
 }) => {
+  const [id] = useID()
+  const isMobile = useBreakpoint(breakpoint)
   const NavItemTag = getNavItemTag(variant)
 
   const [openItems, setOpenItems] = useState([])
   const [currentID, setCurrentID] = useState([])
-
   const [clonedLinks, setClonedLinks] = useState([])
   useEffect(() => {
     const [clones, cID] = cloneWithIDs(links, currentPath, uuid)
@@ -79,7 +84,7 @@ const SiteNav = ({
     const items = renderLinks(
       clonedLinks,
       color,
-      'horizontal',
+      isMobile ? 'vertical' : 'horizontal',
       (link, index, itemColor, itemLayout) => (
         <NavItemTag
           {...navItemProps}
@@ -110,7 +115,13 @@ const SiteNav = ({
           {itemCallback(link, index, itemColor, itemLayout)}
           <Styled.MenuContainer open={openItems.includes(link.id)}>
             <Menu open={openItems.includes(link.id)}>
-              {renderLinks(link.links, menuColor, 'vertical', itemCallback, menuCallback)}
+              {renderLinks(
+                link.links,
+                menuColor,
+                'vertical',
+                itemCallback,
+                menuCallback
+              )}
             </Menu>
           </Styled.MenuContainer>
         </Styled.NavItemMenuContainer>
@@ -118,6 +129,30 @@ const SiteNav = ({
     )
     setLinkItems(items)
   }, [linkMap, currentItems, openItems])
+
+  if (isMobile) {
+    return (
+      <MenuController
+        renderControl={(open, ref, toggleOpen) => (
+          <NavItemTag
+            key={id}
+            ref={ref}
+            onClick={event => {
+              event.preventDefault()
+              toggleOpen()
+            }}
+          >
+            H
+          </NavItemTag>
+        )}
+        renderMenu={(open, ref) => (
+          <Styled.MobileMenu open={open} ref={ref}>
+            {linkItems}
+          </Styled.MobileMenu>
+        )}
+      />
+    )
+  }
 
   return (
     <Styled.SiteNav
@@ -133,11 +168,14 @@ const SiteNav = ({
 
 SiteNav.propTypes = {
   ...nav.propTypes(),
+  ...responsive.propTypes(),
   menuColor: PropTypes.oneOf([null, ...colors]),
 }
 
 SiteNav.defaultProps = {
   ...nav.defaultProps(),
+  ...responsive.defaultProps(),
+  breakpoint: 'medium',
   color: 'background',
   menuColor: 'neutral',
   currentColor: 'primary',
